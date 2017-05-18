@@ -1282,8 +1282,9 @@ function generate(){
     	numb.push(t[i][1]);
     	dec.push(t[i][2]);
     }
-    console.log(t);
     t = starRanges(t);
+    console.log("Star Ranges (Leads to starZones)");
+    console.log(t);
     var n = t.filter(function (x) {
     	return !x.every(function (y){ 
     		return !isNaN(y);
