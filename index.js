@@ -293,8 +293,9 @@ function starRanges(stars){
 }
 
 function pZone(sR){
+	console.log(sR);
 	var t = sR.filter(function (x) {
-		return x.indexOf("Primary")>-1;
+		return (x.indexOf("Primary")>-1);
 	});
 	var n = sR.filter(function (x) {
 		return x.every(function (y){
