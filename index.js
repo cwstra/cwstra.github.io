@@ -637,7 +637,7 @@ function zChart(star){
 }
 
 function starZones(sR){
-	var pz = pZone[sR];
+	var pz = pZone(sR);
 	var tab = [["Main System","Position","Classification"]];
 	var fzone = sR.filter(function (x){
 		return x.every(function(y){
