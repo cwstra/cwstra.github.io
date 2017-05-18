@@ -876,6 +876,7 @@ function tableJoin(name,t1,t2){
     		tab[i+2].push(c1[i+2]+" "+k.toString);
    			k++;
 		}
+		console.log(t[i]);
 		tab[i+2].push(t[i][j]);
 		tab[i+2].push(t2[i][j]);
 	}
@@ -1326,7 +1327,6 @@ function generate(){
     else {
     		ct = [["No Rogue Asteroids"]];
     }
-    
     var plist = planetPicker(tab, ct);
     
 	console.log("Done");
