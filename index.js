@@ -305,8 +305,8 @@ function pZone(sR){
 	if (t.length > 1){
 		return "Two Primary Stars";
 	}
-	t = t[1];
-	n = n[1];
+	t = t[0];
+	n = n[0];
 	var z = [];
 	var i; for (i=0;i<t[1];i++){
 		if (n.indexOf(i)==-1){
