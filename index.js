@@ -133,10 +133,11 @@ function zoneKeeper(tab,min,max){
 }
 
 function starRanges(stars){
+	var orbits; var mod; 
 	if (Array.isArray(stars[0])){
 		var r = [[]];
 		var t = [];
-		var i; var s; var n; var mod; for (i=0;i<stars.length;i++){
+		var i; var s; var n; for (i=0;i<stars.length;i++){
 			s = stars[i];
 			if (typeof s[3] !== "string"){
 				while (t.indexOf(s[3])>-1){
@@ -254,10 +255,9 @@ function starRanges(stars){
 			}
 		);
 		var prime = r.filter(function (x) {return x.indexOf("Primary")>-1;});
-		function f(x){
+		var y = r.filter(function (x){
 			return !(list.indexOf(x)>-1||prime.indexOf(x)>-1);
-		}
-		var y = r.filter(f);
+		});
 		var m = prime[0][1];
 		for (i=0;i<y.length;i++){
 			if (m<y[i][2][3]&&y[i][2][3]<1000){
@@ -269,7 +269,7 @@ function starRanges(stars){
 		return r;
 	} 
 	else {
-	var mod = 0;
+	mod = 0;
 	switch(stars[0]){
 		case "M":
 			mod = mod - 6;
@@ -286,21 +286,21 @@ function starRanges(stars){
 			mod = mod + 6;
 			break;
 	}
-	var orbits = randomInt(1,10)+mod;
+	orbits = randomInt(1,10)+mod;
 	if (orbits<0){orbits=0;}
-	return [[stars[4],orbits,s,"Primary"]];
+	return [[stars[4],orbits,stars,"Primary"]];
 }
 }
 
 function pZone(sR){
 	var t = sR.filter(function (x) {
 		return x.indexOf("Primary")>-1;
-	})
+	});
 	var n = sR.filter(function (x) {
 		return x.every(function (y){
 			return !isNaN(y);
 		});
-	})
+	});
 	if (t.length > 1){
 		return "Two Primary Stars";
 	}
@@ -316,13 +316,13 @@ function pZone(sR){
 }
 
 function zChart(star){
-	var t = [];
+	var t = []; var i;
 	switch(star[2][1]){
 		case "dK":
 		case "dM":
 		case "dF":
 		case "dG":
-			for(i=0,i<=star[1]&&i<=5,i++){
+			for(i=0;i<=star[1]&&i<=5;i++){
 				if (i<5){
 					t.push("eOut"); 
 				} else {
@@ -331,8 +331,8 @@ function zChart(star){
 			}
 			break;
 		case "dA":
-			for(i=0,i<=star[1]&&i<=5,i++){
-				if (i==0){
+			for(i=0;i<=star[1]&&i<=5;i++){
+				if (i===0){
 					t.push("eHab"); 
 				}else if (i<5){
 					t.push("eOut"); 
@@ -343,7 +343,7 @@ function zChart(star){
 			break;
 		case "II":
 			if ((star[2][0]=="A"&&star[2][2]<5)||(star[2][0]=="K"&&star[2][2]>4)){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<4){
 						t.push("Incineration Zone");
 					} else if (i<8){
@@ -356,7 +356,7 @@ function zChart(star){
 				}
 			} 
 			else if (["A","F","G","K"].indexOf(star[2][0])){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<3){
 						t.push("Incineration Zone");
 					} else if (i<8){
@@ -369,7 +369,7 @@ function zChart(star){
 				}
 			}
 			else if (star[2][0]=="M" && star[2][2]<5){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<5){
 						t.push("Incineration Zone");
 					} else if (i<8){
@@ -382,7 +382,7 @@ function zChart(star){
 				}
 			}
 			else {
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<7){
 						t.push("Incineration Zone");
 					} else if (i<8){
@@ -394,9 +394,10 @@ function zChart(star){
 					}
 				}
 			}
+			break;
 		case "III":
 			if ((star[2][0]=="A"&&star[2][2]<5)||(star[2][0]=="M"&&star[2][2]<5)){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<2){
 						t.push("Incineration Zone");
 					} else if (i<6){
@@ -409,7 +410,7 @@ function zChart(star){
 				}
 			} 
 			else if (["A","K"].indexOf(star[2][0])>-1){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<6){
 						t.push("In");
 					} else if (i==6){
@@ -420,7 +421,7 @@ function zChart(star){
 				}
 			} 
 			else if (["F","G"].indexOf(star[2][0])>-1){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<5){
 						t.push("In");
 					} else if (i==5){
@@ -431,7 +432,7 @@ function zChart(star){
 				}
 			} 
 			else {
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<4){
 						t.push("Incineration Zone");
 					} else if (i<6){
@@ -443,9 +444,10 @@ function zChart(star){
 					}
 				}
 			}
+			break;
 		case "IV":
 			if (star[2][0]=="A"&&star[2][2]<5){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<2){
 						t.push("Incineration Zone");
 					} else if (i<6){
@@ -458,7 +460,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="A"){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<5){
 						t.push("In");
 					} else if (i<7){
@@ -469,7 +471,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="F"&&star[2][2]<5){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<5){
 						t.push("In");
 					} else if (i==5){
@@ -480,7 +482,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="F"){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<4){
 						t.push("In");
 					} else if (i<6){
@@ -491,7 +493,7 @@ function zChart(star){
 				}
 			} 
 			else {
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<3){
 						t.push("In");
 					} else if (i<5){
@@ -501,9 +503,10 @@ function zChart(star){
 					}
 				}
 			}
+			break;
 		case "V":
 			if (star[2][0]=="A"){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<5){
 						t.push("In");
 					} else if (i==5){
@@ -514,7 +517,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="F"){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<4){
 						t.push("In");
 					} else if (i<6){
@@ -525,7 +528,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="G"&&star[2][2]<5){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<3){
 						t.push("In");
 					} else if (i<5){
@@ -536,7 +539,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="G"){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<3){
 						t.push("In");
 					} else if (i==3){
@@ -547,7 +550,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="K"){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<3){
 						t.push("Hab");
 					} else {
@@ -556,7 +559,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="M"&&star[2][2]<5){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<1){
 						t.push("Hab");
 					} else {
@@ -565,13 +568,14 @@ function zChart(star){
 				}
 			} 
 			else {
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					t.push("Out");
 				}
 			}
+			break;
 		default:
 			if (star[2][0]=="F"){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<4){
 						t.push("In");
 					} else if (i==4){
@@ -582,7 +586,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="G"&&star[2][2]<5){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<3){
 						t.push("In");
 					} else if (i==3){
@@ -593,7 +597,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="G"){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<2){
 						t.push("In");
 					} else if (i==2){
@@ -604,7 +608,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="K"&&star[2][2]<5){
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					if (i<1){
 						t.push("In");
 					} else if (i==1){
@@ -615,8 +619,8 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="K"){
-				for (i=0,i<=star[1],i++){
-					if (i==0){
+				for (i=0;i<=star[1];i++){
+					if (i===0){
 						t.push("Hab");
 					} else {
 						t.push("Out");
@@ -624,7 +628,7 @@ function zChart(star){
 				}
 			} 
 			else {
-				for (i=0,i<=star[1],i++){
+				for (i=0;i<=star[1];i++){
 					t.push("Out");
 				}
 			}
@@ -641,14 +645,14 @@ function starZones(sR){
 		});
 	})[0];
 	var x = sR.filter(function (x){return x.indexOf("Primary")>-1;})[0];
-	var n = sR.filter(function (y){return !(y==x||y==fzone)});
-	chart = zChart[x];
+	var n = sR.filter(function (y){return !(y==x||y==fzone);});
+	var chart = zChart[x];
 	var t = ["Primary Star","N/A",x[0]];
 	var i; for (i=0;i<=x[1];i++){
 		if (fzone.indexOf(i)>-1){
 			t.push("Companion Star");
 		} else {
-			t.push(chart[i+1])
+			t.push(chart[i+1]);
 		}
 	}
 	tab.push(t);
@@ -675,7 +679,7 @@ function starZones(sR){
 	}
 	t = tab[0];
 	for (i = 0; i< m-3; i++){
-		t.push("Orbit"+i.toString())
+		t.push("Orbit"+i.toString());
 	}
 	tab[0]=t;
 	for (i=1;i<length[tab];i++){
@@ -688,11 +692,11 @@ function zonePop(zones){
 	var dim = [zones.length,zones[0].length];
 	var tab = [];
 	var t; var i; var j; var x;
-	for (i=0,i<dim[0],i++){
+	for (i=0;i<dim[0];i++){
 		t = [];
-		for (j=0,j<dim[1],j++){
+		for (j=0;j<dim[1];j++){
 			x = randomInt(1,100);
-			switch(zones[i,j]){
+			switch(zones[i][j]){
 				case "eHab":
 				case "eOut":
 				case "Incineration Zone":
@@ -730,6 +734,7 @@ function zonePop(zones){
 					} else {
 						t.push("Ultra Hostile");
 					}
+					break;
 				case "Hab":
 					if (x<12){
 						t.push("Empty Orbit");
@@ -766,6 +771,7 @@ function zonePop(zones){
 					} else {
 						t.push("Ultra Hostile");
 					}
+					break;
 				default:
 					if (x<11){
 						t.push("Empty Orbit");
@@ -802,8 +808,8 @@ function zonePop(zones){
 function randomName(){
 	var v = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","ae","ou","io"];
 	var c = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
-	var w = []; var l;
-	if (randomInt(0,1)==0){
+	var w = []; var l; var s;
+	if (randomInt(0,1)===0){
 		l = v[randomInt(0,v.length-1)];
 		w.push(l);
 		l = c[randomInt(0,c.length-1)];
@@ -848,7 +854,7 @@ function tableJoin(name,t1,t2){
 	}
 	tab = [tab,[]];
 	dim = [dim[0]-1,dim[1]-3];
-	for (i=0;i<dim[1],i++){
+	for (i=0;i<dim[1];i++){
 		tab[1].push("Name");
 		tab[1].push("Zone");
 		tab[1].push("Type");
@@ -865,11 +871,11 @@ function tableJoin(name,t1,t2){
 		if (["Empty Orbit", "Asteroid Belt", "Companion Star", "N/A"].indexOf(t2[i][j])>-1){
 			tab[i+2].push("N/A");
 		} else {
-    		tab[i+2].push(c1[i+2]+" "+ToString[k]);
+    		tab[i+2].push(c1[i+2]+" "+k.toString);
    			k++;
 		}
-		tab[i+2].push(t[i,j]);
-		tab[i+2].push(t2[i,j]);
+		tab[i+2].push(t[i][j]);
+		tab[i+2].push(t2[i][j]);
 	}
 	tab.pop();
 	for (i=0;i<tab.length;i++){
@@ -878,7 +884,7 @@ function tableJoin(name,t1,t2){
 	return tab;
 }
 
-function starCheck(pos,let,num,dec){
+function starCheck(pos,lett,num,dec){
 	switch(num){
 		case "dK":
 		case "dM":
@@ -886,13 +892,14 @@ function starCheck(pos,let,num,dec){
 		case "dG":
 			return "Out";
 		case "dA":
-			if (pos==0){
+			if (pos===0){
 				return "Hab";
 			} else {
 				return "Out";
 			}
+			break;
 		case "II":
-			if (let=="A"&& dec < 5)||(let="K"&&dec>4) {
+			if ((lett=="A"&& dec < 5)||(lett=="K"&&dec>4)) {
 				if (pos<4){
 					return "Incineration Zone";
 				} else if (pos<8){
@@ -903,7 +910,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (["A","F","G","K"].indexOf(let)>-1){
+			else if (["A","F","G","K"].indexOf(lett)>-1){
 				if (pos<3){
 					return "Incineration Zone";
 				} else if (pos<8){
@@ -914,7 +921,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="M"&&dec<5){
+			else if (lett=="M"&&dec<5){
 				if (pos<5){
 					return "Incineration Zone";
 				} else if (pos<8){
@@ -936,8 +943,9 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			}
+			break;
 		case "III":
-			if (let=="A"&& dec < 5)||(let="M"&&dec<5) {
+			if ((lett=="A"&& dec < 5)||(lett=="M"&&dec<5)) {
 				if (pos<2){
 					return "Incineration Zone";
 				} else if (pos<6){
@@ -948,7 +956,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (["A","K"].indexOf(let)>-1){
+			else if (["A","K"].indexOf(lett)>-1){
 				if (pos<6){
 					return "In";
 				} else if (pos<7){
@@ -957,7 +965,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (["F","G"].indexOf(let)>-1){
+			else if (["F","G"].indexOf(lett)>-1){
 				if (pos<5){
 					return "In";
 				} else if (pos<6){
@@ -977,8 +985,9 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			}
+			break;
 		case "IV":
-			if (let=="A"&& dec < 5) {
+			if (lett=="A"&& dec < 5) {
 				if (pos<2){
 					return "Incineration Zone";
 				} else if (pos<6){
@@ -989,7 +998,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="A"){
+			else if (lett=="A"){
 				if (pos<5){
 					return "In";
 				} else if (pos<8){
@@ -998,7 +1007,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="F"&& dec < 5){
+			else if (lett=="F"&& dec < 5){
 				if (pos<5){
 					return "In";
 				} else if (pos<6){
@@ -1007,7 +1016,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="F"){
+			else if (lett=="F"){
 				if (pos<4){
 					return "In";
 				} else if (pos<6){
@@ -1025,8 +1034,9 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			}
+			break;
 		case "V":
-			if (let=="A") {
+			if (lett=="A") {
 				if (pos<5){
 					return "In";
 				} else if (pos<6){
@@ -1035,7 +1045,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="F"){
+			else if (lett=="F"){
 				if (pos<4){
 					return "In";
 				} else if (pos<6){
@@ -1044,7 +1054,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="G"&& dec < 5){
+			else if (lett=="G"&& dec < 5){
 				if (pos<3){
 					return "In";
 				} else if (pos<5){
@@ -1053,7 +1063,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="G"){
+			else if (lett=="G"){
 				if (pos<3){
 					return "In";
 				} else if (pos<4){
@@ -1062,14 +1072,14 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="K"){
+			else if (lett=="K"){
 				if (pos<3){
 					return "Hab";
 				} else {
 					return "Out";
 				}
 			} 
-			else if (let=="M"&& dec < 5){
+			else if (lett=="M"&& dec < 5){
 				if (pos<2){
 					return "Hab";
 				} else {
@@ -1079,8 +1089,9 @@ function starCheck(pos,let,num,dec){
 			else {
 				return "Out";
 			}
+			break;
 		default:
-			if (let=="F") {
+			if (lett=="F") {
 				if (pos<4){
 					return "In";
 				} else if (pos<5){
@@ -1089,7 +1100,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="G"&&dec<5){
+			else if (lett=="G"&&dec<5){
 				if (pos<3){
 					return "In";
 				} else if (pos<4){
@@ -1098,7 +1109,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="G"){
+			else if (lett=="G"){
 				if (pos<2){
 					return "In";
 				} else if (pos<3){
@@ -1107,7 +1118,7 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="K"&&dec<5){
+			else if (lett=="K"&&dec<5){
 				if (pos<1){
 					return "In";
 				} else if (pos<2){
@@ -1116,8 +1127,8 @@ function starCheck(pos,let,num,dec){
 					return "Out";
 				}
 			} 
-			else if (let=="K"){
-				if (pos==0){
+			else if (lett=="K"){
+				if (pos===0){
 					return "Hab";
 				} else {
 					return "Out";
@@ -1129,16 +1140,16 @@ function starCheck(pos,let,num,dec){
 	}
 }
 
-function capture(type, max, let, numb, dec){
-	var tab = []; var t = [];
-	var n = randomInteger(1,10)-6;
+function capture(type, max, lett, numb, dec){
+	var tab = []; var t = []; var p; var x; var y; var d; var num; var i; var k; var s; var z;
+	var n = randomInt(1,10)-6;
 	if (n<1){
-		return "No Captures"
+		return "No Captures";
 	} 
 	else if (type == "Asteroid"){
 		if (Array.isArray(max)){
-			var num = max.length; var p; var x; var y; var d;
-			for (i=1,i<=n,i++){
+			num = max.length;
+			for (i=1;i<=n;i++){
 				p = randomInt(0,num-1);
 				x = randomInt(1,10)+2;
 				if (x<max[p]){
@@ -1149,31 +1160,29 @@ function capture(type, max, let, numb, dec){
 					y = max[p];
 				}
 				d = [randomInt(0,9),randomInt(0,9)];
-				tab.push(["Rogue Asteroid", p, ["Asteroid", [x + d[[0]]*.1, y + d[[1]]*.1]]]);
+				tab.push(["Rogue Asteroid", p, ["Asteroid", [x + d[[0]]*0.1, y + d[[1]]*0.1]]]);
 				t=[];
 			}
 		} else {
-			var p; var x; var y; var d;
-			for (i=1,i<=n,i++){
-				p = randomInt(0,num-1);
+			for (i=1;i<=n;i++){
 				x = randomInt(1,10)+2;
-				if (x < max[p]){
-					x = max[p];
+				if (x < max){
+					x = max;
 				}
 				y = randomInt(1,10);
-				if (y < max[p]){
-					y = max[p];
+				if (y < max){
+					y = max;
 				}
 				d = [randomInt(0,9),randomInt(0,9)];
-				tab.push(["Rogue Asteroid", 1, ["Asteroid", [x + d[[0]]*.1, y + d[[1]]*.1]]]);
+				tab.push(["Rogue Asteroid", 1, ["Asteroid", [x + d[[0]]*0.1, y + d[[1]]*0.1]]]);
 				t = [];
 			}
 		}
 	}
 	else if (Array.isArray(max)){
-		var num = max.length;
+		num = max.length;
 		k = Array(num).fill(1);
-		var i; var p; var x; var s; for (i=1,i<=n,i++){
+		for (i=1;i<=n;i++){
 			p = randomInt(1,num);
 			x = randomInt(1,10)+2;
 			if (x<max[p]){
@@ -1183,20 +1192,20 @@ function capture(type, max, let, numb, dec){
 			if (y<max[p]){
 				y = max[p];
 			}
-			s = starCheck(x,let[p],numb[p],dec[p]);
-			z = zonePop[{{s}}][0][0];
+			s = starCheck(x,lett[p],numb[p],dec[p]);
+			z = zonePop([[s]])[0][0];
 			while(["Empty Orbit", "Asteroid Belt"].indexOf(z)>-1){
-				z = zonePop[{{s}}][0][0];
+				z = zonePop([[s]])[0][0];
 			}
 			d = [randomInt(0,9),randomInt(0,9)];
-			t.push([z,[x+d[0]*.1,s],[y+d[1]*.1,starCheck(x,let[p],numb[p],dec[p])]]);
+			t.push([z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
 			tab.push(["Rogue Planet &#"+(915+i).toString()+"; "+k[p].toString(),t]);
 			t = [];
 		}
 	} 
 	else {
-		var k = 1; 
-		var i; var x; var y; for (i=1,i<=n,i++){
+		k = 1; 
+		for (i=1;i<=n;i++){
 			x = randomInt(1,10)+2;
 			if (x<max[p]){
 				x = max[p];
@@ -1205,13 +1214,13 @@ function capture(type, max, let, numb, dec){
 			if (y<max[p]){
 				y = max[p];
 			}
-			s = starCheck(x,let[p],numb[p],dec[p]);
-			z = zonePop[{{s}}][0][0];
+			s = starCheck(x,lett[p],numb[p],dec[p]);
+			z = zonePop([[s]])[0][0];
 			while(["Empty Orbit", "Asteroid Belt"].indexOf(z)>-1){
-				z = zonePop[{{s}}][0][0];
+				z = zonePop([[s]])[0][0];
 			}
 			d = [randomInt(0,9),randomInt(0,9)];
-			t.push([z,[x+d[0]*.1,s],[y+d[1]*.1,starCheck(x,let[p],numb[p],dec[p])]]);
+			t.push([z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
 			tab.push(["Rogue Planet",t]);
 			t = [];
 		}
@@ -1221,7 +1230,7 @@ function capture(type, max, let, numb, dec){
 
 function planetPicker(tab,ct){
 	var planets=[];
-	var t = tab.slice(2)
+	var t = tab.slice(2);
 	t = t.map(function (x){
 		x.slice(3);
 	});
@@ -1242,7 +1251,7 @@ function planetPicker(tab,ct){
 	}
 	if (Array.isArray(dim2)){
 		for (i=0;i<dim2[0];i++){
-			planets.push([ts[i][0],ts[i][2][1],ts[i][3][1],ts[i][1],[ts[i][2][0],ts[i][3][0]]])
+			planets.push([ts[i][0],ts[i][2][1],ts[i][3][1],ts[i][1],[ts[i][2][0],ts[i][3][0]]]);
 		}
 	}
 	return planets;
@@ -1280,9 +1289,10 @@ function generate(){
     });
     if (n.length > 1){
     	for (i=1;i<n.length;i++){
-    		max.push(n[i,1]);
+    		max.push(n[i][1]);
     	}
-    } else {
+    } 
+    else {
     	max = n[0][1];
     }
     t = starZones[t];
@@ -1292,26 +1302,28 @@ function generate(){
     });
     pop = zonePop(pop);
     var tab = tableJoin(randomName(),t,pop);
-    var cap = capture["Planet", max, let, numb, dec];
-    var ast = capture["Asteroid", max, let, numb, dec];
+    var cap = capture("Planet", max, letter, numb, dec);
+    var ast = capture("Asteroid", max, letter, numb, dec);
     var ct; if (Array.isArray(cap)){
     	ct =[["Rogue Planets", "Type", "Moves From:", "To:"]];
     	for (i=0;i<cap.length;i++){
     		ct.push([cap[i][0],cap[i][1][0][0],cap[i][1][0][1],cap[i][1][0][2]]);
-    	} else {
-    		ct = [["No Rogue Planets"]];
     	}
+    } 
+    else {
+    	ct = [["No Rogue Planets"]];
     }
     var at; if (Array.isArray(cap)){
     	ct =[["Rogue Asteroids", "Orbiting", "Moves From:", "To:"]];
     	for (i=0;i<ast.length;i++){
-    		ct.push([cap[i][0],cap[i][1],cap[i][2]1][0],cap[i][2][1][1]]);
-    	} else {
+    		ct.push([cap[i][0],cap[i][1],cap[i][2][1][0],cap[i][2][1][1]]);
+    	} 
+    } 
+    else {
     		ct = [["No Rogue Asteroids"]];
-    	}
     }
     
-    plist = planetPicker[tab, ct];
+    var plist = planetPicker(tab, ct);
     
 	console.log("Done");
 	$("#container").html(JSON.stringify(t)+"<br>"+JSON.stringify(pop)+"<br>"+JSON.stringify(cap)+"<br>"+JSON.stringify(ast));
