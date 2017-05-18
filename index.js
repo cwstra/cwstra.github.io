@@ -259,7 +259,9 @@ function starRanges(stars){
 			return x.indexOf("Primary")>-1;
 		}
 		var prime = r.filter(f);
+		console.log("List");
 		console.log(list);
+		console.log("Prime");
 		console.log(prime);
 		function f(x){
 			return !(list.indexOf(x)>-1||prime.indexOf(x)>-1);
@@ -306,35 +308,20 @@ function generate(){
 	var numb = [];
 	var dec = [];
 	var max = [];
-	if (r < 10){
-   		t.push(starClassSize("Primary"));
-    	letter = t[0][0];
-   		numb = t[0][1];
-   		dec = t[0][2];
+   	t.push(starClassSize("Primary"));
+	if (r > 9){
+   		t.push(starClassSize(""));
 	} 
-	else if (r < 18){
-   		t.concat([starClassSize("Primary"),starClassSize("")]);
-   		for (i = 0;i<2;i++){
-    		letter.push(t[i][0]);
-     		num.push(t[i][1]);
-     		dec.push(t[i][2]);
-     	}
+	if (r > 17){
+   		t.push([starClassSize("")]);
 	} 
-	else if (r < 20){
-    	t.concat([starClassSize("Primary"),starClassSize(""),starClassSize("")]);
-    	for (i = 0;i<3;i++){
-     		letter.push(t[i][0]);
-     		num.push(t[i][1]);
-     		dec.push(t[i][2]);
-     	}
+	if (r > 19){
+    	t.push([starClassSize("")]);
 	} 
-	else {
-    	t.concat([starClassSize("Primary"),starClassSize(""),starClassSize(""),starClassSize("")]);
-    	for (i = 0;i<4;i++){
-     		letter.push(t[i][0]);
-     		num.push(t[i][1]);
-     		dec.push(t[i][2]);
-     	}
+    for (i = 0;i<t.length;i++){
+    	letter.push(t[i][0]);
+    	num.push(t[i][1]);
+    	dec.push(t[i][2]);
     }
     t = starRanges(t);
 	console.log("Done");
