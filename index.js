@@ -643,7 +643,8 @@ function starZones(sR){
 		return x.every(function(y){
 			return !isNaN(y);
 		});
-	})[0];
+	});
+	fzone = fzone[0];
 	var x = sR.filter(function (x){return x.indexOf("Primary")>-1;})[0];
 	var n = sR.filter(function (y){return !(y==x||y==fzone);});
 	var chart = zChart(x);
