@@ -320,7 +320,7 @@ function generate(){
 	} 
     for (i = 0;i<t.length;i++){
     	letter.push(t[i][0]);
-    	num.push(t[i][1]);
+    	numb.push(t[i][1]);
     	dec.push(t[i][2]);
     }
     t = starRanges(t);
