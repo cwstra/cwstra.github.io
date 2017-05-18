@@ -308,7 +308,7 @@ function pZone(sR){
 	t = t[0];
 	n = n[0];
 	var z = [];
-	var i; for (i=0;i<t[1];i++){
+	var i; for (i=0;i<=t[1];i++){
 		if (n.indexOf(i)==-1){
 			z.push(i);
 		}
@@ -876,7 +876,6 @@ function tableJoin(name,t1,t2){
     		tab[i+2].push(c1[i+2]+" "+k.toString);
    			k++;
 		}
-		console.log(t[i]);
 		tab[i+2].push(t[i][j]);
 		tab[i+2].push(t2[i][j]);
 	}
