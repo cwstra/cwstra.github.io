@@ -119,7 +119,6 @@ function starClassSize(type){
 	else {
 		tab.push(tab[0]+tab[2]+" "+tab[1]);
 	}
-	console.log(tab);
 	return tab;
 }
 	//Add new orbits to existing sets
@@ -324,6 +323,7 @@ function generate(){
     	numb.push(t[i][1]);
     	dec.push(t[i][2]);
     }
+    console.log(t);
     t = starRanges(t);
 	console.log("Done");
 	$("#container").html(JSON.stringify(t));
