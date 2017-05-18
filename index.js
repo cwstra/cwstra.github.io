@@ -8,7 +8,7 @@ function generate(){
 	function randomInt(min, max) {
     	return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	function starClassSize(type){1,2,3,4,5,6
+	function starClassSize(type){
 		var r = randomInt(1,10)+randomInt(1,10);
 		tab = [];
 		if (r<4){
