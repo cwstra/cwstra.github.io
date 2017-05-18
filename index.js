@@ -119,5 +119,8 @@ function generate(){
 			tab.push(tab[0]+tab[2]+" "+tab[1]);
 		}
 	}
-	$("#container").html(JSON.stringify(starClassSize("Primary")));
+	result = starClassSize("Primary");
+	console.log(result);
+	console.log("Done");
+	$("#container").html(JSON.stringify(result));
 }
