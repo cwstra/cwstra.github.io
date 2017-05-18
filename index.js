@@ -118,6 +118,7 @@ function generate(){
 		} else {
 			tab.push(tab[0]+tab[2]+" "+tab[1]);
 		}
+		return tab;
 	}
 	result = starClassSize("Primary");
 	console.log(result);
