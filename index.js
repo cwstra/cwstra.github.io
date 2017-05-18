@@ -247,17 +247,13 @@ function starRanges(stars){
 				r.push([s[4],orbits,s,"Primary"]);
 			}
 		}
-		function f(x){
-			function g(x){
-				return !isNaN(x);
+		var list = r.filter(
+			function(x){
+				console.log(x);
+				return x.every(function (y){return !isNaN(y);});
 			}
-			return x.every(g);
-		}
-		var list = r.filter(f);
-		function f(x){
-			return x.indexOf("Primary")>-1;
-		}
-		var prime = r.filter(f);
+		);
+		var prime = r.filter(function (x) {return x.indexOf("Primary")>-1;});
 		console.log(r);
 		console.log("List");
 		console.log(list);
