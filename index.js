@@ -659,7 +659,7 @@ function starZones(sR){
 	}
 	tab.push(t);
 	var j; for (j=0;j<n.length;j++){
-		chart = zChart[n[j]];
+		chart = zChart(n[j]);
 		t = ["Companion Star",n[j][2][3],n[j][0]];
 		if (chart.length<n[j][1]){
 			for (i=0;i<chart.length;i++){
