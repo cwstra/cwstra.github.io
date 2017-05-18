@@ -10,7 +10,7 @@ function generate(){
 	}
 	function starClassSize(type){
 		var r = randomInt(1,10)+randomInt(1,10);
-		tab = [];
+		var tab = [];
 		if (r<4){
 			tab.push("A");
 		} else if (r<8) {
