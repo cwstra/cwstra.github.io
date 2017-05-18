@@ -685,7 +685,6 @@ function starZones(sR){
 	for (i=1;i<length[tab];i++){
 		tab[i] = tab[i].concat(Array(m-tab[i].length).fill("N/A"));
 	}
-	console.log(tab);
 	return tab;
 }
 
@@ -1296,7 +1295,7 @@ function generate(){
     else {
     	max = n[0][1];
     }
-    t = starZones[t];
+    t = starZones(t);
     var pop = t; 
     pop.shift();
     pop = pop.map(function (x){
