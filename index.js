@@ -257,6 +257,8 @@ function starRanges(stars){
 			return x.indexOf("Primary")>-1;
 		}
 		var prime = r.filter(f);
+		console.log(list);
+		console.log(prime);
 		function f(x){
 			return !(list.indexOf(x)>-1||prime.indexOf(x)>-1);
 		}
