@@ -646,7 +646,7 @@ function starZones(sR){
 	})[0];
 	var x = sR.filter(function (x){return x.indexOf("Primary")>-1;})[0];
 	var n = sR.filter(function (y){return !(y==x||y==fzone);});
-	var chart = zChart[x];
+	var chart = zChart(x);
 	var t = ["Primary Star","N/A",x[0]];
 	var i; for (i=0;i<=x[1];i++){
 		if (fzone.indexOf(i)>-1){
