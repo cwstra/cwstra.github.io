@@ -1299,7 +1299,7 @@ function generate(){
     var pop = t; 
     pop.shift();
     pop = pop.map(function (x){
-    	x.shift();x.shift();x.shift();
+    	x.shift();x.shift();x.shift();return x;
     });
     pop = zonePop(pop);
     var tab = tableJoin(randomName(),t,pop);
