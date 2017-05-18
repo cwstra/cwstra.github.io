@@ -115,9 +115,11 @@ function starClassSize(type){
 	}
 	if (typeof tab[2]==="string"){
 		tab.push(tab[0]+" "+tab[1]);
-	} else {
+	} 
+	else {
 		tab.push(tab[0]+tab[2]+" "+tab[1]);
 	}
+	console.log(tab);
 	return tab;
 }
 	//Add new orbits to existing sets
@@ -306,14 +308,12 @@ function generate(){
 	var max = [];
 	if (r < 10){
    		t.push(starClassSize("Primary"));
-   		console.log(t);
     	letter = t[0][0];
    		numb = t[0][1];
    		dec = t[0][2];
 	} 
 	else if (r < 18){
    		t.concat([starClassSize("Primary"),starClassSize("")]);
-   		console.log(t);
    		for (i = 0;i<2;i++){
     		letter.push(t[i][0]);
      		num.push(t[i][1]);
@@ -322,7 +322,6 @@ function generate(){
 	} 
 	else if (r < 20){
     	t.concat([starClassSize("Primary"),starClassSize(""),starClassSize("")]);
-   		console.log(t);
     	for (i = 0;i<3;i++){
      		letter.push(t[i][0]);
      		num.push(t[i][1]);
@@ -331,7 +330,6 @@ function generate(){
 	} 
 	else {
     	t.concat([starClassSize("Primary"),starClassSize(""),starClassSize(""),starClassSize("")]);
-   		console.log(t);
     	for (i = 0;i<4;i++){
      		letter.push(t[i][0]);
      		num.push(t[i][1]);
