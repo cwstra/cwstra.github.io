@@ -1,4 +1,4 @@
-
+//Positioning function for each planet
 bode = Smooth([0.2, 0.4, 0.7, 1, 1.6, 2.8, 5.2, 10, 19.6, 38.8, 77.2, 154.0, 307.6, 614.8]);
 //Random integer between x and y, inclusive: x + random.nextInt(y-x+1)
 /**
@@ -52,7 +52,7 @@ function starClassSize(type){
 				tab.push(randomInt(0,9));
       		}
 		}
-		tab.push("Primary")
+		tab.push("Primary");
 	} 
 	else {
 		if (r<3){
@@ -114,7 +114,7 @@ function starClassSize(type){
 		}
 	}
 	if (typeof tab[2]==="string"){
-		tab.push(tab[0]+" "+tab[1])
+		tab.push(tab[0]+" "+tab[1]);
 	} else {
 		tab.push(tab[0]+tab[2]+" "+tab[1]);
 	}
@@ -123,7 +123,7 @@ function starClassSize(type){
 	//Add new orbits to existing sets
 function zoneKeeper(tab,min,max){
 	var t = tab;
-	var j; for (j=min;j<=max,j++){
+	var j; for (j=min;j<=max;j++){
 		if(t.indexOf(j)==-1){
 			t.push(j);
 		}
@@ -134,7 +134,7 @@ function starRanges(stars){
 	if (Array.isArray(stars[0])){
 		var r = [[]];
 		var t = [];
-		var i,s,n,mod; for (i=0;i<stars.length;i++){
+		var i; var s; var n; var mod; for (i=0;i<stars.length;i++){
 			s = stars[i];
 			if (typeof s[3] !== "string"){
 				while (t.indexOf(s[3])>-1){
@@ -204,6 +204,7 @@ function starRanges(stars){
 									break;
 								case "K":
 									mod = mod - 3;
+									break;
 							}
 							switch(s[1]){
 								case "II":
@@ -211,13 +212,14 @@ function starRanges(stars){
 									break;
 								case "III":
 									mod = mod + 6;
+									break;
 							}
 							orbits = randomInt(1,10)+mod;
 							if (orbits < 0){orbits=0;}
-							r.push([s[4],orbits,s])
+							r.push([s[4],orbits,s]);
 						} else {
-							r[0]=zoneKeeper(r[1],n-4,n+1)
-							r.push([s[4],n-8,s])
+							r[0]=zoneKeeper(r[1],n-4,n+1);
+							r.push([s[4],n-8,s]);
 						}
 				}
 			} 
@@ -229,6 +231,7 @@ function starRanges(stars){
 						break;
 					case "K":
 						mod = mod - 3;
+						break;
 				}
 				switch(s[1]){
 					case "II":
@@ -236,15 +239,16 @@ function starRanges(stars){
 						break;
 					case "III":
 						mod = mod + 6;
+						break;
 				}
 				orbits = randomInt(1,10)+mod;
 				if (orbits < 0){orbits=0;}
-				r.push([s[4],orbits,s,"Primary"])
+				r.push([s[4],orbits,s,"Primary"]);
 			}
 		}
 		function f(x){
 			function g(x){
-				return !isNaN(x)
+				return !isNaN(x);
 			}
 			return x.every(g);
 		}
@@ -275,6 +279,7 @@ function starRanges(stars){
 			break;
 		case "K":
 			mod = mod - 3;
+			break;
 	}
 	switch(stars[1]){
 		case "II":
@@ -282,6 +287,7 @@ function starRanges(stars){
 			break;
 		case "III":
 			mod = mod + 6;
+			break;
 	}
 	var orbits = randomInt(1,10)+mod;
 	if (orbits<0){orbits=0;}
@@ -292,20 +298,20 @@ function starRanges(stars){
 function generate(){
 	var r = randomInt(1,20);
 	var t = [];
-	var let = [];
+	var letter = [];
 	var numb = [];
 	var dec = [];
 	var max = [];
 	if (r < 10){
    		t.push(starClassSize("Primary"));
-    	let = t[0][0];
+    	letter = t[0][0];
    		numb = t[0][1];
    		dec = t[0][2];
 	} 
 	else if (r < 18){
    		t.concat([starClassSize("Primary"),starClassSize("")]);
    		for (i = 0;i<2;i++){
-    		let.push(t[i][0]);
+    		letter.push(t[i][0]);
      		num.push(t[i][1]);
      		dec.push(t[i][2]);
      	}
@@ -313,7 +319,7 @@ function generate(){
 	else if (r < 20){
     	t.concat([starClassSize("Primary"),starClassSize(""),starClassSize("")]);
     	for (i = 0;i<3;i++){
-     		let.push(t[i][0]);
+     		letter.push(t[i][0]);
      		num.push(t[i][1]);
      		dec.push(t[i][2]);
      	}
@@ -321,7 +327,7 @@ function generate(){
 	else {
     	t.concat([starClassSize("Primary"),starClassSize(""),starClassSize(""),starClassSize("")]);
     	for (i = 0;i<4;i++){
-     		let.push(t[i][0]);
+     		letter.push(t[i][0]);
      		num.push(t[i][1]);
      		dec.push(t[i][2]);
      	}
