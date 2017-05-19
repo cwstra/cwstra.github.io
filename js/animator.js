@@ -1,3 +1,6 @@
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
+slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
+
 function sysPreload() {
 	game.load.image("belt","../images/asteroid_belt.png");
 	game.load.image("major","../images/major_rings.png");
@@ -34,7 +37,3 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 function sysUpdate() {
 	
 }
-
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
-console.log(Phaser.Plugin);
-slickUI = this.game.plugins.add(Phaser.Plugin.SlickUI);
