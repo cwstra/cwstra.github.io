@@ -254,8 +254,6 @@ function starRanges(stars){
 				return x.every(function (y){return !isNaN(y);});
 			}
 		);
-		console.log("In progress starRanges:");
-		console.log(r);
 		var prime = r.filter(function (x) {return x.indexOf("Primary")>-1;});
 		var y = r.filter(function (x){
 			return !(list.indexOf(x)>-1||prime.indexOf(x)>-1);
@@ -1302,10 +1300,10 @@ function generate(){
    		t.push(starClassSize(""));
 	} 
 	if (r > 17){
-   		t.push([starClassSize("")]);
+   		t.push(starClassSize(""));
 	} 
 	if (r > 19){
-    	t.push([starClassSize("")]);
+    	t.push(starClassSize(""));
 	} 
     for (i = 0;i<t.length;i++){
     	letter.push(t[i][0]);
