@@ -1302,8 +1302,12 @@ function planetsTable(name,orbitZones,planets){
 				t[name[i]+" "+(counta++).toString()]=[j,orbitZones[i][j],planets[i][j]];
 			}
 		} 
-		tab.push(t);
-		ast.push(a);
+		if (t!=={}){
+			tab.push(t);
+		}
+		if (a!=={}){
+			ast.push(a);
+		}
 	} 
 	return[tab,ast]
 }
