@@ -1,9 +1,7 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
-for (v in game.plugins){
-	if (game.plugins.hasOwnProperty(v)){
-		console.log(v);
-	}
-}
+console.log(game.plugins);
+console.log(game.plugins.add);
+
 slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
 
 function sysPreload() {
