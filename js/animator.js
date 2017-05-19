@@ -24,11 +24,18 @@ function sysPreload() {
 	game.load.image("p16","../images/planet16.png");
 	game.load.image("star","../images/star.png");
 }
-
+var panel;
 function sysCreate() {
 	game.stage.backgroundColor = "#000000";
-	var panel;
-	slickUI.add(panel = new SlickUI.Element.Panel(-158, -158, 300, game.height - 16));
+	var i; for (i in slickUI){
+		if (slickUI.hasOwnProperty(i)){
+			console.log(i);
+		}
+	}
+	console.log(slickUI)
+	slickUI.add(panel = new SlickUI.Element.Panel(-158, 8, 300, game.height - 16));
+	panel.add(button = new SlickUI.Element.Button(0,0, 140, 80));
+	button.add(new SlickUI.Element.Text(0,0, "My button")).center();
 }
 
 function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
