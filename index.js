@@ -1311,6 +1311,8 @@ function generate(){
     	dec.push(t[i][2]);
     }
     stars = t;
+    console.log("Stars (Leads to starRanges)");
+    console.log(stars);
     t = starRanges(t);
     console.log("Star Ranges (Leads to starZones)");
     console.log(t);
