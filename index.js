@@ -1213,7 +1213,7 @@ function capture(type, max, lett, numb, dec){
 		num = max.length;
 		k = Array(num).fill(1);
 		for (i=0;i<n;i++){
-			p = randomInt(1,num);
+			p = randomInt(0,num-1);
 			x = randomInt(1,10)+2;
 			if (x<max[p]){
 				x = max[p];
