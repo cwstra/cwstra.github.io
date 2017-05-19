@@ -829,8 +829,8 @@ function zonePop(zones){
 						t.push("Dirty Snowball");
 					}
 			}
-			tab.push(t);
 		}	
+		tab.push(t);
 	}
 	return tab;
 }
