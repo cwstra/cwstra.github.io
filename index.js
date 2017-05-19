@@ -124,7 +124,7 @@ function starClassSize(type){
 	//Add new orbits to existing sets
 function zoneKeeper(tab,min,max){
 	console.log("zoneKeeper 1");
-	console.log(tab);
+	console.log([tab,min,max]);
 	var t = tab;
 	var j; for (j=min;j<=max;j++){
 		if(t.indexOf(j)==-1){
