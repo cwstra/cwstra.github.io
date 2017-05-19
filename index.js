@@ -199,7 +199,7 @@ function starRanges(stars){
 						r.push([s[4],5,s]);
 						break;
 					default:
-						if (n>1000){
+						if (n>900){
 							mod = 0;
 							switch(s[0]){
 								case "M":
@@ -1359,5 +1359,5 @@ function generate(){
     var plist = planetPicker(tab, ct);*/
     
 	console.log("Done");
-	$("#container").html(JSON.stringify(t)+"<br>"+JSON.stringify(pop)+"<br>"+JSON.stringify(cap)+"<br>"+JSON.stringify(ast));
+	$("#container").html(JSON.stringify(t)+"<br><br>"+JSON.stringify(pop)+"<br><br>"+JSON.stringify(cap)+"<br><br>"+JSON.stringify(ast));
 }
