@@ -899,7 +899,7 @@ function tableJoin(name,t1,t2){
 		if (["Empty Orbit", "Asteroid Belt", "Companion Star", "N/A"].indexOf(t2[i][j])>-1){
 			tab[i+2].push("N/A");
 		} else {
-    		tab[i+2].push(c1[i+2]+" "+k.toString);
+    		tab[i+2].push(c1[i+2]+" "+k.toString());
    			k++;
 		}
 		tab[i+2].push(t[i][j]);
@@ -1624,19 +1624,19 @@ function satellites(planets){
 					if (s.length>0){
 						switch(k){
 							case 3:
-								t.push([d[k].toString+" Moonlets",s]);
+								t.push([d[k].toString()+" Moonlets",s]);
                 break;
 							case 4:
-								t.push([d[k].toString+" Small Moons",s]);
+								t.push([d[k].toString()+" Small Moons",s]);
                 break;
 							case 5:
-								t.push([d[k].toString+" Medium Moons",s]);
+								t.push([d[k].toString()+" Medium Moons",s]);
                 break;
 							case 6:
-								t.push([d[k].toString+" Large Moons",s]);
+								t.push([d[k].toString()+" Large Moons",s]);
                 break;
 							case 7:
-								t.push([d[k].toString+" Huge Moons",s]);
+								t.push([d[k].toString()+" Huge Moons",s]);
 						}
 					}
 				}
@@ -1744,19 +1744,19 @@ function satellites(planets){
 					if (s.length>0){
 						switch(k){
 							case 3:
-								t.push([d[k].toString+" Moonlets",s]);
+								t.push([d[k].toString()+" Moonlets",s]);
                 break;
 							case 4:
-								t.push([d[k].toString+" Small Moons",s]);
+								t.push([d[k].toString()+" Small Moons",s]);
                 break;
 							case 5:
-								t.push([d[k].toString+" Medium Moons",s]);
+								t.push([d[k].toString()+" Medium Moons",s]);
                 break;
 							case 6:
-								t.push([d[k].toString+" Large Moons",s]);
+								t.push([d[k].toString()+" Large Moons",s]);
                 break;
 							case 7:
-								t.push([d[k].toString+" Huge Moons",s]);
+								t.push([d[k].toString()+" Huge Moons",s]);
 						}
 					}
 				}
@@ -1869,7 +1869,7 @@ function generate(){
     var orbitZones = t;
     var asteroids = planetsTable(name,orbitZones,planets);
     planets = asteroids[0]; asteroids = asteroids[1];
-    var satel = []
+    var satel = [];
     for (i=0;i<planets.length;i++){
     	satel.push(satellites(planets[i]));
     }
