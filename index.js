@@ -1310,6 +1310,7 @@ function generate(){
     	numb.push(t[i][1]);
     	dec.push(t[i][2]);
     }
+    stars = t;
     console.log("initial stars");
     console.log(t);
     t = starRanges(t);
@@ -1359,5 +1360,5 @@ function generate(){
     var plist = planetPicker(tab, ct);*/
     
 	console.log("Done");
-	$("#container").html("t:<br>"+JSON.stringify(t,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br><span style="display:inline-block; width: 10;"></span>')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br><span style="display:inline-block; width: 10;"></span>')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br><span style="display:inline-block; width: 10;"></span>'));
+	$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
