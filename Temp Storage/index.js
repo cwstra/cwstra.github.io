@@ -1306,6 +1306,12 @@ function planetsTable(name,orbitZones,planets){
 			ast.push(a);
 		}
 	} 
+	if (tab===[]){
+		tab = "No Planets";
+	}
+	if (ast===[]){
+		ast = "No Asteroid Belts"
+	}
 	return[tab,ast];
 }
 
