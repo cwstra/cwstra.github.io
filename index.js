@@ -1310,6 +1310,8 @@ function generate(){
     	numb.push(t[i][1]);
     	dec.push(t[i][2]);
     }
+    console.log("initial stars");
+    console.log("t")
     t = starRanges(t);
     console.log("Star Ranges (Leads to starZones)");
     console.log(t);
