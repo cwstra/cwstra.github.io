@@ -1311,7 +1311,7 @@ function generate(){
     	dec.push(t[i][2]);
     }
     console.log("initial stars");
-    console.log(t)
+    console.log(t);
     t = starRanges(t);
     console.log("Star Ranges (Leads to starZones)");
     console.log(t);
@@ -1359,5 +1359,5 @@ function generate(){
     var plist = planetPicker(tab, ct);*/
     
 	console.log("Done");
-	$("#container").html("t:<br>"JSON.stringify(t,null,"\t")+"<br><br>pop:<br>"+JSON.stringify(pop,null,"\t")+"<br><br>cap:<br>"+JSON.stringify(cap,null,"\t")+"<br><br>ast:<br>"+JSON.stringify(ast,null,"\t"));
+	$("#container").html("t:<br>"+JSON.stringify(t,null,"\t")+"<br><br>pop:<br>"+JSON.stringify(pop,null,"\t")+"<br><br>cap:<br>"+JSON.stringify(cap,null,"\t")+"<br><br>ast:<br>"+JSON.stringify(ast,null,"\t"));
 }
