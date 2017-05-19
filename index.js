@@ -323,7 +323,7 @@ function zChart(star){
 		case "dM":
 		case "dF":
 		case "dG":
-			for(i=0;i<=star[1]&&i<=5;i++){
+			for (i=1;i<=star[1]&&i<=5;i++){
 				if (i<5){
 					t.push("eOut"); 
 				} else {
@@ -332,7 +332,7 @@ function zChart(star){
 			}
 			break;
 		case "dA":
-			for(i=0;i<=star[1]&&i<=5;i++){
+			for (i=1;i<=star[1]&&i<=5;i++){
 				if (i===0){
 					t.push("eHab"); 
 				}else if (i<5){
@@ -344,7 +344,7 @@ function zChart(star){
 			break;
 		case "II":
 			if ((star[2][0]=="A"&&star[2][2]<5)||(star[2][0]=="K"&&star[2][2]>4)){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<4){
 						t.push("Incineration Zone");
 					} else if (i<8){
@@ -357,7 +357,7 @@ function zChart(star){
 				}
 			} 
 			else if (["A","F","G","K"].indexOf(star[2][0])){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<3){
 						t.push("Incineration Zone");
 					} else if (i<8){
@@ -370,7 +370,7 @@ function zChart(star){
 				}
 			}
 			else if (star[2][0]=="M" && star[2][2]<5){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<5){
 						t.push("Incineration Zone");
 					} else if (i<8){
@@ -383,7 +383,7 @@ function zChart(star){
 				}
 			}
 			else {
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<7){
 						t.push("Incineration Zone");
 					} else if (i<8){
@@ -398,7 +398,7 @@ function zChart(star){
 			break;
 		case "III":
 			if ((star[2][0]=="A"&&star[2][2]<5)||(star[2][0]=="M"&&star[2][2]<5)){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<2){
 						t.push("Incineration Zone");
 					} else if (i<6){
@@ -411,7 +411,7 @@ function zChart(star){
 				}
 			} 
 			else if (["A","K"].indexOf(star[2][0])>-1){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<6){
 						t.push("In");
 					} else if (i==6){
@@ -422,7 +422,7 @@ function zChart(star){
 				}
 			} 
 			else if (["F","G"].indexOf(star[2][0])>-1){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<5){
 						t.push("In");
 					} else if (i==5){
@@ -433,7 +433,7 @@ function zChart(star){
 				}
 			} 
 			else {
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<4){
 						t.push("Incineration Zone");
 					} else if (i<6){
@@ -448,7 +448,7 @@ function zChart(star){
 			break;
 		case "IV":
 			if (star[2][0]=="A"&&star[2][2]<5){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<2){
 						t.push("Incineration Zone");
 					} else if (i<6){
@@ -461,7 +461,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="A"){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<5){
 						t.push("In");
 					} else if (i<7){
@@ -472,7 +472,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="F"&&star[2][2]<5){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<5){
 						t.push("In");
 					} else if (i==5){
@@ -483,7 +483,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="F"){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<4){
 						t.push("In");
 					} else if (i<6){
@@ -494,7 +494,7 @@ function zChart(star){
 				}
 			} 
 			else {
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<3){
 						t.push("In");
 					} else if (i<5){
@@ -507,7 +507,7 @@ function zChart(star){
 			break;
 		case "V":
 			if (star[2][0]=="A"){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<5){
 						t.push("In");
 					} else if (i==5){
@@ -518,7 +518,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="F"){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<4){
 						t.push("In");
 					} else if (i<6){
@@ -529,7 +529,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="G"&&star[2][2]<5){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<3){
 						t.push("In");
 					} else if (i<5){
@@ -540,7 +540,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="G"){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<3){
 						t.push("In");
 					} else if (i==3){
@@ -551,7 +551,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="K"){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<3){
 						t.push("Hab");
 					} else {
@@ -560,7 +560,7 @@ function zChart(star){
 				}
 			} 
 			else if (star[2][0]=="M"&&star[2][2]<5){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					if (i<1){
 						t.push("Hab");
 					} else {
@@ -569,14 +569,25 @@ function zChart(star){
 				}
 			} 
 			else {
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					t.push("Out");
 				}
 			}
 			break;
 		default:
 			if (star[2][0]=="F"){
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
+					if (i<5){
+						t.push("In");
+					} else if (i==5){
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} 
+			else if (star[2][0]=="G"&&star[2][2]<5){
+				for (i=1;i<=star[1];i++){
 					if (i<4){
 						t.push("In");
 					} else if (i==4){
@@ -586,19 +597,19 @@ function zChart(star){
 					}
 				}
 			} 
-			else if (star[2][0]=="G"&&star[2][2]<5){
-				for (i=0;i<=star[1];i++){
+			else if (star[2][0]=="G"){
+				for (i=1;i<=star[1];i++){
 					if (i<3){
 						t.push("In");
-					} else if (i==3){
+					} else if (i==3{
 						t.push("Hab");
 					} else {
 						t.push("Out");
 					}
 				}
 			} 
-			else if (star[2][0]=="G"){
-				for (i=0;i<=star[1];i++){
+			else if (star[2][0]=="K"&&star[2][2]<5){
+				for (i=1;i<=star[1];i++){
 					if (i<2){
 						t.push("In");
 					} else if (i==2){
@@ -608,20 +619,9 @@ function zChart(star){
 					}
 				}
 			} 
-			else if (star[2][0]=="K"&&star[2][2]<5){
-				for (i=0;i<=star[1];i++){
-					if (i<1){
-						t.push("In");
-					} else if (i==1){
-						t.push("Hab");
-					} else {
-						t.push("Out");
-					}
-				}
-			} 
 			else if (star[2][0]=="K"){
-				for (i=0;i<=star[1];i++){
-					if (i===0){
+				for (i=1;i<=star[1];i++){
+					if (i==1){
 						t.push("Hab");
 					} else {
 						t.push("Out");
@@ -629,7 +629,7 @@ function zChart(star){
 				}
 			} 
 			else {
-				for (i=0;i<=star[1];i++){
+				for (i=1;i<=star[1];i++){
 					t.push("Out");
 				}
 			}
@@ -1094,6 +1094,15 @@ function starCheck(pos,lett,num,dec){
 			break;
 		default:
 			if (lett=="F") {
+				if (pos<5){
+					return "In";
+				} else if (pos<6){
+					return "Hab";
+				} else {
+					return "Out";
+				}
+			} 
+			else if (lett=="G"&&dec<5){
 				if (pos<4){
 					return "In";
 				} else if (pos<5){
@@ -1102,7 +1111,7 @@ function starCheck(pos,lett,num,dec){
 					return "Out";
 				}
 			} 
-			else if (lett=="G"&&dec<5){
+			else if (lett=="G"){
 				if (pos<3){
 					return "In";
 				} else if (pos<4){
@@ -1111,7 +1120,7 @@ function starCheck(pos,lett,num,dec){
 					return "Out";
 				}
 			} 
-			else if (lett=="G"){
+			else if (lett=="K"&&dec<5){
 				if (pos<2){
 					return "In";
 				} else if (pos<3){
@@ -1120,17 +1129,8 @@ function starCheck(pos,lett,num,dec){
 					return "Out";
 				}
 			} 
-			else if (lett=="K"&&dec<5){
-				if (pos<1){
-					return "In";
-				} else if (pos<2){
-					return "Hab";
-				} else {
-					return "Out";
-				}
-			} 
 			else if (lett=="K"){
-				if (pos===0){
+				if (pos===1){
 					return "Hab";
 				} else {
 					return "Out";
