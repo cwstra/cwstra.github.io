@@ -136,7 +136,7 @@ function starRanges(stars){
 		var r = [[]];
 		var t = [];
 		console.log("stars:");
-		console.log(JSON.parse(JSON.stringify(r)));
+		console.log(JSON.parse(JSON.stringify(stars)));
 		var i; var s; var n; for (i=0;i<stars.length;i++){
 			if (typeof s[3] !== "string"){
 				while (t.indexOf(s[3])>-1){
