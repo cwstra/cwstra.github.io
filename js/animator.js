@@ -36,4 +36,5 @@ function sysUpdate() {
 }
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
+console.log(Phaser.Plugin);
 slickUI = this.game.plugins.add(Phaser.Plugin.SlickUI);
