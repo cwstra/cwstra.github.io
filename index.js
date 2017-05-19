@@ -1352,7 +1352,6 @@ function generate(){
     }
     var plist = planetPicker(tab, ct);*/
     
-	Temp output code:
 	console.log("Done");
     console.log("stars");
     console.log(stars);
