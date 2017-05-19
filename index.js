@@ -1333,6 +1333,8 @@ function generate(){
     pop = pop.map(function (x){
     	x.shift();x.shift();x.shift();return x;
     });
+    console.log("Feed into zonePop");
+    console.log(pop);
     pop = zonePop(pop);
     //var tab = tableJoin(randomName(),t,pop);
     var cap = capture("Planet", max, letter, numb, dec);
