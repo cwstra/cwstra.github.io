@@ -1295,7 +1295,7 @@ function planetsTable(name,orbitZones,planets){
 		a = {};
 		countp = 1;
 		counta = 1;
-		for(j=0;j<orbitZones[0].length;j++){
+		for(j=0;j<orbitZones[i].length;j++){
 			if (planets[i][j] == "Asteroid Belt"){
 				a["Asteroid Belt "+(countp++).toString()] = j;
 			} else if (["Empty Orbit","Companion Star","N/A"].indexOf(planets[i][j])===-1){
