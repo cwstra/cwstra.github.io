@@ -1307,8 +1307,9 @@ function generate(){
     	numb.push(t[i][1]);
     	dec.push(t[i][2]);
     }
-    stars = t;
+    stars = JSON.parse(JSON.stringify(t));
     t = starRanges(t);
+    console.log(JSON.parse(JSON.stringify(t)));
     var n = t.filter(function (x) {
     	return !x.every(function (y){ 
     		return !isNaN(y);
