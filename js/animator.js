@@ -28,8 +28,7 @@ function sysPreload() {
 function sysCreate() {
 	game.stage.backgroundColor = "#000000";
 	var panel;
-	console.log(SlickUI.Element);
-	slickUI.add(panel = new SlickUI.Element.Panel(8, 8, 150, game.height - 16));
+	slickUI.add(panel = new SlickUI.Element.Panel(-158, -158, 300, game.height - 16));
 }
 
 function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
