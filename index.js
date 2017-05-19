@@ -123,12 +123,16 @@ function starClassSize(type){
 }
 	//Add new orbits to existing sets
 function zoneKeeper(tab,min,max){
+	console.log("zoneKeeper 1");
+	console.log(tab);
 	var t = tab;
 	var j; for (j=min;j<=max;j++){
 		if(t.indexOf(j)==-1){
 			t.push(j);
 		}
 	}
+	console.log("zoneKeeper 2");
+	console.log(t);
 	return t;
 }
 
@@ -139,7 +143,6 @@ function starRanges(stars){
 		var t = [];
 		var i; var s; var n; for (i=0;i<stars.length;i++){
 			s = stars[i];
-			console.log(s);
 			if (typeof s[3] !== "string"){
 				while (t.indexOf(s[3])>-1){
 					s[3]=s[3]+1;
