@@ -1309,6 +1309,7 @@ function generate(){
     }
     stars = JSON.parse(JSON.stringify(t));
     t = starRanges(t);
+    console.log("starRanges:");
     console.log(JSON.parse(JSON.stringify(t)));
     var n = t.filter(function (x) {
     	return !x.every(function (y){ 
