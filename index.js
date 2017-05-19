@@ -1359,5 +1359,5 @@ function generate(){
     var plist = planetPicker(tab, ct);*/
     
 	console.log("Done");
-	$("#container").html(JSON.stringify(t)+"<br><br>"+JSON.stringify(pop)+"<br><br>"+JSON.stringify(cap)+"<br><br>"+JSON.stringify(ast));
+	$("#container").html("t:<br>"JSON.stringify(t,null,"\t")+"<br><br>pop:<br>"+JSON.stringify(pop,null,"\t")+"<br><br>cap:<br>"+JSON.stringify(cap,null,"\t")+"<br><br>ast:<br>"+JSON.stringify(ast,null,"\t"));
 }
