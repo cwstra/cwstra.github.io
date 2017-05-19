@@ -1328,10 +1328,12 @@ function generate(){
     	max = n[0][1];
     }
     t = starZones(t);
+    console.log("starZones Output");
+    console.log(t);
     var pop = t; 
     pop.shift();
     pop = pop.map(function (x){
-    	x.shift();x.shift();x.shift();return x;
+    	x.shift();x.shift();x.shift(); return x;
     });
     console.log("Feed into zonePop");
     console.log(pop);
@@ -1359,6 +1361,8 @@ function generate(){
     }
     var plist = planetPicker(tab, ct);*/
     
+	/*
+	Temp output code:
 	console.log("Done");
     console.log("stars");
     console.log(stars);
@@ -1369,6 +1373,6 @@ function generate(){
     console.log("cap");
     console.log(cap);
     console.log("ast");
-    console.log(ast);
+    console.log(ast);*/
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
