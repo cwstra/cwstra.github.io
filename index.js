@@ -682,7 +682,7 @@ function starZones(sR){
 		if (fzone.indexOf(i)>-1){
 			t.push("Companion Star");
 		} else {
-			t.push(chart[i+1]);
+			t.push(chart[i]);
 		}
 	}
 	tab.push(t);
