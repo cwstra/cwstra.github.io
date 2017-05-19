@@ -1,7 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem'/*, {preload: preload, create: create, update: update }*/);
-/*slickUI = this.game.plugins.add(Phaser.Plugin.SlickUI);
-
-function preload() {
+function sysPreload() {
 	game.load.image("belt","../images/asteroid_belt.png");
 	game.load.image("major","../images/major_rings.png");
 	game.load.image("minor","../images/minor_rings.png");
@@ -24,7 +21,7 @@ function preload() {
 	game.load.image("star","../images/star.png");
 }
 
-function create() {
+function sysCreate() {
 	game.stage.backgroundColor = "#000000";
 	var panel;
 	slickUI.add(panel = new SlickUI.Element.Panel(8, 8, 150, game.height - 16));
@@ -34,6 +31,9 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 	
 }
 
-function update() {
+function sysUpdate() {
 	
-}*/
+}
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
+slickUI = this.game.plugins.add(Phaser.Plugin.SlickUI);
