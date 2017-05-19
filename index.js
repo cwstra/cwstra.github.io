@@ -1311,8 +1311,6 @@ function generate(){
     	dec.push(t[i][2]);
     }
     stars = t;
-    console.log("initial stars");
-    console.log(t);
     t = starRanges(t);
     console.log("Star Ranges (Leads to starZones)");
     console.log(t);
@@ -1360,5 +1358,15 @@ function generate(){
     var plist = planetPicker(tab, ct);*/
     
 	console.log("Done");
-	$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
+    console.log("stars");
+    console.log(stars);
+    console.log("t");
+    console.log(t);
+    console.log("pop");
+    console.log(pop);
+    console.log("cap");
+    console.log(cap);
+    console.log("ast");
+    console.log(ast);
+	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
