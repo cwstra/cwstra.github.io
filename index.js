@@ -144,8 +144,7 @@ function starRanges(stars){
 					s[3]=s[3]+1;
 				}
 				t.push(s[3]);
-				n=s[3];
-				switch(n){
+				switch(s[3]){
 					case 1:
 						r[0]=zoneKeeper(r[0],0,1);
 						r.push([s[4],0,s]);
@@ -221,7 +220,7 @@ function starRanges(stars){
 							if (orbits < 0){orbits=0;}
 							r.push([s[4],orbits,s]);
 						} else {
-							r[0]=zoneKeeper(r[1],n-4,n+1);
+							r[0]=zoneKeeper(r[0],n-4,n+1);
 							r.push([s[4],n-8,s]);
 						}
 				}
