@@ -27,6 +27,7 @@ function sysPreload() {
 function sysCreate() {
 	game.stage.backgroundColor = "#000000";
 	var panel;
+	console.log(slickUI);
 	slickUI.add(panel = new SlickUI.Element.Panel(8, 8, 150, game.height - 16));
 }
 
