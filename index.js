@@ -1500,55 +1500,43 @@ function satellites(planets){
 	var num = 1;
 	var x, t, s, d, j, r, k, planet, pos;
 	for (i=0;i<n.length;i++){
-		t = [];
+		t = {};
 		switch (p[i]){
 			case "Mesoplanet":
 			case "Small Terrestrial":
 				d = [randomInt(1,10)-7,randomInt(1,10)-9];
-				if (d[0] > 1){
+				if (d[0] > 0){
 					s=[];
 					for (j=0;j<d[0];j++){
 						r = randomInt(1,20); 
 						s.push([randomInt(100,1000)*0.001,close(r)]);
 					}
-					t.push([d[0].toString()+" Moonlets",s]);
+					t["Moonlets"]=s;
 				} 
-				else if (d[0]===1){
-					r = randomInt(1,20);
-					t.push(["1 Moonlet",[randomInt(100,1000)*0.001,close(r)]]);
-				}
 				if (d[1]===1){
 					r = randomInt(1,20);
-					t.push(["1 Small Moon",[randomInt(1000,2000)*0.001,close(r)]]);
+					t["Small Moons"]=[randomInt(1000,2000)*0.001,close(r)];
 				}
 				break;
 			case "Small Gas Giant":
 			case "Gas Giant":
 				d = [randomInt(1,10)-5,randomInt(1,10)-8,randomInt(1,10),randomInt(1,10)-1,
 					 randomInt(1,10)-3,randomInt(1,10)-6,randomInt(1,10)-8];
-				if (d[0]>1){
+				if (d[0]>0){
 					s=[];
 					for (j=0;j<d[0];j++){
 						r = randomInt(1,20); 
 						s.push(ring(r));
 					}
-					t.push([d[0].toString()+" Minor Ring Systems",s]);
-				} 
-				else if (d[0]===1){
-					r = randomInt(1,20);
-					t.push(["1 Minor Ring System",[ring(r)]]);
+					t["Minor Ring Systems"]=s;
 				}
-				if (d[1]>1){
+				if (d[1]>0){
 					s=[];
 					for (j=0;j<d[0];j++){
 						r = randomInt(1,20); 
 						s.push(ring(r));
 					}
-					t.push([d[0].toString()+" Major Ring Systems",s]);
-				}
-				else if (d[1]===1){
-					r = randomInt(1,20);
-					t.push(["1 Major Ring System",[ring(r)]]);
+					t["Major Ring Systems"]=s;
 				}
 				for (k=2;k<7;k++){
 					s = [];
@@ -1566,7 +1554,7 @@ function satellites(planets){
 						} else {
 								pos = close(r);
 						}
-						if (d[k]>1){
+						if (d[k]>0){
 							switch(k){
 								case 3:
 									s.push([randomInt(100,1000),pos]);
@@ -1593,50 +1581,23 @@ function satellites(planets){
 									num++;
 							}
 						}
-						else if (d[k]===1){
-							switch(k){
-								case 3:
-									t.push(["1 Moonlet", [randomInt(100,1000),pos]]);
-									break;
-								case 4:
-									s.push(["1 Small Moon", [randomInt(1000,2000),pos]]);
-									break;
-								case 5:
-									s.push(["1 Medium Moon", [randomInt(2000,3000),pos]]);
-									break;
-								case 6:
-									s.push(["1 Large Moon", [randomInt(3000,4000),pos]]);
-									break;
-								case 7:
-									planet = "Empty Orbit";
-									while (["Empty Orbit", "Asteroid Belt","Super Terrestrial", "Small Gas Giant", "Gas Giant", "Gas Supergiant", "Gas Ultragiant","Gas Ultragiant/Brown Dwarf"].indexOf(planet)>-1){
-										if (Array.isArray(z[i])){
-											planet = zonePop([z[i][0]])[0][0];
-										} else {
-											planet = zonePop(z[i])[0][0];
-										}
-									}
-									s.push(["1 Huge Moon", ["Huge Moon"+num.toString(),planet,pos]]);
-									num++;
-							}
-						}
 					}
 					if (s.length>0){
 						switch(k){
 							case 3:
-								t.push([d[k].toString()+" Moonlets",s]);
-                break;
+								t["Moonlets"]=s;
+                				break;
 							case 4:
-								t.push([d[k].toString()+" Small Moons",s]);
-                break;
+								t["Small Moons"]=s;
+                				break;
 							case 5:
-								t.push([d[k].toString()+" Medium Moons",s]);
-                break;
+								t["Medium Moons"]=s;
+                				break;
 							case 6:
-								t.push([d[k].toString()+" Large Moons",s]);
-                break;
+								t["Large Moons"]=s;
+                				break;
 							case 7:
-								t.push([d[k].toString()+" Huge Moons",s]);
+								t["Huge Moons"]=s;
 						}
 					}
 				}
@@ -1646,29 +1607,21 @@ function satellites(planets){
        		case "Gas Ultragiant":
        			d = [randomInt(1,10)-2,randomInt(1,10)-5,randomInt(1,10)+3,randomInt(1,10)+1,
 					 randomInt(1,10),randomInt(1,10)-4,randomInt(1,10)-6];
-				if (d[0]>1){
+				if (d[0]>0){
 					s=[];
 					for (j=0;j<d[0];j++){
 						r = randomInt(1,20); 
 						s.push(ring(r));
 					}
-					t.push([d[0].toString()+" Minor Ring Systems",s]);
-				} 
-				else if (d[0]===1){
-					r = randomInt(1,20);
-					t.push(["1 Minor Ring System",[ring(r)]]);
+					t["Minor Ring Systems"]=s;
 				}
-				if (d[1]>1){
+				if (d[1]>0){
 					s=[];
 					for (j=0;j<d[0];j++){
 						r = randomInt(1,20); 
 						s.push(ring(r));
 					}
-					t.push([d[0].toString()+" Major Ring Systems",s]);
-				}
-				else if (d[1]===1){
-					r = randomInt(1,20);
-					t.push(["1 Major Ring System",[ring(r)]]);
+					t["Major Ring Systems"]=s;
 				}
 				for (k=2;k<7;k++){
 					s = [];
@@ -1686,7 +1639,7 @@ function satellites(planets){
 						} else {
 								pos = close(r);
 						}
-						if (d[k]>1){
+						if (d[k]>0){
 							switch(k){
 								case 3:
 									s.push([randomInt(100,1000),pos]);
@@ -1713,50 +1666,23 @@ function satellites(planets){
 									num++;
 							}
 						}
-						else if (d[k]===1){
-							switch(k){
-								case 3:
-									t.push(["1 Moonlet", [randomInt(100,1000),pos]]);
-									break;
-								case 4:
-									s.push(["1 Small Moon", [randomInt(1000,2000),pos]]);
-									break;
-								case 5:
-									s.push(["1 Medium Moon", [randomInt(2000,3000),pos]]);
-									break;
-								case 6:
-									s.push(["1 Large Moon", [randomInt(3000,4000),pos]]);
-									break;
-								case 7:
-									planet = "Empty Orbit";
-									while (["Empty Orbit", "Asteroid Belt","Super Terrestrial", "Small Gas Giant", "Gas Giant", "Gas Supergiant", "Gas Ultragiant","Gas Ultragiant/Brown Dwarf"].indexOf(planet)>-1){
-										if (Array.isArray(z[i])){
-											planet = zonePop([z[i][0]])[0][0];
-										} else {
-											planet = zonePop(z[i])[0][0];
-										}
-									}
-									s.push(["1 Huge Moon", ["Huge Moon"+num.toString(),planet,pos]]);
-									num++;
-							}
-						}
 					}
 					if (s.length>0){
 						switch(k){
 							case 3:
-								t.push([d[k].toString()+" Moonlets",s]);
-                break;
+								t["Moonlets"]=s;
+                				break;
 							case 4:
-								t.push([d[k].toString()+" Small Moons",s]);
-                break;
+								t["Small Moons"]=s;
+                				break;
 							case 5:
-								t.push([d[k].toString()+" Medium Moons",s]);
-                break;
+								t["Medium Moons"]=s;
+                				break;
 							case 6:
-								t.push([d[k].toString()+" Large Moons",s]);
-                break;
+								t["Large Moons"]=s;
+                				break;
 							case 7:
-								t.push([d[k].toString()+" Huge Moons",s]);
+								t["Huge Moons"]=s;
 						}
 					}
 				}
@@ -1765,35 +1691,27 @@ function satellites(planets){
        			d = [randomInt(1,10)-9,randomInt(1,10)-6,randomInt(1,10)-7,randomInt(1,10)-9];
        			if (d[0]===1){
        				r = randomInt(1,20);
-       				t.push(["1 Minor Ring System",ring(r)]);
+       				t["Minor Ring Systems"]=[ring(r)];
        			}
-       			if (d[1]>1){
+       			if (d[1]>0){
        				s = [];
        				for (j=0;j<d[1];j++){
        					r = randomInt(1,20);
        					s.push([randomInt(100,1000)*0.001,close(r)]);
        				}
-       				t.push([d[1].toString()+" Moonlets",s]);
+       				t["Moonlets"]=s;
        			}
-       			else if(d[1]===1){
-       				r = randomInt(1,20);
-       				t.push(["1 Moonlet",[randomInt(100,1000)*0.001,close(r)]]);
-       			}
-       			if (d[2]>1){
+       			if (d[2]>0){
        				s = [];
        				for (j=0;j<d[2];j++){
        					r = randomInt(1,20);
        					s.push([randomInt(1000,2000)*0.001,close(r)]);
        				}
-       				t.push([d[2].toString()+" Small Moons",s]);
-       			}
-       			else if (d[2]===1){
-       				r = randomInt(1,20);
-       				t.push(["1 Small Moon",[randomInt(1000,2000)*0.001,close(r)]]);
+       				t["Small Moons"]=s;
        			}
        			if (d[3]===1){
        				r = randomInt(1,20);
-       				t.push(["1 Medium Moon",[randomInt(2000,3000)*0.001,close(r)]]);
+       				t["Medium Moons"]=[randomInt(2000,3000)*0.001,close(r)];
        			}
 		}
 		if (t === []){
