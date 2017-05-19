@@ -1315,7 +1315,8 @@ function satellites(planets){
 	}
 }
 
-satellites[planets_] := Module[{n, p, z, tab, i, x, d, t, s, r, k, j, pos, planet, num},
+/*satellites[planets_] := 
+Module[{n, p, z, tab, i, x, d, t, s, r, k, j, pos, planet, num},
    For[i = 1; n = {}; p = {}; z = {};, i <= Length[planets], i++,
     n = Append[n, planets[[i, 1]]];
     p = Append[p, planets[[i, 3]]];
@@ -2183,6 +2184,7 @@ satellites[planets_] := Module[{n, p, z, tab, i, x, d, t, s, r, k, j, pos, plane
      t = Append[t, "No Satellites"];];
     tab = Append[tab, t];
     ]; Return[tab];];
+*/
 
 function generate(){
 	var r = randomInt(1,20);
