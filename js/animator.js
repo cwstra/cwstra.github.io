@@ -32,7 +32,7 @@ function sysCreate() {
 			console.log(i);
 		}
 	}
-	console.log(slickUI)
+	console.log(slickUI.add);
 	slickUI.add(panel = new SlickUI.Element.Panel(-158, 8, 300, game.height - 16));
 	panel.add(button = new SlickUI.Element.Button(0,0, 140, 80));
 	button.add(new SlickUI.Element.Text(0,0, "My button")).center();
