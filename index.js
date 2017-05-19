@@ -597,8 +597,8 @@ function zChart(star){
 					if (i===0){
 						t.push("Incineration Zone");
 					} else {
-						t.push("Out")
-					};
+						t.push("Out");
+					}
 				}
 			}
 			break;
@@ -1333,10 +1333,10 @@ function generate(){
     	x.shift();x.shift();x.shift();return x;
     });
     pop = zonePop(pop);
-    var tab = tableJoin(randomName(),t,pop);
+    //var tab = tableJoin(randomName(),t,pop);
     var cap = capture("Planet", max, letter, numb, dec);
     var ast = capture("Asteroid", max, letter, numb, dec);
-    var ct; if (Array.isArray(cap)){
+    /*var ct; if (Array.isArray(cap)){
     	ct =[["Rogue Planets", "Type", "Moves From:", "To:"]];
     	for (i=0;i<cap.length;i++){
     		ct.push([cap[i][0],cap[i][1][0][0],cap[i][1][0][1],cap[i][1][0][2]]);
@@ -1354,7 +1354,7 @@ function generate(){
     else {
     		ct = [["No Rogue Asteroids"]];
     }
-    var plist = planetPicker(tab, ct);
+    var plist = planetPicker(tab, ct);*/
     
 	console.log("Done");
 	$("#container").html(JSON.stringify(t)+"<br>"+JSON.stringify(pop)+"<br>"+JSON.stringify(cap)+"<br>"+JSON.stringify(ast));
