@@ -291,7 +291,6 @@ function starRanges(stars){
 }
 
 function pZone(sR){
-	//console.log(sR);
 	var t = sR.filter(function (x) {
 		return (x.indexOf("Primary")>-1);
 	});
@@ -1309,11 +1308,7 @@ function generate(){
     	dec.push(t[i][2]);
     }
     stars = t;
-    console.log("Stars (Leads to starRanges)");
-    console.log(stars);
     t = starRanges(t);
-    console.log("Star Ranges (Leads to starZones)");
-    console.log(t);
     var n = t.filter(function (x) {
     	return !x.every(function (y){ 
     		return !isNaN(y);
@@ -1328,15 +1323,11 @@ function generate(){
     	max = n[0][1];
     }
     t = starZones(t);
-    console.log("starZones Output");
-    console.log(JSON.parse(JSON.stringify(t)));
     var pop = t; 
     pop.shift();
     pop = pop.map(function (x){
     	x.shift();x.shift();x.shift(); return x;
     });
-    console.log("Feed into zonePop");
-    console.log(pop);
     pop = zonePop(pop);
     //var tab = tableJoin(randomName(),t,pop);
     var cap = capture("Planet", max, letter, numb, dec);
@@ -1361,7 +1352,6 @@ function generate(){
     }
     var plist = planetPicker(tab, ct);*/
     
-	/*
 	Temp output code:
 	console.log("Done");
     console.log("stars");
@@ -1373,6 +1363,6 @@ function generate(){
     console.log("cap");
     console.log(cap);
     console.log("ast");
-    console.log(ast);*/
+    console.log(ast);
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
