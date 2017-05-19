@@ -1329,7 +1329,7 @@ function generate(){
     }
     t = starZones(t);
     console.log("starZones Output");
-    console.log($.extend(true, {}, t));
+    console.log(JSON.parse(JSON.stringify(t)));
     var pop = t; 
     pop.shift();
     pop = pop.map(function (x){
