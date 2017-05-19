@@ -1359,5 +1359,5 @@ function generate(){
     var plist = planetPicker(tab, ct);*/
     
 	console.log("Done");
-	$("#container").html("t:<br>"+JSON.stringify(t,null,'&nbsp;')+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br><span style="display:inline-block; width: 10;"></span>')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br><span style="display:inline-block; width: 10;"></span>')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br><span style="display:inline-block; width: 10;"></span>'));
+	$("#container").html("t:<br>"+JSON.stringify(t,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br><span style="display:inline-block; width: 10;"></span>')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br><span style="display:inline-block; width: 10;"></span>')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br><span style="display:inline-block; width: 10;"></span>'));
 }
