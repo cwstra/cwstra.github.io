@@ -254,6 +254,8 @@ function starRanges(stars){
 				return x.every(function (y){return !isNaN(y);});
 			}
 		);
+		console.log("In progress starRanges:");
+		console.log(r);
 		var prime = r.filter(function (x) {return x.indexOf("Primary")>-1;});
 		var y = r.filter(function (x){
 			return !(list.indexOf(x)>-1||prime.indexOf(x)>-1);
