@@ -270,27 +270,50 @@ function starRanges(stars){
 		return r;
 	} 
 	else {
-	mod = 0;
-	switch(stars[0]){
-		case "M":
-			mod = mod - 6;
-			break;
-		case "K":
-			mod = mod - 3;
-			break;
+		mod = 0;
+		switch(stars[0]){
+			case "M":
+				mod = mod - 6;
+				break;
+			case "K":
+				mod = mod - 3;
+				break;
+		}
+		switch(stars[1]){
+			case "II":
+				mod = mod + 8;
+				break;
+			case "III":
+				mod = mod + 6;
+				break;
+		}
+		orbits = randomInt(1,10)+mod;
+		if (orbits<0){orbits=0;}
+		return [[stars[4],orbits,stars,"Primary"]];
 	}
-	switch(stars[1]){
-		case "II":
-			mod = mod + 8;
-			break;
-		case "III":
-			mod = mod + 6;
-			break;
-	}
-	orbits = randomInt(1,10)+mod;
-	if (orbits<0){orbits=0;}
-	return [[stars[4],orbits,stars,"Primary"]];
 }
+
+function randomName(){
+	var v = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","ae","ou","io"];
+	var c = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
+	var w = []; var l; var s;
+	if (randomInt(0,1)===0){
+		l = v[randomInt(0,v.length-1)];
+		w.push(l);
+		l = c[randomInt(0,c.length-1)];
+		w.push(l);
+	} else {
+		l = c[randomInt(0,c.length-1)];
+		w.push(l);
+	}
+	for (s = randomInt(2,6);w.length<s;){
+		l = v[randomInt(0,v.length-1)];
+		w.push(l);
+		l = c[randomInt(0,c.length-1)];
+		w.push(l);
+	}
+	w[0]=w[0].toUpperCase();
+	return w.join("");
 }
 
 function pZone(sR){
@@ -835,29 +858,6 @@ function zonePop(zones){
 	return tab;
 }
 
-function randomName(){
-	var v = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","ae","ou","io"];
-	var c = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
-	var w = []; var l; var s;
-	if (randomInt(0,1)===0){
-		l = v[randomInt(0,v.length-1)];
-		w.push(l);
-		l = c[randomInt(0,c.length-1)];
-		w.push(l);
-	} else {
-		l = c[randomInt(0,c.length-1)];
-		w.push(l);
-	}
-	for (s = randomInt(2,6);w.length<s;){
-		l = v[randomInt(0,v.length-1)];
-		w.push(l);
-		l = c[randomInt(0,c.length-1)];
-		w.push(l);
-	}
-	w[0]=w[0].toUpperCase();
-	return w.join("");
-}
-
 function tableJoin(name,t1,t2){
 	var dim = [t1.length,t1[0].length];
 	var c1 = [name+" System","SpanFromAbove"];
@@ -1287,6 +1287,903 @@ function planetPicker(tab,ct){
 	return planets;
 }
 
+//Output: Array of planet 
+function planetsTable(name,orbitZones,planets){
+	var tab=[],i,j,t,ast=[]; 
+	for(i=0;i<name.length;i++){
+		t = {};
+		a = {};
+		countp = 1;
+		counta = 1;
+		for(j=0;j<orbitZones[0].length;j++){
+			if (planets[i][j] == "Asteroid Belt"){
+				a["Asteroid Belt "+(countp++).toString()] = j;
+			} else if (["Empty Orbit","Companion Star","N/A"].indexOf(planets[i][j])===-1){
+				t[name[i]+" "+(counta++).toString()]=[j,orbitZones[i][j],planets[i][j]];
+			}
+		} 
+		tab.push(t);
+		ast.push(a);
+	} 
+	return[tab,ast]
+}
+
+function satellites(planets){
+	var n =[], p = [], z = [];
+	var i; for(i=0;i<planets.length;i++){
+		
+	}
+}
+
+satellites[planets_] := Module[{n, p, z, tab, i, x, d, t, s, r, k, j, pos, planet, num},
+   For[i = 1; n = {}; p = {}; z = {};, i <= Length[planets], i++,
+    n = Append[n, planets[[i, 1]]];
+    p = Append[p, planets[[i, 3]]];
+    z = Append[z, planets[[i, 2]]];];
+   tab = {};
+   num = 1;
+   For[i = 1, i <= Length[p], i++,
+    x = p[[i]];
+    t = {n[[i]], z[[i]]};
+    s = {};
+    Which[
+     MemberQ[{"Empty Orbit", "Asteroid Belt", "Companion Star", 
+       "N/A"}, x],
+     	,
+     MemberQ[{"Mesoplanet", "Small Terrestrial"}, x],
+     	d = {RandomInteger[{1, 10}] - 7, RandomInteger[{1, 10}] - 9};
+     	Which[
+      	d[[1]] > 1,
+      		Do[
+       		r = RandomInteger[{1, 20}];
+       		Which[
+        		r == 1,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 14}];,
+        		r == 2,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 15}];,
+        		r == 3,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 16}];,
+        		r == 4,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 17}];,
+        		r == 5,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 18}];,
+        		r == 6,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 19}];,
+        		r == 7,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 20}];,
+        		r == 8,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 25}];,
+        		r == 9,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 30}];,
+        		r == 10,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 35}];,
+        		r == 11,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 40}];,
+        		r == 12,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 45}];,
+        		r == 13,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 50}];,
+        		r == 14,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 55}];,
+        		r == 15,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 60}];,
+        		r == 16,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 65}];,
+        		r == 17,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 70}];,
+        		r == 18,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 75}];,
+        		r == 19,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 80}];,
+        		r == 20,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 85}];
+        		];, {d[[1]]}];
+      		       t = Append[t, {ToString[d[[1]]] <> " Moonlets", s}];
+      		       s = {};,
+      	d[[1]] == 1,
+      		r = RandomInteger[{1, 20}];
+      		Which[
+       			r == 1,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 14}];,
+       			r == 2,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 15}];,
+       			r == 3,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 16}];,
+       			r == 4,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 17}];,
+       			r == 5,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 18}];,
+       			r == 6,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 19}];,
+       			r == 7,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 20}];,
+       			r == 8,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 25}];,
+       			r == 9,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 30}];,
+       			r == 10,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 35}];,
+       			r == 11,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 40}];,
+       			r == 12,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 45}];,
+       			r == 13,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 50}];,
+       			r == 14,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 55}];,
+       			r == 15,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 60}];,
+       			r == 16,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 65}];,
+       			r == 17,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 70}];,
+       			r == 18,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 75}];,
+       			r == 19,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 80}];,
+       			r == 20,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 85}];
+       		];
+      		t = Append[t, {"1 Moonlet", s}];
+      		s = {};
+      	];
+     	If[d[[2]] == 1,
+      	r = RandomInteger[{1, 20}];
+      	Which[
+       	r == 1,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 14}];,
+       	r == 2,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 15}];,
+       	r == 3,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 16}];,
+       	r == 4,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 17}];,
+       	r == 5,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 18}];,
+       	r == 6,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 19}];,
+       	r == 7,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 20}];,
+       	r == 8,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 25}];,
+       	r == 9,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 30}];,
+       	r == 10,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 35}];,
+       	r == 11,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 40}];,
+       	r == 12,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 45}];,
+       	r == 13,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 50}];,
+       	r == 14,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 55}];,
+       	r == 15,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 60}];,
+       	r == 16,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 65}];,
+       	r == 17,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 70}];,
+       	r == 18,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 75}];,
+       	r == 19,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 80}];,
+       	r == 20,
+       		s = Append[s, {RandomInteger[{1000, 2000}]*.001, 85}];
+       		];
+      	t = Append[t, {"1 Small Moon", s}];];
+     	  s = {};,
+     MemberQ[{"Small Gas Giant", "Gas Giant", "Gas Supergiant", 
+       "Gas Ultragiant/Brown Dwarf", "Gas Ultragiant"}, x],
+     	If[MemberQ[{"Small Gas Giant", "Gas Giant"}, x],
+      	d = {RandomInteger[{1, 10}] - 5, RandomInteger[{1, 10}] - 8, 
+         RandomInteger[{1, 10}], RandomInteger[{1, 10}] - 1, 
+         RandomInteger[{1, 10}] - 3, RandomInteger[{1, 10}] - 6, 
+         RandomInteger[{1, 10}] - 8};,
+      	d = {RandomInteger[{1, 10}] - 2, RandomInteger[{1, 10}] - 5, 
+         RandomInteger[{1, 10}] + 3, RandomInteger[{1, 10}] + 1, 
+         RandomInteger[{1, 10}], RandomInteger[{1, 10}] - 4, 
+         RandomInteger[{1, 10}] - 6};];
+     	Which[
+      	d[[1]] > 1,
+      		Do[
+       		r = RandomInteger[{1, 20}];
+       		Which[
+        		r == 1,
+        			s = Append[s, 1];,
+        		r == 2,
+        			s = Append[s, 2];,
+        		r == 3,
+        			s = Append[s, 3];,
+        		r == 4,
+        			s = Append[s, 4];,
+        		r == 5,
+        			s = Append[s, 5];,
+        		r == 6,
+        			s = Append[s, 6];,
+        		r == 7,
+        			s = Append[s, 7];,
+        		r == 8,
+        			s = Append[s, 8];,
+        		r == 9,
+        			s = Append[s, 9];,
+        		r == 10,
+        			s = Append[s, 10];,
+        		r == 11,
+        			s = Append[s, 11];,
+        		r == 12,
+        			s = Append[s, 12];,
+        		r == 13,
+        			s = Append[s, 14];,
+        		r == 14,
+        			s = Append[s, 16];,
+        		r == 15,
+        			s = Append[s, 18];,
+        		r == 16,
+        			s = Append[s, 20];,
+        		r == 17,
+        			s = Append[s, 25];,
+        		r == 18,
+        			s = Append[s, 30];,
+        		r == 19,
+        			s = Append[s, 35];,
+        		r == 20,
+        			s = Append[s, 40];];
+       		, {d[[1]]}];
+      		t = 
+       Append[t, {ToString[d[[1]]] <> " Minor Ring Systems", s}];
+      		s = {};,
+      	d[[1]] == 1,
+      		r = RandomInteger[{1, 20}];
+      		Which[
+       		r == 1,
+       			t = Append[t, {"1 Minor Ring System", 1}];,
+       		r == 2,
+       			t = Append[t, {"1 Minor Ring System", 2}];,
+       		r == 3,
+       			t = Append[t, {"1 Minor Ring System", 3}];,
+       		r == 4,
+       			t = Append[t, {"1 Minor Ring System", 4}];,
+       		r == 5,
+       			t = Append[t, {"1 Minor Ring System", 5}];,
+       		r == 6,
+       			t = Append[t, {"1 Minor Ring System", 6}];,
+       		r == 7,
+       			t = Append[t, {"1 Minor Ring System", 7}];,
+       		r == 8,
+       			t = Append[t, {"1 Minor Ring System", 8}];,
+       		r == 9,
+       			t = Append[t, {"1 Minor Ring System", 9}];,
+       		r == 10,
+       			t = Append[t, {"1 Minor Ring System", 10}];,
+       		r == 11,
+       			t = Append[t, {"1 Minor Ring System", 11}];,
+       		r == 12,
+       			t = Append[t, {"1 Minor Ring System", 12}];,
+       		r == 13,
+       			t = Append[t, {"1 Minor Ring System", 14}];,
+       		r == 14,
+       			t = Append[t, {"1 Minor Ring System", 16}];,
+       		r == 15,
+       			t = Append[t, {"1 Minor Ring System", 18}];,
+       		r == 16,
+       			t = Append[t, {"1 Minor Ring System", 20}];,
+       		r == 17,
+       			t = Append[t, {"1 Minor Ring System", 25}];,
+       		r == 18,
+       			t = Append[t, {"1 Minor Ring System", 30}];,
+       		r == 19,
+       			t = Append[t, {"1 Minor Ring System", 35}];,
+       		r == 20,
+       			t = Append[t, {"1 Minor Ring System", 40}];];
+      	];
+     	Which[
+      	d[[2]] > 1,
+      		Do[
+       		r = RandomInteger[{1, 20}];
+       		Which[
+        		r == 1,
+        			s = Append[s, 1];,
+        		r == 2,
+        			s = Append[s, 2];,
+        		r == 3,
+        			s = Append[s, 3];,
+        		r == 4,
+        			s = Append[s, 4];,
+        		r == 5,
+        			s = Append[s, 5];,
+        		r == 6,
+        			s = Append[s, 6];,
+        		r == 7,
+        			s = Append[s, 7];,
+        		r == 8,
+        			s = Append[s, 8];,
+        		r == 9,
+        			s = Append[s, {9}];,
+        		r == 10,
+        			s = Append[s, 10];,
+        		r == 11,
+        			s = Append[s, 11];,
+        		r == 12,
+        			s = Append[s, 12];,
+        		r == 13,
+        			s = Append[s, 14];,
+        		r == 14,
+        			s = Append[s, 16];,
+        		r == 15,
+        			s = Append[s, 18];,
+        		r == 16,
+        			s = Append[s, 20];,
+        		r == 17,
+        			s = Append[s, 25];,
+        		r == 18,
+        			s = Append[s, 30];,
+        		r == 19,
+        			s = Append[s, 35];,
+        		r == 20,
+        			s = Append[s, 40];];
+       		, {d[[2]]}];
+      		t = 
+       Append[t, {ToString[d[[2]]] <> " Major Ring Systems", s}];
+      		s = {};,
+      	d[[2]] == 1,
+      		r = RandomInteger[{1, 20}];
+      		Which[
+       		r == 1,
+       			t = Append[t, {"1 Major Ring System", 1}];,
+       		r == 2,
+       			t = Append[t, {"1 Major Ring System", 2}];,
+       		r == 3,
+       			t = Append[t, {"1 Major Ring System", 3}];,
+       		r == 4,
+       			t = Append[t, {"1 Major Ring System", 4}];,
+       		r == 5,
+       			t = Append[t, {"1 Major Ring System", 5}];,
+       		r == 6,
+       			t = Append[t, {"1 Major Ring System", 6}];,
+       		r == 7,
+       			t = Append[t, {"1 Major Ring System", 7}];,
+       		r == 8,
+       			t = Append[t, {"1 Major Ring System", 8}];,
+       		r == 9,
+       			t = Append[t, {"1 Major Ring System", 9}];,
+       		r == 10,
+       			t = Append[t, {"1 Major Ring System", 10}];,
+       		r == 11,
+       			t = Append[t, {"1 Major Ring System", 11}];,
+       		r == 12,
+       			t = Append[t, {"1 Major Ring System", 12}];,
+       		r == 13,
+       			t = Append[t, {"1 Major Ring System", 14}];,
+       		r == 14,
+       			t = Append[t, {"1 Major Ring System", 16}];,
+       		r == 15,
+       			t = Append[t, {"1 Major Ring System", 18}];,
+       		r == 16,
+       			t = Append[t, {"1 Major Ring System", 20}];,
+       		r == 17,
+       			t = Append[t, {"1 Major Ring System", 25}];,
+       		r == 18,
+       			t = Append[t, {"1 Major Ring System", 30}];,
+       		r == 19,
+       			t = Append[t, {"1 Major Ring System", 35}];,
+       		r == 20,
+       			t = Append[t, {"1 Major Ring System", 40}];];
+      	];
+     	For[k = 3, k <= 7, k++,
+      	For[j = 1, j <= d[[k]], j++,
+       	pos = RandomInteger[{1, 10}];
+       	r = RandomInteger[{1, 20}];
+       	Which[
+        	(MemberQ[{"Gas Giant", "Gas Supergiant", x}] && 
+           pos == 10) || (MemberQ[{"Gas Ultragiant/Brown Dwarf", 
+             "Gas Ultragiant"}, x] && pos > 8),
+        		Which[
+          		r == 1,
+          			pos = 190;,
+          		r == 2,
+          			pos = 195;,
+          		r == 3,
+          			pos = 200;,
+          		r == 4,
+          			pos = 205;,
+          		r == 5,
+          			pos = 210;,
+          		r == 6,
+          			pos = 215;,
+          		r == 7,
+          			pos = 220;,
+          		r == 8,
+          			pos = 230;,
+          		r == 9,
+          			pos = 240;,
+          		r == 10,
+          			pos = 250;,
+          		r == 11,
+          			pos = 260;,
+          		r == 12,
+          			pos = 270;,
+          		r == 13,
+          			pos = 280;,
+          		r == 14,
+          			pos = 290;,
+          		r == 15,
+          			pos = 300;,
+          		r == 16,
+          			pos = 320;,
+          		r == 17,
+          			pos = 340;,
+          		r == 18,
+          			pos = 360;,
+          		r == 19,
+          			pos = 380;,
+          		r == 20,
+          			pos = 400;
+          		];,
+        	(x == "Small Gas Giant" && 
+           pos > 7) || (MemberQ[{"Gas Giant", "Gas Supergiant", x}] &&
+            pos > 6) || (MemberQ[{"Gas Ultragiant/Brown Dwarf", 
+             "Gas Ultragiant"}, x] && pos > 4),
+        		Which[
+          		r == 1,
+          			pos = 90;,
+          		r == 2,
+          			pos = 95;,
+          		r == 3,
+          			pos = 100;,
+          		r == 4,
+          			pos = 105;,
+          		r == 5,
+          			pos = 110;,
+          		r == 6,
+          			pos = 115;,
+          		r == 7,
+          			pos = 120;,
+          		r == 8,
+          			pos = 125;,
+          		r == 9,
+          			pos = 130;,
+          		r == 10,
+          			pos = 135;,
+          		r == 11,
+          			pos = 140;,
+          		r == 12,
+          			pos = 145;,
+          		r == 13,
+          			pos = 150;,
+          		r == 14,
+          			pos = 155;,
+          		r == 15,
+          			pos = 160;,
+          		r == 16,
+          			pos = 165;,
+          		r == 17,
+          			pos = 170;,
+          		r == 18,
+          			pos = 175;,
+          		r == 19,
+          			pos = 180;,
+          		r == 20,
+          			pos = 185;
+          		];,
+        	True,
+        		Which[
+          		r == 1,
+          			pos = 14;,
+          		r == 2,
+          			pos = 15;,
+          		r == 3,
+          			pos = 16;,
+          		r == 4,
+          			pos = 17;,
+          		r == 5,
+          			pos = 18;,
+          		r == 6,
+          			pos = 19;,
+          		r == 7,
+          			pos = 20;,
+          		r == 8,
+          			pos = 25;,
+          		r == 9,
+          			pos = 30;,
+          		r == 10,
+          			pos = 35;,
+          		r == 11,
+          			pos = 40;,
+          		r == 12,
+          			pos = 45;,
+          		r == 13,
+          			pos = 50;,
+          		r == 14,
+          			pos = 55;,
+          		r == 15,
+          			pos = 60;,
+          		r == 16,
+          			pos = 65;,
+          		r == 17,
+          			pos = 70;,
+          		r == 18,
+          			pos = 75;,
+          		r == 19,
+          			pos = 80;,
+          		r == 20,
+          			pos = 85;
+          		];
+        	];
+       
+       	Which[
+        	d[[k]] > 1,
+        		Which[
+          		k == 3,
+          			s = Append[s, {RandomInteger[{100, 1000}], pos}];,
+          		k == 4,
+          			s = Append[s, {RandomInteger[{1000, 2000}], pos}];,
+          		k == 5,
+          			s = Append[s, {RandomInteger[{2000, 3000}], pos}];,
+          		k == 6,
+          			s = Append[s, {RandomInteger[{3000, 4000}], pos}];,
+          		k == 7,
+          			If[ListQ[z[[i]]],
+           			planet = zonePop[{{z[[i]][[1]]}}][[1, 1]];,
+           			planet = zonePop[{{z[[i]]}}][[1, 1]];];
+          			
+          While[MemberQ[{"Empty Orbit", "Asteroid Belt", 
+             "Super Terrestrial", "Small Gas Giant", "Gas Giant", 
+             "Gas Supergiant", "Gas Ultragiant",
+             						"Gas Ultragiant/Brown Dwarf"}, planet],
+           			If[ListQ[z[[i]]],
+             			planet = zonePop[{{z[[i]][[1]]}}][[1, 1]];,
+             			planet = zonePop[{{z[[i]]}}][[1, 1]];];
+           			];
+          			
+          s = Append[
+            s, {"Huge Moon " <> ToString[num], planet, pos}];
+          			num = num + 1;
+          		];,
+        	d[[k]] == 1,
+        		Which[
+          		k == 3,
+          			
+          t = Append[
+             t, {"1 Moonlet", {RandomInteger[{100, 1000}], pos}}];,
+          		k == 4,
+          			
+          t = Append[
+             t, {"1 Small Moon", {RandomInteger[{1000, 2000}], pos}}];,
+          		k == 5,
+          			
+          t = Append[
+             t, {"1 Medium Moon", {RandomInteger[{2000, 3000}], 
+               pos}}];,
+          		k == 6,
+          			
+          t = Append[
+             t, {"1 Large Moon", {RandomInteger[{3000, 4000}], pos}}];,
+          		k == 7,
+          			If[ListQ[z[[i]]],
+           			planet = zonePop[{{z[[i]][[1]]}}][[1, 1]];,
+           			planet = zonePop[{{z[[i]]}}][[1, 1]];];
+          			
+          While[MemberQ[{"Empty Orbit", "Asteroid Belt", 
+             "Super Terrestrial", "Small Gas Giant", "Gas Giant", 
+             "Gas Supergiant", "Gas Ultragiant",
+             						"Gas Ultragiant/Brown Dwarf"}, planet],
+           			If[ListQ[z[[i]]],
+             			planet = zonePop[{{z[[i]][[1]]}}][[1, 1]];,
+             			planet = zonePop[{{z[[i]]}}][[1, 1]];];
+           			];
+          			
+          t = Append[
+            t, {"1 Huge Moon", {"Huge Moon " <> ToString[num], planet,
+               pos}}];
+          			num = num + 1;];
+        	];
+       	];
+      	If[s != {},
+       	Which[
+        	k == 3,
+        		t = Append[t, {ToString[d[[k]]] <> " Moonlets", s}];,
+        	k == 4,
+        		t = Append[t, {ToString[d[[k]]] <> " Small Moons", s}];,
+        	k == 5,
+        		t = Append[t, {ToString[d[[k]]] <> " Medium Moons", s}];,
+        	k == 6,
+        		t = Append[t, {ToString[d[[k]]] <> " Large Moons", s}];,
+        	k == 7,
+        		t = Append[t, {ToString[d[[k]]] <> " Huge Moons", s}];
+        	];
+       	s = {};
+       	];
+      	];,
+     True,
+     	d = {RandomInteger[{1, 10}] - 9, RandomInteger[{1, 10}] - 6, 
+       RandomInteger[{1, 10}] - 7, RandomInteger[{1, 10}] - 9};
+     	If[d[[1]] == 1,
+      	r = RandomInteger[{1, 20}];
+      		Which[
+       		r == 1,
+       			t = Append[t, {"1 Minor Ring System", 1}];,
+       		r == 2,
+       			t = Append[t, {"1 Minor Ring System", 2}];,
+       		r == 3,
+       			t = Append[t, {"1 Minor Ring System", 3}];,
+       		r == 4,
+       			t = Append[t, {"1 Minor Ring System", 4}];,
+       		r == 5,
+       			t = Append[t, {"1 Minor Ring System", 5}];,
+       		r == 6,
+       			t = Append[t, {"1 Minor Ring System", 6}];,
+       		r == 7,
+       			t = Append[t, {"1 Minor Ring System", 7}];,
+       		r == 8,
+       			t = Append[t, {"1 Minor Ring System", 8}];,
+       		r == 9,
+       			t = Append[t, {"1 Minor Ring System", 9}];,
+       		r == 10,
+       			t = Append[t, {"1 Minor Ring System", 10}];,
+       		r == 11,
+       			t = Append[t, {"1 Minor Ring System", 11}];,
+       		r == 12,
+       			t = Append[t, {"1 Minor Ring System", 12}];,
+       		r == 13,
+       			t = Append[t, {"1 Minor Ring System", 14}];,
+       		r == 14,
+       			t = Append[t, {"1 Minor Ring System", 16}];,
+       		r == 15,
+       			t = Append[t, {"1 Minor Ring System", 18}];,
+       		r == 16,
+       			t = Append[t, {"1 Minor Ring System", 20}];,
+       		r == 17,
+       			t = Append[t, {"1 Minor Ring System", 25}];,
+       		r == 18,
+       			t = Append[t, {"1 Minor Ring System", 30}];,
+       		r == 19,
+       			t = Append[t, {"1 Minor Ring System", 35}];,
+       		r == 20,
+       			t = Append[t, {"1 Minor Ring System", 40}];
+       		];];
+     	Which[
+      	d[[2]] > 1,
+      		Do[
+       		r = RandomInteger[{1, 20}];
+       		Which[
+        		r == 1,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 14}];,
+        		r == 2,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 15}];,
+        		r == 3,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 16}];,
+        		r == 4,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 17}];,
+        		r == 5,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 18}];,
+        		r == 6,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 19}];,
+        		r == 7,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 20}];,
+        		r == 8,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 25}];,
+        		r == 9,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 30}];,
+        		r == 10,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 35}];,
+        		r == 11,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 40}];,
+        		r == 12,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 45}];,
+        		r == 13,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 50}];,
+        		r == 14,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 55}];,
+        		r == 15,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 60}];,
+        		r == 16,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 65}];,
+        		r == 17,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 70}];,
+        		r == 18,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 75}];,
+        		r == 19,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 80}];,
+        		r == 20,
+        			s = Append[s, {RandomInteger[{100, 1000}]*.001, 85}];
+        		];, {d[[2]]}];
+      		 t = Append[t, {ToString[d[[2]]] <> " Moonlets", s}];
+      		s = {};,
+      	d[[2]] == 1,
+      		r = RandomInteger[{1, 20}];
+      		Which[
+       			r == 1,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 14}];,
+       			r == 2,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 15}];,
+       			r == 3,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 16}];,
+       			r == 4,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 17}];,
+       			r == 5,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 18}];,
+       			r == 6,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 19}];,
+       			r == 7,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 20}];,
+       			r == 8,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 25}];,
+       			r == 9,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 30}];,
+       			r == 10,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 35}];,
+       			r == 11,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 40}];,
+       			r == 12,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 45}];,
+       			r == 13,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 50}];,
+       			r == 14,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 55}];,
+       			r == 15,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 60}];,
+       			r == 16,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 65}];,
+       			r == 17,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 70}];,
+       			r == 18,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 75}];,
+       			r == 19,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 80}];,
+       			r == 20,
+       				s = Append[s, {RandomInteger[{100, 1000}]*.001, 85}];
+       		];
+      		t = Append[t, {"1 Moonlet", s}];
+      	s = {};
+      	];
+     	Which[
+      	d[[3]] > 1,
+      		Do[
+       		r = RandomInteger[{1, 20}];
+       		Which[
+        		r == 1,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 14}];,
+        		r == 2,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 15}];,
+        		r == 3,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 16}];,
+        		r == 4,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 17}];,
+        		r == 5,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 18}];,
+        		r == 6,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 19}];,
+        		r == 7,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 20}];,
+        		r == 8,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 25}];,
+        		r == 9,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 30}];,
+        		r == 10,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 35}];,
+        		r == 11,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 40}];,
+        		r == 12,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 45}];,
+        		r == 13,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 50}];,
+        		r == 14,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 55}];,
+        		r == 15,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 60}];,
+        		r == 16,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 65}];,
+        		r == 17,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 70}];,
+        		r == 18,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 75}];,
+        		r == 19,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 80}];,
+        		r == 20,
+        			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 85}];
+        		];, {d[[3]]}];
+      		t = Append[t, {ToString[d[[3]]] <> " Small Moons", s}];
+      		s = {};,
+      	d[[3]] == 1,
+      		r = RandomInteger[{1, 20}];
+      		Which[
+       		r == 1,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 14}];,
+       		r == 2,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 15}];,
+       		r == 3,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 16}];,
+       		r == 4,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 17}];,
+       		r == 5,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 18}];,
+       		r == 6,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 19}];,
+       		r == 7,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 20}];,
+       		r == 8,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 25}];,
+       		r == 9,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 30}];,
+       		r == 10,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 35}];,
+       		r == 11,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 40}];,
+       		r == 12,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 45}];,
+       		r == 13,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 50}];,
+       		r == 14,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 55}];,
+       		r == 15,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 60}];,
+       		r == 16,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 65}];,
+       		r == 17,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 70}];,
+       		r == 18,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 75}];,
+       		r == 19,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 80}];,
+       		r == 20,
+       			s = Append[s, {RandomInteger[{1000, 2000}]*.001, 85}];
+       		];
+      		t = Append[t, {"1 Small Moon", s}];
+      		s = {};
+      	];
+     	If[d[[4]] == 1,
+      	r = RandomInteger[{1, 20}];
+      	Which[
+       	r == 1,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 14}];,
+       	r == 2,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 15}];,
+       	r == 3,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 16}];,
+       	r == 4,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 17}];,
+       	r == 5,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 18}];,
+       	r == 6,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 19}];,
+       	r == 7,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 20}];,
+       	r == 8,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 25}];,
+       	r == 9,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 30}];,
+       	r == 10,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 35}];,
+       	r == 11,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 40}];,
+       	r == 12,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 45}];,
+       	r == 13,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 50}];,
+       	r == 14,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 55}];,
+       	r == 15,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 60}];,
+       	r == 16,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 65}];,
+       	r == 17,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 70}];,
+       	r == 18,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 75}];,
+       	r == 19,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 80}];,
+       	r == 20,
+       		s = Append[s, {RandomInteger[{2000, 3000}]*.001, 85}];
+       	];
+      	t = Append[t, {"1 Medium Moon", s}];
+      	s = {};
+      	];];
+    If[t == {n[[i]], z[[i]]},
+     t = Append[t, "No Satellites"];];
+    tab = Append[tab, t];
+    ]; Return[tab];];
+
 function generate(){
 	var r = randomInt(1,20);
 	var t = [];
@@ -1310,8 +2207,21 @@ function generate(){
     	numb.push(t[i][1]);
     	dec.push(t[i][2]);
     }
-    stars = JSON.parse(JSON.stringify(t));
+    var stars = JSON.parse(JSON.stringify(t));
     t = starRanges(t);
+    var name = randomName();
+    if (stars.length==1){
+    	stars[0].unshift(name);
+    	name = [name];
+    } else {
+    	for (i=0;i<stars.length;i++){
+    		stars[i].unshift(name+" &#"+(945+i).toString()+";");
+    	}
+    	name = [];
+    	for (i=0;i<stars.length;i++){
+    		name.push(stars[i][0]);
+    	}
+    }
     console.log("starRanges:");
     console.log(JSON.parse(JSON.stringify(t)));
     var n = t.filter(function (x) {
@@ -1328,45 +2238,31 @@ function generate(){
     	max = n[0][1];
     }
     t = starZones(t);
-    var pop = t; 
-    pop.shift();
-    pop = pop.map(function (x){
+    var planets = t; 
+    planets.shift();
+    planets = planets.map(function (x){
     	x.shift();x.shift();x.shift(); return x;
     });
-    pop = zonePop(pop);
-    //var tab = tableJoin(randomName(),t,pop);
-    var cap = capture("Planet", max, letter, numb, dec);
-    var ast = capture("Asteroid", max, letter, numb, dec);
-    /*var ct; if (Array.isArray(cap)){
-    	ct =[["Rogue Planets", "Type", "Moves From:", "To:"]];
-    	for (i=0;i<cap.length;i++){
-    		ct.push([cap[i][0],cap[i][1][0][0],cap[i][1][0][1],cap[i][1][0][2]]);
-    	}
-    } 
-    else {
-    	ct = [["No Rogue Planets"]];
-    }
-    var at; if (Array.isArray(cap)){
-    	ct =[["Rogue Asteroids", "Orbiting", "Moves From:", "To:"]];
-    	for (i=0;i<ast.length;i++){
-    		ct.push([cap[i][0],cap[i][1],cap[i][2][1][0],cap[i][2][1][1]]);
-    	} 
-    } 
-    else {
-    		ct = [["No Rogue Asteroids"]];
-    }
-    var plist = planetPicker(tab, ct);*/
+    planets = zonePop(planets);
+    var capturedPlanets = capture("Planet", max, letter, numb, dec);
+    var capturedAsteroids = capture("Asteroid", max, letter, numb, dec);
+    var orbitZones = t;
+    var asteroids = planetsTable(name,orbitZones,planets);
+    planets = asteroids[0]; asteroids = asteroids[1];
+    
     
 	console.log("Done");
     console.log("stars");
     console.log(stars);
-    console.log("t");
-    console.log(t);
-    console.log("pop");
-    console.log(pop);
-    console.log("cap");
-    console.log(cap);
-    console.log("ast");
-    console.log(ast);
+    console.log("orbitZones");
+    console.log(orbitZones);
+    console.log("planets");
+    console.log(planets);
+    console.log("asteroids");
+    console.log(asteroids);
+    console.log("capturedPlanets");
+    console.log(capturedPlanets);
+    console.log("capturedAsteroids");
+    console.log(capturedAsteroids);
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
