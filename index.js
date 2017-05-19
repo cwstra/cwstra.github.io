@@ -137,6 +137,8 @@ function starRanges(stars){
 		var t = [];
 		var i; var s; var n; for (i=0;i<stars.length;i++){
 			s = stars[i];
+			console.log("r "+i.toString());
+			console.log(JSON.parse(JSON.stringify(r)));
 			if (typeof s[3] !== "string"){
 				while (t.indexOf(s[3])>-1){
 					s[3]=s[3]+1;
@@ -245,8 +247,6 @@ function starRanges(stars){
 				orbits = randomInt(1,10)+mod;
 				if (orbits < 0){orbits=0;}
 				r.push([s[4],orbits,s,"Primary"]);
-				console.log("rp"+i.toString());
-				console.log(r);
 			}
 		}
 		var list = r.filter(
