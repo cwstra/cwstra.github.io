@@ -1,6 +1,6 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
-for (v in Phaser.Plugin){
-	if (Phaser.Plugin.hasOwnProperty(v)){
+for (v in game.plugins){
+	if (game.plugins.hasOwnProperty(v)){
 		console.log(v);
 	}
 }
