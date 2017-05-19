@@ -1714,8 +1714,8 @@ function satellites(planets){
        				t["Medium Moons"]=[randomInt(2000,3000)*0.001,close(r)];
        			}
 		}
-		if (t === []){
-			t.push("No Satellites");	
+		if (t === {}){
+			t="No Satellites";	
 		}
 		tab[n[i]]=t;
 	}
