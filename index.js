@@ -139,6 +139,7 @@ function starRanges(stars){
 		var t = [];
 		var i; var s; var n; for (i=0;i<stars.length;i++){
 			s = stars[i];
+			console.log(s);
 			if (typeof s[3] !== "string"){
 				while (t.indexOf(s[3])>-1){
 					s[3]=s[3]+1;
