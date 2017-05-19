@@ -123,17 +123,11 @@ function starClassSize(type){
 }
 	//Add new orbits to existing sets
 function zoneKeeper(tab,min,max){
-	console.log("zoneKeeper 1");
-	console.log([tab,min,max]);
-	var t = tab;
+	var t = new Set(tab);
 	var j; for (j=min;j<=max;j++){
-		if(t.indexOf(j)==-1){
-			t.push(j);
-		}
+		t.add(j);
 	}
-	console.log("zoneKeeper 2");
-	console.log(t);
-	return t;
+	return [...t];
 }
 
 function starRanges(stars){
