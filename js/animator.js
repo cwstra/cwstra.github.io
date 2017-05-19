@@ -1,10 +1,7 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
-console.log(game.plugins);
-console.log(game.plugins.add);
-
-slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
 
 function sysPreload() {
+	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
 	game.load.image("belt","../images/asteroid_belt.png");
 	game.load.image("major","../images/major_rings.png");
 	game.load.image("minor","../images/minor_rings.png");
