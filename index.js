@@ -245,6 +245,8 @@ function starRanges(stars){
 				orbits = randomInt(1,10)+mod;
 				if (orbits < 0){orbits=0;}
 				r.push([s[4],orbits,s,"Primary"]);
+				console.log("rp"+i.toString());
+				console.log(r);
 			}
 		}
 		var list = r.filter(
