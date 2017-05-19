@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: preload, create: create, update: update });
+/*var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: preload, create: create, update: update });
 slickUI = this.game.plugins.add(Phaser.Plugin.SlickUI);
 
 function preload() {
@@ -36,4 +36,4 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 
 function update() {
 	
-}
+}*/
