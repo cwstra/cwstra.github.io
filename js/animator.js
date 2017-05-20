@@ -73,6 +73,7 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 	
 	var panel;
 	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,30));
+	console.log(["Panel",panel])
 	panel.add(new SlickUI.Element.Text(10,0, sysname + " System")).centerHorizontally().text.alpha = 0.5;
 	//for ()
 }
