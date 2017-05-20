@@ -1,8 +1,10 @@
-var game = new Phaser.Game($('#solarSystem').width(), $('#solarSystem').height(), Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
+var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
 
 function sysPreload() {
 	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
 	slickUI.load('../ui/kenney.json');
+	
+	game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
 	
 	game.load.image("belt","../images/asteroid_belt.png");
 	game.load.image("major","../images/major_rings.png");
