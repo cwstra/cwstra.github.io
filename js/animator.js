@@ -1,5 +1,5 @@
 var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate });
-
+game.global = {t:0,scale:10}
 var slickUI;
 
 function sysPreload() {
@@ -27,7 +27,8 @@ function sysPreload() {
 	game.load.image("p14","../images/planet14.png");
 	game.load.image("p15","../images/planet15.png");
 	game.load.image("p16","../images/planet16.png");
-	game.load.image("star","../images/star.png");
+	game.load.image("star","../images/star.png",500,500);
+	this.t;
 }
 
 function sysCreate() {
@@ -47,9 +48,10 @@ function sysCreate() {
 	button.add(new SlickUI.Element.Text(0,0, "My button")).center();*/
 	
 	game.stage.backgroundColor = "#000000";
+    game.physics.startSystem(Phaser.Physics.ARCADE);
 }
 
-function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
+function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
 	function starTint(letter){
 		switch(letter){
 			case "dA":
@@ -72,9 +74,25 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 	
 	game.world.removeAll();
 	
-	var panel;
-	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
-	//for ()
+	stars = game.add.group();
+	//stars.enableBody = true;
+	
+	var i,star; for (i=0;i<starList.length;i++){
+		star = stars.create(0,0,'star');
+		star.name = starList[i][0];
+		star.classification = starList[i][5];
+		star.range = starList[i][3];
+		star.anchor.x = .5;
+		star.anchor.y = .5;
+		if typeof(starList[i][4]!=="string"){
+			star.orbit = [];
+			star.orbit.radius = bode(4)*scale;
+			star.orbit.offset = Math.random()*2*Math.PI;
+			star.x = star.orbit.radius*Math.cos(star.orbit.offset);
+			star.y = star.orbit.radius*Math.sin(star.orbit.offset);
+		}
+		star.tint = starTint(starList[i][1]);
+	}
 }
 
 function sysResize(){
@@ -82,5 +100,8 @@ function sysResize(){
 }
 
 function sysUpdate() {
+	t = t + Math.PI/100;
+	if (t>2*Math.PI){t=0;}
+	
 	
 }
