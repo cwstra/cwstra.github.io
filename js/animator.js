@@ -42,7 +42,7 @@ function sysCreate() {
 	panel.add(button = new SlickUI.Element.Button(0,0, 140, 80));
 	button.add(new SlickUI.Element.Text(0,0, "My button")).center();*/
 	
-	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
+	slickUI.add(panel = new SlickUI.Element.Panel(0,0,game.width,game.height));
 	game.stage.backgroundColor = "#000000";
 }
 
