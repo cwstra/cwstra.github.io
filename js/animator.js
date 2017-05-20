@@ -1,5 +1,6 @@
 var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate });
 
+var slickUI;
 function sysPreload() {
 	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
 	slickUI.load('../ui/kenney.json');
@@ -47,7 +48,7 @@ function sysCreate() {
 	game.stage.backgroundColor = "#000000";
 }
 
-game.newSystem = function (sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
+function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
 	function starTint(letter){
 		switch(letter){
 			case "dA":
@@ -67,7 +68,7 @@ game.newSystem = function (sysname, stars,orbitZones,planets,satel,asteroids,cap
 				return 0xff0000;
 		}
 	}
-	
+	console.log()
 	game.world.removeAll();
 	
 	var panel;
