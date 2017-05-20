@@ -71,6 +71,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 				return 0xff0000;
 		}
 	}
+	var scale = game.global.scale;
 	
 	game.world.removeAll();
 	
@@ -105,8 +106,9 @@ function sysResize(){
 }
 
 function sysUpdate() {
-	game.global.t = game.global.t + Math.PI/100;
-	if (game.global.t>2*Math.PI){game.global.t=0;}
+	var t= game.global.t 
+	t = = t + Math.PI/100;
+	if (t>2*Math.PI){t=0;}
 	
-	
+	game.global.t = t;
 }
