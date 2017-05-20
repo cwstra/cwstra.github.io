@@ -79,7 +79,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 	
 	var max = 1; var primeStar;
 	primeStar = game.add.sprite(0,0,'star');
-	primeStar.scale.setTo(0.5,0.5);
+	primeStar.scale.setTo(0.2,0.2);
 	primeStar.name = starList[0][0];
 	primeStar.classification = starList[0][5];
 	primeStar.range = starList[0][3];
@@ -92,7 +92,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 	primeStar.anchor.y = .5;
 	var i,star; for (i=1;i<starList.length;i++){
 		primeStar.addChild(star = game.make.sprite(0,0,'star'));
-		star.scale.setTo(0.5,0.5);
+		star.scale.setTo(0.2,0.2);
 		star.name = starList[i][0];
 		star.classification = starList[i][5];
 		star.range = starList[i][3];
