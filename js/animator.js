@@ -1,8 +1,10 @@
 var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate });
 
+var slickUI;
+
 function sysPreload() {
-	game.slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
-	game.slickUI.load('../ui/kenney.json');
+	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
+	slickUI.load('../ui/kenney.json');
 	
 	game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 	
