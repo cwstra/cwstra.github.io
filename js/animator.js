@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
+var game = new Phaser.Game($('#solarSystem').width(), $('#solarSystem').height(), Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
 
 function sysPreload() {
 	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
