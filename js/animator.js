@@ -108,7 +108,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 	game.world.setBounds(0,0,2*Math.ceil(max*1.1)+1,2*Math.ceil(max*1.1)+1);
 	stars.x = Math.ceil(max*1.1)+1;
 	stars.y = Math.ceil(max*1.1)+1;
-	game.camera.setBoundsToWorld();	
+	game.camera.x = 0; game.camera.y = 0; game.camera.width = game.world.width; game.camera.height = game.world.height;
 	
 	console.log(["# of stars:",stars.children.length]);
 	console.log(game.camera.x);
