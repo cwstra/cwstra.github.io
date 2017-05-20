@@ -7,7 +7,7 @@ body {
 	color: white;
 	display:flex;
   	flex-flow: column;
-  	height: 100%;
+  	height: 90%;
 }
 
 body header{
@@ -16,7 +16,7 @@ body header{
 
 body section{
 	width: 100%;
-	height: 60%;
+	height: 100%;
 	flex: 1 1 auto;
 }
 
