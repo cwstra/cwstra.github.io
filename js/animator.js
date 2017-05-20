@@ -109,6 +109,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 	game.world.setBounds(0,0,2*Math.ceil(max*1.1)+1,2*Math.ceil(max*1.1)+1);
 	primeStar.x = Math.ceil(max*1.1)+1;
 	primeStar.y = Math.ceil(max*1.1)+1;
+	point = new Phaser.Point(Math.ceil(max*1.1)+1,Math.ceil(max*1.1)+1);
 	game.camera.setPosition(0,0); game.camera.setSize(game.world.width,game.world.height);	
 	console.log(["# of stars:",primeStar.children.length+1]);
 	console.log(game.camera.x);
@@ -129,6 +130,7 @@ function sysUpdate() {
 
 function render() {
 
+    game.debug.geom(point, 'rgb(0,255,0)');
     game.debug.cameraInfo(game.camera, 32, 32);
 
 }
