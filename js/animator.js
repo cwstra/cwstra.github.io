@@ -1,5 +1,5 @@
 var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate ,render:render});
-game.global = {t:0,scale:100}
+game.global = {t:0,scale:100,point:new Phaser.Point(0,0);}
 var slickUI;
 
 function sysPreload() {
@@ -109,7 +109,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 	game.world.setBounds(0,0,2*Math.ceil(max*1.1)+1,2*Math.ceil(max*1.1)+1);
 	primeStar.x = Math.ceil(max*1.1)+1;
 	primeStar.y = Math.ceil(max*1.1)+1;
-	point = new Phaser.Point(Math.ceil(max*1.1)+1,Math.ceil(max*1.1)+1);
+	game.global.point = new Phaser.Point(Math.ceil(max*1.1)+1,Math.ceil(max*1.1)+1);
 	game.camera.setPosition(0,0); game.camera.setSize(game.world.width,game.world.height);	
 	console.log(["# of stars:",primeStar.children.length+1]);
 	console.log(game.camera.x);
@@ -129,6 +129,6 @@ function sysUpdate() {
 }
 
 function render() {
-	if (point){game.debug.geom(point, 'rgb(0,255,0)');}
+	game.debug.geom(game.global.point, 'rgb(0,255,0)');
     game.debug.cameraInfo(game.camera, 32, 32);
 }
