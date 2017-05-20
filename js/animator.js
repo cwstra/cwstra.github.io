@@ -47,7 +47,7 @@ function sysCreate() {
 	game.stage.backgroundColor = "#000000";
 }
 
-function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
+function game.newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
 	function starTint(letter){
 		switch(letter){
 			case "dA":
