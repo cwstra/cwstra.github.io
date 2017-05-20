@@ -106,6 +106,8 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 	}
 	game.world.setBounds(-Math.ceil(max*1.1),-Math.ceil(max*1.1),Math.ceil(max*1.1),Math.ceil(max*1.1));
 	game.camera.setBoundsToWorld();
+	console.log(game.camera.x);
+	console.log(game.camera.y);
 }
 
 function sysResize(){
