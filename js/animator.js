@@ -1,8 +1,10 @@
 var game = new Phaser.Game($('#solarSystem').width(), $('#solarSystem').height(), Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
 
 function sysPreload() {
+	slickUI stuff
 	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
 	slickUI.load('../ui/kenney.json');
+	
 	game.load.image("belt","../images/asteroid_belt.png");
 	game.load.image("major","../images/major_rings.png");
 	game.load.image("minor","../images/minor_rings.png");
@@ -24,22 +26,53 @@ function sysPreload() {
 	game.load.image("p16","../images/planet16.png");
 	game.load.image("star","../images/star.png");
 }
-var panel;
+
 function sysCreate() {
-	game.stage.backgroundColor = "#000000";
+	/*slickUI stuff
 	var i; for (i in slickUI){
 		if (slickUI.hasOwnProperty(i)){
 			console.log(i);
 		}
 	}
-	console.log(slickUI.add);
-	slickUI.add(panel = new SlickUI.Element.Panel(-158, 8, 300, game.height - 16));
+	var panel, button;
+	slickUI.add(panel = new SlickUI.Element.Panel(game.width - 156, 8, 150, game.height - 16));
+	panel.add(new SlickUI.Element.Text(10,0, "Information Panel")).centerHorizontally().text.alpha = 0.5;
+    panel.add(button = new SlickUI.Element.Button(0,game.height - 166, 140, 80)).events.onInputUp.add(function () {
+    	console.log('Clicked save game');
+    });
 	panel.add(button = new SlickUI.Element.Button(0,0, 140, 80));
-	button.add(new SlickUI.Element.Text(0,0, "My button")).center();
+	button.add(new SlickUI.Element.Text(0,0, "My button")).center();*/
+	
+	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
+	game.stage.backgroundColor = "#000000";
 }
 
 function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids) {
+	function starTint(letter){
+		switch(letter){
+			case "dA":
+			case "A":
+				return 0xffffff;
+			case "dF":
+			case "F":
+				return 0xfff5c3;
+			case "dG":
+			case "G":
+				return 0xffff00;
+			case "dF":
+			case "F":
+				return 0xffa500;
+			case "dM":
+			case "M":
+				return 0xff0000;
+		}
+	}
 	
+	game.world.removeAll()
+	
+	var panel;
+	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
+	for ()
 }
 
 function sysUpdate() {
