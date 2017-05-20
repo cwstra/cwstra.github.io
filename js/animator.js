@@ -105,7 +105,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 		star.tint = starTint(starList[i][1]);
 	}
 	game.world.setBounds(-Math.ceil(max*1.1),-Math.ceil(max*1.1),Math.ceil(max*1.1),Math.ceil(max*1.1));
-	game.camera.setBoundstoWorld();
+	game.camera.setBoundsToWorld();
 }
 
 function sysResize(){
