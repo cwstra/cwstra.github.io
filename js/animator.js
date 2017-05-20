@@ -68,7 +68,7 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 				return 0xff0000;
 		}
 	}
-	console.log()
+	console.log("Here")
 	game.world.removeAll();
 	
 	var panel;
