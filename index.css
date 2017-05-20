@@ -7,7 +7,7 @@ body {
 	color: white;
 	display:flex;
   	flex-flow: column;
-  	height: 95%;
+  	height: 85%;
 }
 
 body header{
