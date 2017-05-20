@@ -1,5 +1,5 @@
 var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate });
-game.global = {t:0,scale:10}
+game.global = {t:0,scale:100}
 var slickUI;
 
 function sysPreload() {
@@ -88,7 +88,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 		star.anchor.y = .5;
 		if (typeof starList[i][4]==="string"){
 			primeStar = star;
-			if (starList[i][3]>max){
+			if (bode(starList[i][3])*scale>max){
 				max = bode(starList[i][3])*scale;
 			}
 		}
