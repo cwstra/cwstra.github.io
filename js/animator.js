@@ -1,7 +1,6 @@
 var game = new Phaser.Game($('#solarSystem').width(), $('#solarSystem').height(), Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
 
 function sysPreload() {
-	slickUI stuff
 	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
 	slickUI.load('../ui/kenney.json');
 	
