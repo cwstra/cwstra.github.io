@@ -87,6 +87,8 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 		max = primeStar.range*scale;
 	}
 	primeStar.tint = starTint(starList[0][1]);
+	primeStar.anchor.x = .5;
+	primeStar.anchor.y = .5;
 	var i,star; for (i=1;i<starList.length;i++){
 		primeStar.addChild(star = game.make.sprite(0,0,'star'));
 		star.name = starList[i][0];
