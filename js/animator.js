@@ -104,6 +104,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 		}
 		star.tint = starTint(starList[i][1]);
 	}
+	console.log(2*Math.ceil(max*1.1)+1);
 	game.world.setBounds(0,0,2*Math.ceil(max*1.1)+1,2*Math.ceil(max*1.1)+1);
 	stars.x = Math.ceil(max*1.1)+1;
 	stars.y = Math.ceil(max*1.1)+1;
