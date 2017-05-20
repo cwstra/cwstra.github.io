@@ -27,7 +27,7 @@ function sysPreload() {
 	game.load.image("p14","../images/planet14.png");
 	game.load.image("p15","../images/planet15.png");
 	game.load.image("p16","../images/planet16.png");
-	game.load.image("star","../images/star.png",500,500);
+	game.load.image("star","../images/star.png",250,250);
 	this.t;
 }
 
@@ -75,42 +75,42 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 	
 	game.world.removeAll();
 	
-	var stars = game.add.group();
 	//stars.enableBody = true;
 	
 	var max = 1; var primeStar;
-	var i,star; for (i=0;i<starList.length;i++){
-		star = stars.create(0,0,'star');
+	primeStar = game.add.sprite(0,0,'star');
+	primeStar.name = starList[0][0];
+	primeStar.classification = starList[0][5];
+	primeStar.range = starList[0][3];
+	game.physics.enable(primeStar);
+	if (primeStar.range*scale>max){
+		max = primeStar.range*scale;
+	}
+	primeStar.tint = starTint(starList[0][1]);
+	var i,star; for (i=1;i<starList.length;i++){
+		primeStar.addChild(star = game.make.sprite(0,0,'star'));
 		star.name = starList[i][0];
 		star.classification = starList[i][5];
 		star.range = starList[i][3];
+		game.physics.enable(star);
 		star.anchor.x = .5;
 		star.anchor.y = .5;
-		if (typeof starList[i][4]==="string"){
-			primeStar = star;
-			if (bode(starList[i][3])*scale>max){
-				max = bode(starList[i][3])*scale;
-			}
+		star.orbit = [];
+		star.orbit.radius = bode(starList[i][4])*scale;
+		if (star.orbit.radius>max){
+			max = star.orbit.radius;
 		}
-		else{
-			star.orbit = [];
-			star.orbit.radius = bode(starList[i][4])*scale;
-			if (star.orbit.radius>max){
-				max = star.orbit.radius;
-			}
-			star.orbit.offset = Math.random()*2*Math.PI;
-			star.x = star.orbit.radius*Math.cos(star.orbit.offset);
-			star.y = star.orbit.radius*Math.sin(star.orbit.offset);
-		}
+		star.orbit.offset = Math.random()*2*Math.PI;
+		star.x = star.orbit.radius*Math.cos(star.orbit.offset);
+		star.y = star.orbit.radius*Math.sin(star.orbit.offset);
 		star.tint = starTint(starList[i][1]);
 	}
 	console.log(2*Math.ceil(max*1.1)+1);
 	game.world.setBounds(0,0,2*Math.ceil(max*1.1)+1,2*Math.ceil(max*1.1)+1);
-	stars.x = Math.ceil(max*1.1)+1;
-	stars.y = Math.ceil(max*1.1)+1;
-	game.camera.x = 0; game.camera.y = 0; game.camera.width = game.world.width; game.camera.height = game.world.height;
-	
-	console.log(["# of stars:",stars.children.length]);
+	primeStar.x = Math.ceil(max*1.1)+1;
+	primeStar.y = Math.ceil(max*1.1)+1;
+	game.camera.setPosition(0,0); game.camera.setSize(game.world.width,game.world.height);	
+	console.log(["# of stars:",primeStar.children.length+1]);
 	console.log(game.camera.x);
 	console.log(game.camera.y);
 }
