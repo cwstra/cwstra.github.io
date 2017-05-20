@@ -85,7 +85,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 		star.range = starList[i][3];
 		star.anchor.x = .5;
 		star.anchor.y = .5;
-		if typeof(starList[i][4]!=="string"){
+		if (typeof starList[i][4]!=="string"){
 			star.orbit = [];
 			star.orbit.radius = bode(starList[i][4])*scale;
 			if (star.orbit.radius>max){
