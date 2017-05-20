@@ -88,7 +88,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 		star.anchor.y = .5;
 		if (typeof starList[i][4]==="string"){
 			primeStar = star;
-			if (star.orbit.radius>max){
+			if (starList[i][3]>max){
 				max = bode(starList[i][3])*scale;
 			}
 		}
@@ -105,7 +105,7 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 		star.tint = starTint(starList[i][1]);
 	}
 	game.world.setBounds(-Math.ceil(max*1.1),-Math.ceil(max*1.1),Math.ceil(max*1.1),Math.ceil(max*1.1));
-	game.camera.setBoundstoWorld()
+	game.camera.setBoundstoWorld();
 }
 
 function sysResize(){
