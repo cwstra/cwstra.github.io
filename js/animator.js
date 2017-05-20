@@ -1,10 +1,10 @@
-var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, create: sysCreate, update: sysUpdate });
+var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate });
 
 function sysPreload() {
 	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
 	slickUI.load('../ui/kenney.json');
 	
-	game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+	game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 	
 	game.load.image("belt","../images/asteroid_belt.png");
 	game.load.image("major","../images/major_rings.png");
@@ -72,8 +72,12 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 	game.world.removeAll();
 	
 	var panel;
-	slickUI.add(panel = new SlickUI.Element.Panel(0,0,game.width,game.height));
+	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
 	//for ()
+}
+
+function sysResize(){
+	
 }
 
 function sysUpdate() {
