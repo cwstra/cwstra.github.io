@@ -70,7 +70,7 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 	game.world.removeAll();
 	
 	var panel;
-	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
+	slickUI.add(panel = new SlickUI.Element.Panel(0,0,game.width,game.height));
 	//for ()
 }
 
