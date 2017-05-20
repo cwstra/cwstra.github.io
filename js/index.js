@@ -1754,6 +1754,7 @@ function generate(){
     var stars = JSON.parse(JSON.stringify(t));
     t = starRanges(t);
     var name = randomName();
+    var sysname = name;
     if (stars.length==1){
     	stars[0].unshift(name);
     	name = [name];
@@ -1813,5 +1814,7 @@ function generate(){
     console.log(capturedPlanets);
     console.log("capturedAsteroids");
     console.log(capturedAsteroids);
+    
+    newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }

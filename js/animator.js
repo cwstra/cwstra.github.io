@@ -44,7 +44,6 @@ function sysCreate() {
 	panel.add(button = new SlickUI.Element.Button(0,0, 140, 80));
 	button.add(new SlickUI.Element.Text(0,0, "My button")).center();*/
 	
-	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
 	game.stage.backgroundColor = "#000000";
 }
 
@@ -72,7 +71,8 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 	game.world.removeAll();
 	
 	var panel;
-	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
+	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,30));
+	panel.add(new SlickUI.Element.Text(10,0, sysname + " System")).centerHorizontally().text.alpha = 0.5;
 	//for ()
 }
 
