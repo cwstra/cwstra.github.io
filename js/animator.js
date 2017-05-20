@@ -74,9 +74,10 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 	
 	game.world.removeAll();
 	
-	stars = game.add.group();
+	var stars = game.add.group();
 	//stars.enableBody = true;
 	
+	var max = 1;
 	var i,star; for (i=0;i<starList.length;i++){
 		star = stars.create(0,0,'star');
 		star.name = starList[i][0];
@@ -86,13 +87,17 @@ function newSystem(sysname,starList,orbitZones,planets,satel,asteroids,capturedP
 		star.anchor.y = .5;
 		if typeof(starList[i][4]!=="string"){
 			star.orbit = [];
-			star.orbit.radius = bode(4)*scale;
+			star.orbit.radius = bode(starList[i][4])*scale;
+			if (star.orbit.radius>max){
+				max = star.orbit.radius;
+			}
 			star.orbit.offset = Math.random()*2*Math.PI;
 			star.x = star.orbit.radius*Math.cos(star.orbit.offset);
 			star.y = star.orbit.radius*Math.sin(star.orbit.offset);
 		}
 		star.tint = starTint(starList[i][1]);
 	}
+	game.world.setBounds(-Math.ceil(max*1.1),-Math.ceil(max*1.1),Math.ceil(max*1.1),Math.ceil(max*1.1))
 }
 
 function sysResize(){
