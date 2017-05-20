@@ -1,5 +1,5 @@
 var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate ,render:render});
-game.global = {t:0,scale:100,point:new Phaser.Point(0,0)}
+game.global = {t:0,scale:1000,point:new Phaser.Point(0,0)}
 var slickUI;
 
 function sysPreload() {
