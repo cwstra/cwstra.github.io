@@ -106,7 +106,7 @@ function sysResize(){
 
 function sysUpdate() {
 	game.global.t = game.global.t + Math.PI/100;
-	if (t>2*Math.PI){t=0;}
+	if (game.global.t>2*Math.PI){game.global.t=0;}
 	
 	
 }
