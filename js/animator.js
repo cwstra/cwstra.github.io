@@ -1,9 +1,8 @@
 var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate });
 
-var slickUI;
 function sysPreload() {
-	slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
-	slickUI.load('../ui/kenney.json');
+	game.slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
+	game.slickUI.load('../ui/kenney.json');
 	
 	game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 	
@@ -45,12 +44,6 @@ function sysCreate() {
 	panel.add(button = new SlickUI.Element.Button(0,0, 140, 80));
 	button.add(new SlickUI.Element.Text(0,0, "My button")).center();*/
 	
-	button = new SlickUI.Element.Button(game.width/4,game.width/4,game.width/2,game.width/2)
-	button.events.onInputUp.add(function () {
-            generate();
-    });
-    button.add(new SlickUI.Element.Text(0,0, "Generate")).center();
-        
 	game.stage.backgroundColor = "#000000";
 }
 
@@ -74,13 +67,11 @@ function newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPla
 				return 0xff0000;
 		}
 	}
-	console.log("Here")
+	
 	game.world.removeAll();
 	
 	var panel;
-	slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,30));
-	console.log(["Panel",panel])
-	panel.add(new SlickUI.Element.Text(10,0, sysname + " System")).centerHorizontally().text.alpha = 0.5;
+	game.slickUI.add(panel = new SlickUI.Element.Panel(game.width/4,10,game.width/2,20));
 	//for ()
 }
 
