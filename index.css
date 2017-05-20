@@ -1,7 +1,17 @@
 body {
 	background-color: black;
+	display:flex;
 	color: white;
 }
+
+body header{
+	flex: 0 1 auto;
+}
+
+body section{
+	flex: 1 1 auto;
+}
+
 h1 {
 	text-align:center;
 }
