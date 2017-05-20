@@ -27,7 +27,7 @@ function sysPreload() {
 	game.load.image("p14","../images/planet14.png");
 	game.load.image("p15","../images/planet15.png");
 	game.load.image("p16","../images/planet16.png");
-	game.load.image("star","../images/star.png",250,250);
+	game.load.image("star","../images/star.png",50,50);
 	this.t;
 }
 
