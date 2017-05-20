@@ -129,8 +129,6 @@ function sysUpdate() {
 }
 
 function render() {
-
-    game.debug.geom(point, 'rgb(0,255,0)');
+	if (point){game.debug.geom(point, 'rgb(0,255,0)');}
     game.debug.cameraInfo(game.camera, 32, 32);
-
 }
