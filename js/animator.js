@@ -1,4 +1,4 @@
-var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate });
+var game = new Phaser.Game('100%', '100%', Phaser.AUTO, 'solarSystem', {preload: sysPreload, resize:sysResize, create: sysCreate, update: sysUpdate ,render:render});
 game.global = {t:0,scale:100}
 var slickUI;
 
@@ -125,4 +125,10 @@ function sysUpdate() {
 	if (t>2*Math.PI){t=0;}
 	
 	game.global.t = t;
+}
+
+function render() {
+
+    game.debug.cameraInfo(game.camera, 32, 32);
+
 }
