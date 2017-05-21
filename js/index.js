@@ -1883,11 +1883,13 @@ function generate(){
     }
     console.log("starRanges:");
     console.log(JSON.parse(JSON.stringify(t)));
+    console.log(["t",t]);
     var n = t.filter(function (x) {
     	return !x.every(function (y){ 
     		return !isNaN(y);
     	});
     });
+    console.log(["n",n]);
    	for (i=1;i<n.length;i++){
    		max.push(n[i][1]);
    	}
