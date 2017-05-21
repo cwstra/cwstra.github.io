@@ -1174,7 +1174,7 @@ function starCheck(pos,lett,num,dec){
 }
 
 function capture(type, max, lett, numb, dec){
-	var tab = []; var t = {}; var p; var x; var y; var d; var num; var i; var k; var s; var z; var j;
+	var tab = []; var t; var p; var x; var y; var d; var num; var i; var k; var s; var z; var j;
 	var n = randomInt(1,10)-6;
 	if (n<1){
 		return "No Captures";
@@ -1182,6 +1182,7 @@ function capture(type, max, lett, numb, dec){
 	else if (type == "Asteroid"){
 		if (Array.isArray(max)){
 			for (i=0;i<max.length;i++){
+				t = {};
 				num = max[i];
 				for (j=1;j<=n;j++){
 					num = max[i];
@@ -1195,8 +1196,9 @@ function capture(type, max, lett, numb, dec){
 						y = max[p];
 					}
 					d = [randomInt(0,9),randomInt(0,9)];
-					tab.push(["Rogue Asteroid " + j.toString(),[x + d[0]*0.1, y + d[1]*0.1]]);
+					t["Rogue Asteroid " + j.toString()]=[x + d[0]*0.1, y + d[1]*0.1];
 				}
+				tab.push(t);
 			}
 		} else {
 			for (i=1;i<=n;i++){
@@ -1816,9 +1818,9 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		}
 		if (capturedAsteroids!="No Captures"){
 			tabstr += '\t<tr><td colspan="3">Rogue Asteroids:</td></tr>\n';
-			for (j=0;j<capturedAsteroids.length;j++){
-				tabstr += '\t<tr><td></td><td>'+capturedAsteroids[j][0]+':</td><td>Orbits From: '+round(bode(capturedAsteroids[j][1][0]),2)+'AU to '+round(bode(capturedAsteroids[j][1][1]),2)+'AU</td></tr>\n';
-			}
+			for (prop in capturedAsteroids[i]){if(capturedAsteroids[i].hasOwnProperty(prop)){
+				tabstr += '\t<tr><td></td><td>'+prop+':</td><td>Orbits From: '+round(bode(capturedAsteroids[i][prop][0]),2)+'AU to '+round(bode(capturedAsteroids[j][[prop][1]),2)+'AU</td></tr>\n';
+			}}
 		}
 	}
 	tabstr += "</table>";
