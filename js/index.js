@@ -1185,7 +1185,7 @@ function capture(type, max, lett, numb, dec){
 				num = max[i];
 				for (j=1;j<=n;j++){
 					num = max[i];
-					p = randomInt(0,num-1);
+					p = randomInt(0,num);
 					x = randomInt(1,10)+2;
 					if (x<max[p]){
 						x = max[p];
@@ -1219,7 +1219,7 @@ function capture(type, max, lett, numb, dec){
 			t = {};
 			num = max[i];
 			for (j=0;j<=n;j++){
-				p = randomInt(0,num-1);
+				p = randomInt(0,num);
 				x = randomInt(1,10)+2;
 				if (x<max[p]){
 					x = max[p];
@@ -1234,7 +1234,7 @@ function capture(type, max, lett, numb, dec){
 					z = zonePop([[s]])[0][0];
 				}
 				d = [randomInt(0,9),randomInt(0,9)];
-				t["Rogue Planet &#"+(945+i).toString()+"; "+k[p].toString()]=[z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]];
+				t["Rogue Planet &#"+(945+i).toString()+"; "+j.toString()]=[z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]];
 			}
 			tab.push(t);
 		}
