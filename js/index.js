@@ -1748,7 +1748,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		return s;
 	}
 	
-	var tabstr = '<table>\n\t<tr><td colspan="3">'+sysname+" System</td><tr>\n";
+	var tabstr = '<table style="border-color:white">\n\t<tr><td colspan="3">'+sysname+" System</td><tr>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
 		tabstr += '\t<tr><td colspan="3">';
 		if (i===0){
@@ -1772,7 +1772,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		else {
 			img += stars[i][0];
 		}
-		img += '_star.png" alt="' + s + ' Image" style = "width:500px;height:500px;">';
+		img += '_Star.png" alt="' + s + ' Image" style = "width:500px;height:500px;">';
 		tabstr += "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+";"+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
 		tabstr += '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
 		if (i===0){
