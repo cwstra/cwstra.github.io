@@ -1174,7 +1174,7 @@ function starCheck(pos,lett,num,dec){
 }
 
 function capture(type, max, lett, numb, dec){
-	var tab = []; var t = []; var p; var x; var y; var d; var num; var i; var k; var s; var z;
+	var tab = []; var t = {}; var p; var x; var y; var d; var num; var i; var k; var s; var z; var j;
 	var n = randomInt(1,10)-6;
 	if (n<1){
 		return "No Captures";
@@ -1194,7 +1194,6 @@ function capture(type, max, lett, numb, dec){
 				}
 				d = [randomInt(0,9),randomInt(0,9)];
 				tab.push(["Rogue Asteroid", p, ["Asteroid", [x + d[[0]]*0.1, y + d[[1]]*0.1]]]);
-				t=[];
 			}
 		} else {
 			for (i=1;i<=n;i++){
@@ -1208,56 +1207,35 @@ function capture(type, max, lett, numb, dec){
 				}
 				d = [randomInt(0,9),randomInt(0,9)];
 				tab.push(["Rogue Asteroid", 1, ["Asteroid", [x + d[[0]]*0.1, y + d[[1]]*0.1]]]);
-				t = [];
 			}
 		}
 	}
-	else if (Array.isArray(max)){
+	else {
 		num = max.length;
 		k = Array(num).fill(1);
 		for (i=0;i<max.length;i++){
-			p = randomInt(0,num-1);
-			x = randomInt(1,10)+2;
-			if (x<max[p]){
-				x = max[p];
-			}
-			y = randomInt(1,10);
-			if (y<max[p]){
-				y = max[p];
-			}
-			s = starCheck(x,lett[p],numb[p],dec[p]);
-			z = zonePop([[s]])[0][0];
-			while(["Empty Orbit", "Asteroid Belt"].indexOf(z)>-1){
+			t = {};
+			for (j=0;j<=n;j++){
+				p = randomInt(0,num-1);
+				x = randomInt(1,10)+2;
+				if (x<max[p]){
+					x = max[p];
+				}
+				y = randomInt(1,10);
+				if (y<max[p]){
+					y = max[p];
+				}
+				s = starCheck(x,lett[p],numb[p],dec[p]);
 				z = zonePop([[s]])[0][0];
+				while(["Empty Orbit", "Asteroid Belt"].indexOf(z)>-1){
+					z = zonePop([[s]])[0][0];
+				}
+				d = [randomInt(0,9),randomInt(0,9)];
+				t["Rogue Planet &#"+(945+i).toString()+"; "+k[p].toString()]=[z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
 			}
-			d = [randomInt(0,9),randomInt(0,9)];
-			t.concat([z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
-			tab.push(["Rogue Planet &#"+(945+i).toString()+"; "+k[p].toString(),t]);
-			t = [];
+			tab.push(t);
 		}
 	} 
-	else {
-		k = 1; 
-		for (i=1;i<=n;i++){
-			x = randomInt(1,10)+2;
-			if (x<max[p]){
-				x = max[p];
-			}
-			y = randomInt(1,10);
-			if (y<max[p]){
-				y = max[p];
-			}
-			s = starCheck(x,lett[p],numb[p],dec[p]);
-			z = zonePop([[s]])[0][0];
-			while(["Empty Orbit", "Asteroid Belt"].indexOf(z)>-1){
-				z = zonePop([[s]])[0][0];
-			}
-			d = [randomInt(0,9),randomInt(0,9)];
-			t.concat([z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
-			tab.push(["Rogue Planet",t]);
-			t = [];
-		}
-	}
 	return tab;
 }
 
@@ -1777,19 +1755,28 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		}
 		if ( ["dA","dF","dG"].indexOf(stars[i][1]) ){
 			s = "Degenerate White Dwarf";
-		} else if (stars[i][1]=="VI"){
+		} 
+		else if (stars[i][1]=="VI"){
 			s = "Red Subdwarf";
-		} else {
+		} 
+		else {
 			s = starType(stars[i][0],stars[i][1]);
 		}
 		img = '<img src="images/Class_';
 		if (["dA","dF","dG"].indexOf(stars[i][1])>-1){
 			img =+ "dX";
-		} else {
+		} 
+		else {
 			img =+ stars[i][0];
 		}
 		img =+ '_star.png" alt="' + s + ' Image" style = "width:500px;height:500px;">';
-		tabstr =+ "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+";"+s+'</td><td rowspan = "2">'+img+'</td></tr>\n\t<tr><td>Number of Orbits:</td><td>'+'</td></tr>\n';
+		tabstr =+ "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+";"+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
+		tabstr =+ '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
+		if (i===0){
+			tabstr =+ '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
+		} else {
+			tabstr =+ '\t<tr><td>Orbital Position relative to Primary Star</td><td>'+stars[i][3]+'</td></tr>\n';
+		}
 		if (planets[i]==={} && capturedPlanets==="No Captures"){
 			tabstr =+ '\t<tr><td colspan="3">No Orbiting Planets</td></tr>';
 		} else {
