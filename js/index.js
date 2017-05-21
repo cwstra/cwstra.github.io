@@ -1748,7 +1748,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		return s;
 	}
 	
-	var tabstr = '<table style="border-color:white;border-style: solid;">\n\t<th><td colspan="3">'+sysname+" System</td><tH>\n";
+	var tabstr = '<table style="border-color:white;border-style: solid;width:100%;">\n\t<th><td colspan="3">'+sysname+" System</td><tH>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
 		tabstr += '\t<tr><td colspan="3">';
 		if (i===0){
