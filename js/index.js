@@ -1195,7 +1195,7 @@ function capture(type, max, lett, numb, dec){
 						y = max[p];
 					}
 					d = [randomInt(0,9),randomInt(0,9)];
-					tab.push(["Rogue Asteroid " + p.toString(),[x + d[0]*0.1, y + d[1]*0.1]]);
+					tab.push(["Rogue Asteroid " + j.toString(),[x + d[0]*0.1, y + d[1]*0.1]]);
 				}
 			}
 		} else {
