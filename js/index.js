@@ -86,20 +86,25 @@ function starClassSize(type){
 		else {
 			var s = randomInt(1,10)+randomInt(1,10);
 			if (s<5){
+				tab[0]="N/A";
 				tab.push("dA");
 				tab.push("N/A");
 			} else if (s<8){
+				tab[0]="N/A";
 				tab.push("dF");
 				tab.push("N/A");
 			} else if (s<12){
+				tab[0]="N/A";
 				tab.push("dG");
 				tab.push("N/A");
 			} else if (s<17){
-				tab.push("dK");
-				tab.push(randomInt(0,5));
+				if (randomInt(0,1)===0){tab[0]="K";}else{tab[0]="M";}
+				tab.push("V");
+				tab.push(randomInt(0,9));
 			} else {
-				tab.push("dM");
-				tab.push(randomInt(0,5));
+				if (randomInt(0,1)===0){tab[0]="K";}else{tab[0]="M";}
+				tab.push("VI");
+				tab.push(randomInt(0,9));
 			}
 		}
 		r = randomInt(1,10);
@@ -113,8 +118,8 @@ function starClassSize(type){
 			tab.push(randomInt(1,10)*1000);
 		}
 	}
-	if (typeof tab[2]==="string"){
-		tab.push(tab[0]+" "+tab[1]);
+	if (["dA","dF","dG"].indexOf(tab[1])>-1){
+		tab.push(tab[1]);
 	} 
 	else {
 		tab.push(tab[0]+tab[2]+" "+tab[1]);
@@ -1210,7 +1215,7 @@ function capture(type, max, lett, numb, dec){
 	else if (Array.isArray(max)){
 		num = max.length;
 		k = Array(num).fill(1);
-		for (i=0;i<n;i++){
+		for (i=0;i<max.length;i++){
 			p = randomInt(0,num-1);
 			x = randomInt(1,10)+2;
 			if (x<max[p]){
@@ -1226,8 +1231,8 @@ function capture(type, max, lett, numb, dec){
 				z = zonePop([[s]])[0][0];
 			}
 			d = [randomInt(0,9),randomInt(0,9)];
-			t.push([z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
-			tab.push(["Rogue Planet &#"+(915+i).toString()+"; "+k[p].toString(),t]);
+			t.concat([z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
+			tab.push(["Rogue Planet &#"+(945+i).toString()+"; "+k[p].toString(),t]);
 			t = [];
 		}
 	} 
@@ -1248,7 +1253,7 @@ function capture(type, max, lett, numb, dec){
 				z = zonePop([[s]])[0][0];
 			}
 			d = [randomInt(0,9),randomInt(0,9)];
-			t.push([z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
+			t.concat([z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
 			tab.push(["Rogue Planet",t]);
 			t = [];
 		}
@@ -1289,12 +1294,12 @@ function planetsTable(name,orbitZones,planets){
 	var tab=[],i,j,t,a,ast=[],countp,counta; 
 	for(i=0;i<name.length;i++){
 		t = {};
-		a = {};
+		a = [];
 		countp = 1;
 		counta = 1;
 		for(j=0;j<orbitZones[i].length;j++){
 			if (planets[i][j] == "Asteroid Belt"){
-				a["Asteroid Belt "+(countp++).toString()] = j;
+				a.push(j);
 			} else if (["Empty Orbit","Companion Star","N/A"].indexOf(planets[i][j])===-1){
 				t[name[i]+" "+(counta++).toString()]=[j,orbitZones[i][j],planets[i][j]];
 			}
@@ -1302,9 +1307,7 @@ function planetsTable(name,orbitZones,planets){
 		if (t!=={}){
 			tab.push(t);
 		}
-		if (a!=={}){
-			ast.push(a);
-		}
+		ast.push(a);
 	} 
 	if (tab===[]){
 		tab = "No Planets";
@@ -1728,6 +1731,118 @@ function satellites(planets){
 	return tab;
 }
 
+function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids){
+	function starType(letter,number){
+		var s;
+		switch (letter){
+			case "A":
+				s = "White";
+				break;
+			case "F":
+				s = "Yellow-White";
+				break;
+			case "G":
+				s = "Yellow";
+				break;
+			case "K":
+				s = "Orange";
+				break;
+			case "M":
+				s = "Red";
+		}
+		switch (number){
+			case "II":
+				s =+ "Luminous Giant"
+				break;
+			case "III":
+				s =+ "Giant"
+				break;
+			case "IV":
+				s =+ "Sub-Giant"
+				break;
+			case "IV":
+				s =+ "Dwarf"
+				break;
+		}
+		return s;
+	}
+	
+	var str = '<table>\n\t<tr><td colspan="3">'+sysname+" System</td><tr>\n";
+	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
+		str =+ '\t<tr><td colspan="3">';
+		if (i===0){
+			str =+ "Primary Star: " + stars[i][0];
+		} else {
+			str =+ "Secondary Star: " + stars[i][0];;
+		}
+		if ( ["dA","dF","dG"].indexOf(stars[i][1]) ){
+			s = "Degenerate White Dwarf";
+		} else if (stars[i][1]=="VI"){
+			s = "Red Subdwarf";
+		} else {
+			s = starType(stars[i][0],stars[i][1]);
+		}
+		img = '<img src="images/Class_';
+		if (["dA","dF","dG"].indexOf(stars[i][1])>-1){
+			img =+ "dX";
+		} else {
+			img =+ stars[i][0];
+		}
+		img =+ '_star.png" alt="' + s + ' Image" style = "width:500px;height:500px;">';
+		str =+ "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+";"+s+'</td><td rowspan = "2">'+img+'</td></tr>\n\t<tr><td>Number of Orbits:</td><td>'++'</td></tr>\n';
+		if (planets[i]==={} && capturedPlanets==="No Captures"){
+			str =+ '\t<tr><td colspan="3">No Orbiting Planets</td></tr>';
+		} else {
+			str =+ '\t<tr><td colspan="3">Planets:</td><td colspan="2"></td></tr>\n';
+			for (prop in planets[i]){if (planets[i].hasOwnProperty(prop)){
+				str=+'\t</td><td colspan="3">'+prop+'</td></tr>\n';
+				str=+'\t<tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
+				str=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
+				str=+'\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
+				str=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(planets[i][prop][0])+' AU</td></tr>\n';
+			}}
+			for (j=0;i<capturedPlanets[].length;j++){
+				str=+'\t</td><td colspan="3">'+capturedPlanets[i][0]+'</td></tr>\n';
+				str=+'\t<tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][1][0]+'</td></tr>\n';
+				str=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][1][1][1]+" to "+capturedPlanets[i][1][2][1]+'</td></tr>\n';
+				str=+'\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][1][1][0]+" to "+capturedPlanets[i][1][2][0]+'</td></tr>\n';
+				str=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(capturedPlanets[i][1][1][0])+" AU to "+bode(capturedPlanets[i][1][2][0])+' AU</td></tr>\n';
+			}
+		}
+		if (asteroids===[]){
+			str =+ '\t<tr><td colspan="3">No Asteroid Belts</td></tr>\n';
+		} else {
+			str =+ '\t<tr><td colspan="3">Asteroid Belts at Orbital Positions';
+			for (i=0;i<asteroids[i].length;i++){
+				str=+ ""
+			}
+			str =+ '</td></tr>\n';
+		}
+		str =+ '\t<tr><td colspan="3"></td></tr>'
+		
+	}
+	
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+    	acc[i].onclick = function(){
+        	/* Toggle between adding and removing the "active" class,
+        	to highlight the button that controls the panel */
+        	this.classList.toggle("active");
+
+        	/* Toggle between hiding and showing the active panel */
+        	var panel = this.nextElementSibling;
+        	if (panel.style.display === "block") {
+            	panel.style.display = "none";
+        	} 
+        	else {
+            	panel.style.display = "block";
+        	}
+    	}
+	}	
+}
+
 function generate(){
 	var r = randomInt(1,20);
 	var t = [];
@@ -1774,14 +1889,9 @@ function generate(){
     		return !isNaN(y);
     	});
     });
-    if (n.length > 1){
-    	for (i=1;i<n.length;i++){
-    		max.push(n[i][1]);
-    	}
-    } 
-    else {
-    	max = n[0][1];
-    }
+   	for (i=1;i<n.length;i++){
+   		max.push(n[i][1]);
+   	}
     t = starZones(t);
     var planets = t; 
     planets.shift();
@@ -1789,6 +1899,7 @@ function generate(){
     	x.shift();x.shift();x.shift(); return x;
     });
     planets = zonePop(planets);
+    console.log(["max",max])
     var capturedPlanets = capture("Planet", max, letter, numb, dec);
     var capturedAsteroids = capture("Asteroid", max, letter, numb, dec);
     var orbitZones = t;
@@ -1798,7 +1909,6 @@ function generate(){
     for (i=0;i<planets.length;i++){
     	satel.push(satellites(planets[i]));
     }
-    
 	console.log("Done");
     console.log("stars");
     console.log(stars);
@@ -1815,6 +1925,6 @@ function generate(){
     console.log("capturedAsteroids");
     console.log(capturedAsteroids);
     
-    newSystem(sysname, stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
+    tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
