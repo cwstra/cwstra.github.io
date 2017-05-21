@@ -1791,13 +1791,13 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 				tabstr=+'\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
 				tabstr=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(planets[i][prop][0])+' AU</td></tr>\n';
 			}}
-			for (j=0;j<capturedPlanets[i].length;j++){
-				tabstr=+'\t</td><td colspan="3">'+capturedPlanets[i][j][0]+'</td></tr>\n';
-				tabstr=+'\t<tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][j][1][0]+'</td></tr>\n';
-				tabstr=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][j][1][1][1]+" to "+capturedPlanets[i][j][1][2][1]+'</td></tr>\n';
-				tabstr=+'\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][j][1][1][0]+" to "+capturedPlanets[i][j][1][2][0]+'</td></tr>\n';
-				tabstr=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(capturedPlanets[i][j][1][1][0])+" AU to "+bode(capturedPlanets[i][j][1][2][0])+' AU</td></tr>\n';
-			}
+			for (prop in <capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
+				tabstr=+'\t</td><td colspan="3">'+prop+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][prop][1][1]+" to "+capturedPlanets[i][prop][2][1]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][prop][1][0]+" to "+capturedPlanets[i][prop][2][0]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(capturedPlanets[i][prop][1][0])+" AU to "+bode(capturedPlanets[i][prop][2][0])+' AU</td></tr>\n';
+			}}
 		}
 		if (asteroids===[]){
 			tabstr =+ '\t<tr><td colspan="3">No Asteroid Belts</td></tr>\n';
