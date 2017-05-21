@@ -203,7 +203,7 @@ function starRanges(stars){
 						r.push([s[4],5,s]);
 						break;
 					default:
-						if (n>900){
+						if (s[3]>900){
 							mod = 0;
 							switch(s[0]){
 								case "M":
@@ -225,8 +225,8 @@ function starRanges(stars){
 							if (orbits < 0){orbits=0;}
 							r.push([s[4],orbits,s]);
 						} else {
-							r[0]=zoneKeeper(r[0],n-4,n+1);
-							r.push([s[4],n-8,s]);
+							r[0]=zoneKeeper(r[0],s[3]-4,s[3]+1);
+							r.push([s[4],s[3]-8,s]);
 						}
 				}
 			} 
