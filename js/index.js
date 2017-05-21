@@ -1868,16 +1868,13 @@ function generate(){
     var name = randomName();
     var sysname = name;
     if (stars.length==1){
-    	stars[0].unshift(name);
     	name = [name];
     } else {
+    	var n = [];
     	for (i=0;i<stars.length;i++){
-    		stars[i].unshift(name+" &#"+(945+i).toString()+";");
+    		n.push(name+" &#"+(945+i).toString()+";");
     	}
-    	name = [];
-    	for (i=0;i<stars.length;i++){
-    		name.push(stars[i][0]);
-    	}
+    	name = n;
     }
     console.log("starRanges:");
     console.log(JSON.parse(JSON.stringify(t)));
