@@ -1807,7 +1807,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 				}}
 			}
 		}
-		if (asteroids[i]===[]){
+		if (asteroids[i].length===0){
 			tabstr += '\t<tr><td colspan="3">No Asteroid Belts</td></tr>\n';
 		} else {
 			tabstr += '\t<tr><td colspan="3">Asteroid Belts at Orbital Positions';
