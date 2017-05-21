@@ -1733,16 +1733,16 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		}
 		switch (number){
 			case "II":
-				s =+ "Luminous Giant";
+				s += "Luminous Giant";
 				break;
 			case "III":
-				s =+ "Giant";
+				s += "Giant";
 				break;
 			case "IV":
-				s =+ "Sub-Giant";
+				s += "Sub-Giant";
 				break;
 			case "IV":
-				s =+ "Dwarf";
+				s += "Dwarf";
 				break;
 		}
 		return s;
@@ -1750,11 +1750,11 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 	
 	var tabstr = '<table>\n\t<tr><td colspan="3">'+sysname+" System</td><tr>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
-		tabstr =+ '\t<tr><td colspan="3">';
+		tabstr += '\t<tr><td colspan="3">';
 		if (i===0){
-			tabstr =+ "Primary Star: " + stars[i][0];
+			tabstr += "Primary Star: " + stars[i][0];
 		} else {
-			tabstr =+ "Secondary Star: " + stars[i][0];
+			tabstr += "Secondary Star: " + stars[i][0];
 		}
 		if ( ["dA","dF","dG"].indexOf(stars[i][1]) ){
 			s = "Degenerate White Dwarf";
@@ -1767,57 +1767,57 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		}
 		img = '<img src="images/Class_';
 		if (["dA","dF","dG"].indexOf(stars[i][1])>-1){
-			img =+ "dX";
+			img += "dX";
 		} 
 		else {
-			img =+ stars[i][0];
+			img += stars[i][0];
 		}
-		img =+ '_star.png" alt="' + s + ' Image" style = "width:500px;height:500px;">';
-		tabstr =+ "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+";"+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
-		tabstr =+ '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
+		img += '_star.png" alt="' + s + ' Image" style = "width:500px;height:500px;">';
+		tabstr += "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+";"+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
+		tabstr += '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
 		if (i===0){
-			tabstr =+ '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
+			tabstr += '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
 		} else {
-			tabstr =+ '\t<tr><td>Orbital Position relative to Primary Star</td><td>'+stars[i][3]+'</td></tr>\n';
+			tabstr += '\t<tr><td>Orbital Position relative to Primary Star</td><td>'+stars[i][3]+'</td></tr>\n';
 		}
 		if (planets[i]==={} && capturedPlanets=="No Captures"){
-			tabstr =+ '\t<tr><td colspan="3">No Orbiting Planets</td></tr>';
+			tabstr += '\t<tr><td colspan="3">No Orbiting Planets</td></tr>';
 		} else {
-			tabstr =+ '\t<tr><td colspan="3">Planets:</td><td colspan="2"></td></tr>\n';
+			tabstr += '\t<tr><td colspan="3">Planets:</td><td colspan="2"></td></tr>\n';
 			for (prop in planets[i]){if (planets[i].hasOwnProperty(prop)){
-				tabstr=+'\t</td><td colspan="3">'+prop+'</td></tr>\n';
-				tabstr=+'\t<tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
-				tabstr=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
-				tabstr=+'\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
-				tabstr=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(planets[i][prop][0])+' AU</td></tr>\n';
+				tabstr+='\t</td><td colspan="3">'+prop+'</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(planets[i][prop][0])+' AU</td></tr>\n';
 			}}
 			if (capturedPlanets!="No Captures"){
 				for (prop in capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
-					tabstr=+'\t</td><td colspan="3">'+prop+'</td></tr>\n';
-					tabstr=+'\t<tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td></tr>\n';
-					tabstr=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][prop][1][1]+" to "+capturedPlanets[i][prop][2][1]+'</td></tr>\n';
-					tabstr=+'\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][prop][1][0]+" to "+capturedPlanets[i][prop][2][0]+'</td></tr>\n';
-					tabstr=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(capturedPlanets[i][prop][1][0])+" AU to "+bode(capturedPlanets[i][prop][2][0])+' AU</td></tr>\n';
+					tabstr+='\t</td><td colspan="3">'+prop+'</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][prop][1][1]+" to "+capturedPlanets[i][prop][2][1]+'</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][prop][1][0]+" to "+capturedPlanets[i][prop][2][0]+'</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(capturedPlanets[i][prop][1][0])+" AU to "+bode(capturedPlanets[i][prop][2][0])+' AU</td></tr>\n';
 				}}
 			}
 		}
 		if (asteroids===[]){
-			tabstr =+ '\t<tr><td colspan="3">No Asteroid Belts</td></tr>\n';
+			tabstr += '\t<tr><td colspan="3">No Asteroid Belts</td></tr>\n';
 		} else {
-			tabstr =+ '\t<tr><td colspan="3">Asteroid Belts at Orbital Positions';
+			tabstr += '\t<tr><td colspan="3">Asteroid Belts at Orbital Positions';
 			for (j=0;j<asteroids[i].length;j++){
-				tabstr=+ " "+asteroids[i][j].toString()+",";
+				tabstr+= " "+asteroids[i][j].toString()+",";
 			}
 			tabstr = tabstr.substring(0,tabstr.length-1)+'.</td></tr>\n';
 		}
 		if (capturedAsteroids!="No Captures"){
-			tabstr =+ '\t<tr><td colspan="3">Rogue Asteroids:</td></tr>\n';
+			tabstr += '\t<tr><td colspan="3">Rogue Asteroids:</td></tr>\n';
 			for (j=0;j<capturedAsteroids.length;j++){
-				tabstr =+ '\t<tr><td></td><td>'+capturedAsteroids[j][0]+':</td><td>Orbits From: '+bode(capturedAsteroids[j][1][0])+'AU to '+bode(capturedAsteroids[j][1][1])+'AU</td></tr>\n';
+				tabstr += '\t<tr><td></td><td>'+capturedAsteroids[j][0]+':</td><td>Orbits From: '+bode(capturedAsteroids[j][1][0])+'AU to '+bode(capturedAsteroids[j][1][1])+'AU</td></tr>\n';
 			}
 		}
 	}
-	tabstr =+ "</table>";
+	tabstr += "</table>";
 	$("#solarSystem").html(tabstr);
 	
 /*	var acc = document.getElementsByClassName("accordion");
