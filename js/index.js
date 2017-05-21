@@ -1890,7 +1890,7 @@ function generate(){
     	});
     });
     console.log(["n",n]);
-   	for (i=1;i<n.length;i++){
+   	for (i=0;i<n.length;i++){
    		max.push(n[i][1]);
    	}
     t = starZones(t);
