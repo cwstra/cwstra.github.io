@@ -1181,19 +1181,22 @@ function capture(type, max, lett, numb, dec){
 	} 
 	else if (type == "Asteroid"){
 		if (Array.isArray(max)){
-			num = max.length;
-			for (i=1;i<=n;i++){
-				p = randomInt(0,num-1);
-				x = randomInt(1,10)+2;
-				if (x<max[p]){
-					x = max[p];
+			for (i=0;i<max.length;i++){
+				num = max[i];
+				for (j=1;j<=n;j++){
+					num = max[i];
+					p = randomInt(0,num-1);
+					x = randomInt(1,10)+2;
+					if (x<max[p]){
+						x = max[p];
+					}
+					y = randomInt(1,10);
+					if (y<max[p]){
+						y = max[p];
+					}
+					d = [randomInt(0,9),randomInt(0,9)];
+					tab.push(["Rogue Asteroid " + p.toString(),[x + d[0]*0.1, y + d[1]*0.1]]);
 				}
-				y = randomInt(1,10);
-				if (y<max[p]){
-					y = max[p];
-				}
-				d = [randomInt(0,9),randomInt(0,9)];
-				tab.push(["Rogue Asteroid", p, ["Asteroid", [x + d[[0]]*0.1, y + d[[1]]*0.1]]]);
 			}
 		} else {
 			for (i=1;i<=n;i++){
@@ -1206,15 +1209,15 @@ function capture(type, max, lett, numb, dec){
 					y = max;
 				}
 				d = [randomInt(0,9),randomInt(0,9)];
-				tab.push(["Rogue Asteroid", 1, ["Asteroid", [x + d[[0]]*0.1, y + d[[1]]*0.1]]]);
+				tab.push(["Rogue Asteroid 1",[x + d[0]*0.1, y + d[1]*0.1]]);
 			}
 		}
 	}
 	else {
-		num = max.length;
 		k = Array(num).fill(1);
 		for (i=0;i<max.length;i++){
 			t = {};
+			num = max[i];
 			for (j=0;j<=n;j++){
 				p = randomInt(0,num-1);
 				x = randomInt(1,10)+2;
