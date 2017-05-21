@@ -1791,7 +1791,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 				tabstr=+'\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
 				tabstr=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(planets[i][prop][0])+' AU</td></tr>\n';
 			}}
-			if capturedPlanets==="No Captures"{
+			if (capturedPlanets==="No Captures"){
 				for (prop in capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
 					tabstr=+'\t</td><td colspan="3">'+prop+'</td></tr>\n';
 					tabstr=+'\t<tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td></tr>\n';
@@ -1817,7 +1817,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 			}
 		}
 	}
-	tabstr =+ "</table>"
+	tabstr =+ "</table>";
 	$("#solarSystem").html(tabstr);
 	
 /*	var acc = document.getElementsByClassName("accordion");
