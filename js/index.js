@@ -1767,13 +1767,13 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		return s;
 	}
 	
-	var str = '<table>\n\t<tr><td colspan="3">'+sysname+" System</td><tr>\n";
+	var tabstr = '<table>\n\t<tr><td colspan="3">'+sysname+" System</td><tr>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
-		str =+ '\t<tr><td colspan="3">';
+		tabstr =+ '\t<tr><td colspan="3">';
 		if (i===0){
-			str =+ "Primary Star: " + stars[i][0];
+			tabstr =+ "Primary Star: " + stars[i][0];
 		} else {
-			str =+ "Secondary Star: " + stars[i][0];
+			tabstr =+ "Secondary Star: " + stars[i][0];
 		}
 		if ( ["dA","dF","dG"].indexOf(stars[i][1]) ){
 			s = "Degenerate White Dwarf";
@@ -1789,36 +1789,36 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 			img =+ stars[i][0];
 		}
 		img =+ '_star.png" alt="' + s + ' Image" style = "width:500px;height:500px;">';
-		str =+ "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+";"+s+'</td><td rowspan = "2">'+img+'</td></tr>\n\t<tr><td>Number of Orbits:</td><td>'+'</td></tr>\n';
+		tabstr =+ "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+";"+s+'</td><td rowspan = "2">'+img+'</td></tr>\n\t<tr><td>Number of Orbits:</td><td>'+'</td></tr>\n';
 		if (planets[i]==={} && capturedPlanets==="No Captures"){
-			str =+ '\t<tr><td colspan="3">No Orbiting Planets</td></tr>';
+			tabstr =+ '\t<tr><td colspan="3">No Orbiting Planets</td></tr>';
 		} else {
-			str =+ '\t<tr><td colspan="3">Planets:</td><td colspan="2"></td></tr>\n';
+			tabstr =+ '\t<tr><td colspan="3">Planets:</td><td colspan="2"></td></tr>\n';
 			for (prop in planets[i]){if (planets[i].hasOwnProperty(prop)){
-				str=+'\t</td><td colspan="3">'+prop+'</td></tr>\n';
-				str=+'\t<tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
-				str=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
-				str=+'\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
-				str=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(planets[i][prop][0])+' AU</td></tr>\n';
+				tabstr=+'\t</td><td colspan="3">'+prop+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(planets[i][prop][0])+' AU</td></tr>\n';
 			}}
 			for (j=0;j<capturedPlanets[i].length;j++){
-				str=+'\t</td><td colspan="3">'+capturedPlanets[i][j][0]+'</td></tr>\n';
-				str=+'\t<tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][j][1][0]+'</td></tr>\n';
-				str=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][j][1][1][1]+" to "+capturedPlanets[i][j][1][2][1]+'</td></tr>\n';
-				str=+'\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][j][1][1][0]+" to "+capturedPlanets[i][j][1][2][0]+'</td></tr>\n';
-				str=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(capturedPlanets[i][j][1][1][0])+" AU to "+bode(capturedPlanets[i][j][1][2][0])+' AU</td></tr>\n';
+				tabstr=+'\t</td><td colspan="3">'+capturedPlanets[i][j][0]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][j][1][0]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][j][1][1][1]+" to "+capturedPlanets[i][j][1][2][1]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][j][1][1][0]+" to "+capturedPlanets[i][j][1][2][0]+'</td></tr>\n';
+				tabstr=+'\t<tr><td></td><td>Orbital Distance:</td><td>'+bode(capturedPlanets[i][j][1][1][0])+" AU to "+bode(capturedPlanets[i][j][1][2][0])+' AU</td></tr>\n';
 			}
 		}
 		if (asteroids===[]){
-			str =+ '\t<tr><td colspan="3">No Asteroid Belts</td></tr>\n';
+			tabstr =+ '\t<tr><td colspan="3">No Asteroid Belts</td></tr>\n';
 		} else {
-			str =+ '\t<tr><td colspan="3">Asteroid Belts at Orbital Positions';
+			tabstr =+ '\t<tr><td colspan="3">Asteroid Belts at Orbital Positions';
 			for (j=0;j<asteroids[i].length;j++){
-				str=+ "";
+				tabstr=+ "";
 			}
-			str =+ '</td></tr>\n';
+			tabstr =+ '</td></tr>\n';
 		}
-		str =+ '\t<tr><td colspan="3"></td></tr>';
+		tabstr =+ '\t<tr><td colspan="3"></td></tr>';
 		
 	}
 	
