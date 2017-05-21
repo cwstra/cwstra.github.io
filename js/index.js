@@ -1748,6 +1748,10 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		return s;
 	}
 	
+	function round(value, decimals) {
+  		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+	}
+	
 	var tabstr = '<table style="border-color:white;border-style: solid;width:100%;">\n\t<th><td colspan="3">'+sysname+" System</td><tH>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
 		tabstr += '\t<tr><td colspan="3">';
@@ -1801,7 +1805,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 				}}
 			}
 		}
-		if (asteroids===[]){
+		if (asteroids[i]===[]){
 			tabstr += '\t<tr><td colspan="3">No Asteroid Belts</td></tr>\n';
 		} else {
 			tabstr += '\t<tr><td colspan="3">Asteroid Belts at Orbital Positions';
@@ -1813,7 +1817,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		if (capturedAsteroids!="No Captures"){
 			tabstr += '\t<tr><td colspan="3">Rogue Asteroids:</td></tr>\n';
 			for (j=0;j<capturedAsteroids.length;j++){
-				tabstr += '\t<tr><td></td><td>'+capturedAsteroids[j][0]+':</td><td>Orbits From: '+bode(capturedAsteroids[j][1][0])+'AU to '+bode(capturedAsteroids[j][1][1])+'AU</td></tr>\n';
+				tabstr += '\t<tr><td></td><td>'+capturedAsteroids[j][0]+':</td><td>Orbits From: '+round(bode(capturedAsteroids[j][1][0]),2)+'AU to '+round(bode(capturedAsteroids[j][1][1]),2)+'AU</td></tr>\n';
 			}
 		}
 	}
