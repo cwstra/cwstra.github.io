@@ -1234,7 +1234,7 @@ function capture(type, max, lett, numb, dec){
 					z = zonePop([[s]])[0][0];
 				}
 				d = [randomInt(0,9),randomInt(0,9)];
-				t["Rogue Planet &#"+(945+i).toString()+"; "+k[p].toString()]=[z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]]);
+				t["Rogue Planet &#"+(945+i).toString()+"; "+k[p].toString()]=[z,[x+d[0]*0.1,s],[y+d[1]*0.1,starCheck(x,lett[p],numb[p],dec[p])]];
 			}
 			tab.push(t);
 		}
