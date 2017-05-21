@@ -1804,24 +1804,30 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		} else {
 			tabstr =+ '\t<tr><td colspan="3">Asteroid Belts at Orbital Positions';
 			for (j=0;j<asteroids[i].length;j++){
-				tabstr=+ " ";
+				tabstr=+ " "+asteroids[i][j].toString()+",";
 			}
-			tabstr =+ '</td></tr>\n';
+			tabstr = tabstr.substring(0,tabstr.length-1)+'.</td></tr>\n';
 		}
-		tabstr =+ '\t<tr><td colspan="3"></td></tr>';
-		
+		if (capturedAsteroids!="No Captures"){
+			tabstr =+ '\t<tr><td colspan="3">Rogue Asteroids:</td></tr>\n';
+			for (j=0;j<capturedAsteroids.length;j++){
+				tabstr =+ '\t<tr><td></td><td>'+capturedAsteroids[j][0]+':</td><td>Orbits From: '+bode(capturedAsteroids[j][1][0])+'AU to '+bode(capturedAsteroids[j][1][1])+'AU</td></tr>\n';
+			}
+		}
 	}
+	tabstr =+ "</table>"
+	$("#solarSystem").html(tabstr);
 	
-	var acc = document.getElementsByClassName("accordion");
+/*	var acc = document.getElementsByClassName("accordion");
 
 	for (i = 0; i < acc.length; i++) {
-    	acc[i].onclick = function(){
+    	acc[i].onclick = function(){*/
         	/* Toggle between adding and removing the "active" class,
         	to highlight the button that controls the panel */
-        	this.classList.toggle("active");
+//        	this.classList.toggle("active");
 
         	/* Toggle between hiding and showing the active panel */
-        	var panel = this.nextElementSibling;
+/*        	var panel = this.nextElementSibling;
         	if (panel.style.display === "block") {
             	panel.style.display = "none";
         	} 
@@ -1829,7 +1835,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
             	panel.style.display = "block";
         	}
     	};
-	}	
+	}*/
 }
 
 function generate(){
