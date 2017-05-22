@@ -48,7 +48,7 @@ tr.big-header td{
 }
 /*Accordion
  Style the buttons that are used to open and close the accordion panel */
-button.accordion {
+button.system {
     background-color: black;
     color: white;
     cursor: pointer;
@@ -62,12 +62,12 @@ button.accordion {
 }
 
 /*Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-button.accordion.active, button.accordion:hover {
+button.system.active, button.system:hover {
     background-color: white;
     color: black;
 }
 
-button.accordion:after {
+button.system:after {
     content: '\02795'; /* Unicode character for "plus" sign (+)*/ 
     font-size: 13px;
     color: #777;
@@ -75,6 +75,6 @@ button.accordion:after {
     margin-left: 5px;
 }
 
-button.accordion.active:after {
+button.system.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
