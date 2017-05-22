@@ -1762,7 +1762,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		} else {
 			tabstr += "Secondary Star: " + stars[i][0];
 		}
-		tabstr += '</button>\n'
+		tabstr += '</button class="system">\n'
 		if ( ["dA","dF","dG"].indexOf(stars[i][1]) ){
 			s = "Degenerate White Dwarf";
 		} 
@@ -1780,7 +1780,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 			img += stars[i][0];
 		}
 		img += '_Star.png" alt="' + s + ' Image" style = "width:200px;height:200px;">';
-		tabstr += '\t<div class="panel" style="visibility: collapse;"><table><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
+		tabstr += '\t<div class="system"><table><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
 		tabstr += '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
 		if (i===0){
 			tabstr += '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
@@ -1827,19 +1827,10 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 	}
 	$("#solarSystem").html(tabstr);
 	
-	var acc = document.getElementsByClassName("accordion");
-
-	for (i = 0; i < acc.length; i++) {
-		acc[i].onclick = function() {
-    		this.classList.toggle("active");
-    		var panel = this.nextElementSibling;
-    		if (panel.style.maxHeight){
-      			panel.style.maxHeight = null;
-    		} else {
-      			panel.style.maxHeight = panel.scrollHeight + "px";
-    		}
-  		};
-	}
+	$("button.system").click(function(){
+		$(this).next().toggle();
+	})
+	$("div.system").hide();
 }
 
 function generate(){
