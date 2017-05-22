@@ -26,6 +26,15 @@ a:visited {
     color: orange;
 }
 
+table{
+	border-style: double;
+	border-color: white;
+}
+
+tr td{
+	border-style: solid;
+	border-color: white;
+}
 /*Accordion*/
 /* Style the buttons that are used to open and close the accordion panel 
 button.accordion {
