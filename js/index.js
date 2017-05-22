@@ -1819,7 +1819,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		if (capturedAsteroids!="No Captures"){
 			tabstr += '\t<tr><td colspan="3">Rogue Asteroids:</td></tr>\n';
 			for (prop in capturedAsteroids[i]){if(capturedAsteroids[i].hasOwnProperty(prop)){
-				tabstr += '\t<tr><td></td><td>'+prop+':</td><td>Orbits From: '+round(bode(capturedAsteroids[i][prop][0]),2)+'AU to '+round(bode(capturedAsteroids[j][prop][1]),2)+'AU</td></tr>\n';
+				tabstr += '\t<tr><td></td><td>'+prop+':</td><td>Orbits From: '+round(bode(capturedAsteroids[i][prop][0]),2)+'AU to '+round(bode(capturedAsteroids[i][prop][1]),2)+'AU</td></tr>\n';
 			}}
 		}
 	}
