@@ -1756,13 +1756,13 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 	
 	var tabstr = '\n\t<div class="big-header header">'+sysname+" System</div>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
-		tabstr += '\t<button class="accordion">'
+		tabstr += '\t<button class="system">'
 		if (i===0){
 			tabstr += "Primary Star: " + stars[i][0];
 		} else {
 			tabstr += "Secondary Star: " + stars[i][0];
 		}
-		tabstr += '</button class="system">\n'
+		tabstr += '</button>\n'
 		if ( ["dA","dF","dG"].indexOf(stars[i][1]) ){
 			s = "Degenerate White Dwarf";
 		} 
