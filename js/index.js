@@ -2172,7 +2172,7 @@ function planetDeets(planets,satellites){
 				}
 				tab["Hours per Day"]=hoursPDay(tab["Hydrosphere"],satellites[i][planet]);
 				tab["Minerals"]=minerals(planet[2]);
-				planets[i][planet].push(tab);
+				planets[i][prop].push(tab);
 			}
 		}
 	} 
