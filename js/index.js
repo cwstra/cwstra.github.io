@@ -2219,7 +2219,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 	}
 	
 	var tabstr = '\n\t<div class="big-header header">'+sysname+" System</div>\n";
-	var i,s,img,prop,j,num; for (i=0;i<stars.length;i++){
+	var i,s,img,prop,j,num,x; for (i=0;i<stars.length;i++){
 		tabstr += '\t<button class="system">';
 		if (i===0){
 			tabstr += "Primary Star: " + name[i];
@@ -2268,6 +2268,10 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 				tabstr+='\t<tr><td></td><td>Sea Area Percentage:</td><td>'+planets[i][prop][3]["Hydrosphere"]+'%</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Glacial Area Percentage:</td><td>'+planets[i][prop][3]["Cryosphere"]+'%</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Basic Atmospheric Composition:</td><td>'+planets[i][prop][3]["Atmospheric Makeup"]+'</td></tr>\n';
+				x = planets[i][prop][3]["Atmospheric Pressure"];
+				if (typeof x !== "string"){
+					x = round(x,2);
+				}
 				tabstr+='\t<tr><td></td><td>Surface Atmospheric Pressure:</td><td>'+round(planets[i][prop][3]["Atmospheric Pressure"],2)+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Volcanism:</td><td>'+planets[i][prop][3]["Volcanism"]+' out of 100</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Tectonic Activity:</td><td>'+planets[i][prop][3]["Tectonic Activity"]+' out of 100</td></tr>\n';
