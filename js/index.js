@@ -2283,17 +2283,17 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 				}
 				tabstr+='\t<tr><td></td><td colspan="2">Mineral Ratings, scale of 0 to 9</td></tr>\n';
 				num = round(planets[i][prop][3]["Minerals"][0],2);
-				tabstr += '\t<tr><td></td><td></td><td>Industrial Minerals</td><td>'+num+'</td></tr>\n';
+				tabstr += '\t<tr><td colspan="2"></td><td>Industrial Minerals</td><td>'+num+'</td></tr>\n';
 				num = round(planets[i][prop][3]["Minerals"][1],2);
-				tabstr += '\t<tr><td></td><td></td><td>Common Metals</td><td>'+num+'</td></tr>\n';
+				tabstr += '\t<tr><td colspan="2"></td><td>Common Metals</td><td>'+num+'</td></tr>\n';
 				num = round(planets[i][prop][3]["Minerals"][2],2);
-				tabstr += '\t<tr><td></td><td></td><td>Rare Metals</td><td>'+num+'</td></tr>\n';
+				tabstr += '\t<tr><td colspan="2"></td><td>Rare Metals</td><td>'+num+'</td></tr>\n';
 				num = round(planets[i][prop][3]["Minerals"][3],2);
-				tabstr += '\t<tr><td></td><td></td><td>Industrial Crystals</td><td>'+num+'</td></tr>\n';
+				tabstr += '\t<tr><td colspan="2"></td><td>Industrial Crystals</td><td>'+num+'</td></tr>\n';
 				num = round(planets[i][prop][3]["Minerals"][4],2);
-				tabstr += '\t<tr><td></td><td></td><td>Gemstones</td><td>'+num+'</td></tr>\n';
+				tabstr += '\t<tr><td colspan="2"></td><td>Gemstones</td><td>'+num+'</td></tr>\n';
 				num = round(planets[i][prop][3]["Minerals"][5],2);
-				tabstr += '\t<tr><td></td><td></td><td>Radioactives</td><td>'+num+'</td></tr>\n</div></td></tr></table></td></tr>\n';
+				tabstr += '\t<tr><td colspan="2"></td><td>Radioactives</td><td>'+num+'</td></tr>\n</div></td></tr></table></td></tr>\n';
 			}}
 			if (capturedPlanets!="No Captures"){
 				for (prop in capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
@@ -2324,17 +2324,17 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 					}
 					tabstr+='\t<tr><td></td><td colspan="2">Mineral Ratings, scale of 0 to 9</td></tr>\n';
 					num = round(capturedPlanets[i][prop][3]["Minerals"][0],2);
-					tabstr += '\t<tr><td></td><td></td><td>Industrial Minerals</td><td>'+num+'</td></tr>\n';
+					tabstr += '\t<tr><td colspan="2"></td><td>Industrial Minerals</td><td>'+num+'</td></tr>\n';
 					num = round(capturedPlanets[i][prop][3]["Minerals"][1],2);
-					tabstr += '\t<tr><td></td><td></td><td>Common Metals</td><td>'+num+'</td></tr>\n';
+					tabstr += '\t<tr><td colspan="2"></td><td>Common Metals</td><td>'+num+'</td></tr>\n';
 					num = round(capturedPlanets[i][prop][3]["Minerals"][2],2);
-					tabstr += '\t<tr><td></td><td></td><td>Rare Metals</td><td>'+num+'</td></tr>\n';
+					tabstr += '\t<tr><td colspan="2"></td><td>Rare Metals</td><td>'+num+'</td></tr>\n';
 					num = round(capturedPlanets[i][prop][3]["Minerals"][3],2);
-					tabstr += '\t<tr><td></td><td></td><td>Industrial Crystals</td><td>'+num+'</td></tr>\n';
+					tabstr += '\t<tr><td colspan="2"></td><td>Industrial Crystals</td><td>'+num+'</td></tr>\n';
 					num = round(capturedPlanets[i][prop][3]["Minerals"][4],2);
-					tabstr += '\t<tr><td></td><td></td><td>Gemstones</td><td>'+num+'</td></tr>\n';
+					tabstr += '\t<tr><td colspan="2"></td><td>Gemstones</td><td>'+num+'</td></tr>\n';
 					num = round(capturedPlanets[i][prop][3]["Minerals"][5],2);
-					tabstr += '\t<tr><td></td><td></td><td>Radioactives</td><td>'+num+'</td></tr>\n</div></td></tr></table></td></tr>\n';
+					tabstr += '\t<tr><td colspan="2"></td><td>Radioactives</td><td>'+num+'</td></tr>\n</div></td></tr></table></td></tr>\n';
 				}}
 			}
 		}
