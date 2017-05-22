@@ -2269,7 +2269,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			default:
 				s += "16";
 		}
-		s += '.png alt="'+type+' Planet Image" style="width:100px;height:100px;">';
+		s += '.png" alt="'+type+' Planet Image" style="width:100px;height:100px;">';
 		return s;
 	}
 	
