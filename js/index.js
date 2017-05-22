@@ -2517,3 +2517,25 @@ function generate(){
     tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
+
+function systemImport(obj){
+	tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);
+}
+
+function systemExport(sysname,name,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids){
+	var obj = {};
+	obj.sysname = sysname;
+	obj.name = name;
+	obj.stars = stars;
+	obj.orbitZones = orbitZones;
+	obj.planets = planets;
+	obj.satel = satel;
+	obj.asteroids = asteroids;
+	obj.capturedPlanets = capturedPlanets;
+	obj.capturedAsteroids = capturedAsteroids;
+	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+	var dlAnchorElem = document.getElementById('downloadAnchorElem');
+	dlAnchorElem.setAttribute("href",     dataStr     );
+	dlAnchorElem.setAttribute("download", sysname+"_System.json");
+	dlAnchorElem.click();
+}
