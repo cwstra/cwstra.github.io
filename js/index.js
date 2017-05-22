@@ -2275,9 +2275,9 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 				tabstr+='\t<tr><td></td><td>Mean Planetary Temperature:</td><td>'+planets[i][prop][3]["Mean Temperature"]+'&#2109;</td></tr></table></td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td>'+planets[i][prop][3]["Mean Low Temperature"]+"-"+planets[i][prop][3]["Mean High Temperature"]+'&#2109;</td></tr></table></td></tr>\n';
 				tabstr+='\t<tr><td></td><td colspan="2"><div class="container vertical rounded"><h2>Mineral Survey</h2>';
-				for (j=0;j<planets[i][prop][3]["Minerals"]){
+				for (j=0;j<planets[i][prop][3]["Minerals"];j++){
 					num = round(planets[i][prop][3]["Minerals"][j]/9,2);
-					tabstr += '<div class="progress-bar"><div class="progress-track"><div class="progress-fill"><span>'+num.toString()+'</span></div></div></div>'
+					tabstr += '<div class="progress-bar"><div class="progress-track"><div class="progress-fill"><span>'+num.toString()+'</span></div></div></div>';
 				}
 				tabstr += '</div></td></tr></table></td></tr>\n';
 			}}
@@ -2308,7 +2308,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 		}
 		tabstr += "</table></div>";
 	}
-	$("#solarSystem").html(tabstr)
+	$("#solarSystem").html(tabstr);
 
 	$('.vertical .progress-fill span').each(function(){
   		var percent = $(this).html();
