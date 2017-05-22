@@ -2272,7 +2272,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 				if (typeof x !== "string"){
 					x = round(x,2);
 				}
-				tabstr+='\t<tr><td></td><td>Surface Atmospheric Pressure:</td><td>'+round(planets[i][prop][3]["Atmospheric Pressure"],2)+'</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Surface Atmospheric Pressure:</td><td>'+x+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Volcanism:</td><td>'+planets[i][prop][3]["Volcanism"]+' out of 100</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Tectonic Activity:</td><td>'+planets[i][prop][3]["Tectonic Activity"]+' out of 100</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Hours per Day:</td><td>'+planets[i][prop][3]["Hours per Day"]+'</td></tr>\n';
