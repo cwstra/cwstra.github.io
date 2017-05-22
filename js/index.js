@@ -1714,7 +1714,7 @@ function satellites(planets){
 	return tab;
 }
 
-function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids){
+function tableGen(sysname,names,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids){
 	function starType(letter,number){
 		var s;
 		switch (letter){
@@ -1758,12 +1758,12 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
 		tabstr += '\t<button class="system">'
 		if (i===0){
-			tabstr += "Primary Star: " + stars[i][0];
+			tabstr += "Primary Star: " + names[i];
 		} else {
-			tabstr += "Secondary Star: " + stars[i][0];
+			tabstr += "Secondary Star: " + names[i];
 		}
 		tabstr += '</button>\n'
-		if ( ["dA","dF","dG"].indexOf(stars[i][1]) ){
+		if ( ["dA","dF","dG"].indexOf(stars[i][1])>-1 ){
 			s = "Degenerate White Dwarf";
 		} 
 		else if (stars[i][1]=="VI"){
@@ -1914,6 +1914,6 @@ function generate(){
     console.log("capturedAsteroids");
     console.log(capturedAsteroids);
     
-    tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
+    tableGen(sysname,names,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
