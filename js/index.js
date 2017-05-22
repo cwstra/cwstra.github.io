@@ -2311,7 +2311,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 					tabstr+='\t<tr><td></td><td colspan="2">Basic Atmospheric Composition:</td><td>'+capturedPlanets[i][prop][3]["Atmospheric Makeup"]+'</td></tr>\n';
 					x = capturedPlanets[i][prop][3]["Atmospheric Pressure"];
 					if (typeof x !== "string"){
-						x = round(x,2);
+						x = round(x,2).toString();
 					}
 					tabstr+='\t<tr><td></td><td colspan="2">Surface Atmospheric Pressure:</td><td>'+x+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td colspan="2">Volcanism:</td><td>'+capturedPlanets[i][prop][3]["Volcanism"]+' out of 100</td></tr>\n';
