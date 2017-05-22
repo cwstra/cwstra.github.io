@@ -1793,7 +1793,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			tabstr += '\t<tr><td colspan="3" class="header">Planets:</td></tr>\n';
 			for (prop in planets[i]){if (planets[i].hasOwnProperty(prop)){
 				tabstr+='\t<tr><td colspan="3"><button class="system">'+prop+'</button>\n';
-				tabstr+='\t<table><tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
+				tabstr+='\t<table class="system"><tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+round(bode(planets[i][prop][0]),2)+' AU</td></tr></table></td></tr>\n';
@@ -1801,7 +1801,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			if (capturedPlanets!="No Captures"){
 				for (prop in capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
 					tabstr+='\t<tr><td colspan="3"><button class="system">'+prop+'</button>\n';
-					tabstr+='\t<table><tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td></tr>\n';
+					tabstr+='\t<table class="system"><tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][prop][1][1]+" to "+capturedPlanets[i][prop][2][1]+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][prop][1][0]+" to "+capturedPlanets[i][prop][2][0]+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+round(bode(capturedPlanets[i][prop][1][0]),2)+" AU to "+round(bode(capturedPlanets[i][prop][2][0]),2)+' AU</td></tr></table></td></tr>\n';
@@ -1831,6 +1831,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 		$(this).next().toggle();
 	})
 	$("div.system").hide();
+	$("table.system").hide();
 }
 
 function generate(){
