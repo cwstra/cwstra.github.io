@@ -1754,9 +1754,9 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
   		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 	}
 	
-	var tabstr = '<table>\n\t<tr><td colspan="3">'+sysname+" System</td><tr>\n";
+	var tabstr = '<table>\n\t<tr class="big-header header"><td colspan="3">'+sysname+" System</td><tr>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
-		tabstr += '\t<tr><td colspan="3">';
+		tabstr += '\t<tr><td colspan="3" class="header">';
 		if (i===0){
 			tabstr += "Primary Star: " + stars[i][0];
 		} else {
@@ -1789,9 +1789,9 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 		if (planets[i]==={} && capturedPlanets=="No Captures"){
 			tabstr += '\t<tr><td colspan="3">No Orbiting Planets</td></tr>';
 		} else {
-			tabstr += '\t<tr><td colspan="3">Planets:</td></tr>\n';
+			tabstr += '\t<tr><td colspan="3" class="header">Planets:</td></tr>\n';
 			for (prop in planets[i]){if (planets[i].hasOwnProperty(prop)){
-				tabstr+='\t</td><td colspan="3">'+prop+'</td></tr>\n';
+				tabstr+='\t</td><td colspan="3" class="header">'+prop+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
