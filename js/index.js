@@ -1220,7 +1220,7 @@ function capture(type, max, lett, numb, dec){
 		for (i=0;i<max.length;i++){
 			t = {};
 			num = max[i];
-			for (j=0;j<=n;j++){
+			for (j=1;j<=n;j++){
 				p = randomInt(0,num);
 				x = randomInt(1,10)+2;
 				if (x<max[p]){
