@@ -2147,9 +2147,10 @@ function planetDeets(planets,satellites){
 		return tab;
 	}
 	
-	var i, tab, planet; for (i=0;i<planets.length;i++){
-		for (planet in planets[i]){
-			if (planets[i].hasOwnProperty(planet)){
+	var i, tab, prop,planet; for (i=0;i<planets.length;i++){
+		for (prop in planets[i]){
+			if (planets[i].hasOwnProperty(prop)){
+				planet = planets[i][prop];
 				tab = {};
 				tab["Diameter"]=size(planet[2]);
 				tab["Circumference"]=Math.PI*tab["Diameter"];
