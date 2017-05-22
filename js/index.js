@@ -2275,14 +2275,14 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 				if (planets[i][prop][3].hasOwnProperty("Relative Humidity")){
 					tabstr+='\t<tr><td></td><td>Relative Humidity Percentage:</td><td>'+planets[i][prop][3]["Relative Humidity"]+'%</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Mean Planetary Temperature:</td><td>'+planets[i][prop][3]["Mean Temperature"]+'&#2109;</td></tr>\n';
-					tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td>'+planets[i][prop][3]["Mean Low Temperature"]+"-"+planets[i][prop][3]["Mean High Temperature"]+'&#2109;</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td>'+planets[i][prop][3]["Mean Low Temperature"]+" to "+planets[i][prop][3]["Mean High Temperature"]+'&#2109;</td></tr>\n';
 				}
-				/*tabstr+='\t<tr><td></td><td colspan="2"><div class="container vertical rounded"><h2>Mineral Survey</h2>';
+				tabstr+='\t<tr><td></td><td colspan="2"><div class="container vertical rounded"><h2>Mineral Survey</h2>';
 				for (j=0;j<planets[i][prop][3]["Minerals"];j++){
 					num = round(planets[i][prop][3]["Minerals"][j]/9,2);
 					tabstr += '<div class="progress-bar"><div class="progress-track"><div class="progress-fill"><span>'+num.toString()+'</span></div></div>This</div>';
-				}*/
-				tabstr += /*'</div></td></tr>*/'</table></td></tr>\n';
+				}
+				tabstr += '</div></td></tr></table></td></tr>\n';
 			}}
 			if (capturedPlanets!="No Captures"){
 				for (prop in capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
