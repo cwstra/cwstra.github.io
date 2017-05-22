@@ -1780,7 +1780,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 			img += stars[i][0];
 		}
 		img += '_Star.png" alt="' + s + ' Image" style = "width:200px;height:200px;">';
-		tabstr += '\t<div class="panel"><table style:"visibility: collapse;"><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
+		tabstr += '\t<div class="panel"><table style="visibility: collapse;"><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
 		tabstr += '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
 		if (i===0){
 			tabstr += '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
