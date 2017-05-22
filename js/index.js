@@ -309,7 +309,7 @@ function randomName(){
 		l = c[randomInt(0,c.length-1)];
 		w.push(l);
 	}
-	for (s = randomInt(2,6);w.length<s;){
+	for (s = randomInt(4,12);w.length<s;){
 		l = v[randomInt(0,v.length-1)];
 		w.push(l);
 		l = c[randomInt(0,c.length-1)];
