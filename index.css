@@ -81,4 +81,5 @@ button.system:after {
 
 button.system.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
+    color: white;
 }
