@@ -2281,12 +2281,19 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 					tabstr+='\t<tr><td></td><td>Mean Planetary Temperature:</td><td>'+planets[i][prop][3]["Mean Temperature"]+'&#2109;</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td>'+planets[i][prop][3]["Mean Low Temperature"]+" to "+planets[i][prop][3]["Mean High Temperature"]+'&#2109;</td></tr>\n';
 				}
-				tabstr+='\t<tr><td></td><td colspan="2"><div class="container vertical rounded"><h2>Mineral Survey</h2>';
-				for (j=0;j<planets[i][prop][3]["Minerals"];j++){
-					num = round(planets[i][prop][3]["Minerals"][j]/9,2);
-					tabstr += '<div class="progress-bar"><div class="progress-track"><div class="progress-fill"><span>'+num.toString()+'</span></div></div>This</div>';
-				}
-				tabstr += '</div></td></tr></table></td></tr>\n';
+				tabstr+='\t<tr><td></td><td colspan="2">Mineral Ratings, scale of 0 to 9</td></tr>\n';
+				num = round(planets[i][prop][3]["Minerals"][0],2);
+				tabstr += '\t<tr><td></td><td>Industrial Minerals</td><td>'+num+'</td></tr>\n';
+				num = round(planets[i][prop][3]["Minerals"][1],2);
+				tabstr += '\t<tr><td></td><td>Common Metals</td><td>'+num+'</td></tr>\n';
+				num = round(planets[i][prop][3]["Minerals"][2],2);
+				tabstr += '\t<tr><td></td><td>Rare Metals</td><td>'+num+'</td></tr>\n';
+				num = round(planets[i][prop][3]["Minerals"][3],2);
+				tabstr += '\t<tr><td></td><td>Industrial Crystals</td><td>'+num+'</td></tr>\n';
+				num = round(planets[i][prop][3]["Minerals"][4],2);
+				tabstr += '\t<tr><td></td><td>Gemstones</td><td>'+num+'</td></tr>\n';
+				num = round(planets[i][prop][3]["Minerals"][5],2);
+				tabstr += '\t<tr><td></td><td>Radioactives</td><td>'+num+'</td></tr>\n</div></td></tr></table></td></tr>\n';
 			}}
 			if (capturedPlanets!="No Captures"){
 				for (prop in capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
@@ -2295,6 +2302,39 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 					tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][prop][1][1]+" to "+capturedPlanets[i][prop][2][1]+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][prop][1][0]+" to "+capturedPlanets[i][prop][2][0]+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+round(bode(capturedPlanets[i][prop][1][0]),2)+" AU to "+round(bode(capturedPlanets[i][prop][2][0]),2)+' AU</td></tr></table></td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Surface Gravity:</td><td>'+round(capturedPlanets[i][prop][3]["Surface Gravity"],2)+'g</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Surface Area:</td><td>'+round(capturedPlanets[i][prop][3]["Surface Area"],2)+'km&sup2;</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Circumference at Equator:</td><td>'+round(capturedPlanets[i][prop][3]["Circumference"],2)+'km</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Land Area Percentage:</td><td>'+capturedPlanets[i][prop][3]["% Land Area"]+'%</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Sea Area Percentage:</td><td>'+capturedPlanets[i][prop][3]["Hydrosphere"]+'%</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Glacial Area Percentage:</td><td>'+capturedPlanets[i][prop][3]["Cryosphere"]+'%</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Basic Atmospheric Composition:</td><td>'+capturedPlanets[i][prop][3]["Atmospheric Makeup"]+'</td></tr>\n';
+					x = capturedPlanets[i][prop][3]["Atmospheric Pressure"];
+					if (typeof x !== "string"){
+						x = round(x,2);
+					}
+					tabstr+='\t<tr><td></td><td>Surface Atmospheric Pressure:</td><td>'+x+'</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Volcanism:</td><td>'+capturedPlanets[i][prop][3]["Volcanism"]+' out of 100</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Tectonic Activity:</td><td>'+capturedPlanets[i][prop][3]["Tectonic Activity"]+' out of 100</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Hours per Day:</td><td>'+capturedPlanets[i][prop][3]["Hours per Day"]+'</td></tr>\n';
+					if (capturedPlanets[i][prop][3].hasOwnProperty("Relative Humidity")){
+						tabstr+='\t<tr><td></td><td>Relative Humidity Percentage:</td><td>'+capturedPlanets[i][prop][3]["Relative Humidity"]+'%</td></tr>\n';
+						tabstr+='\t<tr><td></td><td>Mean Planetary Temperature:</td><td>'+capturedPlanets[i][prop][3]["Mean Temperature"]+'&#2109;</td></tr>\n';
+						tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td>'+capturedPlanets[i][prop][3]["Mean Low Temperature"]+" to "+capturedPlanets[i][prop][3]["Mean High Temperature"]+'&#2109;</td></tr>\n';
+					}
+					tabstr+='\t<tr><td></td><td colspan="2">Mineral Ratings, scale of 0 to 9</td></tr>\n';
+					num = round(capturedPlanets[i][prop][3]["Minerals"][0],2);
+					tabstr += '\t<tr><td></td><td>Industrial Minerals</td><td>'+num+'</td></tr>\n';
+					num = round(capturedPlanets[i][prop][3]["Minerals"][1],2);
+					tabstr += '\t<tr><td></td><td>Common Metals</td><td>'+num+'</td></tr>\n';
+					num = round(capturedPlanets[i][prop][3]["Minerals"][2],2);
+					tabstr += '\t<tr><td></td><td>Rare Metals</td><td>'+num+'</td></tr>\n';
+					num = round(capturedPlanets[i][prop][3]["Minerals"][3],2);
+					tabstr += '\t<tr><td></td><td>Industrial Crystals</td><td>'+num+'</td></tr>\n';
+					num = round(capturedPlanets[i][prop][3]["Minerals"][4],2);
+					tabstr += '\t<tr><td></td><td>Gemstones</td><td>'+num+'</td></tr>\n';
+					num = round(capturedPlanets[i][prop][3]["Minerals"][5],2);
+					tabstr += '\t<tr><td></td><td>Radioactives</td><td>'+num+'</td></tr>\n</div></td></tr></table></td></tr>\n';
 				}}
 			}
 		}
