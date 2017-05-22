@@ -1780,7 +1780,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 			img += stars[i][0];
 		}
 		img += '_Star.png" alt="' + s + ' Image" style = "width:200px;height:200px;">';
-		tabstr += '\t<div class="panel"><table><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
+		tabstr += '\t<div class="panel"><table hidden><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
 		tabstr += '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
 		if (i===0){
 			tabstr += '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
@@ -1830,20 +1830,15 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 	var acc = document.getElementsByClassName("accordion");
 
 	for (i = 0; i < acc.length; i++) {
-    	acc[i].onclick = function(){
-        	/* Toggle between adding and removing the "active" class,
-        	to highlight the button that controls the panel */
-        	this.classList.toggle("active");
-
-        	/* Toggle between hiding and showing the active panel */
-        	var panel = this.nextElementSibling;
-        	if (panel.style.display === "block") {
-            	panel.style.display = "none";
-        	} 
-        	else {
-            	panel.style.display = "block";
-        	}
-    	};
+		acc[i].onclick = function() {
+    		this.classList.toggle("active");
+    		var panel = this.nextElementSibling;
+    		if (panel.style.maxHeight){
+      			panel.style.maxHeight = null;
+    		} else {
+      			panel.style.maxHeight = panel.scrollHeight + "px";
+    		}
+  		};
 	}
 }
 
