@@ -1754,14 +1754,15 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
   		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 	}
 	
-	var tabstr = '<table>\n\t<tr class="big-header header"><td colspan="3">'+sysname+" System</td><tr>\n";
+	var tabstr = '\n\t<div class="big-header header">'+sysname+" System</div>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
-		tabstr += '\t<tr><td colspan="3" class="header">';
+		tabstr += '\t<button class="accordion">'
 		if (i===0){
 			tabstr += "Primary Star: " + stars[i][0];
 		} else {
 			tabstr += "Secondary Star: " + stars[i][0];
 		}
+		tabstr += '</button>\n'
 		if ( ["dA","dF","dG"].indexOf(stars[i][1]) ){
 			s = "Degenerate White Dwarf";
 		} 
@@ -1779,7 +1780,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 			img += stars[i][0];
 		}
 		img += '_Star.png" alt="' + s + ' Image" style = "width:200px;height:200px;">';
-		tabstr += "</td></tr>\n\t<tr><td>Star Type:</td><td>"+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
+		tabstr += '\t<div class="panel"><table><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
 		tabstr += '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
 		if (i===0){
 			tabstr += '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
@@ -1823,19 +1824,19 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 			}}
 		}
 	}
-	tabstr += "</table>";
+	tabstr += "</table></div>";
 	$("#solarSystem").html(tabstr);
 	
-/*	var acc = document.getElementsByClassName("accordion");
+	var acc = document.getElementsByClassName("accordion");
 
 	for (i = 0; i < acc.length; i++) {
-    	acc[i].onclick = function(){*/
+    	acc[i].onclick = function(){
         	/* Toggle between adding and removing the "active" class,
         	to highlight the button that controls the panel */
-//        	this.classList.toggle("active");
+        	this.classList.toggle("active");
 
         	/* Toggle between hiding and showing the active panel */
-/*        	var panel = this.nextElementSibling;
+        	var panel = this.nextElementSibling;
         	if (panel.style.display === "block") {
             	panel.style.display = "none";
         	} 
@@ -1843,7 +1844,7 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
             	panel.style.display = "block";
         	}
     	};
-	}*/
+	}
 }
 
 function generate(){
