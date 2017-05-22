@@ -2426,6 +2426,13 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 	});
 	$("div.system").hide();
 	$("table.system").hide();
+	
+	document.createEleement
+	if($("#export").length){
+		
+	} else {
+		$("#buttonZone").append('<br>\n<button onclick="systemExport()">Export</button>');
+	}
 }
 
 function generate(){
@@ -2518,7 +2525,8 @@ function generate(){
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
 
-function systemImport(obj){
+function systemImport(){
+	var obj = $("#import").val();
 	tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);
 }
 
