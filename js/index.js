@@ -1823,8 +1823,8 @@ function tableGen(sysname,stars,orbitZones,planets,satel,asteroids,capturedPlane
 				tabstr += '\t<tr><td></td><td>'+prop+':</td><td>Orbits From: '+round(bode(capturedAsteroids[i][prop][0]),2)+'AU to '+round(bode(capturedAsteroids[i][prop][1]),2)+'AU</td></tr>\n';
 			}}
 		}
+		tabstr += "</table></div>";
 	}
-	tabstr += "</table></div>";
 	$("#solarSystem").html(tabstr);
 	
 	var acc = document.getElementsByClassName("accordion");
