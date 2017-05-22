@@ -1714,6 +1714,466 @@ function satellites(planets){
 	return tab;
 }
 
+function planetDeets(planets,satellites){
+	function multiroll(min,max,num){
+		var i, x = 0;
+		for (i=0;i<num;i++){
+			x += randomInt(min,max);
+		}
+		return x;
+	}
+	
+	function size(type){
+		switch(type){
+			case "Mesoplanet":
+				return Math.max(0.8,randomInt(1,10)-6);
+			case "Small Terrestrial":
+				return Math.min(9,randomInt(1,10)+3);
+			case "Ultra Hostile":
+				return 1000*(randomInt(1,10)+5);
+			case "Super Terrestrial":
+				return Math.max(16,multiroll(1,10,2)+10);
+			case "Ice World":
+				return Math.max(4,randomInt(1,10));
+			case "Dirty Snowball":
+				return Math.max(4,randomInt(1,10));
+			case "Small Gas Giant":
+				return Math.max(16,multiroll(1,10,7)+30);
+			case "Gas Giant":
+				return Math.max(4,100+10*randomInt(1,10));
+			case "Gas Supergiant":
+			case "Gas Ultragiant/Brown Dwarf":
+				return Math.max(4,200+10*randomInt(1,10));
+			default:
+				return Math.max(8,randomInt(1,10)+5);
+		}
+	}
+
+	function atmosphere(type,location,size){
+		var t=[], mod=0,r;
+		switch(location){
+			case "In":
+				mod += -2;
+			case "Hab":
+				mod += 1;
+			case "In":
+				mod += 2;
+		}
+		if (size<5){
+			mod += -2;
+		} 
+		else if (size>8){
+			mod += 1;
+		}
+		r = Math.min(Math.max(randomInt(1,10)+mod,1),10);
+		switch(type){
+			case "Marginal":
+				if (r<6){
+					t.push("Carbon Dioxide");
+				} 
+				else {
+					t.push("Methane");
+				}
+				break;
+			case "Mesoplanet":
+				if (r<4){
+					t.push("None");
+				}
+				else if (r<6){
+					t.push("Hydrogen");
+				}
+				else if (r<9){
+					t.push("Helium");
+				}
+				else {
+					t.push("Methane")
+				}
+				break;
+			case "Small Terrestrial":
+				if (r<6){
+					t.push("None");
+				}
+				else if (r<8){
+					t.push("Hydrogen");
+				}
+				else {
+					t.push("Helium")
+				}
+				break;
+			case "Ultra Hostile":
+			case "Reducing":
+				if (r===1){
+					t.push("Hydrogen");
+				}
+				else if (r===2){
+					t.push("Bromine");
+				}
+				else if (r<5){
+					t.push("Hydrochloric acid");
+				}
+				else if (r<7){
+					t.push("Sulfuric acid");
+				}
+				else if (r===7){
+					t.push("Oxygen");
+				}
+				else if (r===2){
+					t.push("Fluorine");
+				}
+				else {
+					t.push("Chlorine")
+				}
+				break;
+			case "Super Terrestrial":
+				if (r<6){
+					t.push("Carbon Dioxide");
+				}
+				else if (r===6){
+					t.push("Hydrogen Sulfide");
+				}
+				else if (r<10){
+					t.push("Methane");
+				}
+				else {
+					t.push("Chlorine")
+				}
+				break;
+			case "Ice World":
+			case "Dirty Snowball":
+				if (r===1){
+					t.push("None");
+				}
+				else if (r===2){
+					t.push("Hydrogen");
+				}
+				else {
+					t.push("Methane")
+				}
+				break;
+			case "Geoactive":
+				if (r===1){
+					t.push("None");
+				}
+				else if (r===2){
+					t.push("Hydrogen");
+				}
+				else if (r===3){
+					t.push("Hydrogen Fluoride");
+				}
+				else if (r<8){
+					t.push("Hydrogen Sulfide");
+				}
+				else {
+					t.push("Sulfur Dioxide")
+				}
+				break;
+			case "Small Gas Giant":
+			case "Gas Giant":
+			case "Gas Supergiant":
+			case "Gas Ultragiant/Brown Dwarf":
+				t.push("Hydrogen");
+				break;
+			default:
+				t.push("Oxygen-Nitrogen");
+		}
+		mod = 0;
+		if (size<3){
+			mod += -8;
+		} 
+		else if (size<4){
+			mod += -7;
+		}
+		else if (size<5){
+			mod += -6;
+		}
+		else if (size<6){
+			mod += -5;
+		}
+		else if (size<7){
+			mod += -4;
+		}
+		else if (size<8){
+			mod += -3;
+		}
+		else if (size<9){
+			mod += -2;
+		}
+		else if (size<10){
+			mod += -1;
+		}
+		else if (size<11){
+			mod += 0;
+		}
+		else if (size<12){
+			mod += 1;
+		}
+		else if (size<14){
+			mod += 2;
+		}
+		else if (size<16){
+			mod += 3;
+		}
+		else if (size<17){
+			mod += 4;
+		}
+		else if (size<20){
+			mod += 5;
+		}
+		else if (size<22){
+			mod += 6;
+		}
+		else if (size<24){
+			mod += 7;
+		}
+		else {
+			mod += 8;
+		}
+		r = Math.min(Math.max(randomInt(1,10)+mod,1),10);
+		switch(type){
+			case "Marginal":
+			case "Mesoplanet":
+			case "Small Terrestrial":
+			case "Ultra Hostile":
+			case "Reducing":
+			case "Super Terrestrial":
+			case "Ice World":
+			case "Dirty Snowball":
+			case "Geoactive":
+				switch (r){
+					case 1:
+						t.push(0.00000001);
+						break;
+					case 2:
+						t.push(0.000001);
+						break;
+					case 3:
+						t.push(0.01);
+						break;
+					case 4:
+					case 5:
+						t.push(0.3);
+						break;
+					case 6:
+					case 7:
+						t.push(1);
+						break;
+					case 8:
+						t.push(3);
+						break;
+					case 9:
+						t.push(10);
+						break;
+					default:
+						t.push(90);
+						break;
+				}
+				break;
+			case "Small Gas Giant":
+			case "Gas Giant":
+			case "Gas Supergiant":
+			case "Gas Ultragiant/Brown Dwarf":
+				t.push("Liquifying");
+				break;
+			default:
+				switch (r){
+					case 1:
+					case 2:
+						t.push(0.5);
+						break;
+					case 9:
+					case 10:
+						t.push(1.5);
+					default:
+						t.push(1);
+				}
+		}
+		return t;
+	}
+
+	function hydro(type,location){
+		if (["In","Out"].indexOf(location)>-1){
+			return 0;
+		}
+		else {
+			var x;
+			switch(type){
+				case "Geoactive":
+				case "Glaciated":
+				case "Super Terrestrial":
+					return 10*randomInt(1,10);
+				case "Desert":
+					return multiroll(1,20,2)-2;
+				case "Marginal":
+					x = 10*(randomInt(1,10)-6);
+					break;
+				case "Oceanic":
+					x = 10*(randomInt(1,10)+7);
+					break;
+				case "Paradise":
+					return Math.min(Math.max(randomInt(1,10)*10,20),80);
+				default:
+					return 0;
+			}
+			return Math.min(Math.max(x,0),100);
+		}
+	}
+
+	function cryo(type,location){
+		if (location=="In"){
+			return 0;
+		}
+		else if (location=="Hab"){
+			switch(type){
+				case "Geoactive":
+				case "Oceanic":
+				case "Super Terrestrial":
+					return 10*randomInt(1,10);
+				case "Small Terrestrial":
+					return 5*randomInt(1,10);
+				case "Desert":
+				case "Marginal":
+					return 10*(randomInt(1,10)-1);
+				case "Glaciated":
+					return Math.min(Math.max(10*(randomInt(1,10)+7),0),100);
+				case "Paradise":
+					return Math.min(Math.max(randomInt(1,10)*10,20),80);
+				default:
+					return 0;
+			}
+		} 
+		else {
+			switch(type){
+				case "Geoactive":
+				case "Small Terrestrial":
+					return 10*randomInt(1,10);
+				case "Super Terrestrial":
+					x = 10*(randomInt(1,10)+5);
+					break;
+				case "Dirty Snowball":
+					x = 10*(randomInt(1,10)+3);
+					break;
+				case "Ice World":
+					x = 10*(randomInt(1,10)+7);
+					break;
+				default:
+					return 0;
+			}
+			return Math.min(100,x);
+		}
+	}
+	
+	function volc(type){
+		var x;
+		switch(type){
+			case "Mesoplanet":
+				x = randomInt(1,10)-2;
+				break;
+			case "Geoactive":
+				x = 10*(randomInt(1,10)+5);
+				break;
+			case "Reducing":
+			case "Super Terrestrial":
+				x = 10*(randomInt(1,10)-4);
+				break;
+			case "Ultra Hostile":
+				x = 10*(randomInt(1,10)-5);
+				break;
+			case "Dirty Snowball":
+			case "Ice World":
+				x = 10*(randomInt(1,10)-7);
+				break;
+			default:
+				x = 10*(randomInt(1,10)-6);
+		}
+		return Math.max(0,Math.min(x,100));
+	}
+	
+	function tect(type){
+		var x;
+		switch(type){
+			case "Mesoplanet":
+				return 0;
+			case "Geoactive":
+				x = Math.max(10*(randomInt(1,10)+5),90);
+				break;
+			case "Ice World":
+				x = 10*(randomInt(1,10)-8);
+				break;
+			case "Dirty Snowball":
+				x = 10*(randomInt(1,10)-7);
+				break;
+			case "Ultra Hostile":
+				x = 10*(randomInt(1,10)-5);
+				break;
+			default:
+				x = 10*(randomInt(1,10)-6);
+		}
+		return Math.max(0,x);
+	}
+	
+	function hoursPDay(hydro,sat){
+		var mass=0,prop,i;
+		for (prop in sat){if(sat.hasOwnProperty(prop)){
+			if (Array.isArray(sat[prop])){
+				for(i=0;i<sat[prop];i++){
+					mass+=sat[prop][i][0];
+				}
+			}
+		}}
+		return multiroll(1,10,3)+mass;
+	}
+	
+	function minerals(type){
+		var tab = [randomInt(1,10)+3,randomInt(1,10)+1,randomInt(1,10)-2,randomInt(1,10),randomInt(1,10)-4,randomInt(1,10)-4],i;
+		if (type=="Ice World"){
+			tab[0] -= 4;
+			tab[1] -= 6;
+			tab[2] -= 8;
+			tab[3] -= 5;
+			tab[4] -= 4;
+			tab[5] -= 3;
+		} else if (type=="Dirty Snowball"){
+			tab[1] -= 4;
+			tab[2] -= 6;
+			tab[3] -= 3;
+			tab[4] -= 2;
+		}
+		for (i=0;i<tab.length;i++){
+			tab[i] = Math.min(9,Math.max(0,tab[i]));
+		}
+		return tab;
+	}
+	
+	var i,tab; for (i=0;i<planets.length;i++){
+		for (planet in planets[i]){
+			if (planets[i].hasOwnProperty(planet)){
+				tab = {};
+				tab["Diameter"]=size(planet[2]);
+				tab["Circumference"]=Math.PI*tab["Diameter"];
+				tab["Surface Area"]=tab["Circumference"]/2;
+				tab["Surface Gravity"]=tab["Diameter"]/12;
+				tab["Atmospheric Makeup"]=atmosphere(planet[2],planet[1],tab["Diameter"]);
+				tab["Atmospheric Pressure"] = tab["Atmospheric Makeup"][1];
+				tab["Atmospheric Makeup"] = tab["Atmospheric Makeup"][0];
+				tab["Hydrosphere"] = hydro(planet[2],planet[1]);
+				tab["Cryosphere"] = cryo(planet[2],planet[1]);
+				tab["Volcanism"] = volc(planet[2]);
+				tab["Tectonic Activity"] = tect(planet[2]);
+				tab["% Land Area"] = 100-tab["Hydrosphere"]-tab["Cryosphere"];
+				if (["Desert","Glaciated","Marginal","Oceanic","Paradise"].indexOf(planet[2])>-1){
+					tab["Relative Humidity"]=5*(randomInt(1,10)+tab["Hydrosphere"]);
+					tab["Mean Temperature"]=100-(tab["Cryosphere"]*10);
+					tab["Mean High Temperature"]=tab["Mean Temperature"]+20;
+					tab["Mean Low Temperature"]=tab["Mean Temperature"]-20;
+				}
+				tab["Hours per Day"]=hoursPDay(tab["Hydrosphere"],satellites[i][planet]);
+				tab["Minerals"]=minerals(planet[2]);
+			}
+		}
+		planets[i].push(tab);
+	} 
+}
+
 function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids){
 	function starType(letter,number){
 		var s;
