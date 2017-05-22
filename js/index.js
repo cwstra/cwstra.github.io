@@ -1754,8 +1754,10 @@ function planetDeets(planets,satellites){
 		switch(location){
 			case "In":
 				mod += -2;
+				break;
 			case "Hab":
 				mod += 1;
+				break;
 			case "In":
 				mod += 2;
 		}
@@ -1786,7 +1788,7 @@ function planetDeets(planets,satellites){
 					t.push("Helium");
 				}
 				else {
-					t.push("Methane")
+					t.push("Methane");
 				}
 				break;
 			case "Small Terrestrial":
@@ -1797,7 +1799,7 @@ function planetDeets(planets,satellites){
 					t.push("Hydrogen");
 				}
 				else {
-					t.push("Helium")
+					t.push("Helium");
 				}
 				break;
 			case "Ultra Hostile":
@@ -1821,7 +1823,7 @@ function planetDeets(planets,satellites){
 					t.push("Fluorine");
 				}
 				else {
-					t.push("Chlorine")
+					t.push("Chlorine");
 				}
 				break;
 			case "Super Terrestrial":
@@ -1835,7 +1837,7 @@ function planetDeets(planets,satellites){
 					t.push("Methane");
 				}
 				else {
-					t.push("Chlorine")
+					t.push("Chlorine");
 				}
 				break;
 			case "Ice World":
@@ -1847,7 +1849,7 @@ function planetDeets(planets,satellites){
 					t.push("Hydrogen");
 				}
 				else {
-					t.push("Methane")
+					t.push("Methane");
 				}
 				break;
 			case "Geoactive":
@@ -1864,7 +1866,7 @@ function planetDeets(planets,satellites){
 					t.push("Hydrogen Sulfide");
 				}
 				else {
-					t.push("Sulfur Dioxide")
+					t.push("Sulfur Dioxide");
 				}
 				break;
 			case "Small Gas Giant":
@@ -1983,6 +1985,7 @@ function planetDeets(planets,satellites){
 					case 9:
 					case 10:
 						t.push(1.5);
+            break;
 					default:
 						t.push(1);
 				}
@@ -2144,7 +2147,7 @@ function planetDeets(planets,satellites){
 		return tab;
 	}
 	
-	var i,tab; for (i=0;i<planets.length;i++){
+	var i, tab, planet; for (i=0;i<planets.length;i++){
 		for (planet in planets[i]){
 			if (planets[i].hasOwnProperty(planet)){
 				tab = {};
@@ -2216,13 +2219,13 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 	
 	var tabstr = '\n\t<div class="big-header header">'+sysname+" System</div>\n";
 	var i,s,img,prop,j; for (i=0;i<stars.length;i++){
-		tabstr += '\t<button class="system">'
+		tabstr += '\t<button class="system">';
 		if (i===0){
 			tabstr += "Primary Star: " + name[i];
 		} else {
 			tabstr += "Secondary Star: " + name[i];
 		}
-		tabstr += '</button>\n'
+		tabstr += '</button>\n';
 		if ( ["dA","dF","dG"].indexOf(stars[i][1])>-1 ){
 			s = "Degenerate White Dwarf";
 		} 
@@ -2289,7 +2292,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 	
 	$("button.system").click(function(){
 		$(this).next().toggle();
-	})
+	});
 	$("div.system").hide();
 	$("table.system").hide();
 }
@@ -2321,10 +2324,11 @@ function generate(){
     t = starRanges(t);
     var name = randomName();
     var sysname = name;
+    var n;
     if (stars.length==1){
     	name = [name];
     } else {
-    	var n = [];
+    	n = [];
     	for (i=0;i<stars.length;i++){
     		n.push(name+" &#"+(945+i).toString()+";");
     	}
@@ -2333,7 +2337,7 @@ function generate(){
     console.log("starRanges:");
     console.log(JSON.parse(JSON.stringify(t)));
     console.log(["t",t]);
-    var n = t.filter(function (x) {
+    n = t.filter(function (x) {
     	return !x.every(function (y){ 
     		return !isNaN(y);
     	});
