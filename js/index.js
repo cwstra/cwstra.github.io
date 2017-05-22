@@ -2392,9 +2392,12 @@ function generate(){
     for (i=0;i<planets.length;i++){
     	satel.push(satellites(planets[i]));
     }
-    planetDeets(planets,satel);
-    planetDeets(capturedPlanets,satel);
-    
+    if (planets!="No Captures"){
+    	planetDeets(planets,satel);
+    }
+    if (capturedPlanets!="No Captures"){
+    	planetDeets(capturedPlanets,satel);
+    }
 	console.log("Done");
     console.log("stars");
     console.log(stars);
