@@ -2363,7 +2363,8 @@ function generate(){
     for (i=0;i<planets.length;i++){
     	satel.push(satellites(planets[i]));
     }
-    planetDeets(planets,satellites);
+    
+    planetDeets(planets,satel);
 	console.log("Done");
     console.log("stars");
     console.log(stars);
