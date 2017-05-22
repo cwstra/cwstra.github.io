@@ -2117,7 +2117,7 @@ function planetDeets(planets,satellites){
 	function hoursPDay(hydro,sat){
 		var mass=0,prop,i;
 		for (prop in sat){if(sat.hasOwnProperty(prop)){
-			if (Array.isArray(sat[prop])){
+			if (["Minor Ring Systems","Major Ring Systems"].indexOf(prop)){
 				for(i=0;i<sat[prop];i++){
 					mass+=sat[prop][i][0];
 				}
