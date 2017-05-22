@@ -2218,6 +2218,61 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
   		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 	}
 	
+	function planetImage(type){
+		var s = '<img src="images/planet'
+		switch(type){
+			case "Geoactive":
+				s += "1";
+				break;
+			case "Mesoplanet":
+				s += "2";
+				break;
+			case "Small Terrestrial":
+				s += "3";
+				break;
+			case "Desert":
+				s += "4";
+				break;
+			case "Glaciated":
+				s += "5";
+				break;
+			case "Marginal":
+				s += "6";
+				break;
+			case "Oceanic":
+				s += "7";
+				break;
+			case "Paradise":
+				s += "8";
+				break;
+			case "Reducing":
+				s += "9";
+				break;
+			case "Ultra Hostile":
+				s += "10";
+				break;
+			case "Gas Giant":
+				s += "11";
+				break;
+			case "Gas Ultragiant/Brown Dwarf":
+				s += "12";
+				break;
+			case "Small Gas Giant":
+				s += "13";
+				break;
+			case "Ice World":
+				s += "14";
+				break;
+			case "Gas Supergiant":
+				s += "15";
+				break;
+			default:
+				s += "16";
+		}
+		s += '.png alt="'+type+' Planet Image" style="width:100px;height:100px;">';
+		return s;
+	}
+	
 	var tabstr = '\n\t<div class="big-header header">'+sysname+" System</div>\n";
 	var i,s,img,prop,j,num,x; for (i=0;i<stars.length;i++){
 		tabstr += '\t<button class="system">';
@@ -2244,7 +2299,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			img += stars[i][0];
 		}
 		img += '_Star.png" alt="' + s + ' Image" style = "width:200px;height:200px;">';
-		tabstr += '\t<div class="system"><table class="big-table"><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3">'+img+'</td></tr>\n';
+		tabstr += '\t<div class="system"><table class="big-table"><tr><td>Star Type:</td><td>'+stars[i][4]+"; "+s+'</td><td rowspan = "3" style="width:200px;">'+img+'</td></tr>\n';
 		tabstr += '\t<tr><td>Number of Orbits:</td><td>'+stars[i][2]+'</td></tr>\n';
 		if (i===0){
 			tabstr += '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
@@ -2257,9 +2312,9 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			tabstr += '\t<tr><td colspan="3" class="header">Planets:</td></tr>\n';
 			for (prop in planets[i]){if (planets[i].hasOwnProperty(prop)){
 				tabstr+='\t<tr><td colspan="3"><button class="system">'+prop+'</button>\n';
-				tabstr+='\t<table class="system"><tr><td></td><td colspan="2">Planet Type:</td><td>'+planets[i][prop][2]+'</td></tr>\n';
-				tabstr+='\t<tr><td></td><td colspan="2">Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
-				tabstr+='\t<tr><td></td><td colspan="2">Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
+				tabstr+='\t<table class="system"><tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td><td rowspan="3">'+planeImage(planets[i][prop][2])+'</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td colspan="2">Orbital Distance:</td><td>'+round(bode(planets[i][prop][0]),2)+' AU</td></tr>\n';
 				tabstr+='\t<tr><td></td><td colspan="2">Surface Gravity:</td><td>'+round(planets[i][prop][3]["Surface Gravity"],2)+'g</td></tr>\n';
 				tabstr+='\t<tr><td></td><td colspan="2">Surface Area:</td><td>'+round(planets[i][prop][3]["Surface Area"],2)+'km&sup2;</td></tr>\n';
@@ -2298,9 +2353,9 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			if (capturedPlanets!="No Captures"){
 				for (prop in capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
 					tabstr+='\t<tr><td colspan="3"><button class="system">'+prop+'</button>\n';
-					tabstr+='\t<table class="system"><tr><td></td><td colspan="2">Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td></tr>\n';
-					tabstr+='\t<tr><td></td><td colspan="2">Orbital Zone:</td><td>'+capturedPlanets[i][prop][1][1]+" to "+capturedPlanets[i][prop][2][1]+'</td></tr>\n';
-					tabstr+='\t<tr><td></td><td colspan="2">Orbital Position:</td><td>'+capturedPlanets[i][prop][1][0]+" to "+capturedPlanets[i][prop][2][0]+'</td></tr>\n';
+					tabstr+='\t<table class="system"><tr><td></td><td colspan="2">Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td><td rowspan="3">'+planeImage(planets[i][prop][2])+'</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][prop][1][1]+" to "+capturedPlanets[i][prop][2][1]+'</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][prop][1][0]+" to "+capturedPlanets[i][prop][2][0]+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td colspan="2">Orbital Distance:</td><td>'+round(bode(capturedPlanets[i][prop][1][0]),2)+" AU to "+round(bode(capturedPlanets[i][prop][2][0]),2)+' AU</td></tr></table></td></tr>\n';
 					tabstr+='\t<tr><td></td><td colspan="2">Surface Gravity:</td><td>'+round(capturedPlanets[i][prop][3]["Surface Gravity"],2)+'g</td></tr>\n';
 					tabstr+='\t<tr><td></td><td colspan="2">Surface Area:</td><td>'+round(capturedPlanets[i][prop][3]["Surface Area"],2)+'km&sup2;</td></tr>\n';
