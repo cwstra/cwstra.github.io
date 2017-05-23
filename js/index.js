@@ -37,15 +37,15 @@ $(document).ready(function(){
             $('#stars').hide();
         } else {
             $('#stars').show();
-            if (stars===1){
+            if (stars==1){
               $('.star2').hide();
               $('.star3').hide();
               $('.star4').hide();
-            } else if (stars===2){
+            } else if (stars==2){
               $('.star2').show();
               $('.star3').hide();
               $('.star4').hide();
-            } else if (stars===3){
+            } else if (stars==3){
               $('.star2').show();
               $('.star3').show();
               $('.star4').hide();
@@ -69,20 +69,25 @@ function randomInt(min, max) {
    	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 //Function to determine Star Size:
-function starClassSize(type){
-	var r = randomInt(1,10)+randomInt(1,10);
-	var tab = [];
-	if (r<4){
-		tab.push("A");
-	} else if (r<8) {
-		tab.push("F");
-	} else if (r<13) {
-		tab.push("G");
-	} else if (r<18) {
-		tab.push("K");
-	} else {
-		tab.push("M");
-	}
+function starClassSize(type,spect,dec,lum){
+  var spectt = (spect!=="random"), dect= (dec!=="random"), lumt = (lum!=="random"), r, tab = [];
+  if (spectt){
+    tab.push(spect);
+  } else {
+	 r = randomInt(1,10)+randomInt(1,10);
+	 if (r<4){
+		  tab.push("A");
+	 } else if (r<8) {
+		  tab.push("F");
+	 } else if (r<13) {
+		  tab.push("G");
+	 } else if (r<18) {
+		  tab.push("K");
+	 } else {
+		  tab.push("M");
+	 }
+  }
+  if (dect)
 	r = randomInt(1,10)+randomInt(1,10);
 	if (type=="Primary"){
 		if (r<3){
@@ -2413,14 +2418,28 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 }
 
 function generate(){
-	var r = randomInt(1,20);
+  var presets = ($("#random").val()=="preset");
+	var r ;
+  if (presets && $("starNumber").val()!="random"){
+    if ($("starNumber").val()===1){
+      r = 1;
+    } else if ($("starNumber").val()===2){
+      r = 10;
+    } else if ($("starNumber").val()===3){
+      r = 18;
+    } else {
+      r = 20;
+    }
+  } else {
+    r = randomInt(1,20);
+  }
 	var t = [];
 	var letter = [];
 	var numb = [];
 	var dec = [];
 	var max = [];
 	var i;
-   	t.push(starClassSize("Primary"));
+  t.push(starClassSize("Primary"));
 	if (r > 9){
    		t.push(starClassSize(""));
 	}
@@ -2481,7 +2500,7 @@ function generate(){
     if (capturedPlanets!="No Captures"){
     	planetDeets(capturedPlanets,satel);
     }
-	console.log("Done");
+	  console.log("Done");
     console.log("stars");
     console.log(stars);
     console.log("orbitZones");
