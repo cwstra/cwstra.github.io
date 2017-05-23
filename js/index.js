@@ -2075,7 +2075,6 @@ function planetDeets(planets,satellites){
 				tab["Surface Area"]=tab["Circumference"]/2;
 				tab["Surface Gravity"]=tab["Diameter"]/12;
 				tab["Atmospheric Makeup"]=atmosphere(planet[2],planet[1],tab["Diameter"]);
-				console.log([prop,tab["Atmospheric Makeup"]])
 				tab["Atmospheric Pressure"] = tab["Atmospheric Makeup"][1];
 				tab["Atmospheric Makeup"] = tab["Atmospheric Makeup"][0];
 				tab["Hydrosphere"] = hydro(planet[2],planet[1]);
@@ -2396,15 +2395,11 @@ function generate(){
     	}
     	name = n;
     }
-    /*console.log("starRanges:");
-    console.log(JSON.parse(JSON.stringify(t)));
-    console.log(["t",t]);*/
     n = t.filter(function (x) {
     	return !x.every(function (y){ 
     		return !isNaN(y);
     	});
     });
-    //console.log(["n",n]);
    	for (i=0;i<n.length;i++){
    		max.push(n[i][1]);
    	}
@@ -2416,7 +2411,6 @@ function generate(){
     });
     planets = zonePop(planets);
     
-    //console.log(["max",max]);
     var capturedPlanets = capture("Planet", max, letter, numb, dec);
     var capturedAsteroids = capture("Asteroid", max, letter, numb, dec);
     var orbitZones = t;
