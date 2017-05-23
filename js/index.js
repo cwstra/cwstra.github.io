@@ -861,62 +861,6 @@ function zonePop(zones){
 	return tab;
 }
 
-function tableJoin(name,t1,t2){
-	var dim = [t1.length,t1[0].length];
-	var c1 = [name+" System","SpanFromAbove"];
-	var c2 = [t1[0][1],"SpanFromAbove"];
-	var c3 = [t1[0][2],"SpanFromAbove"];
-	var i; for(i=1;i<dim[0];i++){
-		if (dim[0]==2){
-			c1.push(name);
-		} else {
-			c1.push(name+" &#"+(914+i).toString()+";");
-		}
-		c2.push(t1[i][1]);
-		c3.push(t1[i][2]);
-	} 
-	var t = t1.slice(1);
-	t = t.map(function (x){
-		x.slice(3);
-	});
-	var tab = [];
-	for (i=3;i<dim[2];i++){
-		tab.push(t1[0][i]);
-		tab.push("SpanFromLeft");
-		tab.push("SpanFromLeft");
-	}
-	tab = [tab,[]];
-	dim = [dim[0]-1,dim[1]-3];
-	for (i=0;i<dim[1];i++){
-		tab[1].push("Name");
-		tab[1].push("Zone");
-		tab[1].push("Type");
-	}
-	var j = 0;var k = 1;
-	tab.push([]);
-	for (i=0;i<dim[0];j++){
-		if (j>dim[1]){
-			j=0;
-			k=0;
-			tab.push({});
-			i++;
-		}
-		if (["Empty Orbit", "Asteroid Belt", "Companion Star", "N/A"].indexOf(t2[i][j])>-1){
-			tab[i+2].push("N/A");
-		} else {
-    		tab[i+2].push(c1[i+2]+" "+k.toString());
-   			k++;
-		}
-		tab[i+2].push(t[i][j]);
-		tab[i+2].push(t2[i][j]);
-	}
-	tab.pop();
-	for (i=0;i<tab.length;i++){
-		tab[i].unshift(c1[i],c2[i],c3[i]);
-	}
-	return tab;
-}
-
 function starCheck(pos,lett,num,dec){
 	switch(num){
 		case "dK":
@@ -1242,35 +1186,6 @@ function capture(type, max, lett, numb, dec){
 		}
 	} 
 	return tab;
-}
-
-function planetPicker(tab,ct){
-	var planets=[];
-	var t = tab.slice(2);
-	t = t.map(function (x){
-		x.slice(3);
-	});
-	var dim1 = [t.length,t[0].length];
-	var dim2 = [ct.length,ct[0].length];
-	var ts;
-	if (ct != [["No Rogue Asteroids"]]){
-		ts = ct.slice(1);
-		dim2 = [ts.length,ts[0].length];
-	}
-	var i; var j=0; for (i=0;i<dim1[0];j=j+3){
-		if (j>dim1[1]){
-			j = 0; i++;
-		}
-		if (t[i][j]!="N/A"){
-			planets.push([t[i][j],t[i][j+1],t[i][j+2],tab[0][j+3]]);
-		}
-	}
-	if (Array.isArray(dim2)){
-		for (i=0;i<dim2[0];i++){
-			planets.push([ts[i][0],ts[i][2][1],ts[i][3][1],ts[i][1],[ts[i][2][0],ts[i][3][0]]]);
-		}
-	}
-	return planets;
 }
 
 function planetsTable(name,orbitZones,planets){
