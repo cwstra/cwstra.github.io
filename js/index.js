@@ -2414,6 +2414,9 @@ function generate(){
     var capturedPlanets = capture("Planet", max, letter, numb, dec);
     var capturedAsteroids = capture("Asteroid", max, letter, numb, dec);
     var orbitZones = t;
+    for (i=0;i<planets.length;i++){
+    	orbitZones[i]=orbitZones[i].slice(0,planets[i].length)
+    }
     var asteroids = planetsTable(name,orbitZones,planets);
     planets = asteroids[0]; asteroids = asteroids[1];
     console.log("post-table");
