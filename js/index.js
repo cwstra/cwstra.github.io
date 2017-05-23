@@ -1,3 +1,47 @@
+$(document).ready(function(){
+    $(".sampleRP").hide();
+    $("#specificGen").hide();
+});
+//Planet Adding
+// Add a new repeating section
+$('.addPlanet').click(function(){
+    var currentCount =  $('#repeatingPlanets').length;
+    var newCount = currentCount+1;
+    var lastRepeatingGroup = $('#repeatingPlanets').last();
+    var newSection = $(".sampleRP").clone().toggleClass("sampleRP planetSection").show();
+    newSection.insertAfter(lastRepeatingGroup);
+    newSection.find("select").each(function (index, input) {
+        input.id = input.id.replace("_" + currentCount, "_" + newCount);
+    });
+    newSection.find("label").each(function (index, label) {
+        var l = $(label);
+        l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
+    });
+    return false;
+});
+
+// Delete a repeating section
+$(document).on('click','.deletePlanet',function(){
+    $(this).parent('div').remove();
+    return false;
+});
+
+$("#random").on("change",function(){
+    if($(this).val()=='preset'){
+        $('#specificGen').show();
+    } else {
+        $('#specificGen').hide();
+    }
+});
+
+$("#starNumber").on("change",function(){
+    if($(this).val()=='random'){
+        $('#stars').hide();
+    } else {
+        $('#stars').show();
+    }
+});
+
 //Positioning function for each planet
 bode = Smooth([0.2, 0.4, 0.7, 1, 1.6, 2.8, 5.2, 10, 19.6, 38.8, 77.2, 154.0, 307.6, 614.8]);
 curSystem = "";
@@ -54,7 +98,7 @@ function starClassSize(type){
       		}
 		}
 		tab.push("Primary");
-	} 
+	}
 	else {
 		if (r<3){
 			tab.push("II");
@@ -87,16 +131,16 @@ function starClassSize(type){
 		else {
 			var s = randomInt(1,10)+randomInt(1,10);
 			if (s<5){
-				tab[0]="N/A";
-				tab.push("dA");
+				tab[0]="dA";
+				tab.push("VII");
 				tab.push("N/A");
 			} else if (s<8){
-				tab[0]="N/A";
-				tab.push("dF");
+				tab[0]="dF";
+				tab.push("VII");
 				tab.push("N/A");
 			} else if (s<12){
-				tab[0]="N/A";
-				tab.push("dG");
+				tab[0]="dG";
+				tab.push("VII");
 				tab.push("N/A");
 			} else if (s<17){
 				if (randomInt(0,1)===0){tab[0]="K";}else{tab[0]="M";}
@@ -119,9 +163,9 @@ function starClassSize(type){
 			tab.push(randomInt(1,10)*1000);
 		}
 	}
-	if (["dA","dF","dG"].indexOf(tab[1])>-1){
+	if (["dA","dF","dG"].indexOf(tab[0])>-1){
 		tab.push(tab[1]);
-	} 
+	}
 	else {
 		tab.push(tab[0]+tab[2]+" "+tab[1]);
 	}
@@ -137,7 +181,7 @@ function zoneKeeper(tab,min,max){
 }
 
 function starRanges(stars){
-	var orbits; var mod; 
+	var orbits; var mod;
 	if (Array.isArray(stars[0])){
 		var r = [[]];
 		var t = [];
@@ -228,7 +272,7 @@ function starRanges(stars){
 							r.push([s[4],s[3]-8,s]);
 						}
 				}
-			} 
+			}
 			else {
 				mod = 0;
 				switch(s[0]){
@@ -270,7 +314,7 @@ function starRanges(stars){
 		prime[0][1] = m;
 		r = list.concat(prime).concat(y);
 		return r;
-	} 
+	}
 	else {
 		mod = 0;
 		switch(stars[0]){
@@ -344,28 +388,26 @@ function pZone(sR){
 function zChart(star){
 	var t = []; var i;
 	switch(star[2][1]){
-		case "dK":
-		case "dM":
-		case "dF":
-		case "dG":
-			for(i=0;i<=star[1]&&i<=5;i++){
-				if (i<5){
-					t.push("eOut"); 
-				} else {
-					t.push("Out");
-				}
-			}
-			break;
-		case "dA":
-			for(i=0;i<=star[1]&&i<=5;i++){
-				if (i===0){
-					t.push("eHab"); 
-				}else if (i<5){
-					t.push("eOut"); 
-				} else {
-					t.push("Out");
-				}
-			}
+		case "VII":
+      if (star[2][0]=="dA"){
+  		    for(i=0;i<=star[1]&&i<=5;i++){
+            if (i===0){
+              t.push("eHab");
+            } else if (i<5){
+              t.push("eOut");
+            } else {
+              t.push("Out");
+            }
+          }
+      } else {
+			     for(i=0;i<=star[1]&&i<=5;i++){
+				    if (i<5){
+					     t.push("eOut");
+				    } else {
+					     t.push("Out");
+				    }
+			   }
+      }
 			break;
 		case "II":
 			if ((star[2][0]=="A"&&star[2][2]<5)||(star[2][0]=="K"&&star[2][2]>4)){
@@ -380,7 +422,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (["A","F","G","K"].indexOf(star[2][0])){
 				for (i=0;i<=star[1];i++){
 					if (i<3){
@@ -434,7 +476,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (["A","K"].indexOf(star[2][0])>-1){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -447,7 +489,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (["F","G"].indexOf(star[2][0])>-1){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -460,7 +502,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else {
 				for (i=0;i<=star[1];i++){
 					if (i<4){
@@ -488,7 +530,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="A"){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -501,7 +543,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="F"&&star[2][2]<5){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -514,7 +556,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="F"){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -527,7 +569,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else {
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -555,7 +597,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="F"){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -568,7 +610,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="G"&&star[2][2]<5){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -581,7 +623,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="G"){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -594,7 +636,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="K"){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -605,7 +647,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="M"&&star[2][2]<5){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -616,7 +658,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else {
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -638,7 +680,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="G"&&star[2][2]<5){
 				for (i=0;i<=star[1];i++){
 					if (i<3){
@@ -649,7 +691,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="G"){
 				for (i=0;i<=star[1];i++){
 					if (i<2){
@@ -660,7 +702,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="K"&&star[2][2]<5){
 				for (i=0;i<=star[1];i++){
 					if (i<1){
@@ -671,7 +713,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else if (star[2][0]=="K"){
 				for (i=0;i<=star[1];i++){
 					if (i===0){
@@ -680,7 +722,7 @@ function zChart(star){
 						t.push("Out");
 					}
 				}
-			} 
+			}
 			else {
 				for (i=0;i<=star[1];i++){
 					t.push("Out");
@@ -718,7 +760,7 @@ function starZones(sR){
 			for (i=0;i<chart.length;i++){
 				t.push(chart[i]);
 			}
-		} 
+		}
 		else {
 			for (i=0;i<n[j][1];i++){
 				t.push(chart[i]);
@@ -854,7 +896,7 @@ function zonePop(zones){
 						t.push("Dirty Snowball");
 					}
 			}
-		}	
+		}
 		tab.push(t);
 	}
 	return tab;
@@ -862,18 +904,12 @@ function zonePop(zones){
 
 function starCheck(pos,lett,num,dec){
 	switch(num){
-		case "dK":
-		case "dM":
-		case "dF":
-		case "dG":
-			return "Out";
-		case "dA":
-			if (pos===0){
-				return "Hab";
-			} else {
-				return "Out";
-			}
-			break;
+    case "VII":
+      if (lett=="dA"&&pos===0){
+    		return "Hab";
+    	} else {
+    		return "Out";
+    	}
 		case "II":
 			if ((lett=="A"&& dec < 5)||(lett=="K"&&dec>4)) {
 				if (pos<4){
@@ -885,7 +921,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (["A","F","G","K"].indexOf(lett)>-1){
 				if (pos<3){
 					return "Incineration Zone";
@@ -896,7 +932,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="M"&&dec<5){
 				if (pos<5){
 					return "Incineration Zone";
@@ -907,7 +943,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else {
 				if (pos<7){
 					return "Incineration Zone";
@@ -931,7 +967,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (["A","K"].indexOf(lett)>-1){
 				if (pos<6){
 					return "In";
@@ -940,7 +976,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (["F","G"].indexOf(lett)>-1){
 				if (pos<5){
 					return "In";
@@ -949,7 +985,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else {
 				if (pos<4){
 					return "Incineration Zone";
@@ -973,7 +1009,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="A"){
 				if (pos<5){
 					return "In";
@@ -982,7 +1018,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="F"&& dec < 5){
 				if (pos<5){
 					return "In";
@@ -991,7 +1027,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="F"){
 				if (pos<4){
 					return "In";
@@ -1000,7 +1036,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else {
 				if (pos<3){
 					return "In";
@@ -1020,7 +1056,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="F"){
 				if (pos<4){
 					return "In";
@@ -1029,7 +1065,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="G"&& dec < 5){
 				if (pos<3){
 					return "In";
@@ -1038,7 +1074,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="G"){
 				if (pos<3){
 					return "In";
@@ -1047,21 +1083,21 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="K"){
 				if (pos<3){
 					return "Hab";
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="M"&& dec < 5){
 				if (pos<2){
 					return "Hab";
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else {
 				return "Out";
 			}
@@ -1075,7 +1111,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="G"&&dec<5){
 				if (pos<3){
 					return "In";
@@ -1084,7 +1120,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="G"){
 				if (pos<2){
 					return "In";
@@ -1093,7 +1129,7 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="K"&&dec<5){
 				if (pos<1){
 					return "In";
@@ -1102,14 +1138,14 @@ function starCheck(pos,lett,num,dec){
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else if (lett=="K"){
 				if (pos===0){
 					return "Hab";
 				} else {
 					return "Out";
 				}
-			} 
+			}
 			else {
 				return "Out";
 			}
@@ -1121,7 +1157,7 @@ function capture(type, max, lett, numb, dec){
 	var n = randomInt(1,10)-6;
 	if (n<1){
 		return "No Captures";
-	} 
+	}
 	else if (type == "Asteroid"){
 		if (Array.isArray(max)){
 			for (i=0;i<max.length;i++){
@@ -1183,12 +1219,12 @@ function capture(type, max, lett, numb, dec){
 			}
 			tab.push(t);
 		}
-	} 
+	}
 	return tab;
 }
 
 function planetsTable(name,orbitZones,planets){
-	var tab=[],i,j,t,a,ast=[],countp,counta; 
+	var tab=[],i,j,t,a,ast=[],countp,counta;
 	for(i=0;i<name.length;i++){
 		t = {};
 		a = [];
@@ -1200,12 +1236,12 @@ function planetsTable(name,orbitZones,planets){
 			} else if (["Empty Orbit","Companion Star","N/A"].indexOf(planets[i][j])===-1){
 				t[name[i]+" "+(counta++).toString()]=[j,orbitZones[i][j],planets[i][j]];
 			}
-		} 
+		}
 		if (t!=={}){
 			tab.push(t);
 		}
 		ast.push(a);
-	} 
+	}
 	if (tab===[]){
 		tab = "No Planets";
 	}
@@ -1215,12 +1251,12 @@ function planetsTable(name,orbitZones,planets){
 	return[tab,ast];
 }
 
-//In: One row of the planets 
+//In: One row of the planets
 //Out: Satellites list
 function satellites(planets){
 	function close(r){
 		switch(r){
-			case 1:	
+			case 1:
 				return 14;
 			case 2:
 				return 15;
@@ -1264,7 +1300,7 @@ function satellites(planets){
 	}
 	function med(r){
 		switch(r){
-			case 1:	
+			case 1:
 				return 85;
 			case 2:
 				return 90;
@@ -1308,7 +1344,7 @@ function satellites(planets){
 	}
 	function far(r){
 		switch(r){
-			case 1:	
+			case 1:
 				return 180;
 			case 2:
 				return 185;
@@ -1352,7 +1388,7 @@ function satellites(planets){
 	}
 	function ring(r){
 		switch(r){
-			case 1:	
+			case 1:
 				return 1;
 			case 2:
 				return 2;
@@ -1414,11 +1450,11 @@ function satellites(planets){
 				if (d[0] > 0){
 					s=[];
 					for (j=0;j<d[0];j++){
-						r = randomInt(1,20); 
+						r = randomInt(1,20);
 						s.push([randomInt(100,1000)*0.001,close(r)]);
 					}
-					t["Moonlets"]=s;
-				} 
+					t.Moonlets=s;
+				}
 				if (d[1]===1){
 					r = randomInt(1,20);
 					t["Small Moons"]=[randomInt(1000,2000)*0.001,close(r)];
@@ -1431,7 +1467,7 @@ function satellites(planets){
 				if (d[0]>0){
 					s=[];
 					for (j=0;j<d[0];j++){
-						r = randomInt(1,20); 
+						r = randomInt(1,20);
 						s.push(ring(r));
 					}
 					t["Minor Ring Systems"]=s;
@@ -1439,7 +1475,7 @@ function satellites(planets){
 				if (d[1]>0){
 					s=[];
 					for (j=0;j<d[0];j++){
-						r = randomInt(1,20); 
+						r = randomInt(1,20);
 						s.push(ring(r));
 					}
 					t["Major Ring Systems"]=s;
@@ -1491,7 +1527,7 @@ function satellites(planets){
 					if (s.length>0){
 						switch(k){
 							case 3:
-								t["Moonlets"]=s;
+								t.Moonlets=s;
                 				break;
 							case 4:
 								t["Small Moons"]=s;
@@ -1509,14 +1545,14 @@ function satellites(planets){
 				}
 				break;
 			case "Gas Supergiant":
-       		case "Gas Ultragiant/Brown Dwarf": 
+       		case "Gas Ultragiant/Brown Dwarf":
        		case "Gas Ultragiant":
        			d = [randomInt(1,10)-2,randomInt(1,10)-5,randomInt(1,10)+3,randomInt(1,10)+1,
 					 randomInt(1,10),randomInt(1,10)-4,randomInt(1,10)-6];
 				if (d[0]>0){
 					s=[];
 					for (j=0;j<d[0];j++){
-						r = randomInt(1,20); 
+						r = randomInt(1,20);
 						s.push(ring(r));
 					}
 					t["Minor Ring Systems"]=s;
@@ -1524,7 +1560,7 @@ function satellites(planets){
 				if (d[1]>0){
 					s=[];
 					for (j=0;j<d[0];j++){
-						r = randomInt(1,20); 
+						r = randomInt(1,20);
 						s.push(ring(r));
 					}
 					t["Major Ring Systems"]=s;
@@ -1576,7 +1612,7 @@ function satellites(planets){
 					if (s.length>0){
 						switch(k){
 							case 3:
-								t["Moonlets"]=s;
+								t.Moonlets=s;
                 				break;
 							case 4:
 								t["Small Moons"]=s;
@@ -1605,7 +1641,7 @@ function satellites(planets){
        					r = randomInt(1,20);
        					s.push([randomInt(100,1000)*0.001,close(r)]);
        				}
-       				t["Moonlets"]=s;
+       				t.Moonlets=s;
        			}
        			if (d[2]>0){
        				s = [];
@@ -1621,7 +1657,7 @@ function satellites(planets){
        			}
 		}
 		if (t === {}){
-			t="No Satellites";	
+			t="No Satellites";
 		}
 		tab[n[i]]=t;
 	}
@@ -1636,11 +1672,11 @@ function planetDeets(planets,satellites){
 		}
 		return x;
 	}
-	
+
 	function round(value, decimals) {
   		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 	}
-	
+
 	function size(type){
 		switch(type){
 			case "Mesoplanet":
@@ -1681,7 +1717,7 @@ function planetDeets(planets,satellites){
 		}
 		if (size<5){
 			mod += -2;
-		} 
+		}
 		else if (size>8){
 			mod += 1;
 		}
@@ -1690,7 +1726,7 @@ function planetDeets(planets,satellites){
 			case "Marginal":
 				if (r<6){
 					t.push("Carbon Dioxide");
-				} 
+				}
 				else {
 					t.push("Methane");
 				}
@@ -1799,7 +1835,7 @@ function planetDeets(planets,satellites){
 		mod = 0;
 		if (size<3){
 			mod += -8;
-		} 
+		}
 		else if (size<4){
 			mod += -7;
 		}
@@ -1961,7 +1997,7 @@ function planetDeets(planets,satellites){
 				default:
 					return 0;
 			}
-		} 
+		}
 		else {
 			switch(type){
 				case "Geoactive":
@@ -1982,7 +2018,7 @@ function planetDeets(planets,satellites){
 			return Math.min(100,x);
 		}
 	}
-	
+
 	function volc(type){
 		var x;
 		switch(type){
@@ -2008,7 +2044,7 @@ function planetDeets(planets,satellites){
 		}
 		return Math.max(0,Math.min(x,100));
 	}
-	
+
 	function tect(type){
 		var x;
 		switch(type){
@@ -2031,7 +2067,7 @@ function planetDeets(planets,satellites){
 		}
 		return Math.max(0,Math.min(100,x));
 	}
-	
+
 	function hoursPDay(hydro,sat){
 		var mass=0,prop,i;
 		for (prop in sat){if(sat.hasOwnProperty(prop)){
@@ -2043,7 +2079,7 @@ function planetDeets(planets,satellites){
 		}}
 		return multiroll(1,10,3)+mass;
 	}
-	
+
 	function minerals(type){
 		var tab = [randomInt(1,10)+3,randomInt(1,10)+1,randomInt(1,10)-2,randomInt(1,10),randomInt(1,10)-4,randomInt(1,10)-4],i;
 		if (type=="Ice World"){
@@ -2064,41 +2100,41 @@ function planetDeets(planets,satellites){
 		}
 		return tab;
 	}
-	
+
 	var i, tab, prop,planet; for (i=0;i<planets.length;i++){
 		for (prop in planets[i]){
 			if (planets[i].hasOwnProperty(prop)){
 				planet = planets[i][prop];
 				tab = {};
-				tab["Diameter"]=size(planet[2]);
-				tab["Circumference"]=Math.PI*tab["Diameter"];
-				tab["Surface Area"]=tab["Circumference"]/2;
-				tab["Surface Gravity"]=tab["Diameter"]/12;
-				tab["Atmospheric Makeup"]=atmosphere(planet[2],planet[1],tab["Diameter"]);
+				tab.Diameter=size(planet[2]);
+				tab.Circumference=Math.PI*tab.Diameter;
+				tab["Surface Area"]=tab.Circumference/2;
+				tab["Surface Gravity"]=tab.Diameter/12;
+				tab["Atmospheric Makeup"]=atmosphere(planet[2],planet[1],tab.Diameter);
 				tab["Atmospheric Pressure"] = tab["Atmospheric Makeup"][1];
 				tab["Atmospheric Makeup"] = tab["Atmospheric Makeup"][0];
-				tab["Hydrosphere"] = hydro(planet[2],planet[1]);
-				tab["Cryosphere"] = cryo(planet[2],planet[1]);
-				if (planet[2]=="Paradise" && tab["Hydrosphere"]+tab["Cryosphere"]>80){
-					tab["Cryosphere"] = Math.max(80-tab["Hydrosphere"],0);
-				} else if (tab["Hydrosphere"]+tab["Cryosphere"]>100){
-					tab["Cryosphere"] = 100-tab["Hydrosphere"];
+				tab.Hydrosphere = hydro(planet[2],planet[1]);
+				tab.Cryosphere = cryo(planet[2],planet[1]);
+				if (planet[2]=="Paradise" && tab.Hydrosphere+tab.Cryosphere>80){
+					tab.Cryosphere = Math.max(80-tab.Hydrosphere,0);
+				} else if (tab.Hydrosphere+tab.Cryosphere>100){
+					tab.Cryosphere = 100-tab.Hydrosphere;
 				}
-				tab["Volcanism"] = volc(planet[2]);
+				tab.Volcanism = volc(planet[2]);
 				tab["Tectonic Activity"] = tect(planet[2]);
-				tab["% Land Area"] = 100-tab["Hydrosphere"]-tab["Cryosphere"];
+				tab["% Land Area"] = 100-tab.Hydrosphere-tab.Cryosphere;
 				if (["Desert","Glaciated","Marginal","Oceanic","Paradise"].indexOf(planet[2])>-1){
-					tab["Relative Humidity"]=round((randomInt(1,10)+tab["Hydrosphere"])/110,2);
-					tab["Mean Temperature"]=100-(tab["Cryosphere"]*10);
+					tab["Relative Humidity"]=round((randomInt(1,10)+tab.Hydrosphere)/110,2);
+					tab["Mean Temperature"]=100-(tab.Cryosphere*10);
 					tab["Mean High Temperature"]=tab["Mean Temperature"]+20;
 					tab["Mean Low Temperature"]=tab["Mean Temperature"]-20;
 				}
-				tab["Hours per Day"]=hoursPDay(tab["Hydrosphere"],satellites[i][planet]);
-				tab["Minerals"]=minerals(planet[2]);
+				tab["Hours per Day"]=hoursPDay(tab.Hydrosphere,satellites[i][planet]);
+				tab.Minerals=minerals(planet[2]);
 				planets[i][prop].push(tab);
 			}
 		}
-	} 
+	}
 }
 
 function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids){
@@ -2139,11 +2175,11 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 		}
 		return s;
 	}
-	
+
 	function round(value, decimals) {
   		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 	}
-	
+
 	function planetImage(type){
 		var s = '<img src="images/planet'
 		switch(type){
@@ -2180,6 +2216,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			case "Gas Giant":
 				s += "11";
 				break;
+			case "Gas Supergiant":
 			case "Gas Ultragiant/Brown Dwarf":
 				s += "12";
 				break;
@@ -2198,7 +2235,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 		s += '.png" alt="'+type+' Planet Image" style="width:100px;height:100px;">';
 		return s;
 	}
-	
+
 	var tabstr = '\n\t<div class="big-header header">'+sysname+" System</div>\n";
 	var i,s,img,prop,j,num,x; for (i=0;i<stars.length;i++){
 		tabstr += '\t<button class="system">';
@@ -2208,19 +2245,19 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			tabstr += "Secondary Star: " + name[i];
 		}
 		tabstr += '</button>\n';
-		if ( ["dA","dF","dG"].indexOf(stars[i][1])>-1 ){
+		if ( ["dA","dF","dG"].indexOf(stars[i][0])>-1 ){
 			s = "Degenerate White Dwarf";
-		} 
+		}
 		else if (stars[i][1]=="VI"){
 			s = "Red Subdwarf";
-		} 
+		}
 		else {
 			s = starType(stars[i][0],stars[i][1]);
 		}
 		img = '<img src="images/Class_';
-		if (["dA","dF","dG"].indexOf(stars[i][1])>-1){
+		if (["dA","dF","dG"].indexOf(stars[i][0])>-1){
 			img += "dX";
-		} 
+		}
 		else {
 			img += stars[i][0];
 		}
@@ -2244,17 +2281,17 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 				tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+round(bode(planets[i][prop][0]),2)+' AU</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Surface Gravity:</td><td colspan="2">'+round(planets[i][prop][3]["Surface Gravity"],2)+'g</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Surface Area:</td><td colspan="2">'+round(planets[i][prop][3]["Surface Area"],2)+'km&sup2;</td></tr>\n';
-				tabstr+='\t<tr><td></td><td>Circumference at Equator:</td><td colspan="2">'+round(planets[i][prop][3]["Circumference"],2)+'km</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Circumference at Equator:</td><td colspan="2">'+round(planets[i][prop][3].Circumference,2)+'km</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Land Area Percentage:</td><td colspan="2">'+planets[i][prop][3]["% Land Area"]+'%</td></tr>\n';
-				tabstr+='\t<tr><td></td><td>Sea Area Percentage:</td><td colspan="2">'+planets[i][prop][3]["Hydrosphere"]+'%</td></tr>\n';
-				tabstr+='\t<tr><td></td><td>Glacial Area Percentage:</td><td colspan="2">'+planets[i][prop][3]["Cryosphere"]+'%</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Sea Area Percentage:</td><td colspan="2">'+planets[i][prop][3].Hydrosphere+'%</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Glacial Area Percentage:</td><td colspan="2">'+planets[i][prop][3].Cryosphere+'%</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Basic Atmospheric Composition:</td><td colspan="2">'+planets[i][prop][3]["Atmospheric Makeup"]+'</td></tr>\n';
 				x = planets[i][prop][3]["Atmospheric Pressure"];
 				if (typeof x !== "string" && x>1){
 					x = round(x,2);
 				}
 				tabstr+='\t<tr><td></td><td>Surface Atmospheric Pressure:</td><td colspan="2">'+x+'</td></tr>\n';
-				tabstr+='\t<tr><td></td><td>Volcanism:</td><td colspan="2">'+planets[i][prop][3]["Volcanism"]+' out of 100</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Volcanism:</td><td colspan="2">'+planets[i][prop][3].Volcanism+' out of 100</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Tectonic Activity:</td><td colspan="2">'+planets[i][prop][3]["Tectonic Activity"]+' out of 100</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Hours per Day:</td><td colspan="2">'+planets[i][prop][3]["Hours per Day"]+'</td></tr>\n';
 				if (planets[i][prop][3].hasOwnProperty("Relative Humidity")){
@@ -2263,17 +2300,17 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 					tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td colspan="2">'+planets[i][prop][3]["Mean Low Temperature"]+"&deg;F to "+planets[i][prop][3]["Mean High Temperature"]+'&deg;F</td></tr>\n';
 				}
 				tabstr+='\t<tr><td></td><td colspan="3">Mineral Ratings, scale of 0 to 9</td></tr>\n';
-				num = round(planets[i][prop][3]["Minerals"][0],2);
+				num = round(planets[i][prop][3].Minerals[0],2);
 				tabstr += '\t<tr><td colspan="2"></td><td>Industrial Minerals</td><td>'+num+'</td></tr>\n';
-				num = round(planets[i][prop][3]["Minerals"][1],2);
+				num = round(planets[i][prop][3].Minerals[1],2);
 				tabstr += '\t<tr><td colspan="2"></td><td>Common Metals</td><td>'+num+'</td></tr>\n';
-				num = round(planets[i][prop][3]["Minerals"][2],2);
+				num = round(planets[i][prop][3].Minerals[2],2);
 				tabstr += '\t<tr><td colspan="2"></td><td>Rare Metals</td><td>'+num+'</td></tr>\n';
-				num = round(planets[i][prop][3]["Minerals"][3],2);
+				num = round(planets[i][prop][3].Minerals[3],2);
 				tabstr += '\t<tr><td colspan="2"></td><td>Industrial Crystals</td><td>'+num+'</td></tr>\n';
-				num = round(planets[i][prop][3]["Minerals"][4],2);
+				num = round(planets[i][prop][3].Minerals[4],2);
 				tabstr += '\t<tr><td colspan="2"></td><td>Gemstones</td><td>'+num+'</td></tr>\n';
-				num = round(planets[i][prop][3]["Minerals"][5],2);
+				num = round(planets[i][prop][3].Minerals[5],2);
 				tabstr += '\t<tr><td colspan="2"></td><td>Radioactives</td><td>'+num+'</td></tr>\n</div></td></tr></table></td></tr>\n';
 			}}
 			if (capturedPlanets!="No Captures"){
@@ -2285,17 +2322,17 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 					tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+round(bode(capturedPlanets[i][prop][1][0]),2)+" AU to "+round(bode(capturedPlanets[i][prop][2][0]),2)+' AU</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Surface Gravity:</td><td colspan="2">'+round(capturedPlanets[i][prop][3]["Surface Gravity"],2)+'g</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Surface Area:</td><td colspan="2">'+round(capturedPlanets[i][prop][3]["Surface Area"],2)+'km&sup2;</td></tr>\n';
-					tabstr+='\t<tr><td></td><td>Circumference at Equator:</td><td colspan="2">'+round(capturedPlanets[i][prop][3]["Circumference"],2)+'km</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Circumference at Equator:</td><td colspan="2">'+round(capturedPlanets[i][prop][3].Circumference,2)+'km</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Land Area Percentage:</td><td colspan="2">'+capturedPlanets[i][prop][3]["% Land Area"]+'%</td></tr>\n';
-					tabstr+='\t<tr><td></td><td>Sea Area Percentage:</td><td colspan="2">'+capturedPlanets[i][prop][3]["Hydrosphere"]+'%</td></tr>\n';
-					tabstr+='\t<tr><td></td><td>Glacial Area Percentage:</td><td colspan="2">'+capturedPlanets[i][prop][3]["Cryosphere"]+'%</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Sea Area Percentage:</td><td colspan="2">'+capturedPlanets[i][prop][3].Hydrosphere+'%</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Glacial Area Percentage:</td><td colspan="2">'+capturedPlanets[i][prop][3].Cryosphere+'%</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Basic Atmospheric Composition:</td><td colspan="2">'+capturedPlanets[i][prop][3]["Atmospheric Makeup"]+'</td></tr>\n';
 					x = capturedPlanets[i][prop][3]["Atmospheric Pressure"];
 					if (typeof x !== "string"){
 						x = round(x,2).toString();
 					}
 					tabstr+='\t<tr><td></td><td>Surface Atmospheric Pressure:</td><td colspan="2">'+x+'</td></tr>\n';
-					tabstr+='\t<tr><td></td><td>Volcanism:</td><td colspan="2">'+capturedPlanets[i][prop][3]["Volcanism"]+' out of 100</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Volcanism:</td><td colspan="2">'+capturedPlanets[i][prop][3].Volcanism+' out of 100</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Tectonic Activity:</td><td colspan="2">'+capturedPlanets[i][prop][3]["Tectonic Activity"]+' out of 100</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Hours per Day:</td><td colspan="2">'+capturedPlanets[i][prop][3]["Hours per Day"]+'</td></tr>\n';
 					if (capturedPlanets[i][prop][3].hasOwnProperty("Relative Humidity")){
@@ -2304,17 +2341,17 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 						tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td colspan="2">'+capturedPlanets[i][prop][3]["Mean Low Temperature"]+" to "+capturedPlanets[i][prop][3]["Mean High Temperature"]+'&#2109;</td></tr>\n';
 					}
 					tabstr+='\t<tr><td></td><td colspan="3">Mineral Ratings, scale of 0 to 9</td></tr>\n';
-					num = round(capturedPlanets[i][prop][3]["Minerals"][0],2);
+					num = round(capturedPlanets[i][prop][3].Minerals[0],2);
 					tabstr += '\t<tr><td colspan="2"></td><td>Industrial Minerals</td><td>'+num+'</td></tr>\n';
-					num = round(capturedPlanets[i][prop][3]["Minerals"][1],2);
+					num = round(capturedPlanets[i][prop][3].Minerals[1],2);
 					tabstr += '\t<tr><td colspan="2"></td><td>Common Metals</td><td>'+num+'</td></tr>\n';
-					num = round(capturedPlanets[i][prop][3]["Minerals"][2],2);
+					num = round(capturedPlanets[i][prop][3].Minerals[2],2);
 					tabstr += '\t<tr><td colspan="2"></td><td>Rare Metals</td><td>'+num+'</td></tr>\n';
-					num = round(capturedPlanets[i][prop][3]["Minerals"][3],2);
+					num = round(capturedPlanets[i][prop][3].Minerals[3],2);
 					tabstr += '\t<tr><td colspan="2"></td><td>Industrial Crystals</td><td>'+num+'</td></tr>\n';
-					num = round(capturedPlanets[i][prop][3]["Minerals"][4],2);
+					num = round(capturedPlanets[i][prop][3].Minerals[4],2);
 					tabstr += '\t<tr><td colspan="2"></td><td>Gemstones</td><td>'+num+'</td></tr>\n';
-					num = round(capturedPlanets[i][prop][3]["Minerals"][5],2);
+					num = round(capturedPlanets[i][prop][3].Minerals[5],2);
 					tabstr += '\t<tr><td colspan="2"></td><td>Radioactives</td><td>'+num+'</td></tr>\n</div></td></tr></table></td></tr>\n';
 				}}
 			}
@@ -2346,13 +2383,13 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
     		'top' : pTop
   		});
 	});
-	
+
 	$("button.system").click(function(){
 		$(this).next().toggle();
 	});
 	$("div.system").hide();
 	$("table.system").hide();
-	
+
 	if($("#export").length===0){
 		$("#buttonZone").append('<br>\n<button onclick="systemExport()" id="export">Export</button>');
 	}
@@ -2365,17 +2402,17 @@ function generate(){
 	var numb = [];
 	var dec = [];
 	var max = [];
-	var i; 
+	var i;
    	t.push(starClassSize("Primary"));
 	if (r > 9){
    		t.push(starClassSize(""));
-	} 
+	}
 	if (r > 17){
    		t.push(starClassSize(""));
-	} 
+	}
 	if (r > 19){
     	t.push(starClassSize(""));
-	} 
+	}
     for (i = 0;i<t.length;i++){
     	letter.push(t[i][0]);
     	numb.push(t[i][1]);
@@ -2396,7 +2433,7 @@ function generate(){
     	name = n;
     }
     n = t.filter(function (x) {
-    	return !x.every(function (y){ 
+    	return !x.every(function (y){
     		return !isNaN(y);
     	});
     });
@@ -2404,13 +2441,13 @@ function generate(){
    		max.push(n[i][1]);
    	}
     t = starZones(t);
-    var planets = t; 
+    var planets = t;
     planets.shift();
     planets = planets.map(function (x){
     	x.shift();x.shift();x.shift(); return x;
     });
     planets = zonePop(planets);
-    
+
     var capturedPlanets = capture("Planet", max, letter, numb, dec);
     var capturedAsteroids = capture("Asteroid", max, letter, numb, dec);
     var orbitZones = t;
@@ -2442,7 +2479,7 @@ function generate(){
     console.log(capturedPlanets);
     console.log("capturedAsteroids");
     console.log(capturedAsteroids);
-    
+
 	curSystem = {};
 	curSystem.sysname = sysname;
 	curSystem.name = name;
@@ -2468,8 +2505,8 @@ function systemImport(){
 		tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);
     	}
     })(file);
-    
-    reader.readAsText(file)
+
+    reader.readAsText(file);
 }
 
 function systemExport(){
