@@ -2434,18 +2434,16 @@ function generate(){
     console.log("capturedAsteroids");
     console.log(capturedAsteroids);
     
-	var obj = {};
-	obj.sysname = sysname;
-	obj.name = name;
-	obj.stars = stars;
-	obj.orbitZones = orbitZones;
-	obj.planets = planets;
-	obj.satel = satel;
-	obj.asteroids = asteroids;
-	obj.capturedPlanets = capturedPlanets;
-	obj.capturedAsteroids = capturedAsteroids;
-	curSystem = JSON.stringify(obj);
-	console.log(["curSystem",curSystem]);
+	curSystem = {};
+	curSystem.sysname = sysname;
+	curSystem.name = name;
+	curSystem.stars = stars;
+	curSystem.orbitZones = orbitZones;
+	curSystem.planets = planets;
+	curSystem.satel = satel;
+	curSystem.asteroids = asteroids;
+	curSystem.capturedPlanets = capturedPlanets;
+	curSystem.capturedAsteroids = capturedAsteroids;
     tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
 }
 
@@ -2456,7 +2454,7 @@ function systemImport(){
 }
 
 function systemExport(){
-	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(curSystem);
+	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(curSystem));
 	var dlAnchorElem = document.getElementById('downloadAnchorElem');
 	dlAnchorElem.setAttribute("href",     dataStr     );
 	dlAnchorElem.setAttribute("download", curSystem.sysname+"_System.json");
