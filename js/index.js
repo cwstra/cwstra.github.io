@@ -2099,19 +2099,19 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 		var s;
 		switch (letter){
 			case "A":
-				s = "White";
+				s = "White ";
 				break;
 			case "F":
-				s = "Yellow-White";
+				s = "Yellow-White ";
 				break;
 			case "G":
-				s = "Yellow";
+				s = "Yellow ";
 				break;
 			case "K":
-				s = "Orange";
+				s = "Orange ";
 				break;
 			case "M":
-				s = "Red";
+				s = "Red ";
 		}
 		switch (number){
 			case "II":
@@ -2123,8 +2123,11 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			case "IV":
 				s += "Sub-Giant";
 				break;
-			case "IV":
+			case "V":
 				s += "Dwarf";
+				break;
+			case "V":
+				s += "Subdwarf";
 				break;
 		}
 		return s;
