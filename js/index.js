@@ -2418,6 +2418,8 @@ function generate(){
     for (i=0;i<planets.length;i++){
     	satel.push(satellites(planets[i]));
     }
+    console.log("pre-deets");
+    console.log(JSON.parse(JSON.stringify(planets)));
     planetDeets(planets,satel);
     if (capturedPlanets!="No Captures"){
     	planetDeets(capturedPlanets,satel);
