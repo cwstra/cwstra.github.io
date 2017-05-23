@@ -2445,9 +2445,8 @@ function generate(){
 	obj.capturedPlanets = capturedPlanets;
 	obj.capturedAsteroids = capturedAsteroids;
 	curSystem = JSON.stringify(obj);
-	console.log(curSystem);
+	console.log(["curSystem",curSystem]);
     tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
-	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
 
 function systemImport(){
