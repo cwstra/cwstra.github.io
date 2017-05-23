@@ -1637,6 +1637,10 @@ function planetDeets(planets,satellites){
 		return x;
 	}
 	
+	function round(value, decimals) {
+  		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+	}
+	
 	function size(type){
 		switch(type){
 			case "Mesoplanet":
@@ -2085,7 +2089,7 @@ function planetDeets(planets,satellites){
 				tab["Tectonic Activity"] = tect(planet[2]);
 				tab["% Land Area"] = 100-tab["Hydrosphere"]-tab["Cryosphere"];
 				if (["Desert","Glaciated","Marginal","Oceanic","Paradise"].indexOf(planet[2])>-1){
-					tab["Relative Humidity"]=(randomInt(1,10)+tab["Hydrosphere"])/110;
+					tab["Relative Humidity"]=round((randomInt(1,10)+tab["Hydrosphere"])/110,2);
 					tab["Mean Temperature"]=100-(tab["Cryosphere"]*10);
 					tab["Mean High Temperature"]=tab["Mean Temperature"]+20;
 					tab["Mean Low Temperature"]=tab["Mean Temperature"]-20;
