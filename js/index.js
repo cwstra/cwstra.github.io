@@ -2257,7 +2257,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 				if (planets[i][prop][3].hasOwnProperty("Relative Humidity")){
 					tabstr+='\t<tr><td></td><td>Relative Humidity Percentage:</td><td colspan="2">'+planets[i][prop][3]["Relative Humidity"]+'%</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Mean Planetary Temperature:</td><td colspan="2">'+planets[i][prop][3]["Mean Temperature"]+'&deg;F</td></tr>\n';
-					tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td colspan="2">'+planets[i][prop][3]["Mean Low Temperature"]+" to "+planets[i][prop][3]["Mean High Temperature"]+'&deg;F</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Mean Temperature Range:</td><td colspan="2">'+planets[i][prop][3]["Mean Low Temperature"]+"&deg;F to "+planets[i][prop][3]["Mean High Temperature"]+'&deg;F</td></tr>\n';
 				}
 				tabstr+='\t<tr><td></td><td colspan="3">Mineral Ratings, scale of 0 to 9</td></tr>\n';
 				num = round(planets[i][prop][3]["Minerals"][0],2);
