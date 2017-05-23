@@ -316,7 +316,7 @@ function randomName(){
 		l = c[randomInt(0,c.length-1)];
 		w.push(l);
 	}
-	w[0]=w[0].toUpperCase();
+	w[0]=w[0].substring(0,1).toUpperCase()+w[0].substring(1);
 	return w.join("");
 }
 
