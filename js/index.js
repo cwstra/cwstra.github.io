@@ -2418,7 +2418,7 @@ function generate(){
     if (capturedPlanets!="No Captures"){
     	planetDeets(capturedPlanets,satel);
     }
-	console.log("Done");
+	/*console.log("Done");
     console.log("stars");
     console.log(stars);
     console.log("orbitZones");
@@ -2432,7 +2432,7 @@ function generate(){
     console.log("capturedPlanets");
     console.log(capturedPlanets);
     console.log("capturedAsteroids");
-    console.log(capturedAsteroids);
+    console.log(capturedAsteroids);*/
     
 	curSystem = {};
 	curSystem.sysname = sysname;
@@ -2448,10 +2448,11 @@ function generate(){
 }
 
 function systemImport(){
-	console.log($("#import").val());
-	var obj = JSON.parse($("#import").val());
+	var files = FileAPI.getFiles(imp);
+	console.log(files);
+	/*var obj = JSON.parse();
 	curSystem = obj;
-	tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);
+	tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);*/
 }
 
 function systemExport(){
