@@ -1,5 +1,6 @@
 //Positioning function for each planet
 bode = Smooth([0.2, 0.4, 0.7, 1, 1.6, 2.8, 5.2, 10, 19.6, 38.8, 77.2, 154.0, 307.6, 614.8]);
+curSystem = "";
 //Random integer between x and y, inclusive: x + random.nextInt(y-x+1)
 /**
 * Returns a random integer between min (inclusive) and max (inclusive)
@@ -2444,6 +2445,7 @@ function generate(){
 	obj.capturedPlanets = capturedPlanets;
 	obj.capturedAsteroids = capturedAsteroids;
 	curSystem = JSON.stringify(obj);
+	console.log(curSystem);
     tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,capturedPlanets,capturedAsteroids);
 	//$("#container").html("stars:<br>"+JSON.stringify(stars,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"t:<br>"+JSON.stringify(t)+"<br><br>pop:<br>"+JSON.stringify(pop,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>cap:<br>"+JSON.stringify(cap,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;')+"<br><br>ast:<br>"+JSON.stringify(ast,null,'<br>&nbsp;&nbsp;&nbsp;&nbsp;'));
 }
