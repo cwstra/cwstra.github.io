@@ -2449,10 +2449,18 @@ function generate(){
 
 function systemImport(){
 	var file = document.getElementById('import').files[0];
-	console.log(file);
-	/*var obj = JSON.parse();
-	curSystem = obj;
-	tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);*/
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+    	return function(e) {
+    	var Obj = JSON.parse(e.target.result);
+		curSystem = obj;
+		tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);
+    	}
+    })(file);
+    
+    reader.readAsText(file)
 }
 
 function systemExport(){
