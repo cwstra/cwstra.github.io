@@ -1899,7 +1899,7 @@ function planetDeets(planets,satellites){
 					case 9:
 					case 10:
 						t.push(1.5);
-            break;
+            			break;
 					default:
 						t.push(1);
 				}
@@ -2071,6 +2071,7 @@ function planetDeets(planets,satellites){
 				tab["Surface Area"]=tab["Circumference"]/2;
 				tab["Surface Gravity"]=tab["Diameter"]/12;
 				tab["Atmospheric Makeup"]=atmosphere(planet[2],planet[1],tab["Diameter"]);
+				console.log([prop,tab["Atmospheric Makeup"]])
 				tab["Atmospheric Pressure"] = tab["Atmospheric Makeup"][1];
 				tab["Atmospheric Makeup"] = tab["Atmospheric Makeup"][0];
 				tab["Hydrosphere"] = hydro(planet[2],planet[1]);
