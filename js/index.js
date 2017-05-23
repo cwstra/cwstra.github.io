@@ -2085,7 +2085,7 @@ function planetDeets(planets,satellites){
 				tab["Tectonic Activity"] = tect(planet[2]);
 				tab["% Land Area"] = 100-tab["Hydrosphere"]-tab["Cryosphere"];
 				if (["Desert","Glaciated","Marginal","Oceanic","Paradise"].indexOf(planet[2])>-1){
-					tab["Relative Humidity"]=5*(randomInt(1,10)+tab["Hydrosphere"]);
+					tab["Relative Humidity"]=(randomInt(1,10)+tab["Hydrosphere"])/110;
 					tab["Mean Temperature"]=100-(tab["Cryosphere"]*10);
 					tab["Mean High Temperature"]=tab["Mean Temperature"]+20;
 					tab["Mean Low Temperature"]=tab["Mean Temperature"]-20;
