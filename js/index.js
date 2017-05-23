@@ -2416,6 +2416,8 @@ function generate(){
     var orbitZones = t;
     var asteroids = planetsTable(name,orbitZones,planets);
     planets = asteroids[0]; asteroids = asteroids[1];
+    console.log("post-table");
+    console.log(JSON.parse(JSON.stringify(planets)));
     var satel = [];
     for (i=0;i<planets.length;i++){
     	satel.push(satellites(planets[i]));
