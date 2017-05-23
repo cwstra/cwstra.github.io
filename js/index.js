@@ -26,7 +26,7 @@ $(document).on('click','.deletePlanet',function(){
     return false;
 });
 
-$("#random").change(function(){
+$(document.body).on("change","#random",function(){
     console.log($(this).val());
     if($(this).val()=='preset'){
         $('#specificGen').show();
@@ -35,7 +35,7 @@ $("#random").change(function(){
     }
 });
 
-$("#starNumber").change(function(){
+$(document.body).on("change","#starNumber",function(){
     if($(this).val()=='random'){
         $('#stars').hide();
     } else {
