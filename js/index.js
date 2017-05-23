@@ -2454,7 +2454,7 @@ function systemImport(){
     // Closure to capture the file information.
     reader.onload = (function(theFile) {
     	return function(e) {
-    	var Obj = JSON.parse(e.target.result);
+    	var obj = JSON.parse(e.target.result);
 		curSystem = obj;
 		tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);
     	}
