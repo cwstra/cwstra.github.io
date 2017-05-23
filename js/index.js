@@ -2343,7 +2343,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 	$("div.system").hide();
 	$("table.system").hide();
 	
-	if(!$("#export").length){
+	if($("#export").length!==0){
 		$("#buttonZone").append('<br>\n<button onclick="systemExport()">Export</button>');
 	}
 }
