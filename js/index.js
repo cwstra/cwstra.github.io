@@ -2075,6 +2075,11 @@ function planetDeets(planets,satellites){
 				tab["Atmospheric Makeup"] = tab["Atmospheric Makeup"][0];
 				tab["Hydrosphere"] = hydro(planet[2],planet[1]);
 				tab["Cryosphere"] = cryo(planet[2],planet[1]);
+				if (planet[2]=="Paradise" && tab["Hydrosphere"]+tab["Cryosphere"]>80){
+					tab["Cryosphere"] = Math.max(80-tab["Hydrosphere"],0);
+				} else if (tab["Hydrosphere"]+tab["Cryosphere"]>100){
+					tab["Cryosphere"] = 100-tab["Hydrosphere"];
+				}
 				tab["Volcanism"] = volc(planet[2]);
 				tab["Tectonic Activity"] = tect(planet[2]);
 				tab["% Land Area"] = 100-tab["Hydrosphere"]-tab["Cryosphere"];
