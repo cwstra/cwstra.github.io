@@ -2543,6 +2543,6 @@ function systemExport(){
 	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(curSystem);
 	var dlAnchorElem = document.getElementById('downloadAnchorElem');
 	dlAnchorElem.setAttribute("href",     dataStr     );
-	dlAnchorElem.setAttribute("download", sysname+"_System.json");
+	dlAnchorElem.setAttribute("download", curSystem.sysname+"_System.json");
 	dlAnchorElem.click();
 }
