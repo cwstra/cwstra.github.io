@@ -2247,7 +2247,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 				tabstr+='\t<tr><td></td><td>Glacial Area Percentage:</td><td colspan="2">'+planets[i][prop][3]["Cryosphere"]+'%</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Basic Atmospheric Composition:</td><td colspan="2">'+planets[i][prop][3]["Atmospheric Makeup"]+'</td></tr>\n';
 				x = planets[i][prop][3]["Atmospheric Pressure"];
-				if (typeof x !== "string"){
+				if (typeof x !== "string" && x>1){
 					x = round(x,2);
 				}
 				tabstr+='\t<tr><td></td><td>Surface Atmospheric Pressure:</td><td colspan="2">'+x+'</td></tr>\n';
