@@ -32,10 +32,28 @@ $(document).ready(function(){
     });
 
     $("#starNumber").on("change",function(){
-        if($(this).val()=='random'){
+        var stars = $(this).val();
+        if(stars=='random'){
             $('#stars').hide();
         } else {
             $('#stars').show();
+            if (stars===1){
+              $('.star2').hide();
+              $('.star3').hide();
+              $('.star4').hide();
+            } else if (stars===2){
+              $('.star2').show();
+              $('.star3').hide();
+              $('.star4').hide();
+            } else if (stars===3){
+              $('.star2').show();
+              $('.star3').show();
+              $('.star4').hide();
+            } else {
+              $('.star2').show();
+              $('.star3').show();
+              $('.star4').show();
+            }
         }
     });
 });
