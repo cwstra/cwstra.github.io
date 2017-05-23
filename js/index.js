@@ -2422,7 +2422,7 @@ function generate(){
     if (capturedPlanets!="No Captures"){
     	planetDeets(capturedPlanets,satel);
     }
-	*console.log("Done");
+	console.log("Done");
     console.log("stars");
     console.log(stars);
     console.log("orbitZones");
