@@ -2406,15 +2406,11 @@ function generate(){
    	}
     t = starZones(t);
     var planets = t; 
-    console.log("pre-pop");
-    console.log(JSON.parse(JSON.stringify(planets)));
     planets.shift();
     planets = planets.map(function (x){
     	x.shift();x.shift();x.shift(); return x;
     });
     planets = zonePop(planets);
-    console.log("post-pop");
-    console.log(JSON.parse(JSON.stringify(planets)));
     
     //console.log(["max",max]);
     var capturedPlanets = capture("Planet", max, letter, numb, dec);
@@ -2425,8 +2421,6 @@ function generate(){
     }
     var asteroids = planetsTable(name,orbitZones,planets);
     planets = asteroids[0]; asteroids = asteroids[1];
-    console.log("post-table");
-    console.log(JSON.parse(JSON.stringify(planets)));
     var satel = [];
     for (i=0;i<planets.length;i++){
     	satel.push(satellites(planets[i]));
