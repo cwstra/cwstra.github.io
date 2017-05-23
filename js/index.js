@@ -2231,10 +2231,10 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			tabstr += '\t<tr><td colspan="3" class="header">Planets:</td></tr>\n';
 			for (prop in planets[i]){if (planets[i].hasOwnProperty(prop)){
 				tabstr+='\t<tr><td colspan="3"><button class="system">'+prop+'</button>\n';
-				tabstr+='\t<table class="system"><tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td><td rowspan="3" style="width:100px;">'+planetImage(planets[i][prop][2])+'</td></tr>\n';
+				tabstr+='\t<table class="system"><tr><td></td><td>Planet Type:</td><td>'+planets[i][prop][2]+'</td><td rowspan="4" style="width:100px;">'+planetImage(planets[i][prop][2])+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+planets[i][prop][1]+'</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+planets[i][prop][0]+'</td></tr>\n';
-				tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td colspan="2">'+round(bode(planets[i][prop][0]),2)+' AU</td></tr>\n';
+				tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+round(bode(planets[i][prop][0]),2)+' AU</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Surface Gravity:</td><td colspan="2">'+round(planets[i][prop][3]["Surface Gravity"],2)+'g</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Surface Area:</td><td colspan="2">'+round(planets[i][prop][3]["Surface Area"],2)+'km&sup2;</td></tr>\n';
 				tabstr+='\t<tr><td></td><td>Circumference at Equator:</td><td colspan="2">'+round(planets[i][prop][3]["Circumference"],2)+'km</td></tr>\n';
@@ -2272,10 +2272,10 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 			if (capturedPlanets!="No Captures"){
 				for (prop in capturedPlanets[i]){if (capturedPlanets[i].hasOwnProperty(prop)){
 					tabstr+='\t<tr><td colspan="3"><button class="system">'+prop+'</button>\n';
-					tabstr+='\t<table class="system"><tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td><td rowspan="3" style="width:100px;">'+planetImage(capturedPlanets[i][prop][2])+'</td></tr>\n';
+					tabstr+='\t<table class="system"><tr><td></td><td>Planet Type:</td><td>'+capturedPlanets[i][prop][0]+'</td><td rowspan="4" style="width:100px;">'+planetImage(capturedPlanets[i][prop][2])+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Orbital Zone:</td><td>'+capturedPlanets[i][prop][1][1]+" to "+capturedPlanets[i][prop][2][1]+'</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Orbital Position:</td><td>'+capturedPlanets[i][prop][1][0]+" to "+capturedPlanets[i][prop][2][0]+'</td></tr>\n';
-					tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td colspan="2">'+round(bode(capturedPlanets[i][prop][1][0]),2)+" AU to "+round(bode(capturedPlanets[i][prop][2][0]),2)+' AU</td></tr>\n';
+					tabstr+='\t<tr><td></td><td>Orbital Distance:</td><td>'+round(bode(capturedPlanets[i][prop][1][0]),2)+" AU to "+round(bode(capturedPlanets[i][prop][2][0]),2)+' AU</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Surface Gravity:</td><td colspan="2">'+round(capturedPlanets[i][prop][3]["Surface Gravity"],2)+'g</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Surface Area:</td><td colspan="2">'+round(capturedPlanets[i][prop][3]["Surface Area"],2)+'km&sup2;</td></tr>\n';
 					tabstr+='\t<tr><td></td><td>Circumference at Equator:</td><td colspan="2">'+round(capturedPlanets[i][prop][3]["Circumference"],2)+'km</td></tr>\n';
