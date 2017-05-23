@@ -2448,8 +2448,8 @@ function generate(){
 }
 
 function systemImport(){
-	var files = FileAPI.getFiles(document.getElementById('import'));
-	console.log(files);
+	var file = document.getElementById('import').files[0];
+	console.log(file);
 	/*var obj = JSON.parse();
 	curSystem = obj;
 	tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);*/
