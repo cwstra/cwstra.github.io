@@ -1949,11 +1949,11 @@ function planetDeets(planets,satellites){
 					return 5*randomInt(1,10);
 				case "Desert":
 				case "Marginal":
-					return 10*(randomInt(1,10)-1);
+					return Math.max(10*(randomInt(1,10)-3),0);
 				case "Glaciated":
 					return Math.min(Math.max(10*(randomInt(1,10)+7),0),100);
 				case "Paradise":
-					return Math.min(Math.max(randomInt(1,10)*10,20),80);
+					return randomInt(2,4)*10;
 				default:
 					return 0;
 			}
