@@ -2388,15 +2388,15 @@ function generate(){
     	}
     	name = n;
     }
-    console.log("starRanges:");
+    /*console.log("starRanges:");
     console.log(JSON.parse(JSON.stringify(t)));
-    console.log(["t",t]);
+    console.log(["t",t]);*/
     n = t.filter(function (x) {
     	return !x.every(function (y){ 
     		return !isNaN(y);
     	});
     });
-    console.log(["n",n]);
+    //console.log(["n",n]);
    	for (i=0;i<n.length;i++){
    		max.push(n[i][1]);
    	}
@@ -2407,7 +2407,8 @@ function generate(){
     	x.shift();x.shift();x.shift(); return x;
     });
     planets = zonePop(planets);
-    console.log(["max",max]);
+    
+    //console.log(["max",max]);
     var capturedPlanets = capture("Planet", max, letter, numb, dec);
     var capturedAsteroids = capture("Asteroid", max, letter, numb, dec);
     var orbitZones = t;
@@ -2421,7 +2422,7 @@ function generate(){
     if (capturedPlanets!="No Captures"){
     	planetDeets(capturedPlanets,satel);
     }
-	/*console.log("Done");
+	*console.log("Done");
     console.log("stars");
     console.log(stars);
     console.log("orbitZones");
@@ -2435,7 +2436,7 @@ function generate(){
     console.log("capturedPlanets");
     console.log(capturedPlanets);
     console.log("capturedAsteroids");
-    console.log(capturedAsteroids);*/
+    console.log(capturedAsteroids);
     
 	curSystem = {};
 	curSystem.sysname = sysname;
