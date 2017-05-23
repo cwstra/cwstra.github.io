@@ -926,6 +926,7 @@ function starCheck(pos,lett,num,dec){
     	} else {
     		return "Out";
     	}
+      break;
 		case "II":
 			if ((lett=="A"&& dec < 5)||(lett=="K"&&dec>4)) {
 				if (pos<4){
@@ -2197,7 +2198,7 @@ function tableGen(sysname,name,stars,orbitZones,planets,satel,asteroids,captured
 	}
 
 	function planetImage(type){
-		var s = '<img src="images/planet'
+		var s = '<img src="images/planet';
 		switch(type){
 			case "Geoactive":
 				s += "1";
@@ -2468,7 +2469,7 @@ function generate(){
     var capturedAsteroids = capture("Asteroid", max, letter, numb, dec);
     var orbitZones = t;
     for (i=0;i<planets.length;i++){
-    	orbitZones[i]=orbitZones[i].slice(0,planets[i].length)
+    	orbitZones[i]=orbitZones[i].slice(0,planets[i].length);
     }
     var asteroids = planetsTable(name,orbitZones,planets);
     planets = asteroids[0]; asteroids = asteroids[1];
@@ -2519,7 +2520,7 @@ function systemImport(){
     	var obj = JSON.parse(e.target.result);
 		curSystem = obj;
 		tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);
-    	}
+    	};
     })(file);
 
     reader.readAsText(file);
