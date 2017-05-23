@@ -2027,7 +2027,7 @@ function planetDeets(planets,satellites){
 			default:
 				x = 10*(randomInt(1,10)-6);
 		}
-		return Math.max(0,x);
+		return Math.max(0,Math.min(100,x));
 	}
 	
 	function hoursPDay(hydro,sat){
