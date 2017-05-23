@@ -27,6 +27,7 @@ $(document).on('click','.deletePlanet',function(){
 });
 
 $("#random").on("change",function(){
+    console.log($(this).val());
     if($(this).val()=='preset'){
         $('#specificGen').show();
     } else {
