@@ -2448,7 +2448,7 @@ function generate(){
 }
 
 function systemImport(){
-	var files = FileAPI.getFiles(imp);
+	var files = FileAPI.getFiles(document.getElementById('import'));
 	console.log(files);
 	/*var obj = JSON.parse();
 	curSystem = obj;
