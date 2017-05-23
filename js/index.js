@@ -2448,8 +2448,8 @@ function generate(){
 }
 
 function systemImport(){
-	var obj = $("#import").val();
-	curSystem = JSON.stringify(obj);
+	var obj = JSON.parse($("#import").val());
+	curSystem = obj;
 	tableGen(obj.sysname,obj.name,obj.stars,obj.orbitZones,obj.planets,obj.satel,obj.asteroids,obj.capturedPlanets,obj.capturedAsteroids);
 }
 
