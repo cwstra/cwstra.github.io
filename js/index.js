@@ -1,46 +1,43 @@
 $(document).ready(function(){
     $(".sampleRP").hide();
     $("#specificGen").hide();
-});
-//Planet Adding
-// Add a new repeating section
-$('.addPlanet').click(function(){
-    var currentCount =  $('#repeatingPlanets').length;
-    var newCount = currentCount+1;
-    var lastRepeatingGroup = $('#repeatingPlanets').last();
-    var newSection = $(".sampleRP").clone().toggleClass("sampleRP planetSection").show();
-    newSection.insertAfter(lastRepeatingGroup);
-    newSection.find("select").each(function (index, input) {
-        input.id = input.id.replace("_" + currentCount, "_" + newCount);
+    $('.addPlanet').click(function(){
+        var currentCount =  $('#repeatingPlanets').length;
+        var newCount = currentCount+1;
+        var lastRepeatingGroup = $('#repeatingPlanets').last();
+        var newSection = $(".sampleRP").clone().toggleClass("sampleRP planetSection").show();
+        newSection.insertAfter(lastRepeatingGroup);
+        newSection.find("select").each(function (index, input) {
+            input.id = input.id.replace("_" + currentCount, "_" + newCount);
+        });
+        newSection.find("label").each(function (index, label) {
+            var l = $(label);
+            l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
+        });
+        return false;
     });
-    newSection.find("label").each(function (index, label) {
-        var l = $(label);
-        l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
+
+    // Delete a repeating section
+    $(document).on('click','.deletePlanet',function(){
+        $(this).parent('div').remove();
+        return false;
     });
-    return false;
-});
 
-// Delete a repeating section
-$(document).on('click','.deletePlanet',function(){
-    $(this).parent('div').remove();
-    return false;
-});
+    $("#random").on("change",function(){
+        if($(this).val()=='preset'){
+            $('#specificGen').show();
+        } else {
+            $('#specificGen').hide();
+        }
+    });
 
-$(document.body).on("change","#random",function(){
-    console.log($(this).val());
-    if($(this).val()=='preset'){
-        $('#specificGen').show();
-    } else {
-        $('#specificGen').hide();
-    }
-});
-
-$(document.body).on("change","#starNumber",function(){
-    if($(this).val()=='random'){
-        $('#stars').hide();
-    } else {
-        $('#stars').show();
-    }
+    $("#starNumber").on("change",function(){
+        if($(this).val()=='random'){
+            $('#stars').hide();
+        } else {
+            $('#stars').show();
+        }
+    });
 });
 
 //Positioning function for each planet
