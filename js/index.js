@@ -1549,24 +1549,24 @@ function zonePop(zones, captureTest) {
       else {
 				x = randomInt(1, 100);
         console.log(JSON.stringify([zones[i][j], captureTest]));
-				switch ([zones[i][j], captureTest]) {
-					case ["eHab", ""]:
-					case ["eOut", ""]:
-					case ["Incineration Zone", ""]:
-					case ["Incineration Zone", "Cap"]:
+				switch (zones[i][j]+captureTest) {
+					case "eHab":
+					case "eOut":
+					case "Incineration Zone":
+					case "Incineration ZoneCap":
             console.log("Check");
 						t.push("Empty Orbit");
 						break;
-					case ["N/A", ""]:
-					case ["N/A", "Cap"]:
+					case "N/A":
+					case "N/ACap":
 						t.push("N/A");
 						break;
-					case ["Companion Star", ""]:
-					case ["Companion Star", "Cap"]:
+					case "Companion Star":
+					case "Companion StarCap":
 						t.push("Companion Star");
 						break;
-					case ["In", ""]:
-					case ["In", "Cap"]:
+					case "In":
+					case "InCap":
 						if (x < 11) {
 							t.push("Empty Orbit");
 						} else if (x < 22) {
@@ -1593,9 +1593,9 @@ function zonePop(zones, captureTest) {
 							t.push("Ultra Hostile");
 						}
 						break;
-					case ["Hab", ""]:
-					case ["Hab", "Cap"]:
-					case ["eHab", "Cap"]:
+					case "Hab":
+					case "HabCap":
+					case "eHabCap":
 						if (x < 12) {
 							t.push("Empty Orbit");
 						} else if (x < 22) {
