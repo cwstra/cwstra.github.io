@@ -1534,7 +1534,7 @@ function zonePop(zones, captureTest) {
         k = k[r];
         r = randomInt(0,sort[k].length-1);
         j = sort[k][r];
-        selected[j[0].toString() + " " + j[1].toString()] = x;
+        selected[j[0].toString() + "pos" + j[1].toString()] = x;
       }
 		}
 	}
@@ -1542,7 +1542,7 @@ function zonePop(zones, captureTest) {
 	for (i = 0; i < zones.length; i++) {
 		t = [];
 		for (j = 0; j < zones[i].length; j++) {
-			if (selected.hasOwnProperty(i.toString() + " " + j.toString())&&selected!=={}) {
+			if (selected.hasOwnProperty(i.toString() + "pos" + j.toString())&&selected!=={}) {
         console.log(["Aha?",JSON.stringify(selected),i.toString() + " " + j.toString()])
 				t.push(selected[i.toString() + " " + j.toString()]);
 			}
