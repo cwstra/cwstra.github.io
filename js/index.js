@@ -1539,7 +1539,7 @@ function zonePop(zones, captureTest) {
 		}
 	}
 	var tab = [];
-  console.log(zones[i][j]);
+  console.log(zones);
 	for (i = 0; i < zones.length; i++) {
 		t = [];
 		for (j = 0; j < zones[0].length; j++) {
