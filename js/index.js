@@ -32,6 +32,7 @@ $(document).ready(function() {
       var count = parent.attr("class");
       count = parseInt(count.substring(count.indexOf("_")+1));
   		$(this).parent('div').remove();
+      console.log($('#repeatingPlanets').length);
       var i,planet; for (i=count-1;i<$('#repeatingPlanets').length;i++){
         planet = $('#repeatingPlanets').eq(i).attr("class");
         console.log(planet);
