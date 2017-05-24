@@ -3009,7 +3009,7 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 		} else {
 			tabstr += '\t<tr><td>Orbital Position relative to Primary Star</td><td>' + stars[i][3] + '</td></tr>\n';
 		}
-		if (Object.keys(planets[i]).length === 0 && obj.constructor === Object && capturedPlanets == "No Captures") {
+		if (Object.keys(planets[i]).length === 0 && planets[i].constructor === Object && capturedPlanets == "No Captures") {
 			tabstr += '\t<tr><td colspan="3">No Orbiting Planets</td></tr>';
 		} else {
 			tabstr += '\t<tr><td colspan="3" class="header">Planets:</td></tr>\n';
