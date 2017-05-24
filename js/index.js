@@ -1509,7 +1509,9 @@ function zonePop(zones, test) {
             break;
         }
         for (j=k.length-1;j>-1;j--){
-          k[j] = k[j].splice(j,1);
+          if (sort[k].length===0){
+            k[j] = k.splice(j,1);
+          }
         }
         if (sort.In.length===0&&sort.Hab.length===0&&sort.Out.length===0){
           break;
