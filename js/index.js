@@ -15,9 +15,10 @@ $(document).ready(function() {
 	$('#stars').hide();
 	$("#specificGen").hide();
 	$('.addPlanet').click(function() {
-		var currentCount = $('#repeatingPlanets').length;
+		var currentCount = $('#repeatingPlanets *').length;
 		var newCount = currentCount + 1;
 		var lastRepeatingGroup = $('#repeatingPlanets').last();
+    console.log($('#repeatingPlanets').last());
 		var newSection = $(".sampleRP").clone().toggleClass("sampleRP planetSection_"+newCount).show();
 		newSection.insertAfter(lastRepeatingGroup);
 		newSection.find("select").each(function(index, input) {
