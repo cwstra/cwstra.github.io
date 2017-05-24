@@ -18,6 +18,7 @@ $(document).ready(function() {
 		var currentCount = $('#repeatingPlanets *').length;
 		var newCount = currentCount + 1;
 		var lastRepeatingGroup = $('#repeatingPlanets');
+    console.log(currentCount);
     console.log(newCount);
     console.log($('#repeatingPlanets *').last());
 		var newSection = $(".sampleRP").clone().toggleClass("sampleRP planetSection_"+newCount).show();
