@@ -2867,6 +2867,15 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 	function starType(letter, number) {
 		var s;
 		switch (letter) {
+			case "W":
+				s = "Blue-Violet ";
+				break;
+			case "O":
+				s = "Blue ";
+				break;
+			case "B":
+				s = "Blue-White ";
+				break;
 			case "A":
 				s = "White ";
 				break;
@@ -2881,8 +2890,16 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 				break;
 			case "M":
 				s = "Red ";
+      default:
+        s = "";
 		}
 		switch (number) {
+			case "Ia":
+				s += "Luminous Supergiant";
+				break;
+			case "Ib":
+				s += "Supergiant";
+				break;
 			case "II":
 				s += "Luminous Giant";
 				break;
@@ -2895,8 +2912,11 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 			case "V":
 				s += "Dwarf";
 				break;
-			case "V":
+			case "VI":
 				s += "Subdwarf";
+				break;
+			case "VII":
+				s += "Degenerate Dwarf";
 				break;
 		}
 		return s;
@@ -2971,13 +2991,7 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 			tabstr += "Secondary Star: " + name[i];
 		}
 		tabstr += '</button>\n';
-		if (["dA", "dF", "dG"].indexOf(stars[i][0]) > -1) {
-			s = "Degenerate White Dwarf";
-		} else if (stars[i][1] == "VI") {
-			s = "Red Subdwarf";
-		} else {
-			s = starType(stars[i][0], stars[i][1]);
-		}
+		s = starType(stars[i][0], stars[i][1]);
 		img = '<img src="images/Class_';
 		if (["dA", "dF", "dG"].indexOf(stars[i][0]) > -1) {
 			img += "dX";
