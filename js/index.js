@@ -1393,7 +1393,7 @@ function zonePop(zones, test) {
 		};
 		for (i = 0; i < zones.length; i++) {
 			for (j = 0; j < zones[i].length; j++) {
-				if (["In", "Hab", "Out"].indexOf(zones[i][j])) {
+				if (["In", "Hab", "Out"].indexOf(zones[i][j])>-1) {
 					sort[zones[i][j]].push([i, j]);
 				}
 			}
