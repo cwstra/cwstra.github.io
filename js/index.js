@@ -1556,7 +1556,7 @@ function zonePop(zones, captureTest) {
 		for (j = 0; j < zones[i].length; j++) {
       //Old: if (selected.hasOwnProperty(i.toString() + "pos" + j.toString())&&selected!=={}) {
 			if (selected[i.toString() + "pos" + j.toString()]!==undefined&&selected!=={}) {
-				t.push(selected[i.toString() + " " + j.toString()]);
+				t.push(selected[i.toString() + "pos" + j.toString()]);
 			}
       else {
 				x = randomInt(1, 100);
