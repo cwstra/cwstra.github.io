@@ -2966,6 +2966,7 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 				s += "11";
 				break;
 			case "Gas Supergiant":
+			case "Gas Ultragiant":
 			case "Gas Ultragiant/Brown Dwarf":
 				s += "12";
 				break;
