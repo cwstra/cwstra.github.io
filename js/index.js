@@ -1,3 +1,15 @@
+function intersect(a, b) {
+  var t;
+  if (b.length > a.length) {
+    t = b;
+    b = a;
+    a = t;
+  } // indexOf to loop over shorter
+  return a.filter(function(e) {
+    return b.indexOf(e) > -1;
+  });
+}
+
 $(document).ready(function() {
 	$(".sampleRP").hide();
 	$('.stars').hide();
@@ -56,17 +68,6 @@ $(document).ready(function() {
 	});
 
 	function primCheck(spec, dec, lum) {
-		function intersect(a, b) {
-			var t;
-			if (b.length > a.length) {
-				t = b;
-				b = a;
-				a = t;
-			} // indexOf to loop over shorter
-			return a.filter(function(e) {
-				return b.indexOf(e) > -1;
-			});
-		}
 		var oSpec = spec,
 			oDec = dec,
 			oLum = lum;
