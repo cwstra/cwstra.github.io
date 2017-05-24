@@ -1416,7 +1416,6 @@ function starZones(sR) {
 }
 
 function zonePop(zones, captureTest) {
-	var dim = [zones.length, zones[0].length];
 	var t = $('#repeatingPlanets').length,
 		i, j, k, sort, x, r,test;
 	if (t) {
@@ -1540,9 +1539,9 @@ function zonePop(zones, captureTest) {
 		}
 	}
 	var tab = [];
-	for (i = 0; i < dim[0]; i++) {
+	for (i = 0; i < zones.length; i++) {
 		t = [];
-		for (j = 0; j < dim[1]; j++) {
+		for (j = 0; j < zones[0].length; j++) {
 			if (selected.hasOwnProperty(i.toString() + " " + j.toString())) {
 				t.push(selected[i.toString() + " " + j.toString()]);
 			}
