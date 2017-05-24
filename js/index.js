@@ -17,8 +17,8 @@ $(document).ready(function() {
 	$('.addPlanet').click(function() {
 		var currentCount = $('#repeatingPlanets *').length;
 		var newCount = currentCount + 1;
-		var lastRepeatingGroup = $('#repeatingPlanets').last();
-    console.log($('#repeatingPlanets').last());
+		var lastRepeatingGroup = $('#repeatingPlanets *').last();
+    console.log($('#repeatingPlanets *').last());
 		var newSection = $(".sampleRP").clone().toggleClass("sampleRP planetSection_"+newCount).show();
 		newSection.insertAfter(lastRepeatingGroup);
 		newSection.find("select").each(function(index, input) {
@@ -33,9 +33,9 @@ $(document).ready(function() {
       var count = parent.attr("class");
       count = parseInt(count.substring(count.indexOf("_")+1));
   		$(this).parent('div').remove();
-      console.log($('#repeatingPlanets').length);
-      var i,planet; for (i=count-1;i<$('#repeatingPlanets').length;i++){
-        planet = $('#repeatingPlanets').eq(i).attr("class");
+      console.log($('#repeatingPlanets *').length);
+      var i,planet; for (i=count-1;i<$('#repeatingPlanets *').length;i++){
+        planet = $('#repeatingPlanets *').eq(i).attr("class");
         console.log(planet);
       }
   		return false;
