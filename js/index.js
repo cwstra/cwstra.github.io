@@ -12,7 +12,7 @@ function intersect(a, b) {
 
 $(document).ready(function() {
 	$(".sampleRP").hide();
-	$('.stars').hide();
+	$('#stars').hide();
 	$("#specificGen").hide();
 	$('.addPlanet').click(function() {
 		var currentCount = $('#repeatingPlanets').length;
@@ -31,6 +31,7 @@ $(document).ready(function() {
 	});
 	// Delete a repeating section
 	$(".deletePlanet").on('click', function() {
+    console.log("DELEEETE")
 		$(this).parent('div').remove();
 		return false;
 	});
