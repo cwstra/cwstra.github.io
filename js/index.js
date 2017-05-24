@@ -157,11 +157,11 @@ $(document).ready(function() {
       }
 		}
 		for (i = 0; i < possibDec.length; i++) {
-      if (possibDec[i]===oDec){
-			     $("#star1Dec").append('<option value="' + possibDec[i] + '" selected>' + possibDec[i] + '</option>');
+      if (possibDec[i]==oDec){
+			     $("#star1Dec").append('<option value=' + possibDec[i] + ' selected>' + possibDec[i] + '</option>');
       }
       else {
-			     $("#star1Dec").append('<option value="' + possibDec[i] + '">' + possibDec[i] + '</option>');
+			     $("#star1Dec").append('<option value=' + possibDec[i] + '>' + possibDec[i] + '</option>');
       }
 		}
 		for (i = 0; i < possibLum.length; i++) {
@@ -297,11 +297,11 @@ $(document).ready(function() {
       }
 		}
 		for (i = 0; i < possibDec.length; i++) {
-      if (possibDec[i]===oDec){
-			     $("#star"+n+"Dec").append('<option value="' + possibDec[i] + '" selected>' + possibDec[i] + '</option>');
+      if (possibDec[i]==oDec){
+			     $("#star"+n+"Dec").append('<option value=' + possibDec[i] + ' selected>' + possibDec[i] + '</option>');
       }
       else {
-			     $("#star"+n+"Dec").append('<option value="' + possibDec[i] + '">' + possibDec[i] + '</option>');
+			     $("#star"+n+"Dec").append('<option value=' + possibDec[i] + '>' + possibDec[i] + '</option>');
       }
 		}
 		for (i = 0; i < possibLum.length; i++) {
