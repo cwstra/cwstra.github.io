@@ -1542,7 +1542,7 @@ function zonePop(zones, captureTest) {
   console.log(zones);
 	for (i = 0; i < zones.length; i++) {
 		t = [];
-		for (j = 0; j < zones[0].length; j++) {
+		for (j = 0; j < zones[i].length; j++) {
 			if (selected.hasOwnProperty(i.toString() + " " + j.toString())) {
 				t.push(selected[i.toString() + " " + j.toString()]);
 			}
