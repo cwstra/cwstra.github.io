@@ -1520,6 +1520,7 @@ function zonePop(zones, test) {
           continue;
         }
         r = randomInt(0,k.length-1);
+        console.log(["k",k]);
         k = k[r];
         r = randomInt(0,sort[k].length-1);
         j = sort[k][r];
