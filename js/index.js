@@ -17,10 +17,9 @@ $(document).ready(function() {
 	$('.addPlanet').click(function() {
 		var currentCount = $('#repeatingPlanets *').length;
 		var newCount = currentCount + 1;
-		var lastRepeatingGroup = $('#repeatingPlanets *').last();
+		var lastRepeatingGroup = $('#repeatingPlanets');
     console.log($('#repeatingPlanets *').last());
 		var newSection = $(".sampleRP").clone().toggleClass("sampleRP planetSection_"+newCount).show();
-		newSection.insertAfter(lastRepeatingGroup);
 		newSection.find("select").each(function(index, input) {
 			input.id = input.id.replace("_" + currentCount, "_" + newCount);
 		});
@@ -28,6 +27,7 @@ $(document).ready(function() {
 			var l = $(label);
 			l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
 		});
+		lastRepeatingGroup.append(newSection);
   	$(".deletePlanet").on('click', function() {
       var parent= $(this).parent('div');
       var count = parent.attr("class");
