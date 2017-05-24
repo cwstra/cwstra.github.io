@@ -1487,6 +1487,8 @@ function zonePop(zones, test) {
         else if (test){
           continue;
         }
+        r = randomInt(0,k.length-1);
+        k = k[r];
         r = randomInt(0,sort[k].length-1);
         j = sort[k][r];
         selected[j[0].toString() + " " + j[1].toString()] = x;
