@@ -1554,6 +1554,7 @@ function zonePop(zones, captureTest) {
 					case ["eOut", ""]:
 					case ["Incineration Zone", ""]:
 					case ["Incineration Zone", "Cap"]:
+            console.log("Check");
 						t.push("Empty Orbit");
 						break;
 					case ["N/A", ""]:
