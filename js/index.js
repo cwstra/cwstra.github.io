@@ -1444,6 +1444,7 @@ function zonePop(zones, captureTest) {
 		}
 		selected = {};
 		for (i = 1; i <= t; i++) {
+      console.log(i);
 			x = $("#planetType_" + i).val();
 			if (x == "Random") {
         if (sort.In.length>0&&sort.Hab.length>0&&sort.Out.length>0){
