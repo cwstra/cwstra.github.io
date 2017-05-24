@@ -1660,8 +1660,8 @@ function zonePop(zones, captureTest) {
 		}
 		tab.push(t);
 	}
-  console.log(["tab",tab]);
-  console.log(["zones",zones]);
+  console.log(JSON.stringify(["tab",tab]));
+  console.log(JSON.stringify(["zones",zones]));
 	return tab;
 }
 
