@@ -18,16 +18,13 @@ $(document).ready(function() {
 		var currentCount = $('#repeatingPlanets>*').length;
 		var newCount = currentCount + 1;
 		var lastRepeatingGroup = $('#repeatingPlanets');
-    console.log(currentCount);
-    console.log(newCount);
-    console.log($('#repeatingPlanets>*').last());
 		var newSection = $(".sampleRP").clone().toggleClass("sampleRP planetSection_"+newCount).show();
 		newSection.find("select").each(function(index, input) {
-			input.id = input.id.replace("_" + currentCount, "_" + newCount);
+			input.id = input.id.replace("_0", "_" + newCount);
 		});
 		newSection.find("label").each(function(index, label) {
 			var l = $(label);
-			l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
+			l.attr('for', l.attr('for').replace("_0", "_" + newCount));
 		});
 		lastRepeatingGroup.append(newSection);
   	$(".deletePlanet").on('click', function() {
@@ -35,10 +32,9 @@ $(document).ready(function() {
       var count = parent.attr("class");
       count = parseInt(count.substring(count.indexOf("_")+1));
   		$(this).parent('div').remove();
-      console.log($('#repeatingPlanets>*').length);
-      var i,planet; for (i=count-1;i<$('#repeatingPlanets>*').length;i++){
-        planet = $('#repeatingPlanets>*').eq(i).attr("class");
-        console.log(planet);
+      var i,planet,newInd; for (i=count-1;i<$('#repeatingPlanets>*').length;i++){
+        planet = $('#repeatingPlanets>*').eq(i);
+        planet.toggleClass(planet.attr("class")+" planetSection_"+(i+1));
       }
   		return false;
   	});
