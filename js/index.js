@@ -1384,7 +1384,7 @@ function starZones(sR) {
 function zonePop(zones, test) {
 	var dim = [zones.length, zones[0].length];
 	var t = $('#repeatingPlanets').length,
-		i, j, k, sort, x, r;
+		i, j, k, sort, x, r,test;
 	if (t) {
 		sort = {
 			In: [],
@@ -1402,7 +1402,26 @@ function zonePop(zones, test) {
 		for (i = 1; i <= t; i++) {
 			x = $("#planetType_" + i).val();
 			if (x == "Random") {
-				r = randomInt(1, 3);
+        if (sort.In.length>0&&sort.Hab.length>0&&sort.Out.length>0){
+				  r = randomInt(1, 3);
+        } else if (sort.In.length>0&&sort.Hab.length>0){
+          r = randomInt(1, 2);
+        } else if (sort.Hab.length>0&&sort.Out.length>0){
+          r = randomInt(2, 3);
+        } else if (sort.In.length>0&&sort.Out.length>0){
+          r = randomInt(3, 4);
+          if (r===4){
+            r = 1;
+          }
+        } else if (sort.In.length>0){
+          r = 1;
+        } else if (sort.Hab.length>0){
+          r = 2;
+        } else if (sort.Out.length>0){
+          r = 3;
+        } else {
+          break;
+        }
 				if (r == 1) {
 					r = randomInt(0, sort.In.length - 1);
 					j = sort.In[r];
@@ -1411,6 +1430,7 @@ function zonePop(zones, test) {
 						x = zonePop([["In"]], "")[0][0];
 					}
 					selected[j[0].toString() + " " + j[1].toString()] = x;
+          sort.In.splice(r, 1);
 				}
         else if (r == 2) {
 					r = randomInt(0, sort.Hab.length - 1);
@@ -1420,6 +1440,7 @@ function zonePop(zones, test) {
 						x = zonePop([["Hab"]], "")[0][0];
 					}
 					selected[j[0].toString() + " " + j[1].toString()] = x;
+          sort.Hab.splice(r, 1);
 				}
         else {
 					r = randomInt(0, sort.Out.length - 1);
@@ -1429,42 +1450,42 @@ function zonePop(zones, test) {
 						x = zonePop([["Out"]], "")[0][0];
 					}
 					selected[j[0].toString() + " " + j[1].toString()] = x;
+          sort.Out.splice(r, 1);
 				}
 			}
       else {
         switch(x){
           case "Small Gas Giant":
-            k = "In";
+            k = ["In"];
             break;
           case "Desert":
           case "Marginal":
           case "Paradise":
           case "Oceanic":
           case "Glaciated":
-            k = "Hab";
+            k = ["Hab"];
             break;
           case "Ice World":
           case "Dirty Snowball":
-            k = "Out";
+            k = ["Out"];
             break;
           case "Reducing":
           case "Ultra Hostile":
-            if (randomInt(1,2)===1){
-              k = "In";
-            } else {
-              k = "Hab";
-            }
+            k = ["In","Hab"];
             break;
           default:
-            r = randomInt(1,3);
-            if (r===1){
-              k = "In";
-            } else if (r===2){
-              k = "Hab";
-            } else {
-              k = "Out";
-            }
+            k = ["In","Hab","Out"];
             break;
+        }
+        test = true;
+        for (j=0;j<k.length;j++){
+          test = test && sort[k[j]].length;
+        }
+        if (sort.In.length===0&&sort.Hab.length===0&&sort.Out.length===0){
+          break;
+        }
+        else if (test){
+          continue;
         }
         r = randomInt(0,sort[k].length-1);
         j = sort[k][r];
