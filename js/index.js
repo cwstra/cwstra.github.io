@@ -1556,7 +1556,7 @@ function zonePop(zones, captureTest) {
 						break;
 					case "N/A":
 					case "N/ACap":
-						t.push("N/A");
+						t.push("Empty Orbit");
 						break;
 					case "Companion Star":
 					case "Companion StarCap":
