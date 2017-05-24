@@ -1539,7 +1539,6 @@ function zonePop(zones, captureTest) {
 		}
 	}
 	var tab = [];
-  console.log(zones);
 	for (i = 0; i < zones.length; i++) {
 		t = [];
 		for (j = 0; j < zones[i].length; j++) {
@@ -1548,13 +1547,11 @@ function zonePop(zones, captureTest) {
 			}
       else {
 				x = randomInt(1, 100);
-        console.log(JSON.stringify([zones[i][j], captureTest]));
 				switch (zones[i][j]+captureTest) {
 					case "eHab":
 					case "eOut":
 					case "Incineration Zone":
 					case "Incineration ZoneCap":
-            console.log("Check");
 						t.push("Empty Orbit");
 						break;
 					case "N/A":
@@ -1663,7 +1660,6 @@ function zonePop(zones, captureTest) {
 		}
 		tab.push(t);
 	}
-  console.log(JSON.stringify(tab));
 	return tab;
 }
 
