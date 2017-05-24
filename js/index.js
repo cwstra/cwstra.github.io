@@ -1430,28 +1430,36 @@ function zonePop(zones, test) {
 				}
 			}
 		}
+    console.log(JSON.stringify(sort));
 		selected = {};
 		for (i = 1; i <= t; i++) {
 			x = $("#planetType_" + i).val();
 			if (x == "Random") {
         if (sort.In.length>0&&sort.Hab.length>0&&sort.Out.length>0){
 				  r = randomInt(1, 3);
-        } else if (sort.In.length>0&&sort.Hab.length>0){
+        }
+        else if (sort.In.length>0&&sort.Hab.length>0){
           r = randomInt(1, 2);
-        } else if (sort.Hab.length>0&&sort.Out.length>0){
+        }
+        else if (sort.Hab.length>0&&sort.Out.length>0){
           r = randomInt(2, 3);
-        } else if (sort.In.length>0&&sort.Out.length>0){
+        }
+        else if (sort.In.length>0&&sort.Out.length>0){
           r = randomInt(3, 4);
           if (r===4){
             r = 1;
           }
-        } else if (sort.In.length>0){
+        }
+        else if (sort.In.length>0){
           r = 1;
-        } else if (sort.Hab.length>0){
+        }
+        else if (sort.Hab.length>0){
           r = 2;
-        } else if (sort.Out.length>0){
+        }
+        else if (sort.Out.length>0){
           r = 3;
-        } else {
+        }
+        else {
           break;
         }
 				if (r == 1) {
