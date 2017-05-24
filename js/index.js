@@ -1415,7 +1415,7 @@ function starZones(sR) {
 	return tab;
 }
 
-function zonePop(zones, test) {
+function zonePop(zones, captureTest) {
 	var dim = [zones.length, zones[0].length];
 	var t = $('#repeatingPlanets').length,
 		i, j, k, sort, x, r,test;
@@ -1548,8 +1548,8 @@ function zonePop(zones, test) {
 			}
       else {
 				x = randomInt(1, 100);
-        console.log([zones[i][j], test]);
-				switch ([zones[i][j], test]) {
+        console.log([zones[i][j], captureTest]);
+				switch ([zones[i][j], captureTest]) {
 					case ["eHab", ""]:
 					case ["eOut", ""]:
 					case ["Incineration Zone", ""]:
