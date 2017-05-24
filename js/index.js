@@ -1510,7 +1510,7 @@ function zonePop(zones, test) {
         }
         for (j=k.length-1;j>-1;j--){
           if (sort[k[j]].length===0){
-            k[j] = k.splice(j,1);
+            k = k.splice(j,1);
           }
         }
         if (sort.In.length===0&&sort.Hab.length===0&&sort.Out.length===0){
@@ -1520,7 +1520,6 @@ function zonePop(zones, test) {
           continue;
         }
         r = randomInt(0,k.length-1);
-        console.log(["k",k]);
         k = k[r];
         r = randomInt(0,sort[k].length-1);
         j = sort[k][r];
