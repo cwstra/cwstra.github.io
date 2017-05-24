@@ -2979,6 +2979,9 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 			case "Gas Supergiant":
 				s += "15";
 				break;
+			case "Super Terrestrial":
+				s += "17";
+				break;
 			default:
 				s += "16";
 		}
