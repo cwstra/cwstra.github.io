@@ -18,7 +18,7 @@ $(document).ready(function() {
 		return false;
 	});
 	// Delete a repeating section
-	$(document).on('click', '.deletePlanet', function() {
+	$(".deletePlanet").on('click', function() {
 		$(this).parent('div').remove();
 		return false;
 	});
@@ -315,8 +315,7 @@ function starClassSize(n, spect, dec, lum) {
 	var r, tab = [];
 	if (spectt) {
 		tab.push(spect);
-	}
-  else {
+	} else {
 		r = randomInt(1, 10) + randomInt(1, 10);
 		if (r < 4) {
 			tab.push("A");
@@ -332,62 +331,52 @@ function starClassSize(n, spect, dec, lum) {
 	}
 	if (lumt) {
 		tab.push(lum);
-    if (dect){
-      tab.push(dec);
-    }
-    else {
-	     $("#star" + n + "Dec > option").each(function() {
-		       possibDec.push(this.value);
-	     });
-       r = randomInt(0,possibDec.length-1);
-       tab.push(possibDec[r]);
-       if (n===1){
-         tab.push("Primary");
-       }
-    }
-	}
-  else {
+		if (dect) {
+			tab.push(dec);
+		} else {
+			$("#star" + n + "Dec > option").each(function() {
+				possibDec.push(this.value);
+			});
+			r = randomInt(0, possibDec.length - 1);
+			tab.push(possibDec[r]);
+			if (n === 1) {
+				tab.push("Primary");
+			}
+		}
+	} else {
 		r = randomInt(1, 10) + randomInt(1, 10);
 		if (n === 1) {
-      if (tab[0]=="W"){
-        if (r < 11){
-          tab.push("Ia");
-        }
-        else {
-          tab.push("Ib");
-        }
-      }
-      else if (tab[0]=="O"){
-        if (r < 8){
-          tab.push("Ia");
-        }
-        else if (r<14){
-          tab.push("Ib");
-        } else {
-          tab.push("V");
-        }
-      }
-			else if (r < 3) {
+			if (tab[0] == "W") {
+				if (r < 11) {
+					tab.push("Ia");
+				} else {
+					tab.push("Ib");
+				}
+			} else if (tab[0] == "O") {
+				if (r < 8) {
+					tab.push("Ia");
+				} else if (r < 14) {
+					tab.push("Ib");
+				} else {
+					tab.push("V");
+				}
+			} else if (r < 3) {
 				tab.push("II");
 				tab.push(randomInt(0, 9));
-			}
-      else if (r < 5) {
+			} else if (r < 5) {
 				tab.push("III");
 				tab.push(randomInt(0, 9));
-			}
-      else if (r < 9) {
+			} else if (r < 9) {
 				tab.push("IV");
 				if (tab[0] == "K") {
 					tab.push(randomInt(0, 4));
 				} else {
 					tab.push(randomInt(0, 9));
 				}
-			}
-      else if (r < 19) {
+			} else if (r < 19) {
 				tab.push("V");
 				tab.push(randomInt(0, 9));
-			}
-      else {
+			} else {
 				if (tab[0] == "A") {
 					tab.push("V");
 				} else {
@@ -400,47 +389,38 @@ function starClassSize(n, spect, dec, lum) {
 				}
 			}
 			tab.push("Primary");
-		}
-    else {
-      if (tab[0]=="W"){
-        if (r < 11){
-          tab.push("Ia");
-        }
-        else {
-          tab.push("Ib");
-        }
-      }
-      else if (tab[0]=="O"){
-        if (r < 8){
-          tab.push("Ia");
-        }
-        else if (r<14){
-          tab.push("Ib");
-        } else {
-          tab.push("V");
-        }
-      }
-			else if (r < 3) {
+		} else {
+			if (tab[0] == "W") {
+				if (r < 11) {
+					tab.push("Ia");
+				} else {
+					tab.push("Ib");
+				}
+			} else if (tab[0] == "O") {
+				if (r < 8) {
+					tab.push("Ia");
+				} else if (r < 14) {
+					tab.push("Ib");
+				} else {
+					tab.push("V");
+				}
+			} else if (r < 3) {
 				tab.push("II");
 				tab.push(randomInt(0, 9));
-			}
-      else if (r < 4) {
+			} else if (r < 4) {
 				tab.push("III");
 				tab.push(randomInt(0, 9));
-			}
-      else if (r < 7) {
+			} else if (r < 7) {
 				tab.push("IV");
 				if (tab[0] == "K") {
 					tab.push(randomInt(0, 4));
 				} else {
 					tab.push(randomInt(0, 9));
 				}
-			}
-      else if (r < 15) {
+			} else if (r < 15) {
 				tab.push("V");
 				tab.push(randomInt(0, 9));
-			}
-      else if (r < 19) {
+			} else if (r < 19) {
 				if (tab[[1]] == "A") {
 					tab.push("V");
 				} else {
@@ -451,8 +431,7 @@ function starClassSize(n, spect, dec, lum) {
 				} else {
 					tab.push(randomInt(0, 9));
 				}
-			}
-      else {
+			} else {
 				var s = randomInt(1, 10) + randomInt(1, 10);
 				if (s < 5) {
 					tab[0] = "dA";
@@ -487,14 +466,11 @@ function starClassSize(n, spect, dec, lum) {
 			r = randomInt(1, 10);
 			if (r == 1) {
 				tab.push(1);
-			}
-      else if (r == 2) {
+			} else if (r == 2) {
 				tab.push(2);
-			}
-      else if (r < 8) {
+			} else if (r < 8) {
 				tab.push(randomInt(1, 10) + 2 * (r - 2));
-			}
-      else {
+			} else {
 				tab.push(randomInt(1, 10) * 1000);
 			}
 		}
@@ -520,7 +496,9 @@ function starRanges(stars) {
 	var orbits;
 	var mod;
 	if (Array.isArray(stars[0])) {
-		var r = [[]];
+		var r = [
+			[]
+		];
 		var t = [];
 		var i;
 		var s;
@@ -751,8 +729,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else {
+			} else {
 				for (i = 0; i <= star[1] && i <= 5; i++) {
 					if (i < 5) {
 						t.push("eOut");
@@ -762,281 +739,262 @@ function zChart(star) {
 				}
 			}
 			break;
-    case "Ia":
-      if (star[2][0] == "W" && star[2][2] < 5){
-        for (i=0;i<=star[1];i++){
-          if (i<12){
-            t.push("Incineration Zone");
-          } else if (i<14){
-            t.push("In");
-          } else if (i<15){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "W"){
-        for (i=0;i<=star[1];i++){
-          if (i<12){
-            t.push("Incineration Zone");
-          } else if (i<13){
-            t.push("In");
-          } else if (i<14){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "O"){
-        for (i=0;i<=star[1];i++){
-          if (i<11){
-            t.push("Incineration Zone");
-          } else if (i<13){
-            t.push("In");
-          } else if (i<14){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "B" && star[2][2]<5){
-        for (i=0;i<=star[1];i++){
-          if (i<9){
-            t.push("Incineration Zone");
-          } else if (i<12){
-            t.push("In");
-          } else if (i<14){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "B"){
-        for (i=0;i<=star[1];i++){
-          if (i<8){
-            t.push("Incineration Zone");
-          } else if (i<12){
-            t.push("In");
-          } else if (i<13){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "A" && star[2][2]<5){
-        for (i=0;i<=star[1];i++){
-          if (i<8){
-            t.push("Incineration Zone");
-          } else if (i<11){
-            t.push("In");
-          } else if (i<13){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "A"||star[2][0]=="K"||(star[2][0]=="M"&&star[2][2]<5)){
-        for (i=0;i<=star[1];i++){
-          if (i<8){
-            t.push("Incineration Zone");
-          } else if (i<11){
-            t.push("In");
-          } else if (i<12){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "F" && star[2][2]<5){
-        for (i=0;i<=star[1];i++){
-          if (i<6){
-            t.push("Incineration Zone");
-          } else if (i<12){
-            t.push("In");
-          } else if (i<13){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "F"){
-        for (i=0;i<=star[1];i++){
-          if (i<6){
-            t.push("Incineration Zone");
-          } else if (i<11){
-            t.push("In");
-          } else if (i<12){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "G" && star[2][2]<5){
-        for (i=0;i<=star[1];i++){
-          if (i<8){
-            t.push("Incineration Zone");
-          } else if (i<11){
-            t.push("In");
-          } else if (i<12){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "G"){
-        for (i=0;i<=star[1];i++){
-          if (i<8){
-            t.push("Incineration Zone");
-          } else if (i<12){
-            t.push("In");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "M" && star[2][2]<9){
-        for (i=0;i<=star[1];i++){
-          if (i<9){
-            t.push("Incineration Zone");
-          } else if (i<11){
-            t.push("In");
-          } else if (i<12){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else {
-        for (i=0;i<=star[1];i++){
-          if (i<9){
-            t.push("Incineration Zone");
-          } else if (i<11){
-            t.push("In");
-          } else if (i<13){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      break;
-    case "Ib":
-      if (star[2][0] == "W" && star[2][2] < 5){
-        for (i=0;i<=star[1];i++){
-          if (i<11){
-            t.push("Incineration Zone");
-          } else if (i<14){
-            t.push("In");
-          } else if (i<15){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "W"){
-        for (i=0;i<=star[1];i++){
-          if (i<11){
-            t.push("Incineration Zone");
-          } else if (i<13){
-            t.push("In");
-          } else if (i<14){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "O"){
-        for (i=0;i<=star[1];i++){
-          if (i<10){
-            t.push("Incineration Zone");
-          } else if (i<13){
-            t.push("In");
-          } else if (i<14){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "B" && star[2][2]<5){
-        for (i=0;i<=star[1];i++){
-          if (i<9){
-            t.push("Incineration Zone");
-          } else if (i<12){
-            t.push("In");
-          } else if (i<13){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "B"||(star[2][0]=="K"&&star[2][2]>=5)||(star[2][0]=="M"&&star[2][2]<5)){
-        for (i=0;i<=star[1];i++){
-          if (i<7){
-            t.push("Incineration Zone");
-          } else if (i<11){
-            t.push("In");
-          } else if (i<12){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "A"||(star[2][0]=="F"&&star[2][2]<5)||(star[2][0]=="G"&&star[2][2]>=5)||(star[2][0]=="K")){
-        for (i=0;i<=star[1];i++){
-          if (i<6){
-            t.push("Incineration Zone");
-          } else if (i<10){
-            t.push("In");
-          } else if (i<11){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else if (star[2][0] == "F"||(star[2][0]=="G"&&star[2][2]<5)){
-        for (i=0;i<=star[1];i++){
-          if (i<5){
-            t.push("Incineration Zone");
-          } else if (i<10){
-            t.push("In");
-          } else if (i<11){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      else {
-        for (i=0;i<=star[1];i++){
-          if (i<8){
-            t.push("Incineration Zone");
-          } else if (i<10){
-            t.push("In");
-          } else if (i<11){
-            t.push("Hab");
-          } else {
-            t.push("Out");
-          }
-        }
-      }
-      break;
+		case "Ia":
+			if (star[2][0] == "W" && star[2][2] < 5) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 12) {
+						t.push("Incineration Zone");
+					} else if (i < 14) {
+						t.push("In");
+					} else if (i < 15) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "W") {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 12) {
+						t.push("Incineration Zone");
+					} else if (i < 13) {
+						t.push("In");
+					} else if (i < 14) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "O") {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 11) {
+						t.push("Incineration Zone");
+					} else if (i < 13) {
+						t.push("In");
+					} else if (i < 14) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "B" && star[2][2] < 5) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 9) {
+						t.push("Incineration Zone");
+					} else if (i < 12) {
+						t.push("In");
+					} else if (i < 14) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "B") {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 8) {
+						t.push("Incineration Zone");
+					} else if (i < 12) {
+						t.push("In");
+					} else if (i < 13) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "A" && star[2][2] < 5) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 8) {
+						t.push("Incineration Zone");
+					} else if (i < 11) {
+						t.push("In");
+					} else if (i < 13) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "A" || star[2][0] == "K" || (star[2][0] == "M" && star[2][2] < 5)) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 8) {
+						t.push("Incineration Zone");
+					} else if (i < 11) {
+						t.push("In");
+					} else if (i < 12) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "F" && star[2][2] < 5) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 6) {
+						t.push("Incineration Zone");
+					} else if (i < 12) {
+						t.push("In");
+					} else if (i < 13) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "F") {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 6) {
+						t.push("Incineration Zone");
+					} else if (i < 11) {
+						t.push("In");
+					} else if (i < 12) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "G" && star[2][2] < 5) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 8) {
+						t.push("Incineration Zone");
+					} else if (i < 11) {
+						t.push("In");
+					} else if (i < 12) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "G") {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 8) {
+						t.push("Incineration Zone");
+					} else if (i < 12) {
+						t.push("In");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "M" && star[2][2] < 9) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 9) {
+						t.push("Incineration Zone");
+					} else if (i < 11) {
+						t.push("In");
+					} else if (i < 12) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 9) {
+						t.push("Incineration Zone");
+					} else if (i < 11) {
+						t.push("In");
+					} else if (i < 13) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			}
+			break;
+		case "Ib":
+			if (star[2][0] == "W" && star[2][2] < 5) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 11) {
+						t.push("Incineration Zone");
+					} else if (i < 14) {
+						t.push("In");
+					} else if (i < 15) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "W") {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 11) {
+						t.push("Incineration Zone");
+					} else if (i < 13) {
+						t.push("In");
+					} else if (i < 14) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "O") {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 10) {
+						t.push("Incineration Zone");
+					} else if (i < 13) {
+						t.push("In");
+					} else if (i < 14) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "B" && star[2][2] < 5) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 9) {
+						t.push("Incineration Zone");
+					} else if (i < 12) {
+						t.push("In");
+					} else if (i < 13) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "B" || (star[2][0] == "K" && star[2][2] >= 5) || (star[2][0] == "M" && star[2][2] < 5)) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 7) {
+						t.push("Incineration Zone");
+					} else if (i < 11) {
+						t.push("In");
+					} else if (i < 12) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "A" || (star[2][0] == "F" && star[2][2] < 5) || (star[2][0] == "G" && star[2][2] >= 5) || (star[2][0] == "K")) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 6) {
+						t.push("Incineration Zone");
+					} else if (i < 10) {
+						t.push("In");
+					} else if (i < 11) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else if (star[2][0] == "F" || (star[2][0] == "G" && star[2][2] < 5)) {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 5) {
+						t.push("Incineration Zone");
+					} else if (i < 10) {
+						t.push("In");
+					} else if (i < 11) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			} else {
+				for (i = 0; i <= star[1]; i++) {
+					if (i < 8) {
+						t.push("Incineration Zone");
+					} else if (i < 10) {
+						t.push("In");
+					} else if (i < 11) {
+						t.push("Hab");
+					} else {
+						t.push("Out");
+					}
+				}
+			}
+			break;
 		case "II":
 			if ((star[2][0] == "A" && star[2][2] < 5) || (star[2][0] == "K" && star[2][2] > 4)) {
 				for (i = 0; i <= star[1]; i++) {
@@ -1050,8 +1008,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (["A", "F", "G", "K"].indexOf(star[2][0])) {
+			} else if (["A", "F", "G", "K"].indexOf(star[2][0])) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 3) {
 						t.push("Incineration Zone");
@@ -1063,8 +1020,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "M" && star[2][2] < 5) {
+			} else if (star[2][0] == "M" && star[2][2] < 5) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 5) {
 						t.push("Incineration Zone");
@@ -1076,8 +1032,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else {
+			} else {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 7) {
 						t.push("Incineration Zone");
@@ -1104,8 +1059,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (["A", "K"].indexOf(star[2][0]) > -1) {
+			} else if (["A", "K"].indexOf(star[2][0]) > -1) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1117,8 +1071,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (["F", "G"].indexOf(star[2][0]) > -1) {
+			} else if (["F", "G"].indexOf(star[2][0]) > -1) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1130,8 +1083,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else {
+			} else {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 4) {
 						t.push("Incineration Zone");
@@ -1158,8 +1110,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "A") {
+			} else if (star[2][0] == "A") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1171,8 +1122,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "F" && star[2][2] < 5) {
+			} else if (star[2][0] == "F" && star[2][2] < 5) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1184,8 +1134,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "F") {
+			} else if (star[2][0] == "F") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1197,8 +1146,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else {
+			} else {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1213,7 +1161,7 @@ function zChart(star) {
 			}
 			break;
 		case "V":
-      if (star[2][0] == "O" && star[2][2]<5){
+			if (star[2][0] == "O" && star[2][2] < 5) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 8) {
 						t.push("Incineration Zone");
@@ -1225,8 +1173,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-      }
-      else if (star[2][0] == "O") {
+			} else if (star[2][0] == "O") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 7) {
 						t.push("Incineration Zone");
@@ -1238,8 +1185,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "A") {
+			} else if (star[2][0] == "A") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1251,8 +1197,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "F") {
+			} else if (star[2][0] == "F") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1264,8 +1209,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "G" && star[2][2] < 5) {
+			} else if (star[2][0] == "G" && star[2][2] < 5) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1277,8 +1221,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "G") {
+			} else if (star[2][0] == "G") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1290,8 +1233,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "K") {
+			} else if (star[2][0] == "K") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1301,8 +1243,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "M" && star[2][2] < 5) {
+			} else if (star[2][0] == "M" && star[2][2] < 5) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1312,8 +1253,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else {
+			} else {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Incineration Zone");
@@ -1334,8 +1274,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "G" && star[2][2] < 5) {
+			} else if (star[2][0] == "G" && star[2][2] < 5) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 3) {
 						t.push("In");
@@ -1345,8 +1284,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "G") {
+			} else if (star[2][0] == "G") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 2) {
 						t.push("In");
@@ -1356,8 +1294,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "K" && star[2][2] < 5) {
+			} else if (star[2][0] == "K" && star[2][2] < 5) {
 				for (i = 0; i <= star[1]; i++) {
 					if (i < 1) {
 						t.push("In");
@@ -1367,8 +1304,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else if (star[2][0] == "K") {
+			} else if (star[2][0] == "K") {
 				for (i = 0; i <= star[1]; i++) {
 					if (i === 0) {
 						t.push("Hab");
@@ -1376,8 +1312,7 @@ function zChart(star) {
 						t.push("Out");
 					}
 				}
-			}
-      else {
+			} else {
 				for (i = 0; i <= star[1]; i++) {
 					t.push("Out");
 				}
@@ -1446,120 +1381,215 @@ function starZones(sR) {
 	return tab;
 }
 
-function zonePop(zones) {
+function zonePop(zones, test) {
 	var dim = [zones.length, zones[0].length];
-  
+	var t = $('#repeatingPlanets').length,
+		i, j, k, sort, x, r;
+	if (t) {
+		sort = {
+			In: [],
+			Hab: [],
+			Out: []
+		};
+		for (i = 0; i < zones.length; i++) {
+			for (j = 0; j < zones[i].length; j++) {
+				if (["In", "Hab", "Out"].indexOf(zones[i][j])) {
+					sort[zones[i][j]].push([i, j]);
+				}
+			}
+		}
+		selected = {};
+		for (i = 1; i <= t; i++) {
+			x = $("#planetType_" + i).val();
+			if (x == "Random") {
+				r = randomInt(1, 3);
+				if (r == 1) {
+					r = randomInt(0, sort.In.length - 1);
+					j = sort.In[r];
+					x = zonePop([["In"]], "")[0][0];
+					while (["Empty Orbit", "Asteroid Belt"].indexOf(x) > -1) {
+						x = zonePop([["In"]], "")[0][0];
+					}
+					selected[j[0].toString() + " " + j[1].toString()] = x;
+				}
+        else if (r == 2) {
+					r = randomInt(0, sort.Hab.length - 1);
+					j = sort.Hab[r];
+					x = zonePop([["Hab"]], "")[0][0];
+					while (["Empty Orbit", "Asteroid Belt"].indexOf(x) > -1) {
+						x = zonePop([["Hab"]], "")[0][0];
+					}
+					selected[j[0].toString() + " " + j[1].toString()] = x;
+				}
+        else {
+					r = randomInt(0, sort.Out.length - 1);
+					j = sort.Out[r];
+					x = zonePop([["Out"]], "")[0][0];
+					while (["Empty Orbit", "Asteroid Belt"].indexOf(x) > -1) {
+						x = zonePop([["Out"]], "")[0][0];
+					}
+					selected[j[0].toString() + " " + j[1].toString()] = x;
+				}
+			}
+      else {
+        switch(x){
+          case "Small Gas Giant":
+            k = "In";
+            break;
+          case "Desert":
+          case "Marginal":
+          case "Paradise":
+          case "Oceanic":
+          case "Glaciated":
+            k = "Hab";
+            break;
+          case "Ice World":
+          case "Dirty Snowball":
+            k = "Out";
+            break;
+          case "Reducing":
+          case "Ultra Hostile":
+            if (randomInt(1,2)===1){
+              k = "In";
+            } else {
+              k = "Hab";
+            }
+            break;
+          default:
+            r = randomInt(1,3);
+            if (r===1){
+              k = "In";
+            } else if (r===2){
+              k = "Hab";
+            } else {
+              k = "Out";
+            }
+            break;
+        }
+        r = randomInt(0,sort[k].length-1);
+        j = sort[k][r];
+        selected[j[0].toString() + " " + j[1].toString()] = x;
+      }
+		}
+	}
 	var tab = [];
-	var t;
-	var i;
-	var j;
-	var x;
 	for (i = 0; i < dim[0]; i++) {
 		t = [];
 		for (j = 0; j < dim[1]; j++) {
-			x = randomInt(1, 100);
-			switch (zones[i][j]) {
-				case "eHab":
-				case "eOut":
-				case "Incineration Zone":
-					t.push("Empty Orbit");
-					break;
-				case "N/A":
-					t.push("N/A");
-					break;
-				case "Companion Star":
-					t.push("Companion Star");
-					break;
-				case "In":
-					if (x < 11) {
+			if (selected.hasOwnProperty(i.toString() + " " + j.toString())) {
+				t.push(selected[i.toString() + " " + j.toString()]);
+			}
+      else {
+				x = randomInt(1, 100);
+				switch ([zones[i][j], test]) {
+					case ["eHab", ""]:
+					case ["eOut", ""]:
+					case ["Incineration Zone", ""]:
+					case ["Incineration Zone", "Cap"]:
 						t.push("Empty Orbit");
-					} else if (x < 22) {
-						t.push("Asteroid Belt");
-					} else if (x < 41) {
-						t.push("Mesoplanet");
-					} else if (x < 61) {
-						t.push("Small Terrestrial");
-					} else if (x < 66) {
-						t.push("Geoactive");
-					} else if (x < 72) {
-						t.push("Super Terrestrial");
-					} else if (x == 72) {
-						t.push("Small Gas Giant");
-					} else if (x == 73) {
-						t.push("Gas Giant");
-					} else if (x < 88) {
-						t.push("Reducing");
-					} else if (x == 88) {
-						t.push("Gas Supergiant");
-					} else if (x == 89) {
-						t.push("Gas Ultragiant/Brown Dwarf");
-					} else {
-						t.push("Ultra Hostile");
-					}
-					break;
-				case "Hab":
-					if (x < 12) {
-						t.push("Empty Orbit");
-					} else if (x < 22) {
-						t.push("Asteroid Belt");
-					} else if (x < 31) {
-						t.push("Mesoplanet");
-					} else if (x < 41) {
-						t.push("Small Terrestrial");
-					} else if (x < 46) {
-						t.push("Geoactive");
-					} else if (x < 49) {
-						t.push("Super Terrestrial");
-					} else if (x < 57) {
-						t.push("Desert");
-					} else if (x == 57) {
-						t.push("Gas Supergiant");
-					} else if (x == 58) {
-						t.push("Gas Giant");
-					} else if (x < 69) {
-						t.push("Marginal");
-					} else if (x < 71) {
-						t.push("Paradise");
-					} else if (x < 78) {
-						t.push("Reducing");
-					} else if (x < 84) {
-						t.push("Oceanic");
-					} else if (x < 90) {
-						t.push("Glaciated");
-					} else if (x == 90) {
-						t.push("Gas Ultragiant");
-					} else if (x == 91) {
-						t.push("Gas Ultragiant/Brown Dwarf");
-					} else {
-						t.push("Ultra Hostile");
-					}
-					break;
-				default:
-					if (x < 11) {
-						t.push("Empty Orbit");
-					} else if (x < 22) {
-						t.push("Asteroid Belt");
-					} else if (x == 22) {
-						t.push("Mesoplanet");
-					} else if (x == 23) {
-						t.push("Small Terrestrial");
-					} else if (x == 24) {
-						t.push("Geoactive");
-					} else if (x < 30) {
-						t.push("Super Terrestrial");
-					} else if (x < 41) {
-						t.push("Gas Supergiant");
-					} else if (x < 72) {
-						t.push("Gas Giant");
-					} else if (x < 83) {
-						t.push("Gas Ultragiant");
-					} else if (x < 89) {
-						t.push("Gas Ultragiant/Brown Dwarf");
-					} else if (x < 95) {
-						t.push("Ice World");
-					} else {
-						t.push("Dirty Snowball");
-					}
+						break;
+					case ["N/A", ""]:
+					case ["N/A", "Cap"]:
+						t.push("N/A");
+						break;
+					case ["Companion Star", ""]:
+					case ["Companion Star", "Cap"]:
+						t.push("Companion Star");
+						break;
+					case ["In", ""]:
+					case ["In", "Cap"]:
+						if (x < 11) {
+							t.push("Empty Orbit");
+						} else if (x < 22) {
+							t.push("Asteroid Belt");
+						} else if (x < 41) {
+							t.push("Mesoplanet");
+						} else if (x < 61) {
+							t.push("Small Terrestrial");
+						} else if (x < 66) {
+							t.push("Geoactive");
+						} else if (x < 72) {
+							t.push("Super Terrestrial");
+						} else if (x == 72) {
+							t.push("Small Gas Giant");
+						} else if (x == 73) {
+							t.push("Gas Giant");
+						} else if (x < 88) {
+							t.push("Reducing");
+						} else if (x == 88) {
+							t.push("Gas Supergiant");
+						} else if (x == 89) {
+							t.push("Gas Ultragiant/Brown Dwarf");
+						} else {
+							t.push("Ultra Hostile");
+						}
+						break;
+					case ["Hab", ""]:
+					case ["Hab", "Cap"]:
+					case ["eHab", "Cap"]:
+						if (x < 12) {
+							t.push("Empty Orbit");
+						} else if (x < 22) {
+							t.push("Asteroid Belt");
+						} else if (x < 31) {
+							t.push("Mesoplanet");
+						} else if (x < 41) {
+							t.push("Small Terrestrial");
+						} else if (x < 46) {
+							t.push("Geoactive");
+						} else if (x < 49) {
+							t.push("Super Terrestrial");
+						} else if (x < 57) {
+							t.push("Desert");
+						} else if (x == 57) {
+							t.push("Gas Supergiant");
+						} else if (x == 58) {
+							t.push("Gas Giant");
+						} else if (x < 69) {
+							t.push("Marginal");
+						} else if (x < 71) {
+							t.push("Paradise");
+						} else if (x < 78) {
+							t.push("Reducing");
+						} else if (x < 84) {
+							t.push("Oceanic");
+						} else if (x < 90) {
+							t.push("Glaciated");
+						} else if (x == 90) {
+							t.push("Gas Ultragiant");
+						} else if (x == 91) {
+							t.push("Gas Ultragiant/Brown Dwarf");
+						} else {
+							t.push("Ultra Hostile");
+						}
+						break;
+					default:
+						if (x < 11) {
+							t.push("Empty Orbit");
+						} else if (x < 22) {
+							t.push("Asteroid Belt");
+						} else if (x == 22) {
+							t.push("Mesoplanet");
+						} else if (x == 23) {
+							t.push("Small Terrestrial");
+						} else if (x == 24) {
+							t.push("Geoactive");
+						} else if (x < 30) {
+							t.push("Super Terrestrial");
+						} else if (x < 41) {
+							t.push("Gas Supergiant");
+						} else if (x < 72) {
+							t.push("Gas Giant");
+						} else if (x < 83) {
+							t.push("Gas Ultragiant");
+						} else if (x < 89) {
+							t.push("Gas Ultragiant/Brown Dwarf");
+						} else if (x < 95) {
+							t.push("Ice World");
+						} else {
+							t.push("Dirty Snowball");
+						}
+				}
 			}
 		}
 		tab.push(t);
@@ -1866,11 +1896,11 @@ function capture(type, max, lett, numb, dec) {
 				s = starCheck(x, lett[p], numb[p], dec[p]);
 				z = zonePop([
 					[s]
-				])[0][0];
+				], "Cap")[0][0];
 				while (["Empty Orbit", "Asteroid Belt"].indexOf(z) > -1) {
 					z = zonePop([
 						[s]
-					])[0][0];
+					], "Cap")[0][0];
 				}
 				d = [randomInt(0, 9), randomInt(0, 9)];
 				t["Rogue Planet &#" + (945 + i).toString() + "; " + j.toString()] = [z, [x + d[0] * 0.1, s],
@@ -2178,9 +2208,9 @@ function satellites(planets) {
 									planet = "Empty Orbit";
 									while (["Empty Orbit", "Asteroid Belt", "Super Terrestrial", "Small Gas Giant", "Gas Giant", "Gas Supergiant", "Gas Ultragiant", "Gas Ultragiant/Brown Dwarf"].indexOf(planet) > -1) {
 										if (Array.isArray(z[i])) {
-											planet = zonePop([z[i][0]])[0][0];
+											planet = zonePop([z[i][0]], "")[0][0];
 										} else {
-											planet = zonePop(z[i])[0][0];
+											planet = zonePop(z[i], "")[0][0];
 										}
 									}
 									s.push(["Huge Moon" + num.toString(), planet, pos]);
@@ -2260,9 +2290,9 @@ function satellites(planets) {
 									planet = "Empty Orbit";
 									while (["Empty Orbit", "Asteroid Belt", "Super Terrestrial", "Small Gas Giant", "Gas Giant", "Gas Supergiant", "Gas Ultragiant", "Gas Ultragiant/Brown Dwarf"].indexOf(planet) > -1) {
 										if (Array.isArray(z[i])) {
-											planet = zonePop([z[i][0]])[0][0];
+											planet = zonePop([z[i][0]], "")[0][0];
 										} else {
-											planet = zonePop(z[i])[0][0];
+											planet = zonePop(z[i], "")[0][0];
 										}
 									}
 									s.push(["Huge Moon" + num.toString(), planet, pos]);
@@ -3056,8 +3086,7 @@ function generate() {
 				r = randomInt(1, 20);
 			}
 		}
-	}
-  else {
+	} else {
 		r = randomInt(1, 20);
 	}
 	var t = [];
@@ -3112,7 +3141,7 @@ function generate() {
 		x.shift();
 		return x;
 	});
-	planets = zonePop(planets);
+	planets = zonePop(planets, "");
 	var capturedPlanets = capture("Planet", max, letter, numb, dec);
 	var capturedAsteroids = capture("Asteroid", max, letter, numb, dec);
 	var orbitZones = t;
