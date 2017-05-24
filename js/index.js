@@ -1432,7 +1432,6 @@ function zonePop(zones, test) {
 				}
 			}
 		}
-    console.log(JSON.stringify(sort));
 		selected = {};
 		for (i = 1; i <= t; i++) {
 			x = $("#planetType_" + i).val();
@@ -1540,6 +1539,7 @@ function zonePop(zones, test) {
       }
 		}
 	}
+  console.log(JSON.stringify(selected));
 	var tab = [];
 	for (i = 0; i < dim[0]; i++) {
 		t = [];
