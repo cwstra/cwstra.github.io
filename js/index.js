@@ -1508,14 +1508,13 @@ function zonePop(zones, test) {
             k = ["In","Hab","Out"];
             break;
         }
-        test = true;
-        for (j=0;j<k.length;j++){
-          test = test && sort[k[j]].length;
+        for (j=k.length-1;j>-1;j--){
+          k[j] = k[j].splice(j,1);
         }
         if (sort.In.length===0&&sort.Hab.length===0&&sort.Out.length===0){
           break;
         }
-        else if (test){
+        else if (k===[]){
           continue;
         }
         r = randomInt(0,k.length-1);
