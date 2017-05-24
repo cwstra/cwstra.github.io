@@ -35,6 +35,7 @@ $(document).ready(function() {
       var i,planet,newInd; for (i=count-1;i<$('#repeatingPlanets>*').length;i++){
         planet = $('#repeatingPlanets>*').eq(i);
         planet.toggleClass(planet.attr("class")+" planetSection_"+(i+1));
+        planet.children("select").attr("id","planetType_"+(i+1));
       }
   		return false;
   	});
