@@ -1509,7 +1509,7 @@ function zonePop(zones, test) {
             break;
         }
         for (j=k.length-1;j>-1;j--){
-          if (sort[k].length===0){
+          if (sort[k[j]].length===0){
             k[j] = k.splice(j,1);
           }
         }
