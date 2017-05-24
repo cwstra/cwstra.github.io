@@ -385,6 +385,7 @@ function starClassSize(n, spect, dec, lum) {
 				} else {
 					tab.push("Ib");
 				}
+				tab.push(randomInt(0, 9));
 			} else if (tab[0] == "O") {
 				if (r < 8) {
 					tab.push("Ia");
@@ -393,6 +394,7 @@ function starClassSize(n, spect, dec, lum) {
 				} else {
 					tab.push("V");
 				}
+				tab.push(randomInt(0, 9));
 			} else if (r < 3) {
 				tab.push("II");
 				tab.push(randomInt(0, 9));
@@ -429,6 +431,7 @@ function starClassSize(n, spect, dec, lum) {
 				} else {
 					tab.push("Ib");
 				}
+				tab.push(randomInt(0, 9));
 			} else if (tab[0] == "O") {
 				if (r < 8) {
 					tab.push("Ia");
@@ -437,6 +440,7 @@ function starClassSize(n, spect, dec, lum) {
 				} else {
 					tab.push("V");
 				}
+				tab.push(randomInt(0, 9));
 			} else if (r < 3) {
 				tab.push("II");
 				tab.push(randomInt(0, 9));
