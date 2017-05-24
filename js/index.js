@@ -346,7 +346,8 @@ function starClassSize(n, spect, dec, lum) {
 	var r, tab = [];
 	if (spectt) {
 		tab.push(spect);
-	} else {
+	}
+  else {
 		r = randomInt(1, 10) + randomInt(1, 10);
 		if (r < 4) {
 			tab.push("A");
@@ -374,7 +375,8 @@ function starClassSize(n, spect, dec, lum) {
 				tab.push("Primary");
 			}
 		}
-	} else {
+	}
+  else {
 		r = randomInt(1, 10) + randomInt(1, 10);
 		if (n === 1) {
 			if (tab[0] == "W") {
@@ -3163,13 +3165,13 @@ function generate() {
 	var i;
 	t.push(starClassSize(1, $("#star1Spect").val(), $("#star1Dec").val(), $("#star1Lum").val()));
 	if (r > 9) {
-		t.push(starClassSize(2));
+		t.push(starClassSize(2, $("#star2Spect").val(), $("#star2Dec").val(), $("#star2Lum").val()));
 	}
 	if (r > 17) {
-		t.push(starClassSize(3));
+		t.push(starClassSize(3, $("#star3Spect").val(), $("#star3Dec").val(), $("#star3Lum").val()));
 	}
 	if (r > 19) {
-		t.push(starClassSize(4));
+		t.push(starClassSize(4, $("#star4Spect").val(), $("#star4Dec").val(), $("#star4Lum").val()));
 	}
 	for (i = 0; i < t.length; i++) {
 		letter.push(t[i][0]);
