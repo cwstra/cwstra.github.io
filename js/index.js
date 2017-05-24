@@ -1508,11 +1508,13 @@ function zonePop(zones, test) {
             k = ["In","Hab","Out"];
             break;
         }
-        for (j=k.length-1;j>-1;j--){
-          if (sort[k[j]].length===0){
-            k = k.splice(j,1);
+        test = [];
+        for (j=0;j<k.length;j++){
+          if (sort[k[j]].length>0){
+            test.push(k[j]);
           }
         }
+        k = intersect(test,k);
         if (sort.In.length===0&&sort.Hab.length===0&&sort.Out.length===0){
           break;
         }
