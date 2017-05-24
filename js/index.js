@@ -1548,7 +1548,7 @@ function zonePop(zones, captureTest) {
 			}
       else {
 				x = randomInt(1, 100);
-        console.log([zones[i][j], captureTest]);
+        console.log(JSON.stringify([zones[i][j], captureTest]));
 				switch ([zones[i][j], captureTest]) {
 					case ["eHab", ""]:
 					case ["eOut", ""]:
@@ -1662,6 +1662,7 @@ function zonePop(zones, captureTest) {
 		}
 		tab.push(t);
 	}
+  console.log(JSON.stringify(tab));
 	return tab;
 }
 
