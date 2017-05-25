@@ -52,11 +52,11 @@ tr.big-header td{
 }
 
 #stars{
-  text-align: center;
-  margin: auto;
-  width: 95%;
   border: 3px solid green;
   padding: 10px;
+  width: 95%;
+  text-align: center;
+  margin: auto;
 }
 
 /*Accordion
