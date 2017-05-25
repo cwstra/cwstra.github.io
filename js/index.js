@@ -223,7 +223,9 @@ $(document).ready(function() {
 			default:
 				possibLum = intersect(possibLum, ["random", "Ia", "Ib", "II", "III", "IV", "V", "VI"]);
 		}
-		switch (oLum) {
+    console.log("After Spec switch");
+    console.log([possibSpect,possibDec,possibLum]);
+    switch (oLum) {
 			case "Ia":
 			case "Ib":
 				possibSpect = intersect(possibSpect, ["random", "W", "O", "B", "A", "F", "G", "K", "M"]);
@@ -245,45 +247,47 @@ $(document).ready(function() {
 				possibSpect = intersect(possibSpect, ["random", "dA", "dF", "dG"]);
 				possibDec = ["N/A"];
 		}
-		if (oDec !== "random" && possibDec !== ["N/A"]) {
+    console.log("After Lum switch");
+    console.log([possibSpect,possibDec,possibLum]);
+    if (oDec !== "random" && possibDec !== ["N/A"]) {
 			possibSpect = intersect(possibSpect, ["random", "Ia", "Ib", "II", "III", "IV", "V", "VI"]);
 			possibLum = intersect(possibLum, ["random", "W", "O", "B", "A", "F", "G", "K", "M"]);
 		}
-		switch ([oSpec, oLum]) {
-			case ["K", "IV"]:
+		switch (oSpec+","+oLum) {
+			case "K,IV":
 				possibDec = intersect(possibDec, ["random", 0, 1, 2, 3, 4]);
 				break;
-			case ["F", "VI"]:
+			case "F,VI":
 				possibDec = intersect(possibDec, ["random", 5, 6, 7, 8, 9]);
 		}
-		switch ([oSpec, oDec]) {
-			case ["K", 0]:
-			case ["K", 1]:
-			case ["K", 2]:
-			case ["K", 3]:
-			case ["K", 4]:
+		switch (oSpec+","+oDec) {
+			case "K,0":
+			case "K,1":
+			case "K,2":
+			case "K,3":
+			case "K,4":
 				possibLum = intersect(possibLum, ["random", "Ia", "Ib", "II", "III", "V", "VI"]);
 				break;
-			case ["F", 5]:
-			case ["F", 6]:
-			case ["F", 7]:
-			case ["F", 8]:
-			case ["F", 9]:
+			case "F,5":
+			case "F,6":
+			case "F,7":
+			case "F,8":
+			case "F,9":
 				possibLum = intersect(possibLum, ["random", "Ia", "Ib", "II", "III", "IV", "V"]);
 		}
-		switch ([oDec, oLum]) {
-			case [0, "IV"]:
-			case [1, "IV"]:
-			case [2, "IV"]:
-			case [3, "IV"]:
-			case [4, "IV"]:
+		switch (oDec+","+oLum) {
+			case "0,IV":
+			case "1,IV":
+			case "2,IV":
+			case "3,IV":
+			case "4,IV":
 				possibSpect = intersect(possibSpect, ["random", "W", "O", "B", "A", "F", "G", "M"]);
 				break;
-			case [5, "VI"]:
-			case [6, "VI"]:
-			case [7, "VI"]:
-			case [8, "VI"]:
-			case [9, "VI"]:
+			case "5,VI":
+			case "6,VI":
+			case "7,VI":
+			case "8,VI":
+			case "9,VI":
 				possibSpect = intersect(possibSpect, ["random", "W", "O", "B", "A", "G", "K", "M"]);
 		}
 		if (possibSpect.length === 2) {
