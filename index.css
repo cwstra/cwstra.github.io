@@ -59,11 +59,13 @@ tr.big-header td{
 
 #specificGen{
   text-align: center;
+  border-style: none none solid none;
+  border-color: white;
 }
 
 #buttonZone{
   text-align: center;
-  border-style: solid none solid none;
+  border-style: none none solid none;
   border-color: white;
 }
 
