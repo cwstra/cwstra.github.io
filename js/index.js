@@ -387,10 +387,10 @@ function starClassSize(n, spect, dec, lum) {
 			});
 			r = randomInt(0, possibDec.length - 1);
 			tab.push(possibDec[r]);
-			if (n === 1) {
-				tab.push("Primary");
-			}
 		}
+    if (n === 1) {
+      tab.push("Primary");
+    }
 	}
   else {
 		r = randomInt(1, 10) + randomInt(1, 10);
