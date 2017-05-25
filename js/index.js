@@ -232,8 +232,6 @@ $(document).ready(function() {
 			default:
 				possibLum = intersect(possibLum, ["random", "Ia", "Ib", "II", "III", "IV", "V", "VI"]);
 		}
-    console.log("After Spec switch");
-    console.log([possibSpect,possibDec,possibLum]);
     switch (oLum) {
 			case "Ia":
 			case "Ib":
@@ -256,8 +254,6 @@ $(document).ready(function() {
 				possibSpect = intersect(possibSpect, ["random", "dA", "dF", "dG"]);
 				possibDec = ["N/A"];
 		}
-    console.log("After Lum switch");
-    console.log([possibSpect,possibDec,possibLum]);
     if (oDec !== "random" && possibDec !== ["N/A"]) {
 			possibSpect = intersect(possibSpect, ["random", "Ia", "Ib", "II", "III", "IV", "V", "VI"]);
 			possibLum = intersect(possibLum, ["random", "W", "O", "B", "A", "F", "G", "K", "M"]);
@@ -686,6 +682,7 @@ function starRanges(stars) {
 		var y = r.filter(function(x) {
 			return !(list.indexOf(x) > -1 || prime.indexOf(x) > -1);
 		});
+    console.log([prime,r]);
 		var m = prime[0][1];
 		for (i = 0; i < y.length; i++) {
 			if (m < y[i][2][3] && y[i][2][3] < 1000) {
