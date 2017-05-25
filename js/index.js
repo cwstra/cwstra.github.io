@@ -3155,7 +3155,7 @@ function generate() {
 	var presets = ($("#random").val() == "preset");
 	var r;
 	if (presets && $("starNumber").val() != "random") {
-    console.log("starNumber");
+    console.log($("starNumber").val());
 		if ($("starSign").val() === "=") {
 			if ($("starNumber").val() === 1) {
 				r = 1;
