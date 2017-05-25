@@ -3220,6 +3220,7 @@ function generate() {
 			} else {
 				r = randomInt(1, 20);
 			}
+      console.log(r);
 		}
 	}
   else {
