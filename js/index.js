@@ -710,7 +710,6 @@ function starRanges(stars) {
 		var y = r.filter(function(x) {
 			return !(list.indexOf(x) > -1 || prime.indexOf(x) > -1);
 		});
-    console.log([prime,r]);
 		var m = prime[0][1];
 		for (i = 0; i < y.length; i++) {
 			if (m < y[i][2][3] && y[i][2][3] < 1000) {
@@ -720,7 +719,8 @@ function starRanges(stars) {
 		prime[0][1] = m;
 		r = list.concat(prime).concat(y);
 		return r;
-	} else {
+	}
+  else {
 		mod = 0;
 		switch (stars[0]) {
 			case "M":
@@ -3054,7 +3054,7 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 		}
 		img += '_Star.png" alt="' + s + ' Image" style = "width:200px;height:200px;">';
 		tabstr += '\t<div class="system"><table class="big-table"><tr><td>Star Type:</td><td>' + stars[i][4] + "; " + s + '</td><td rowspan = "3" style="width:200px;">' + img + '</td></tr>\n';
-		tabstr += '\t<tr><td>Number of Orbits:</td><td>' + stars[i][2] + '</td></tr>\n';
+		tabstr += '\t<tr><td>Maximum Orbit:</td><td>' + orbitZones[i].length-1 + '</td></tr>\n';
 		if (i === 0) {
 			tabstr += '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
 		} else {
