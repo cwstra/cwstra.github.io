@@ -585,7 +585,6 @@ function starRanges(stars) {
 		var s;
 		var n;
 		for (i = 0; i < stars.length; i++) {
-      console.log(r);
 			s = stars[i];
 			if (typeof s[3] !== "string") {
 				while (t.indexOf(s[3]) > -1) {
@@ -1482,7 +1481,6 @@ function zonePop(zones, captureTest) {
 		}
 		selected = {};
 		for (i = 1; i <= t; i++) {
-      console.log(i);
 			x = $("#planetType_" + i).val();
 			if (x == "Random") {
         if (sort.In.length>0&&sort.Hab.length>0&&sort.Out.length>0){
@@ -1589,7 +1587,6 @@ function zonePop(zones, captureTest) {
 		}
 	}
 	var tab = [];
-  console.log(JSON.stringify(selected));
 	for (i = 0; i < zones.length; i++) {
 		t = [];
 		for (j = 0; j < zones[i].length; j++) {
@@ -1712,8 +1709,6 @@ function zonePop(zones, captureTest) {
 		}
 		tab.push(t);
 	}
-  console.log(JSON.stringify(["tab",tab]));
-  console.log(JSON.stringify(["zones",zones]));
 	return tab;
 }
 
@@ -3253,7 +3248,6 @@ function generate() {
 	}
 	var stars = JSON.parse(JSON.stringify(t));
 	t = starRanges(t);
-  console.log(JSON.parse(JSON.stringify(t)));
 	var name = randomName();
 	var sysname = name;
 	var n;
