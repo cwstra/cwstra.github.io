@@ -3210,7 +3210,8 @@ function generate() {
 				r = 20;
 			}
 		} else if ($("#starSign").val() === "<") {
-      console.log($("#starSign").val(),$("#starNumber").val());
+      console.log([$("#starSign").val(),$("#starNumber").val()]);
+      console.log(["1",$("#starNumber").val() === 1,"2",$("#starNumber").val() === 2,"3",$("#starNumber").val() === 3,"4",$("#starNumber").val() === 4]);
 			if ($("#starNumber").val() === 1) {
 				r = 1;
 			} else if ($("#starNumber").val() === 2) {
