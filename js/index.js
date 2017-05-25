@@ -3189,7 +3189,6 @@ function generate() {
 	var r;
 	if (presets && $("#starNumber").val() != "random") {
     console.log($("#starNumber").val());
-      console.log($("#starSign").val());
 		if ($("#starSign").val() === "=") {
 			if ($("#starNumber").val() === 1) {
 				r = 1;
@@ -3211,6 +3210,7 @@ function generate() {
 				r = 20;
 			}
 		} else if ($("#starSign").val() === "<") {
+      console.log($("#starSign").val(),$("#starNumber").val());
 			if ($("#starNumber").val() === 1) {
 				r = 1;
 			} else if ($("#starNumber").val() === 2) {
