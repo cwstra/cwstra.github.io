@@ -3190,33 +3190,31 @@ function generate() {
 	if (presets && $("#starNumber").val() != "random") {
     console.log($("#starNumber").val());
 		if ($("#starSign").val() === "=") {
-			if ($("#starNumber").val() === 1) {
+			if ($("#starNumber").val() == 1) {
 				r = 1;
-			} else if ($("#starNumber").val() === 2) {
+			} else if ($("#starNumber").val() == 2) {
 				r = 10;
-			} else if ($("#starNumber").val() === 3) {
+			} else if ($("#starNumber").val() == 3) {
 				r = 18;
 			} else {
 				r = 20;
 			}
 		} else if ($("#starSign").val() === ">") {
-			if ($("#starNumber").val() === 1) {
+			if ($("#starNumber").val() == 1) {
 				r = randomInt(1, 20);
-			} else if ($("#starNumber").val() === 2) {
+			} else if ($("#starNumber").val() == 2) {
 				r = 9 + randomInt(1, 10);
-			} else if ($("#starNumber").val() === 3) {
+			} else if ($("#starNumber").val() == 3) {
 				r = 17 + randomInt(1, 3);
 			} else {
 				r = 20;
 			}
 		} else if ($("#starSign").val() === "<") {
-      console.log([$("#starSign").val(),$("#starNumber").val()]);
-      console.log(["1",$("#starNumber").val() === 1,"2",$("#starNumber").val() === 2,"3",$("#starNumber").val() === 3,"4",$("#starNumber").val() === 4]);
-			if ($("#starNumber").val() === 1) {
+			if ($("#starNumber").val() == 1) {
 				r = 1;
-			} else if ($("#starNumber").val() === 2) {
+			} else if ($("#starNumber").val() == 2) {
 				r = randomInt(1, 17);
-			} else if ($("#starNumber").val() === 3) {
+			} else if ($("#starNumber").val() == 3) {
 				r = randomInt(1, 19);
 			} else {
 				r = randomInt(1, 20);
