@@ -381,7 +381,8 @@ function starClassSize(n, spect, dec, lum) {
 		tab.push(lum);
 		if (dect) {
 			tab.push(dec);
-		} else {
+		}
+    else {
 			$("#star" + n + "Dec > option").each(function() {
 				possibDec.push(this.value);
 			});
@@ -390,6 +391,21 @@ function starClassSize(n, spect, dec, lum) {
 		}
     if (n === 1) {
       tab.push("Primary");
+    }
+    else {
+      r = randomInt(1, 10);
+      if (r == 1) {
+        tab.push(1);
+      }
+      else if (r == 2) {
+        tab.push(2);
+      }
+      else if (r < 8) {
+        tab.push(randomInt(1, 10) + 2 * (r - 2));
+      }
+      else {
+        tab.push(randomInt(1, 10) * 1000);
+      }
     }
 		if (["dA", "dF", "dG"].indexOf(tab[0]) > -1) {
 			tab.push(tab[0]+" "+tab[1]);
@@ -453,7 +469,8 @@ function starClassSize(n, spect, dec, lum) {
 					tab.push("Ib");
 				}
 				tab.push(randomInt(0, 9));
-			} else if (tab[0] == "O") {
+			}
+      else if (tab[0] == "O") {
 				if (r < 8) {
 					tab.push("Ia");
 				} else if (r < 14) {
@@ -462,23 +479,28 @@ function starClassSize(n, spect, dec, lum) {
 					tab.push("V");
 				}
 				tab.push(randomInt(0, 9));
-			} else if (r < 3) {
+			}
+      else if (r < 3) {
 				tab.push("II");
 				tab.push(randomInt(0, 9));
-			} else if (r < 4) {
+			}
+      else if (r < 4) {
 				tab.push("III");
 				tab.push(randomInt(0, 9));
-			} else if (r < 7) {
+			}
+      else if (r < 7) {
 				tab.push("IV");
 				if (tab[0] == "K") {
 					tab.push(randomInt(0, 4));
 				} else {
 					tab.push(randomInt(0, 9));
 				}
-			} else if (r < 15) {
+			}
+      else if (r < 15) {
 				tab.push("V");
 				tab.push(randomInt(0, 9));
-			} else if (r < 19) {
+			}
+      else if (r < 19) {
 				if (tab[[1]] == "A") {
 					tab.push("V");
 				} else {
@@ -489,7 +511,8 @@ function starClassSize(n, spect, dec, lum) {
 				} else {
 					tab.push(randomInt(0, 9));
 				}
-			} else {
+			}
+      else {
 				var s = randomInt(1, 10) + randomInt(1, 10);
 				if (s < 5) {
 					tab[0] = "dA";
