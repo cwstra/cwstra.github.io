@@ -3154,40 +3154,41 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 function generate() {
 	var presets = ($("#random").val() == "preset");
 	var r;
-	if (presets && $("starNumber").val() != "random") {
-    console.log($("starNumber").val());
-		if ($("starSign").val() === "=") {
-			if ($("starNumber").val() === 1) {
+	if (presets && $("#starNumber").val() != "random") {
+    console.log($("#starNumber").val());
+		if ($("#starSign").val() === "=") {
+			if ($("#starNumber").val() === 1) {
 				r = 1;
-			} else if ($("starNumber").val() === 2) {
+			} else if ($("#starNumber").val() === 2) {
 				r = 10;
-			} else if ($("starNumber").val() === 3) {
+			} else if ($("#starNumber").val() === 3) {
 				r = 18;
 			} else {
 				r = 20;
 			}
-		} else if ($("starSign").val() === ">") {
-			if ($("starNumber").val() === 1) {
+		} else if ($("#starSign").val() === ">") {
+			if ($("#starNumber").val() === 1) {
 				r = randomInt(1, 20);
-			} else if ($("starNumber").val() === 2) {
+			} else if ($("#starNumber").val() === 2) {
 				r = 9 + randomInt(1, 10);
-			} else if ($("starNumber").val() === 3) {
+			} else if ($("#starNumber").val() === 3) {
 				r = 17 + randomInt(1, 3);
 			} else {
 				r = 20;
 			}
-		} else if ($("starSign").val() === "<") {
-			if ($("starNumber").val() === 1) {
+		} else if ($("#starSign").val() === "<") {
+			if ($("#starNumber").val() === 1) {
 				r = 1;
-			} else if ($("starNumber").val() === 2) {
+			} else if ($("#starNumber").val() === 2) {
 				r = randomInt(1, 17);
-			} else if ($("starNumber").val() === 3) {
+			} else if ($("#starNumber").val() === 3) {
 				r = randomInt(1, 19);
 			} else {
 				r = randomInt(1, 20);
 			}
 		}
-	} else {
+	}
+  else {
 		r = randomInt(1, 20);
 	}
 	var t = [];

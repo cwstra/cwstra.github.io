@@ -17,7 +17,7 @@
   	<option value="random">Completely Random</option>
   	<option value="preset">Guarantee Stars/Planets</option>
 	</select>
-	<div id="specificGen">
+	<p id="specificGen">
 		<br>
 		Stars:
 		<select id="starSign">
@@ -32,7 +32,7 @@
 		  	<option value=3>3</option>
 		  	<option value=4>4</option>
 			</select>
-		<div id="stars">
+		<p id="stars">
 			Primary Star Data:
 			<select id="star1Spect">
 	  		<option value="random">Random</option>
@@ -193,10 +193,10 @@
 		  	<option value="VII">VII</option>
 			</select>
 			<br class="star4">
-		</div>
+		</p>
 		Planets:
-		<div id="planets">
-			<div class="sampleRP">
+		<p id="planets">
+			<p class="sampleRP">
 				<button class="deletePlanet" type="button">Delete Planet</button>
 				<select id="planetType_0">
 					<option value="Random">Random</option>
@@ -219,12 +219,12 @@
 					<option value="Gas Supergiant">Gas Supergiant</option>
 					<option value="Gas Ultragiant/Brown Dwarf">Gas Ultragiant/Brown Dwarf</option>
 				</select>
-			</div>
-			<div id="repeatingPlanets">
-			</div>
+			</p>
+			<p id="repeatingPlanets">
+			</p>
 			<button class="addPlanet" title="Note: If there are not enough orbits around the stars to house the types of planets requested, later requested planets may be ignored" type="button">Add Planet</button>
-		</div>
-	</div>
+		</p>
+	</p>
 </p>
 <p id="buttonZone">
 	<button onclick="generate()">Generate</button>
