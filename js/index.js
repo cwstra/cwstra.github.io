@@ -3049,7 +3049,7 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 		}
 		img += '_Star.png" alt="' + s + ' Image" style = "width:200px;height:200px;">';
 		tabstr += '\t<div class="system"><table class="big-table"><tr><td>Star Type:</td><td>' + stars[i][4] + "; " + s + '</td><td rowspan = "3" style="width:200px;">' + img + '</td></tr>\n';
-		tabstr += '\t<tr><td>Maximum Orbit:</td><td>' + orbitZones[i].length-1 + '</td></tr>\n';
+		tabstr += '\t<tr><td>Maximum Orbit:</td><td>' + (orbitZones[i].length-1) + '</td></tr>\n';
 		if (i === 0) {
 			tabstr += '\t<tr><td colspan = "2">Primary Star</td></tr>\n';
 		} else {
