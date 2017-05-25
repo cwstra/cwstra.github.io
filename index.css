@@ -51,8 +51,22 @@ tr.big-header td{
 	font-size: 200%;
 }
 
+#settingsContainer{
+  text-align: center;
+  border-style: solid none solid none;
+  border-color: white;
+}
+
 #specificGen{
   text-align: center;
+  border-style: none none solid none;
+  border-color: white;
+}
+
+#buttonZone{
+  text-align: center;
+  border-style: solid none solid none;
+  border-color: white;
 }
 
 /*Accordion
