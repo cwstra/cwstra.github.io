@@ -3144,7 +3144,7 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 	$("button.system").click(function() {
 		$(this).next().toggle();
 	});
-	$("div.system").hide();
+	$("p.system").hide();
 	$("table.system").hide();
 	if ($("#export").length === 0) {
 		$("#buttonZone").append('<br>\n<button onclick="systemExport()" id="export">Export</button>');
