@@ -51,12 +51,9 @@ tr.big-header td{
 	font-size: 200%;
 }
 
-#stars{
-  border: 3px solid green;
-  padding: 10px;
+#specificGen{
   width: 95%;
-  text-align: center;
-  margin: auto;
+  margin: 0 auto;
 }
 
 /*Accordion
