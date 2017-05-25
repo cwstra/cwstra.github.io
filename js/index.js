@@ -392,7 +392,7 @@ function starClassSize(n, spect, dec, lum) {
       tab.push("Primary");
     }
 		if (["dA", "dF", "dG"].indexOf(tab[0]) > -1) {
-			tab.push(tab[1]);
+			tab.push(tab[0]+" "+tab[1]);
 		} else {
 			tab.push(tab[0] + tab[2] + " " + tab[1]);
 		}
