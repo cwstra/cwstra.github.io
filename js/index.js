@@ -197,6 +197,15 @@ $(document).ready(function() {
 		var oSpec = spec,
 			oDec = dec,
 			oLum = lum;
+    if ($("#star"+n+"Spect").children().length===1){
+      oSpec = "random";
+    }
+    if ($("#star"+n+"Dec").children().length===1){
+      oDec = "random";
+    }
+    if ($("#star"+n+"Lum").children().length===1){
+      oLum = "random";
+    }
 		var possibSpect = ["random", "W", "O", "B", "A", "F", "G", "K", "M", "dA", "dF", "dG"];
 		var possibDec = ["random", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 		var possibLum = ["random", "Ia", "Ib", "II", "III", "IV", "V", "VI", "VII"];
