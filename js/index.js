@@ -3252,6 +3252,7 @@ function generate() {
 	}
 	var stars = JSON.parse(JSON.stringify(t));
 	t = starRanges(t);
+  console.log(JSON.parse(JSON.stringify(t)));
 	var name = randomName();
 	var sysname = name;
 	var n;
