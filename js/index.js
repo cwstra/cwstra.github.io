@@ -218,10 +218,10 @@ $(document).ready(function() {
 			case "dF":
 			case "dG":
 				possibLum = intersect(possibLum, ["VII"]);
+				possibDec = ["N/A"];
 				break;
 			default:
 				possibLum = intersect(possibLum, ["random", "Ia", "Ib", "II", "III", "IV", "V", "VI"]);
-				possibDec = ["N/A"];
 		}
 		switch (oLum) {
 			case "Ia":
