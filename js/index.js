@@ -391,6 +391,11 @@ function starClassSize(n, spect, dec, lum) {
     if (n === 1) {
       tab.push("Primary");
     }
+		if (["dA", "dF", "dG"].indexOf(tab[0]) > -1) {
+			tab.push(tab[1]);
+		} else {
+			tab.push(tab[0] + tab[2] + " " + tab[1]);
+		}
 	}
   else {
 		r = randomInt(1, 10) + randomInt(1, 10);
