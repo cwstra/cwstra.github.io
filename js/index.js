@@ -1539,7 +1539,7 @@ function zonePop(zones, captureTest) {
         if (sort.In.length===0&&sort.Hab.length===0&&sort.Out.length===0){
           break;
         }
-        else if (k===[]){
+        else if (k.length===0){
           continue;
         }
         r = randomInt(0,k.length-1);
