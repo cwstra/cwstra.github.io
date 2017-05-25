@@ -50,6 +50,11 @@ div.header{
 tr.big-header td{
 	font-size: 200%;
 }
+
+#stars{
+  text-align: center;
+}
+
 /*Accordion
  Style the buttons that are used to open and close the accordion panel */
 button.system {
@@ -72,7 +77,7 @@ button.system.active, button.system:hover {
 }
 
 button.system:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+)*/ 
+    content: '\02795'; /* Unicode character for "plus" sign (+)*/
     font-size: 13px;
     color: #777;
     float: right;
