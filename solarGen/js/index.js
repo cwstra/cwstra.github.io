@@ -2875,37 +2875,44 @@ function planetDeets(planets, satellites) {
 		}
 		return tab;
 	}
-	var i, tab, prop, planet;
+	var i, tab, prop, planet, type, zone;
 	for (i = 0; i < planets.length; i++) {
 		for (prop in planets[i]) {
 			if (planets[i].hasOwnProperty(prop)) {
+        if (Array.isArray(planet[1])){
+          type = planet[0];
+          zone = planet[1][1];
+        } else {
+          type = planet[2];
+          zone = planet[1];
+        }
 				planet = planets[i][prop];
 				tab = {};
-				tab.Diameter = size(planet[2]);
+				tab.Diameter = size(type);
 				tab.Circumference = Math.PI * tab.Diameter;
 				tab["Surface Area"] = tab.Circumference / 2;
 				tab["Surface Gravity"] = tab.Diameter / 12;
-				tab["Atmospheric Makeup"] = atmosphere(planet[2], planet[1], tab.Diameter);
+				tab["Atmospheric Makeup"] = atmosphere(type, zone, tab.Diameter);
 				tab["Atmospheric Pressure"] = tab["Atmospheric Makeup"][1];
 				tab["Atmospheric Makeup"] = tab["Atmospheric Makeup"][0];
-				tab.Hydrosphere = hydro(planet[2], planet[1]);
-				tab.Cryosphere = cryo(planet[2], planet[1]);
-				if (planet[2] == "Paradise" && tab.Hydrosphere + tab.Cryosphere > 80) {
+				tab.Hydrosphere = hydro(type, zone);
+				tab.Cryosphere = cryo(type, zone);
+				if (type == "Paradise" && tab.Hydrosphere + tab.Cryosphere > 80) {
 					tab.Cryosphere = Math.max(80 - tab.Hydrosphere, 0);
 				} else if (tab.Hydrosphere + tab.Cryosphere > 100) {
 					tab.Cryosphere = 100 - tab.Hydrosphere;
 				}
-				tab.Volcanism = volc(planet[2]);
-				tab["Tectonic Activity"] = tect(planet[2]);
+				tab.Volcanism = volc(type);
+				tab["Tectonic Activity"] = tect(type);
 				tab["% Land Area"] = 100 - tab.Hydrosphere - tab.Cryosphere;
-				if (["Desert", "Glaciated", "Marginal", "Oceanic", "Paradise"].indexOf(planet[2]) > -1) {
+				if (["Desert", "Glaciated", "Marginal", "Oceanic", "Paradise"].indexOf(type) > -1) {
 					tab["Relative Humidity"] = round((randomInt(1, 10) + tab.Hydrosphere) / 110, 2);
 					tab["Mean Temperature"] = 100 - (tab.Cryosphere * 10);
 					tab["Mean High Temperature"] = tab["Mean Temperature"] + 20;
 					tab["Mean Low Temperature"] = tab["Mean Temperature"] - 20;
 				}
 				tab["Hours per Day"] = hoursPDay(tab.Hydrosphere, satellites[i][planet]);
-				tab.Minerals = minerals(planet[2]);
+				tab.Minerals = minerals(type);
 				planets[i][prop].push(tab);
 			}
 		}
