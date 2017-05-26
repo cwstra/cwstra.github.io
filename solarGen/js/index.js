@@ -2853,7 +2853,11 @@ function planetDeets(planets, satellites) {
 	function minerals(type) {
 		var tab = [randomInt(1, 10) + 3, randomInt(1, 10) + 1, randomInt(1, 10) - 2, randomInt(1, 10), randomInt(1, 10) - 4, randomInt(1, 10) - 4],
 			i;
-		if (type == "Ice World") {
+		if (["Gas Giant","Small Gas Giant","Gas Supergiant","Gas Ultragiant/Brown Dwarf","Gas Ultragiant"].indexOf(type)>-1){
+      tab = new Array(6);
+      tab.fill(0);
+      return tab;
+    } if (type == "Ice World") {
 			tab[0] -= 4;
 			tab[1] -= 6;
 			tab[2] -= 8;
@@ -3159,7 +3163,7 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 			tabstr += '\t<tr><td colspan="3">Rogue Asteroids:</td></tr>\n';
 			for (prop in capturedAsteroids[i]) {
 				if (capturedAsteroids[i].hasOwnProperty(prop)) {
-					tabstr += '\t<tr><td></td><td>' + prop + ':</td><td>Orbits From: ' + round(bode(capturedAsteroids[i][prop][0]), 2) + 'AU to ' + round(bode(capturedAsteroids[i][prop][1]), 2) + 'AU</td></tr>\n';
+					tabstr += '\t<tr><td></td><td>' + prop + ':</td><td>Orbits From:<br>' + round(bode(capturedAsteroids[i][prop][0]), 2) + 'AU to ' + round(bode(capturedAsteroids[i][prop][1]), 2) + 'AU</td></tr>\n';
 				}
 			}
 		}
