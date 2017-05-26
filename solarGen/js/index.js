@@ -2502,6 +2502,7 @@ function planetDeets(planets, satellites) {
 			case "Gas Giant":
 				return Math.max(4, 100 + 10 * randomInt(1, 10));
 			case "Gas Supergiant":
+			case "Gas Ultragiant":
 			case "Gas Ultragiant/Brown Dwarf":
 				return Math.max(4, 200 + 10 * randomInt(1, 10));
 			default:
@@ -2612,6 +2613,7 @@ function planetDeets(planets, satellites) {
 			case "Small Gas Giant":
 			case "Gas Giant":
 			case "Gas Supergiant":
+			case "Gas Ultragiant":
 			case "Gas Ultragiant/Brown Dwarf":
 				t.push("Hydrogen");
 				break;
@@ -2697,6 +2699,7 @@ function planetDeets(planets, satellites) {
 			case "Small Gas Giant":
 			case "Gas Giant":
 			case "Gas Supergiant":
+			case "Gas Ultragiant":
 			case "Gas Ultragiant/Brown Dwarf":
 				t.push("Liquifying");
 				break;
