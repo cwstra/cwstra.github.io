@@ -2879,6 +2879,7 @@ function planetDeets(planets, satellites) {
 	for (i = 0; i < planets.length; i++) {
 		for (prop in planets[i]) {
 			if (planets[i].hasOwnProperty(prop)) {
+				planet = planets[i][prop];
         if (Array.isArray(planet[1])){
           type = planet[0];
           zone = planet[1][1];
@@ -2886,7 +2887,6 @@ function planetDeets(planets, satellites) {
           type = planet[2];
           zone = planet[1];
         }
-				planet = planets[i][prop];
 				tab = {};
 				tab.Diameter = size(type);
 				tab.Circumference = Math.PI * tab.Diameter;
