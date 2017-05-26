@@ -3085,8 +3085,12 @@ function tableGen(sysname, name, stars, orbitZones, planets, satel, asteroids, c
 					tabstr += '\t<tr><td></td><td>Glacial Area Percentage:</td><td colspan="2">' + planets[i][prop][3].Cryosphere + '%</td></tr>\n';
 					tabstr += '\t<tr><td></td><td>Basic Atmospheric Composition:</td><td colspan="2">' + planets[i][prop][3]["Atmospheric Makeup"] + '</td></tr>\n';
 					x = planets[i][prop][3]["Atmospheric Pressure"];
-					if (typeof x !== "string" && x > 1) {
-						x = round(x, 2).toString()+"g";
+					if (typeof x !== "string") {
+            if (x>1){
+              x = round(x, 2).toString()+"g";
+            } else {
+              x = x.toString()+"g";
+            }
 					}
 					tabstr += '\t<tr><td></td><td>Surface Atmospheric Pressure:</td><td colspan="2">' + x + '</td></tr>\n';
 					tabstr += '\t<tr><td></td><td>Volcanism:</td><td colspan="2">' + planets[i][prop][3].Volcanism + ' out of 100</td></tr>\n';
