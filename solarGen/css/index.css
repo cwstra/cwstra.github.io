@@ -70,7 +70,7 @@ tr.big-header td{
 }
 
 #buttonZone{
-  padding: :auto auto auto 10;
+  padding:auto auto auto 10;
   text-align: center;
   border-style: none none solid none;
   border-color: white;
