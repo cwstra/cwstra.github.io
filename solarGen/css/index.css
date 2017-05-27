@@ -56,21 +56,21 @@ tr.big-header td{
 }
 
 #settingsContainer{
-  margin:auto;
+  padding: 10px;
   text-align: center;
   border-style: solid none none none;
   border-color: white;
 }
 
 #specificGen{
-  margin:auto;
+  padding: 10px;
   text-align: center;
   border-style: solid none solid none;
   border-color: white;
 }
 
 #buttonZone{
-  padding-bottom: 10px;
+  padding: 10px;
   text-align: center;
   border-style: none none solid none;
   border-color: white;
