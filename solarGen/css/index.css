@@ -56,7 +56,7 @@ tr.big-header td{
 }
 
 #settingsContainer{
-  padding: 10px;
+  padding-bottom: 20px;
   text-align: center;
   border-style: solid none none none;
   border-color: white;
@@ -70,7 +70,7 @@ tr.big-header td{
 }
 
 #buttonZone{
-  padding: 10px;
+  padding-bottom: 20px;
   text-align: center;
   border-style: none none solid none;
   border-color: white;
