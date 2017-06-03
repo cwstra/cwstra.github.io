@@ -49,20 +49,6 @@ function renderDiagram() {
 	}
 }
 
-/*function removeSmallBits(path) {
-	var averageLength = path.length / path.segments.length;
-	var min = path.length / 50;
-	for(var i = path.segments.length - 1; i >= 0; i--) {
-		var segment = path.segments[i];
-		var cur = segment.point;
-		var nextSegment = segment.next;
-		var next = nextSegment.point + nextSegment.handleIn;
-		if (cur.getDistance(next) < min) {
-			segment.remove();
-		}
-	}
-}*/
-
 function createPath(points, center) {
 	var path = new Path();
 	if (!selected) { 
@@ -77,14 +63,12 @@ function createPath(points, center) {
 		var next = points[(i + 1) == points.length ? 0 : i + 1];
 		var vector = (next - point) / 2;
 		path.add({
-			point: point + vector,
+			point: point + vector/*,
 			handleIn: -vector,
-			handleOut: vector
+			handleOut: vector*/
 		});
 	}
 	console.log("check")
-	//path.scale(0.95);
-	//removeSmallBits(path);
 	return path;
 }
 
