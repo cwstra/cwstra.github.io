@@ -2,7 +2,8 @@ var voronoi =  new Voronoi();
 //var sites = generateBeeHivePoints(view.size / 200, true);
 var sites = [],x;
 for (i=0;i<50;i++){
-	x = new Point(view.size.width, view.size.height) * Point.random();
+	x = new Point(view.size.width-40, view.size.height-40) * Point.random();
+	x = x + new Point(20,20)
 	sites.push(x);
 }
 var bbox, diagram;
