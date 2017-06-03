@@ -52,7 +52,7 @@ function renderDiagram() {
 function createPath(points, center) {
 	var path = new Path();
 	if (!selected) { 
-		path.fillColor = spotColor;
+		path.strokeColor = spotColor;
 	} else {
 		path.fullySelected = selected;
 	}
