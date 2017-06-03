@@ -63,9 +63,9 @@ function createPath(points, center) {
 		var next = points[(i + 1) == points.length ? 0 : i + 1];
 		var vector = (next - point) / 2;
 		path.add({
-			point: point + vector/*,
+			point: point + vector,
 			handleIn: -vector,
-			handleOut: vector*/
+			handleOut: vector
 		});
 	}
 	console.log("check")
