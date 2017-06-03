@@ -82,6 +82,7 @@ function createPath(points, center) {
 			handleOut: vector
 		});
 	}
+	console.log("check")
 	//path.scale(0.95);
 	//removeSmallBits(path);
 	return path;
