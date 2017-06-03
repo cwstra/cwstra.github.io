@@ -1,6 +1,6 @@
 var voronoi =  new Voronoi();
-//var sites = generateBeeHivePoints(view.size / 200, true);
-var sites = [],x;
+var sites = generateBeeHivePoints(view.size / 200, true);
+/*var sites = [],x;
 x = new Point(view.size.x/4, view.size.y/4);
 sites.push(x);
 x = new Point(3*view.size.x/4, view.size.y/4);
@@ -9,7 +9,7 @@ x = new Point(3*view.size.x/4, 3*view.size.y/4);
 sites.push(x);
 x = new Point(view.size.x/4, 3*view.size.y/4);
 sites.push(x);
-/*for (i=0;i<50;i++){
+for (i=0;i<50;i++){
 	x = new Point(view.size.x, view.size.y) * Point.random();
 	sites.push(x);
 }*/
