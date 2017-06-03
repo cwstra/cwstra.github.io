@@ -8,6 +8,7 @@ for (i=0;i<50;i++){
 var bbox, diagram;
 var oldSize = view.size;
 var spotColor = new Color('red');
+var siteColor = new Color('red');
 var mousePos = view.center;
 var selected = false;
 
@@ -44,6 +45,7 @@ function renderDiagram() {
 					}
 					createPath(points, sites[i]);
 				}
+				new Path.Circle({center:sites[i],radius:5,fillColor:'blue'})
 			}
 		}
 	}
@@ -62,11 +64,7 @@ function createPath(points, center) {
 		var point = points[i];
 		var next = points[(i + 1) == points.length ? 0 : i + 1];
 		var vector = (next - point) / 2;
-		path.add({
-			point: point/* + vector,
-			handleIn: -vector,
-			handleOut: vector*/
-		});
+		path.add({point: point});
 	}
 	console.log("check")
 	return path;
