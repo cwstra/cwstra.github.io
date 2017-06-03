@@ -49,7 +49,7 @@ function renderDiagram() {
 	}
 }
 
-function removeSmallBits(path) {
+/*function removeSmallBits(path) {
 	var averageLength = path.length / path.segments.length;
 	var min = path.length / 50;
 	for(var i = path.segments.length - 1; i >= 0; i--) {
@@ -61,7 +61,7 @@ function removeSmallBits(path) {
 			segment.remove();
 		}
 	}
-}
+}*/
 
 function createPath(points, center) {
 	var path = new Path();
@@ -83,7 +83,7 @@ function createPath(points, center) {
 		});
 	}
 	path.scale(0.95);
-	removeSmallBits(path);
+	//removeSmallBits(path);
 	return path;
 }
 
