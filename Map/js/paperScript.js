@@ -82,7 +82,7 @@ function createPath(points, center) {
 			handleOut: vector
 		});
 	}
-	path.scale(0.95);
+	//path.scale(0.95);
 	//removeSmallBits(path);
 	return path;
 }
