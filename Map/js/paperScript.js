@@ -2,7 +2,7 @@ var voronoi =  new Voronoi();
 //var sites = generateBeeHivePoints(view.size / 200, true);
 var sites = [],x;
 for (i=0;i<50;i++){
-	x = new Point(view.size.x, view.size.y) * Point.random()
+	x = new Point(view.size.x, view.size.y) * Point.random();
 	sites.push(x);
 }
 console.log(sites);
