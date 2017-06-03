@@ -14,7 +14,7 @@ var selected = false;
 
 onResize();
 
-function onMouseDown(event) {
+/*function onMouseDown(event) {
 	sites.push(event.point);
 	renderDiagram();
 }
@@ -25,11 +25,12 @@ function onMouseMove(event) {
 		sites.push(event.point);
 	sites[sites.length - 1] = event.point;
 	renderDiagram();
-}
+}*/
 
 function renderDiagram() {
 	project.activeLayer.children = [];
 	var diagram = voronoi.compute(sites, bbox);
+	console.log(diagram);
 	if (diagram) {
 		for (var i = 0, l = sites.length; i < l; i++) {
 			var cell = diagram.cells[sites[i].voronoiId];
@@ -63,21 +64,6 @@ function removeSmallBits(path) {
 	}
 }
 
-function generateBeeHivePoints(size, loose) {
-	var points = [];
-	var col = view.size / size;
-	for(var i = -1; i < size.width + 1; i++) {
-		for(var j = -1; j < size.height + 1; j++) {
-			var point = new Point(i, j) / new Point(size) * view.size + col / 2;
-			if(j % 2)
-				point += new Point(col.width / 2, 0);
-			if(loose)
-				point += (col / 4) * Point.random() - col / 4;
-			points.push(point);
-		}
-	}
-	return points;
-}
 function createPath(points, center) {
 	var path = new Path();
 	if (!selected) { 
