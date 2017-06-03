@@ -1,4 +1,5 @@
 var voronoi =  new Voronoi();
+//var sites = generateBeeHivePoints(view.size / 200, true);
 var sites = [];
 for (i=0;i<50;i++){
 	sites.push(new Point(view.size.x, view.size.y) * Point.random());
@@ -58,6 +59,22 @@ function removeSmallBits(path) {
 			segment.remove();
 		}
 	}
+}
+
+function generateBeeHivePoints(size, loose) {
+	var points = [];
+	var col = view.size / size;
+	for(var i = -1; i < size.width + 1; i++) {
+		for(var j = -1; j < size.height + 1; j++) {
+			var point = new Point(i, j) / new Point(size) * view.size + col / 2;
+			if(j % 2)
+				point += new Point(col.width / 2, 0);
+			if(loose)
+				point += (col / 4) * Point.random() - col / 4;
+			points.push(point);
+		}
+	}
+	return points;
 }
 function createPath(points, center) {
 	var path = new Path();
