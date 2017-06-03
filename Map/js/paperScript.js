@@ -1,24 +1,10 @@
 var voronoi =  new Voronoi();
 //var sites = generateBeeHivePoints(view.size / 200, true);
 var sites = [],x;
-x = new Point(view.size.width, view.size.height)/4;
-console.log(x);
-sites.push(x);
-x = new Point(3*view.size.width, view.size.height)/4;
-console.log(x);
-sites.push(x);
-x = new Point(3*view.size.width, 3*view.size.height)/4;
-console.log(x);
-sites.push(x);
-x = new Point(view.size.width, 3*view.size.height)/4;
-console.log(x);
-sites.push(x);
-/*
 for (i=0;i<50;i++){
-	x = new Point(view.size.x, view.size.y) * Point.random();
+	x = new Point(view.size.width, view.size.height) * Point.random();
 	sites.push(x);
 }
-*/
 console.log(sites);
 var bbox, diagram;
 var oldSize = view.size;
