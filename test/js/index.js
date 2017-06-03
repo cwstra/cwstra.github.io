@@ -10,11 +10,18 @@ function getFiles(){
 }
 
 function systemImport(){
-
+  var file = $("#listFiles").val();
+  if (file=="custom"){
+    file = $("#import").val();
+  }
 }
 
 function goTo(prop){
-  
+
+}
+
+function start(){
+
 }
 
 //Runtime
