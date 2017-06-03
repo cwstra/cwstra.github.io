@@ -1,8 +1,9 @@
-var voronoi =  new Voronoi();
-var sites = [];
+/*var sites = [];
 for (i=0;i<50;i++){
 	sites.push(new Point(view.size.x, view.size.y) * Point.random());
-}
+}*/
+var voronoi =  new Voronoi();
+var sites = generateBeeHivePoints(view.size / 200, true);
 var bbox, diagram;
 var oldSize = view.size;
 var spotColor = new Color('red');
