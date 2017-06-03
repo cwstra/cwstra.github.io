@@ -5,7 +5,6 @@ for (i=0;i<50;i++){
 	x = new Point(view.size.width, view.size.height) * Point.random();
 	sites.push(x);
 }
-console.log(sites);
 var bbox, diagram;
 var oldSize = view.size;
 var spotColor = new Color('red');
