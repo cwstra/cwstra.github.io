@@ -1,18 +1,16 @@
 var voronoi =  new Voronoi();
 //var sites = generateBeeHivePoints(view.size / 200, true);
 var sites = [],x;
-console.log(view.size.x);
-console.log(view.size);
-x = new Point(view.size.x, view.size.y)/4;
+x = new Point(view.size.width, view.size.height)/4;
 console.log(x);
 sites.push(x);
-x = new Point(3*view.size.x, view.size.y)/4;
+x = new Point(3*view.size.width, view.size.height)/4;
 console.log(x);
 sites.push(x);
-x = new Point(3*view.size.x, 3*view.size.y)/4;
+x = new Point(3*view.size.width, 3*view.size.height)/4;
 console.log(x);
 sites.push(x);
-x = new Point(view.size.x, 3*view.size.y)/4;
+x = new Point(view.size.width, 3*view.size.height)/4;
 console.log(x);
 sites.push(x);
 /*
