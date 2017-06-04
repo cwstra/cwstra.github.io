@@ -1,5 +1,6 @@
 //layers: 0 = voronoi, 1 = text
 var layer = new Layer();
+console.log("Yep");
 project.addLayer(layer);
 console.log(project.layers);
 var voronoi =  new Voronoi();
