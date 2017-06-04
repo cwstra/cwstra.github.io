@@ -1,3 +1,4 @@
+project.activeLayer.name = 'voronoi';
 var voronoi =  new Voronoi();
 var sites = [],x;
 for (i=0;i<50;i++){
@@ -12,7 +13,7 @@ var siteColor = new Color('red');
 var mousePos = view.center;
 var counter = 0;
 onResize();
-console.log(project.layers);
+console.log(project.children);
 
 /*function onMouseDown(event) {
 	sites.push(event.point);
