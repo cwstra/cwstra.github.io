@@ -60,6 +60,18 @@ function renderDiagram() {
 
 function centroid(points){
 	var a = points[points.length-1].x*points[0].y-points[points.length-1].y*points[0].x;
+	var cx = (points[points.length-1].x+points[0].x)*a;
+	var cy = (points[points.length-1].y+points[0].y)*a;
+	var i,v; for(i=0;i<points.length-1;i++){
+		v = points[i].x*points[i+1].y - points[i].y*points[i+1].x;
+		a += v;
+		cx += (v*(points[i].x+points[i+1].x));
+		cy += (v*(points[i].y+points[i+1].y));
+	} 
+	a /= 2;
+	cx /= 6*a;
+	cy /= 6*a;
+	return new Point(cx,cy)
 }
 
 function lloyd() {
@@ -113,28 +125,7 @@ function onResize() {
 
 function onKeyDown(event) {
 	if (event.key == 'space') {
-		test();
+		lloyd();
 		renderDiagram();
 	}
-}
-
-function test(){
-	project.layers[1].activate()
-	if (counter >= sites.length){
-		counter=0;
-	}
-	if (diagram){
-		var cell = diagram.cells[sites[counter].voronoiId];
-		var text,i,v; if (cell && cell.halfedges.length>2){
-			for (i=0;i<cell.halfedges.length;i++){
-				v = cell.halfedges[i].getEndpoint();
-				text = new PointText(new Point(v.x, v.y));
-				text.justification = 'center';
-				text.fillColor = 'black';
-				text.content = "Test"+i.toString();
-				console.log([v.x,v.y,i.toString()]);
-			}
-		}
-	}
-	counter++;
 }
