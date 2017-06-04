@@ -132,7 +132,6 @@ function test(){
 				text.justification = 'center';
 				text.fillColor = 'black';
 				text.content = "Test"+i.toString();
-				text.fontSize=70;
 				console.log([v.x,v.y,i.toString()]);
 			}
 		}
