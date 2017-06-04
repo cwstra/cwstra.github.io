@@ -15,7 +15,7 @@ var oldSize = view.size;
 var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
-renderDiagram();
+onResize();
 lloyd();
 lloyd();
 onResize();
