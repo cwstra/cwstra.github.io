@@ -1,9 +1,8 @@
 //layers: 0 = voronoi, 1 = text
 var layer = new Layer();
-console.log(layer);
-console.log(project.addLayer);
-console.log(project.insertLayer);
-console.log(project.addLayer(layer));
+project.addLayer(layer)
+var layer = new Layer();
+project.addLayer(layer)
 var voronoi =  new Voronoi();
 var sites = [],x;
 for (i=0;i<50;i++){
