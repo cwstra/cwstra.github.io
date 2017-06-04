@@ -11,8 +11,8 @@ var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
 var counter = 0;
-
 onResize();
+console.log(project.layers);
 
 /*function onMouseDown(event) {
 	sites.push(event.point);
@@ -30,10 +30,6 @@ function onMouseMove(event) {
 function renderDiagram() {
 	project.activeLayer.children = [];
 	var text = new PointText(new Point(view.size.width/2, view.size.height/2));
-	text.justification = 'center';
-	text.fillColor = 'black';
-	text.content = "Testing, 1, 2, ";
-	console.log("Over")
 	diagram = voronoi.compute(sites, bbox);
 	console.log(diagram);
 	if (diagram) {
