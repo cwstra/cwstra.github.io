@@ -9,6 +9,7 @@ var text = new PointText(new Point(view.size.width/2, view.size.height/2));
 text.justification = 'center';
 text.fillColor = 'black';
 text.content = "Testing, 1, 2, ";
+console.log("Over")
 var bbox, diagram;
 var oldSize = view.size;
 var spotColor = new Color('red');
