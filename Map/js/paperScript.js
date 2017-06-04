@@ -125,7 +125,7 @@ function test(){
 				text.justification = 'center';
 				text.fillColor = 'black';
 				text.content = i.toString();
-				console.log(i.toString());
+				console.log([v.x,v.y,i.toString()]);
 			}
 		}
 	}
