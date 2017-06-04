@@ -15,9 +15,7 @@ var oldSize = view.size;
 var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
-var counter = 0;
 onResize();
-console.log(project.layers);
 
 /*function onMouseDown(event) {
 	sites.push(event.point);
@@ -37,7 +35,8 @@ function renderDiagram() {
 	project.activeLayer.children = [];
 	var text = new PointText(new Point(view.size.width/2, view.size.height/2));
 	diagram = voronoi.compute(sites, bbox);
-	console.log(diagram);
+	lloyd()
+	lloyd()
 	if (diagram) {
 		for (var i = 0, l = sites.length; i < l; i++) {
 			var cell = diagram.cells[sites[i].voronoiId];
