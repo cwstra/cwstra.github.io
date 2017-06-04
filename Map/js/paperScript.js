@@ -5,11 +5,6 @@ for (i=0;i<50;i++){
 	x = x + new Point(20,20)
 	sites.push(x);
 }
-var text = new PointText(new Point(view.size.width/2, view.size.height/2));
-text.justification = 'center';
-text.fillColor = 'black';
-text.content = "Testing, 1, 2, ";
-console.log("Over")
 var bbox, diagram;
 var oldSize = view.size;
 var spotColor = new Color('red');
@@ -18,6 +13,11 @@ var mousePos = view.center;
 var counter = 0;
 
 onResize();
+var text = new PointText(new Point(view.size.width/2, view.size.height/2));
+text.justification = 'center';
+text.fillColor = 'black';
+text.content = "Testing, 1, 2, ";
+console.log("Over")
 
 /*function onMouseDown(event) {
 	sites.push(event.point);
