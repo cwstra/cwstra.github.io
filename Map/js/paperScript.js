@@ -1,7 +1,6 @@
 //layers: 0 = voronoi, 1 = text
 var layer = new Layer();
-console.log("OK...");
-project.insertLayer(1,layer);
+console.log(layer);
 console.log(project.layers);
 var voronoi =  new Voronoi();
 var sites = [],x;
