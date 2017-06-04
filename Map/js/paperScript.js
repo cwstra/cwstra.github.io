@@ -1,5 +1,4 @@
 var voronoi =  new Voronoi();
-//var sites = generateBeeHivePoints(view.size / 200, true);
 var sites = [],x;
 for (i=0;i<50;i++){
 	x = new Point(view.size.width-40, view.size.height-40) * Point.random();
@@ -11,6 +10,7 @@ var oldSize = view.size;
 var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
+var counter = 0;
 
 onResize();
 
@@ -29,7 +29,7 @@ function onMouseMove(event) {
 
 function renderDiagram() {
 	project.activeLayer.children = [];
-	var diagram = voronoi.compute(sites, bbox);
+	diagram = voronoi.compute(sites, bbox);
 	console.log(diagram);
 	if (diagram) {
 		for (var i = 0, l = sites.length; i < l; i++) {
@@ -45,14 +45,34 @@ function renderDiagram() {
 					}
 					createPath(points, sites[i]);
 				}
-				new Path.Circle({center:sites[i],radius:5,fillColor:'blue'})
+				new Path.Circle({center:sites[i],radius:5,fillColor:'blue'});
 			}
 		}
 	}
 }
 
+function centroid(points){
+	var a = points[points.length-1].x*points[0].y-points[points.length-1].y*points[0].x;
+}
+
 function lloyd() {
-	console.log(project.activeLayer.children);
+	if (diagram){
+		for (var i = 0, l = sites.length; i < l; i++) {
+			var cell = diagram.cells[sites[i].voronoiId];
+			if (cell) {
+				var halfedges = cell.halfedges,
+					length = halfedges.length;
+				if (length > 2) {
+					var points = [];
+					for (var j = 0; j < length; j++) {
+						v = halfedges[j].getEndpoint();
+						points.push(new Point(v));
+					}
+					sites[i]=centroid(points);
+				}
+			}
+		}
+	}
 }
 
 function createPath(points, center) {
@@ -87,7 +107,26 @@ function onResize() {
 
 function onKeyDown(event) {
 	if (event.key == 'space') {
-		lloyd();
+		test();
 		renderDiagram();
 	}
+}
+
+function test(){
+	if (counter >= sites.length){
+		counter=0;
+	}
+	if (diagram){
+		var cell = diagram.cells[sites[counter].voronoiId];
+		var text,i,v; if (cell && cell.halfedges.length>2){
+			for (i=0;i<cell.halfedges.length;i++){
+				v = cell.halfedges[i].getEndpoint();
+				text = new PointText(new Point(v.x, v.y));
+				text.justification = 'center';
+				text.fillColor = 'black';
+				text.content = i.toString();
+			}
+		}
+	}
+	counter++;
 }
