@@ -1,4 +1,5 @@
-project.activeLayer.name = 'voronoi';
+//layers: 0 = voronoi, 1 = text
+project.addLayer(new Layer());
 var voronoi =  new Voronoi();
 var sites = [],x;
 for (i=0;i<50;i++){
@@ -13,7 +14,6 @@ var siteColor = new Color('red');
 var mousePos = view.center;
 var counter = 0;
 onResize();
-console.log(project.children);
 
 /*function onMouseDown(event) {
 	sites.push(event.point);
@@ -29,6 +29,7 @@ function onMouseMove(event) {
 }*/
 
 function renderDiagram() {
+	project.layers[0].activate()
 	project.activeLayer.children = [];
 	var text = new PointText(new Point(view.size.width/2, view.size.height/2));
 	diagram = voronoi.compute(sites, bbox);
@@ -114,6 +115,7 @@ function onKeyDown(event) {
 }
 
 function test(){
+	project.layers[1].activate()
 	if (counter >= sites.length){
 		counter=0;
 	}
