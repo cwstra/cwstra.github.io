@@ -16,6 +16,7 @@ var siteColor = new Color('red');
 var mousePos = view.center;
 var counter = 0;
 onResize();
+console.log(project.layers);
 
 /*function onMouseDown(event) {
 	sites.push(event.point);
