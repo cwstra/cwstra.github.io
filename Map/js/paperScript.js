@@ -124,7 +124,7 @@ function test(){
 				text = new PointText(new Point(v.x, v.y));
 				text.justification = 'center';
 				text.fillColor = 'black';
-				text.content = i.toString();
+				text.content = "Test"+i.toString();
 				text.fontSize=70;
 				console.log([v.x,v.y,i.toString()]);
 			}
