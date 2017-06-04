@@ -11,7 +11,6 @@ var oldSize = view.size;
 var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
-var selected = false;
 
 onResize();
 
@@ -52,13 +51,13 @@ function renderDiagram() {
 	}
 }
 
+function lloyd() {
+	console.log(project.activeLayer.children);
+}
+
 function createPath(points, center) {
 	var path = new Path();
-	if (!selected) { 
-		path.strokeColor = spotColor;
-	} else {
-		path.fullySelected = selected;
-	}
+	path.strokeColor = spotColor;
 	path.closed = true;
 
 	for (var i = 0, l = points.length; i < l; i++) {
@@ -88,7 +87,7 @@ function onResize() {
 
 function onKeyDown(event) {
 	if (event.key == 'space') {
-		selected = !selected;
+		lloyd();
 		renderDiagram();
 	}
 }
