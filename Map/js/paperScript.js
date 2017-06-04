@@ -5,7 +5,7 @@ var layer = new Layer();
 project.addLayer(layer)
 var voronoi =  new Voronoi();
 var sites = [],x;
-for (i=0;i<50;i++){
+for (i=0;i<500;i++){
 	x = new Point(view.size.width-40, view.size.height-40) * Point.random();
 	x = x + new Point(20,20)
 	sites.push(x);
@@ -71,7 +71,7 @@ function centroid(points){
 	a /= 2;
 	cx /= 6*a;
 	cy /= 6*a;
-	return new Point(cx,cy)
+	return new Point(cx,cy);
 }
 
 function lloyd() {
