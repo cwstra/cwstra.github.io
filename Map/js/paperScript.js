@@ -119,7 +119,7 @@ function grandGraph(){
 			linked.centers.push([]);
 		}
 		for (var i=0;i<edges.length;i++){
-			linked.edges.push({d0:,d1,v0,v1})
+//			linked.edges.push({d0:,d1,v0,v1})
 		}
 		return linked;
 	}
