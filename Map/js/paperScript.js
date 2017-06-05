@@ -15,6 +15,7 @@ var oldSize = view.size;
 var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
+
 onResize();
 lloyd();
 lloyd();
@@ -38,6 +39,8 @@ function renderDiagram() {
 	project.activeLayer.children = [];
 	var text = new PointText(new Point(view.size.width/2, view.size.height/2));
 	diagram = voronoi.compute(sites, bbox);
+	console.log("sites")
+	console.log(sites)
 	if (diagram) {
 		for (var i = 0, l = sites.length; i < l; i++) {
 			var cell = diagram.cells[sites[i].voronoiId];
@@ -56,6 +59,20 @@ function renderDiagram() {
 			}
 		}
 	}
+}
+
+function createPath(points, center) {
+	var path = new Path();
+	path.strokeColor = spotColor;
+	path.closed = true;
+
+	for (var i = 0, l = points.length; i < l; i++) {
+		var point = points[i];
+		var next = points[(i + 1) == points.length ? 0 : i + 1];
+		var vector = (next - point) / 2;
+		path.add({point: point});
+	}
+	return path;
 }
 
 function centroid(points){
@@ -94,18 +111,18 @@ function lloyd() {
 	}
 }
 
-function createPath(points, center) {
-	var path = new Path();
-	path.strokeColor = spotColor;
-	path.closed = true;
-
-	for (var i = 0, l = points.length; i < l; i++) {
-		var point = points[i];
-		var next = points[(i + 1) == points.length ? 0 : i + 1];
-		var vector = (next - point) / 2;
-		path.add({point: point});
+function grandGraph(){
+	if (diagram){
+		var linked = {centers:[],edges:[],corners:[]};
+		var edges = diagram.edges
+		for (var i=0,i<sites.length,i++){
+			centers.push([sites[i]]);
+		}
+		for (var i=0,i<edges.length,i++){
+			
+		}
+		return linked;
 	}
-	return path;
 }
 
 function onResize() {
