@@ -21,7 +21,7 @@ lloyd();
 lloyd();
 onResize();
 
-console.log(diagram);
+console.log(grandGraph());
 
 function onMouseDown(event) {
 	sites.push(event.point);
@@ -35,6 +35,16 @@ function onMouseDown(event) {
 	sites[sites.length - 1] = event.point;
 	renderDiagram();
 }*/
+
+function containsObject(obj, list) {
+   	var i;
+   	for (i = 0; i < list.length; i++) {
+       	if (list[i] === obj) {
+           	return true;
+       	}
+   	}
+   	return false;
+}
 
 function renderDiagram() {
 	project.layers[0].activate();
@@ -112,14 +122,79 @@ function lloyd() {
 }
 
 function grandGraph(){
+	function cornerFind(corners,corner) {    
+    	for (var i = 0; i < corners.length; i++) {
+        	if (corners[i].x == corner.x && corners[i].y == corner.y) {
+            	return i;
+        	}
+    	}
+    	return -1;
+	}
 	if (diagram){
-		var linked = {centers:[],edges:[],corners:[]};
+		var linked = {centers:{},edges:[],corners:[]};
 		var edges = diagram.edges;
-		for (var i=0;i<sites.length;i++){
-			linked.centers.push([]);
+		var i; for (i=0;i<sites.length;i++){
+			linked.centers[sites[i].voronoiId]={neighbors:[],borders:[],corners:[]}
 		}
-		for (var i=0;i<edges.length;i++){
-//			linked.edges.push({d0:,d1,v0,v1})
+		var obj,v0,v1;
+		for (i=0;i<edges.length;i++){
+			v0 = cornerFind(linked.corners,edges[i].va);
+			v1 = cornerFind(linked.corners,edges[i].vb);
+			if (v0==-1){
+				v0 = linked.corners.length;
+				linked.corners.push(edges[i].va);
+				linked.corners[v0].touches=[];
+				linked.corners[v0].protrudes=[];
+				linked.corners[v0].adjacent=[];
+			}
+			if (v1==-1){
+				v1 = linked.corners.length;
+				linked.corners.push(edges[i].vb);
+				linked.corners[v1].touches=[];
+				linked.corners[v1].protrudes=[];
+				linked.corners[v1].adjacent=[];
+			}
+			obj = {}
+			obj["v0"]=v0;
+			obj["v1"]=v1;
+			obj["d0"]=edges.lSite.voronoiId;
+			obj["d1"]=edges.rSite.voronoiId;
+			linked.edges.push(obj);
+			linked.centers[edges.lSite.voronoiId].neighbors.push(edges.rSite.voronoiId);
+			linked.centers[edges.lSite.voronoiId].borders.push(i);
+			if (linked.centers[edges.lSite.voronoiId].corners.indexOf(v0)==-1){
+				linked.centers[edges.lSite.voronoiId].corners.push(v0);
+			}
+			if (linked.centers[edges.lSite.voronoiId].corners.indexOf(v1)==-1){
+				linked.centers[edges.lSite.voronoiId].corners.push(v1);
+			}
+			if (linked.corners[v0].touches.indexOf(edges.lSite.voronoiId)==-1){
+				linked.corners[v0].touches.push(edges.lSite.voronoiId);
+			}
+			if (linked.corners[v1].touches.indexOf(edges.lSite.voronoiId)==-1){
+				linked.corners[v1].touches.push(edges.lSite.voronoiId);
+			}
+			linked.corners[v0].protrudes.push(i);
+			linked.corners[v1].protrudes.push(i);
+			linked.corners[v0].adjacent.push(v1);
+			linked.corners[v1].adjacent.push(v0);
+			if (edges.rSite){	
+				linked.centers[edges.rSite.voronoiId].neighbors.push(edges.lSite.voronoiId);
+				linked.centers[edges.rSite.voronoiId].borders.push(i);
+				if (linked.centers[edges.rSite.voronoiId].corners.indexOf(v0)==-1){
+					linked.centers[edges.rSite.voronoiId].corners.push(v0);
+				}
+				if (linked.centers[edges.rSite.voronoiId].corners.indexOf(v1)==-1){
+					linked.centers[edges.rSite.voronoiId].corners.push(v1);
+				}
+				if (linked.corners[v0].touches.indexOf(edges.rSite.voronoiId)==-1){
+					linked.corners[v0].touches.push(edges.rSite.voronoiId);
+				}
+				if (linked.corners[v1].touches.indexOf(edges.rSite.voronoiId)==-1){
+					linked.corners[v1].touches.push(edges.rSite.voronoiId);
+				}
+			}
+			
 		}
 		return linked;
 	}
