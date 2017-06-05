@@ -157,28 +157,29 @@ function grandGraph(){
 			obj = {}
 			obj["v0"]=v0;
 			obj["v1"]=v1;
-			obj["d0"]=edges.lSite.voronoiId;
-			obj["d1"]=edges.rSite.voronoiId;
-			linked.edges.push(obj);
-			linked.centers[edges.lSite.voronoiId].neighbors.push(edges.rSite.voronoiId);
-			linked.centers[edges.lSite.voronoiId].borders.push(i);
-			if (linked.centers[edges.lSite.voronoiId].corners.indexOf(v0)==-1){
-				linked.centers[edges.lSite.voronoiId].corners.push(v0);
+			if (edges.lSite && edges.rSite) {
+				linked.centers[edges.lSite.voronoiId].neighbors.push(edges.rSite.voronoiId);
 			}
-			if (linked.centers[edges.lSite.voronoiId].corners.indexOf(v1)==-1){
-				linked.centers[edges.lSite.voronoiId].corners.push(v1);
+			if (edges.lSite){
+				obj["d0"]=edges.lSite.voronoiId;
+				linked.centers[edges.lSite.voronoiId].borders.push(i);
+				if (linked.centers[edges.lSite.voronoiId].corners.indexOf(v0)==-1){
+					linked.centers[edges.lSite.voronoiId].corners.push(v0);
+				}
+				if (linked.centers[edges.lSite.voronoiId].corners.indexOf(v1)==-1){
+					linked.centers[edges.lSite.voronoiId].corners.push(v1);
+				}
+				if (linked.corners[v0].touches.indexOf(edges.lSite.voronoiId)==-1){
+					linked.corners[v0].touches.push(edges.lSite.voronoiId);
+				}
+				if (linked.corners[v1].touches.indexOf(edges.lSite.voronoiId)==-1){
+					linked.corners[v1].touches.push(edges.lSite.voronoiId);
+				}
+			} else {
+				obj["d0"]=null;
 			}
-			if (linked.corners[v0].touches.indexOf(edges.lSite.voronoiId)==-1){
-				linked.corners[v0].touches.push(edges.lSite.voronoiId);
-			}
-			if (linked.corners[v1].touches.indexOf(edges.lSite.voronoiId)==-1){
-				linked.corners[v1].touches.push(edges.lSite.voronoiId);
-			}
-			linked.corners[v0].protrudes.push(i);
-			linked.corners[v1].protrudes.push(i);
-			linked.corners[v0].adjacent.push(v1);
-			linked.corners[v1].adjacent.push(v0);
 			if (edges.rSite){	
+				obj["d1"]=edges.rSite.voronoiId;
 				linked.centers[edges.rSite.voronoiId].neighbors.push(edges.lSite.voronoiId);
 				linked.centers[edges.rSite.voronoiId].borders.push(i);
 				if (linked.centers[edges.rSite.voronoiId].corners.indexOf(v0)==-1){
@@ -193,7 +194,14 @@ function grandGraph(){
 				if (linked.corners[v1].touches.indexOf(edges.rSite.voronoiId)==-1){
 					linked.corners[v1].touches.push(edges.rSite.voronoiId);
 				}
+			} else {
+				obj["d1"]=null;
 			}
+			linked.edges.push(obj);
+			linked.corners[v0].protrudes.push(i);
+			linked.corners[v1].protrudes.push(i);
+			linked.corners[v0].adjacent.push(v1);
+			linked.corners[v1].adjacent.push(v0);
 			
 		}
 		return linked;
