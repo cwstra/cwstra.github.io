@@ -21,6 +21,8 @@ lloyd();
 lloyd();
 onResize();
 
+console.log(diagram);
+
 function onMouseDown(event) {
 	sites.push(event.point);
 	renderDiagram();
@@ -39,8 +41,6 @@ function renderDiagram() {
 	project.activeLayer.children = [];
 	var text = new PointText(new Point(view.size.width/2, view.size.height/2));
 	diagram = voronoi.compute(sites, bbox);
-	console.log("sites");
-	console.log(sites);
 	if (diagram) {
 		for (var i = 0, l = sites.length; i < l; i++) {
 			var cell = diagram.cells[sites[i].voronoiId];
@@ -116,10 +116,10 @@ function grandGraph(){
 		var linked = {centers:[],edges:[],corners:[]};
 		var edges = diagram.edges;
 		for (var i=0;i<sites.length;i++){
-			centers.push([sites[i]]);
+			linked.centers.push([]);
 		}
 		for (var i=0;i<edges.length;i++){
-			
+			linked.edges.push({d0:,d1,v0,v1})
 		}
 		return linked;
 	}
