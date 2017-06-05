@@ -20,7 +20,7 @@ lloyd();
 lloyd();
 onResize();
 
-/*function onMouseDown(event) {
+function onMouseDown(event) {
 	sites.push(event.point);
 	renderDiagram();
 }
@@ -31,7 +31,7 @@ function onMouseMove(event) {
 		sites.push(event.point);
 	sites[sites.length - 1] = event.point;
 	renderDiagram();
-}*/
+}
 
 function renderDiagram() {
 	project.layers[0].activate()
