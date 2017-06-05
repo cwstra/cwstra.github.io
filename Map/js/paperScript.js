@@ -21,6 +21,9 @@ lloyd();
 lloyd();
 onResize();
 
+console.log("diagram");
+console.log(diagram);
+console.log("grandGraph");
 console.log(grandGraph());
 
 function onMouseDown(event) {
