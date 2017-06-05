@@ -1,13 +1,13 @@
 //layers: 0 = voronoi, 1 = text
 var layer = new Layer();
-project.addLayer(layer)
+project.addLayer(layer);
 var layer = new Layer();
-project.addLayer(layer)
+project.addLayer(layer);
 var voronoi =  new Voronoi();
 var sites = [],x;
 for (i=0;i<500;i++){
 	x = new Point(view.size.width-40, view.size.height-40) * Point.random();
-	x = x + new Point(20,20)
+	x = x + new Point(20,20);
 	sites.push(x);
 }
 var bbox, diagram;
@@ -35,12 +35,12 @@ function onMouseDown(event) {
 }*/
 
 function renderDiagram() {
-	project.layers[0].activate()
+	project.layers[0].activate();
 	project.activeLayer.children = [];
 	var text = new PointText(new Point(view.size.width/2, view.size.height/2));
 	diagram = voronoi.compute(sites, bbox);
-	console.log("sites")
-	console.log(sites)
+	console.log("sites");
+	console.log(sites);
 	if (diagram) {
 		for (var i = 0, l = sites.length; i < l; i++) {
 			var cell = diagram.cells[sites[i].voronoiId];
@@ -114,11 +114,11 @@ function lloyd() {
 function grandGraph(){
 	if (diagram){
 		var linked = {centers:[],edges:[],corners:[]};
-		var edges = diagram.edges
-		for (var i=0,i<sites.length,i++){
+		var edges = diagram.edges;
+		for (var i=0;i<sites.length;i++){
 			centers.push([sites[i]]);
 		}
-		for (var i=0,i<edges.length,i++){
+		for (var i=0;i<edges.length;i++){
 			
 		}
 		return linked;
