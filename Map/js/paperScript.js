@@ -25,13 +25,13 @@ function onMouseDown(event) {
 	renderDiagram();
 }
 
-function onMouseMove(event) {
+/*function onMouseMove(event) {
 	mousePos = event.point;
 	if (event.count == 0)
 		sites.push(event.point);
 	sites[sites.length - 1] = event.point;
 	renderDiagram();
-}
+}*/
 
 function renderDiagram() {
 	project.layers[0].activate()
