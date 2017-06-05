@@ -76,7 +76,6 @@ function centroid(points){
 
 function lloyd() {
 	if (diagram){
-		var oldS = sites.length
 		for (var i = 0, l = sites.length; i < l; i++) {
 			var cell = diagram.cells[sites[i].voronoiId];
 			if (cell) {
@@ -92,7 +91,6 @@ function lloyd() {
 				}
 			}
 		}
-		console.log(["Check",oldS,sites.length])
 	}
 }
 
