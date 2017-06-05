@@ -5,7 +5,7 @@ var layer = new Layer();
 project.addLayer(layer);
 var voronoi =  new Voronoi();
 var sites = [],x;
-for (i=0;i<500;i++){
+for (i=0;i<5;i++){
 	x = new Point(view.size.width-40, view.size.height-40) * Point.random();
 	x = x + new Point(20,20);
 	sites.push(x);
