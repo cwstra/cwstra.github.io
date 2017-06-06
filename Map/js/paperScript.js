@@ -28,9 +28,9 @@ function next(){
 	states.push(states.shift());
 	switch(states[0]){
 		case "Ocean":
+			
 			break;
 		case "Ocean":
-			break;
 	}
 	window.mapState = states[0];
 }
@@ -62,15 +62,18 @@ function randomPoints(n){
 }
 window.randomPoints = randomPoints;
 
-
-function containsObject(obj, list) {
-   	var i;
-   	for (i = 0; i < list.length; i++) {
-       	if (list[i] === obj) {
-           	return true;
-       	}
-   	}
-   	return false;
+function generateTheOceanBlue(){
+	var genType = $('#aioConceptName').find(":selected").val();
+	switch(genType){
+		case "perlin":
+			var perl = SimplexNoise();
+			
+			break;
+		case "radial":
+			
+			break;
+		case "noOcean":
+	}
 }
 
 function renderDiagram(){
@@ -95,6 +98,29 @@ function renderDiagram(){
 			}
 		}
 	}
+	function renderOceanDiagram() {
+		diagram = voronoi.compute(sites, bbox);
+		if (diagram) {
+			for (var i = 0, l = sites.length; i < l; i++) {
+				var cell = diagram.cells[sites[i].voronoiId];
+				if (cell) {
+					var halfedges = cell.halfedges,
+						length = halfedges.length;
+					if (length > 2) {
+						var points = [];
+						for (var j = 0; j < length; j++) {
+							v = halfedges[j].getEndpoint();
+							points.push(new Point(v));
+						}
+						createPath(points, sites[i]);
+					}
+					new Path.Circle({center:sites[i],radius:1,fillColor:'blue'});
+				}
+			}
+		}
+	}
+    //Runtime
+    {
     project.layers[0].activate();
 	project.activeLayer.children = [];
 	if (window.mapState=="Voronoi"){
@@ -102,9 +128,8 @@ function renderDiagram(){
 	} else if (window.mapState=="Ocean"){
 		renderOceanDiagram();
 	}
+	}
 }
-
-
 
 function createPath(points, center) {
 	var path = new Path();
