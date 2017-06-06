@@ -18,7 +18,7 @@ function init(){
 	states = ["Voronoi","Ocean"];
 	window.mapState = states[0];
 	console.log("Here");
-	randomPoints(500);
+	randomPoints(1000);
 	lloyd();
 	lloyd();
 	onResize();	
