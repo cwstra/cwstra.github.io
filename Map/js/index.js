@@ -19,4 +19,4 @@ function stage(sta){
 	}
 	change(mapState);
 }
-$(document).ready(function (){stage("restart");})
+$(document).ready(function(){stage("restart");})
