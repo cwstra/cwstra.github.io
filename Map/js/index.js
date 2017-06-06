@@ -13,9 +13,9 @@ function stage(sta){
 		tools.html(hString);
 	}
 	if (sta=="restart"){
-		paperInit();
+		window.paperInit();
 	} else {
-		paperNext();
+		window.paperNext();
 	}
 	change(mapState);
 }
