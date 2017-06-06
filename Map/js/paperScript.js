@@ -21,6 +21,7 @@ function init(){
 	lloyd();
 	onResize();	
 }
+console.log("defined");
 window.paperInit = init;
 
 function next(){
