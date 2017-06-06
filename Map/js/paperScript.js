@@ -78,7 +78,7 @@ function generateTheOceanBlue(){
 			console.log(arr);
 			corn = linked.corners[arr[0]];
 			for (i=0;i<corn.adjacent.length;i++){
-				if (linked.corners[corn.adjacent[i]].water){
+				if (linked.corners[corn.adjacent[i]].water&&!linked.corners[corn.adjacent[i]].ocean){
 					linked.corners[corn.adjacent[i]].ocean = true;
 					arr.push(corn.adjacent[i]);
 				}
