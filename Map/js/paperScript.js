@@ -121,7 +121,7 @@ function generateTheOceanBlue(){
 			var i,n,p; for (i=0;i<linked.corners.length;i++){
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
-				if (n>0.75){
+				if (n>0.5){
 					linked.corners[i].water = true;
 				} else {
 					linked.corners[i].water = false;
