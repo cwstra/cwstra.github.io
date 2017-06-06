@@ -5,19 +5,14 @@ project.addLayer(layer);
 var layer = new Layer();
 project.addLayer(layer);
 var voronoi =  new Voronoi();
-var sites = [],x;
-for (i=0;i<5;i++){
-	x = new Point(view.size.width-margin*2, view.size.height-margin*2) * Point.random();
-	x = x + new Point(margin,margin);
-	sites.push(x);
-}
+var sites;
 var bbox, diagram;
 var oldSize = view.size;
 var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
 
-onResize();
+randomPoints();
 lloyd();
 lloyd();
 onResize();
@@ -35,6 +30,17 @@ function onMouseDown(event) {
 	sites[sites.length - 1] = event.point;
 	renderDiagram();
 }*/
+
+function randomPoints(){
+ 	sites = [] 
+ 	var x,i;
+	for (i=0;i<$("#randomNo").val();i++){
+		x = new Point(view.size.width-margin*2, view.size.height-margin*2) * Point.random();
+		x = x + new Point(margin,margin);
+		sites.push(x);
+	}
+	onResize();
+}
 
 function containsObject(obj, list) {
    	var i;
