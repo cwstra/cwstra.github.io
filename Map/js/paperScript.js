@@ -85,6 +85,7 @@ function generateTheOceanBlue(){
 		}
 	}
 	var genType = $('#aioConceptName').find(":selected").val();
+	console.log(genType);
 	switch(genType){
 		case "perlin":
 			var perl = new SimplexNoise();
