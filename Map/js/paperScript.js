@@ -187,6 +187,7 @@ function renderDiagram(){
 		}
 	}
 	function renderOceanDiagram() {
+		console.log("Got Here");
 		if (diagram) {
 			var i; for(i in linked.centers) { if (linked.centers.hasOwnProperty(i)){
 				var cell = diagram.cells[i];
