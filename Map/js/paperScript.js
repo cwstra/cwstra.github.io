@@ -12,6 +12,7 @@ var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
 var states;
+var linked;
 
 function init(){
 	states = ["Voronoi","Water"];
@@ -28,11 +29,12 @@ function next(){
 	states.push(states.shift());
 	switch(states[0]){
 		case "Ocean":
-			
+			linked = grandGraph();
+			generateTheOceanBlue();
 			break;
-		case "Ocean":
 	}
 	window.mapState = states[0];
+	onResize();
 }
 window.paperNext = next;
 
@@ -63,17 +65,103 @@ function randomPoints(n){
 window.randomPoints = randomPoints;
 
 function generateTheOceanBlue(){
+	function oceanCheck(){
+		var arr=[],i,corn; for (i=0;i<linked.borderCorners.length;i++){
+			if (linked.corners[linked.borderCorners[i]].water){
+				linked.corners[linked.borderCorners[i]].ocean = true;
+				arr.push(linked.borderCorners[i]);
+			}
+		}
+		var val;
+		while (arr.length){
+			corn = linked.corners[arr[0]];
+			for (i=0;i<corn.adjacent.length;i++){
+				if (linked.corners[corn.adjacent[i]].water){
+					linked.corners[corn.adjacent[i]].ocean = true;
+					arr.push(corn.adjacent[i]);
+				}
+			}
+		}
+	}
 	var genType = $('#aioConceptName').find(":selected").val();
 	switch(genType){
 		case "perlin":
-			var perl = SimplexNoise();
-			
+			var perl = new SimplexNoise();
+			var i,n,p,key,val,count,check; for (i=0;i<linked.corners.length;i++){
+				p = new Point(linked.corners[i].x,linked.corners[i].y);
+				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
+				n *= (1+perl.noise(linked.corners[i].x,linked.corners[i].y))/2;
+				if (n>.5){
+					linked.corners[i].water = true;
+				} else {
+					linked.corners[i].water = false;
+				}
+			}
+			oceanCheck();
+			for(key in linked.centers) {
+    			if(myObject.hasOwnProperty(key)) {
+    				count = 0; check = false;
+        			for (i=0;i<linked.centers[key].corners.length;i++){
+        				val = linked.centers[key].corners[i]
+        				count += linked.corners[val].water;
+        				check = check || linked.corners[val].ocean;
+        			};
+        			linked.centers[key].water = (count>linked.centers[key].corners.length/2);
+        			if (linked.centers[key].water){
+        				linked.centers[key].ocean = check;
+        			}
+    			}
+			}
 			break;
 		case "radial":
-			
+			var i,n,p; for (i=0;i<linked.corners.length;i++){
+				p = new Point(linked.corners[i].x,linked.corners[i].y);
+				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
+				if (n>.75){
+					linked.corners[i].water = true;
+				} else {
+					linked.corners[i].water = false;
+				}
+			}
+			oceanCheck();
+			for(key in linked.centers) {
+    			if(myObject.hasOwnProperty(key)) {
+    				count = 0;
+        			for (i=0;i<linked.centers[key].corners.length;i++){
+        				val = linked.centers[key].corners[i]
+        				count += linked.corners[val].water;
+        				check = check || linked.corners[val].ocean;
+        			};
+        			linked.centers[key].water = (count>linked.centers[key].corners.length/2);
+        			if (linked.centers[key].water){
+        				linked.centers[key].ocean = check;
+        			}
+    			}
+			}
+			oceanCheck();
 			break;
 		case "noOcean":
+			var perl = new SimplexNoise();
+			var i,n,p; for (i=0;i<linked.corners.length;i++){
+				n = (1+perl.noise(linked.corners[i].x,linked.corners[i].y))/2;
+				if (n>-0.9||[margin,view.size.width-margin].indexOf(linked.corners[i].x)!=-1||[margin,view.size.height-margin].indexOf(linked.corners[i].y)!=-1){
+					linked.corners[i].water = false;
+				} else {
+					linked.corners[i].water = true;
+				}
+			}
+			for(key in linked.centers) {
+    			if(myObject.hasOwnProperty(key)) {
+    				count = 0;
+        			for (i=0;i<linked.centers[key].corners.length;i++){
+        				val = linked.centers[key].corners[i]
+        				count += linked.corners[val].water;
+        			};
+        			linked.centers[key].water = (count>linked.centers[key].corners.length/2);
+    			}
+			}
 	}
+	
 }
 
 function renderDiagram(){
@@ -91,7 +179,7 @@ function renderDiagram(){
 							v = halfedges[j].getEndpoint();
 							points.push(new Point(v));
 						}
-						createPath(points, sites[i]);
+						createPath(points, sites[i],"Voronoi");
 					}
 					new Path.Circle({center:sites[i],radius:1,fillColor:'blue'});
 				}
@@ -99,10 +187,9 @@ function renderDiagram(){
 		}
 	}
 	function renderOceanDiagram() {
-		diagram = voronoi.compute(sites, bbox);
 		if (diagram) {
-			for (var i = 0, l = sites.length; i < l; i++) {
-				var cell = diagram.cells[sites[i].voronoiId];
+			var i; for(i in linked.centers) { if (linked.centers.hasOwnProperty(i))
+				var cell = diagram.cells[i];
 				if (cell) {
 					var halfedges = cell.halfedges,
 						length = halfedges.length;
@@ -112,11 +199,11 @@ function renderDiagram(){
 							v = halfedges[j].getEndpoint();
 							points.push(new Point(v));
 						}
-						createPath(points, sites[i]);
+						createPath(points, linked.centers[i],"Ocean",[linked.centers[i].water,linked.centers[i].ocean]);
 					}
-					new Path.Circle({center:sites[i],radius:1,fillColor:'blue'});
+					new Path.Circle({center:linked.centers[i],radius:1,fillColor:'black'});
 				}
-			}
+			}}
 		}
 	}
     //Runtime
@@ -131,11 +218,24 @@ function renderDiagram(){
 	}
 }
 
-function createPath(points, center) {
-	var path = new Path();
-	path.strokeColor = spotColor;
-	path.closed = true;
-
+function createPath(points, center,f,x) {
+	var path
+	if (f=="Voronoi"){
+		path = new Path();
+		path.strokeColor = spotColor;
+		path.closed = true;
+	} else if (f=="Ocean"){
+		path = new Path();
+		path.strokeColor = 'black';
+		if (x[0]&&x[1]){
+			path.fillColor = 'blue';
+		} else if (x[0]){
+			path.fillColor = 'cyan';
+		} else {
+			path.fillColor = 'tan';
+		}
+		path.closed = true;
+	}
 	for (var i = 0, l = points.length; i < l; i++) {
 		var point = points[i];
 		var next = points[(i + 1) == points.length ? 0 : i + 1];
@@ -194,7 +294,10 @@ function grandGraph(){
 		var linked = {centers:{},edges:[],corners:[],borderCorners:[]};
 		var edges = diagram.edges;
 		var i; for (i=0;i<sites.length;i++){
-			linked.centers[sites[i].voronoiId]={neighbors:[],borders:[],corners:[]}
+			linked.centers[sites[i].voronoiId]=sites[i];
+			linked.centers[sites[i].voronoiId].neighbors=[];
+			linked.centers[sites[i].voronoiId].borders=[];
+			linked.centers[sites[i].voronoiId].corners=[];
 		}
 		var obj,v0,v1;
 		for (i=0;i<edges.length;i++){
