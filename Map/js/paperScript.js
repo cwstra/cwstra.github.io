@@ -1,4 +1,5 @@
 //layers: 0 = voronoi, 1 = text
+var margin = 20;
 var layer = new Layer();
 project.addLayer(layer);
 var layer = new Layer();
@@ -6,8 +7,8 @@ project.addLayer(layer);
 var voronoi =  new Voronoi();
 var sites = [],x;
 for (i=0;i<5;i++){
-	x = new Point(view.size.width-40, view.size.height-40) * Point.random();
-	x = x + new Point(20,20);
+	x = new Point(view.size.width-margin*2, view.size.height-margin*2) * Point.random();
+	x = x + new Point(margin,margin);
 	sites.push(x);
 }
 var bbox, diagram;
@@ -134,7 +135,7 @@ function grandGraph(){
     	return -1;
 	}
 	if (diagram){
-		var linked = {centers:{},edges:[],corners:[]};
+		var linked = {centers:{},edges:[],corners:[],borderCorners:[]};
 		var edges = diagram.edges;
 		var i; for (i=0;i<sites.length;i++){
 			linked.centers[sites[i].voronoiId]={neighbors:[],borders:[],corners:[]}
@@ -146,6 +147,9 @@ function grandGraph(){
 			if (v0==-1){
 				v0 = linked.corners.length;
 				linked.corners.push(edges[i].va);
+				if ([margin,view.size.width-margin].indexOf(edges[i].va.x)!=-1&&[margin,view.size.height-margin].indexOf(edges[i].va.y)!=-1){
+					linked.borderCorners.push(v0)
+				}
 				linked.corners[v0].touches=[];
 				linked.corners[v0].protrudes=[];
 				linked.corners[v0].adjacent=[];
@@ -153,6 +157,9 @@ function grandGraph(){
 			if (v1==-1){
 				v1 = linked.corners.length;
 				linked.corners.push(edges[i].vb);
+				if ([margin,view.size.width-margin].indexOf(edges[i].va.x)!=-1&&[margin,view.size.height-margin].indexOf(edges[i].va.y)!=-1){
+					linked.borderCorners.push(v1)
+				}
 				linked.corners[v1].touches=[];
 				linked.corners[v1].protrudes=[];
 				linked.corners[v1].adjacent=[];
@@ -212,7 +219,6 @@ function grandGraph(){
 }
 
 function onResize() {
-	var margin = 20;
 	bbox = {
 		xl: margin,
 		xr: view.bounds.width - margin,
