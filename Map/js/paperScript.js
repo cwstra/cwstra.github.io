@@ -39,6 +39,12 @@ function next(){
 }
 window.paperNext = next;
 
+function modifyOcean(){
+	generateTheOceanBlue($('#watera').val(),$('#waterb').val(),$('#waterc').val());
+	onResize();
+}
+window.modifyOcean = modifyOcean;
+
 function onMouseDown(event) {
 	sites.push(event.point);
 	renderDiagram();
@@ -95,10 +101,11 @@ function generateTheOceanBlue(a,b,c){
 			c = (typeof b !== 'undefined') ?  c : 2;
 			var perl = new SimplexNoise();
 			var i,n,p,key,val,count,check; for (i=0;i<linked.corners.length;i++){
+				linked.corners[i].ocean = false;
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
 				check = perl.noise(linked.corners[i].x,linked.corners[i].y)+perl.noise(10*linked.corners[i].x,10*linked.corners[i].y)/10+perl.noise(100*linked.corners[i].x,100*linked.corners[i].y)/100;
-				if (check<n){
+				if (check<a+b*n**c){
 					linked.corners[i].water = true;
 				} else {
 					linked.corners[i].water = false;
