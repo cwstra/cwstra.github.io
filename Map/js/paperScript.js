@@ -17,7 +17,7 @@ function init(){
 	states = ["Voronoi","Water"];
 	window.mapState = states[0];
 	console.log("Here");
-	randomPoints();
+	randomPoints(500);
 	lloyd();
 	lloyd();
 	onResize();	
@@ -49,10 +49,11 @@ function onMouseDown(event) {
 	renderDiagram();
 }*/
 
-function randomPoints(){
- 	sites = [] 
+function randomPoints(n){
+	n = (typeof n !== 'undefined') ?  n : $("#randomNo").val();
+ 	sites = [];
  	var x,i;
-	for (i=0;i<$("#randomNo").val();i++){
+	for (i=0;i<n;i++){
 		x = new Point(view.size.width-margin*2, view.size.height-margin*2) * Point.random();
 		x = x + new Point(margin,margin);
 		sites.push(x);
