@@ -94,22 +94,26 @@ function generateTheOceanBlue(a,b,c){
 	console.log(genType);
 	switch(genType){
 		case "perlin":
-			a = (typeof a !== 'undefined') ?  a : 0.3;
-			b = (typeof b !== 'undefined') ?  b : 0.3;
-			c = (typeof c !== 'undefined') ?  c : 2;
+			a = (typeof a !== 'undefined') ?  parseInt(a) : 0.3;
+			b = (typeof b !== 'undefined') ?  parseInt(b) : 0.3;
+			c = (typeof c !== 'undefined') ?  parseInt(c) : 2;
 			var perl = new SimplexNoise();
-			var i,n,p,key,val,count,check; for (i=0;i<linked.corners.length;i++){
+			var i,n,p,key,val,count,check; 
+			count = 0;
+			for (i=0;i<linked.corners.length;i++){
 				linked.corners[i].ocean = false;
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
 				check = perl.noise(linked.corners[i].x,linked.corners[i].y)+perl.noise(10*linked.corners[i].x,10*linked.corners[i].y)/10+perl.noise(100*linked.corners[i].x,100*linked.corners[i].y)/100;
 				console.log([a,b,c],a+b*Math.pow(n,c));
 				if (check<a+b*Math.pow(n,c)){
+					count++;
 					linked.corners[i].water = true;
 				} else {
 					linked.corners[i].water = false;
 				}
 			}
+			console.log(count/linked.corners.length);
 			oceanCheck();
 			for(key in linked.centers) {
     			if(linked.centers.hasOwnProperty(key)) {
