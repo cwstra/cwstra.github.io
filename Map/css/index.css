@@ -9,13 +9,13 @@ body {
 canvas[resize] {
     margin: 0 0 32px 224px;
     /* Firefox */
-	height: -moz-calc(100% - 224px);
+	width: -moz-calc(100% - 224px);
 	/* WebKit */
-	height: -webkit-calc(100% - 224px);
+	width: -webkit-calc(100% - 224px);
 	/* Opera */
-	height: -o-calc(100% - 224px);
+	width: -o-calc(100% - 224px);
 	/* Standard */
-	height: calc(100% - 224px);
+	width: calc(100% - 224px);
     height: 100%;
 }
 
