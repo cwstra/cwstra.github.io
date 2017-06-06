@@ -20,5 +20,4 @@ function stage(sta){
 	}
 	change(mapState);
 }
-
-stage("restart");
+$(document).ready(function (){stage("restart");})
