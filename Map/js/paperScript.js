@@ -65,7 +65,7 @@ function randomPoints(n){
 }
 window.randomPoints = randomPoints;
 
-function generateTheOceanBlue(){
+function generateTheOceanBlue(a,b,c){
 	function oceanCheck(){
 		var arr=[],i,corn; for (i=0;i<linked.borderCorners.length;i++){
 			if (linked.corners[linked.borderCorners[i]].water){
@@ -90,12 +90,15 @@ function generateTheOceanBlue(){
 	console.log(genType);
 	switch(genType){
 		case "perlin":
+			a = (typeof a !== 'undefined') ?  a : 0.3;
+			b = (typeof b !== 'undefined') ?  b : 0.3;
+			c = (typeof b !== 'undefined') ?  c : 2;
 			var perl = new SimplexNoise();
 			var i,n,p,key,val,count,check; for (i=0;i<linked.corners.length;i++){
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
-				check = (perl.noise(linked.corners[i].x,linked.corners[i].y)+1)/2;
-				if (check>n*n*0.3+0.3){
+				check = perl.noise(linked.corners[i].x,linked.corners[i].y)+perl.noise(10*linked.corners[i].x,10*linked.corners[i].y)/10+perl.noise(100*linked.corners[i].x,100*linked.corners[i].y)/100;
+				if (check<n){
 					linked.corners[i].water = true;
 				} else {
 					linked.corners[i].water = false;
