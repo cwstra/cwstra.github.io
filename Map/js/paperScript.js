@@ -91,7 +91,7 @@ function generateTheOceanBlue(){
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
 				n *= (1+perl.noise(linked.corners[i].x,linked.corners[i].y))/2;
-				if (n>.5){
+				if (n>0.5){
 					linked.corners[i].water = true;
 				} else {
 					linked.corners[i].water = false;
@@ -102,10 +102,10 @@ function generateTheOceanBlue(){
     			if(myObject.hasOwnProperty(key)) {
     				count = 0; check = false;
         			for (i=0;i<linked.centers[key].corners.length;i++){
-        				val = linked.centers[key].corners[i]
+        				val = linked.centers[key].corners[i];
         				count += linked.corners[val].water;
         				check = check || linked.corners[val].ocean;
-        			};
+        			}
         			linked.centers[key].water = (count>linked.centers[key].corners.length/2);
         			if (linked.centers[key].water){
         				linked.centers[key].ocean = check;
@@ -117,7 +117,7 @@ function generateTheOceanBlue(){
 			var i,n,p; for (i=0;i<linked.corners.length;i++){
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
-				if (n>.75){
+				if (n>0.75){
 					linked.corners[i].water = true;
 				} else {
 					linked.corners[i].water = false;
@@ -128,10 +128,10 @@ function generateTheOceanBlue(){
     			if(myObject.hasOwnProperty(key)) {
     				count = 0;
         			for (i=0;i<linked.centers[key].corners.length;i++){
-        				val = linked.centers[key].corners[i]
+        				val = linked.centers[key].corners[i];
         				count += linked.corners[val].water;
         				check = check || linked.corners[val].ocean;
-        			};
+        			}
         			linked.centers[key].water = (count>linked.centers[key].corners.length/2);
         			if (linked.centers[key].water){
         				linked.centers[key].ocean = check;
@@ -154,9 +154,9 @@ function generateTheOceanBlue(){
     			if(myObject.hasOwnProperty(key)) {
     				count = 0;
         			for (i=0;i<linked.centers[key].corners.length;i++){
-        				val = linked.centers[key].corners[i]
+        				val = linked.centers[key].corners[i];
         				count += linked.corners[val].water;
-        			};
+        			}
         			linked.centers[key].water = (count>linked.centers[key].corners.length/2);
     			}
 			}
@@ -188,7 +188,7 @@ function renderDiagram(){
 	}
 	function renderOceanDiagram() {
 		if (diagram) {
-			var i; for(i in linked.centers) { if (linked.centers.hasOwnProperty(i))
+			var i; for(i in linked.centers) { if (linked.centers.hasOwnProperty(i)){
 				var cell = diagram.cells[i];
 				if (cell) {
 					var halfedges = cell.halfedges,
@@ -219,7 +219,7 @@ function renderDiagram(){
 }
 
 function createPath(points, center,f,x) {
-	var path
+	var path;
 	if (f=="Voronoi"){
 		path = new Path();
 		path.strokeColor = spotColor;
@@ -307,7 +307,7 @@ function grandGraph(){
 				v0 = linked.corners.length;
 				linked.corners.push(edges[i].va);
 				if ([margin,view.size.width-margin].indexOf(edges[i].va.x)!=-1&&[margin,view.size.height-margin].indexOf(edges[i].va.y)!=-1){
-					linked.borderCorners.push(v0)
+					linked.borderCorners.push(v0);
 				}
 				linked.corners[v0].touches=[];
 				linked.corners[v0].protrudes=[];
@@ -317,13 +317,13 @@ function grandGraph(){
 				v1 = linked.corners.length;
 				linked.corners.push(edges[i].vb);
 				if ([margin,view.size.width-margin].indexOf(edges[i].vb.x)!=-1&&[margin,view.size.height-margin].indexOf(edges[i].vb.y)!=-1){
-					linked.borderCorners.push(v1)
+					linked.borderCorners.push(v1);
 				}
 				linked.corners[v1].touches=[];
 				linked.corners[v1].protrudes=[];
 				linked.corners[v1].adjacent=[];
 			}
-			obj = {}
+			obj = {};
 			obj["v0"]=v0;
 			obj["v1"]=v1;
 			if (edges[i].lSite && edges[i].rSite) {
