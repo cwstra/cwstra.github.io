@@ -96,7 +96,7 @@ function generateTheOceanBlue(a,b,c){
 		case "perlin":
 			a = (typeof a !== 'undefined') ?  a : 0.3;
 			b = (typeof b !== 'undefined') ?  b : 0.3;
-			c = (typeof b !== 'undefined') ?  c : 2;
+			c = (typeof c !== 'undefined') ?  c : 2;
 			var perl = new SimplexNoise();
 			var i,n,p,key,val,count,check; for (i=0;i<linked.corners.length;i++){
 				linked.corners[i].ocean = false;
