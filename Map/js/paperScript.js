@@ -161,7 +161,6 @@ function generateTheOceanBlue(){
     			}
 			}
 	}
-	
 }
 
 function renderDiagram(){
@@ -209,6 +208,8 @@ function renderDiagram(){
 	}
     //Runtime
     {
+    console.log("First Check Here:");
+    console.log(window.mapState);
     project.layers[0].activate();
 	project.activeLayer.children = [];
 	if (window.mapState=="Voronoi"){
