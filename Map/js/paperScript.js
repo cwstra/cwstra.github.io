@@ -29,6 +29,7 @@ function next(){
 	switch(states[0]){
 		case "Ocean":
 			linked = grandGraph();
+			console.log("GrandGraph Done");
 			generateTheOceanBlue();
 			break;
 	}
