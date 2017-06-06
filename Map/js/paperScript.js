@@ -111,7 +111,7 @@ function generateTheOceanBlue(){
         				count += linked.corners[val].water;
         				check = check || linked.corners[val].ocean;
         			}
-        			linked.centers[key].water = (count>linked.centers[key].corners.length*3/10);
+        			linked.centers[key].water = (count>linked.centers[key].corners.length*7/10);
         			if (linked.centers[key].water){
         				linked.centers[key].ocean = check;
         			}
