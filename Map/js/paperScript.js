@@ -249,7 +249,7 @@ function grandGraph(){
 }
 
 function onResize() {
-	if (sites.length){
+	if (sites){
 		bbox = {
 			xl: margin,
 			xr: view.bounds.width - margin,
