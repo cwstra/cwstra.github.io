@@ -159,7 +159,7 @@ function grandGraph(){
 			if (v1==-1){
 				v1 = linked.corners.length;
 				linked.corners.push(edges[i].vb);
-				if ([margin,view.size.width-margin].indexOf(edges[i].va.x)!=-1&&[margin,view.size.height-margin].indexOf(edges[i].va.y)!=-1){
+				if ([margin,view.size.width-margin].indexOf(edges[i].vb.x)!=-1&&[margin,view.size.height-margin].indexOf(edges[i].vb.y)!=-1){
 					linked.borderCorners.push(v1)
 				}
 				linked.corners[v1].touches=[];
