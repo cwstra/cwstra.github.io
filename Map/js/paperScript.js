@@ -41,6 +41,8 @@ function randomPoints(){
 	}
 	onResize();
 }
+window.randomPoints = randomPoints;
+
 
 function containsObject(obj, list) {
    	var i;
