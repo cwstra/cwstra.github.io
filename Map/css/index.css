@@ -7,15 +7,15 @@ body {
 
 /* Scale canvas with resize attribute to full size */
 canvas[resize] {
-    margin: 0 0 32px 224px;
+    margin: 0 0 32px 264px;
     /* Firefox */
-	width: -moz-calc(100% - 224px);
+	width: -moz-calc(100% - 264px);
 	/* WebKit */
-	width: -webkit-calc(100% - 224px);
+	width: -webkit-calc(100% - 264px);
 	/* Opera */
-	width: -o-calc(100% - 224px);
+	width: -o-calc(100% - 264px);
 	/* Standard */
-	width: calc(100% - 224px);
+	width: calc(100% - 264px);
     height: 100%;
 }
 
@@ -33,7 +33,7 @@ button {
 nav{
     float: left;
     margin-left: 32px;
-    width: 160px;
+    width: 200px;
     position: fixed;
     overflow-x: hidden;
     overflow-y: auto;
