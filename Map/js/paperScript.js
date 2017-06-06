@@ -192,8 +192,8 @@ function renderDiagram(){
 	function renderOceanDiagram() {
 		console.log("Got Here");
 		if (diagram) {
-			var i; for(i in linked.centers) { if (linked.centers.hasOwnProperty(i)){
-				var cell = diagram.cells[i];
+			var i,cell; for(i in linked.centers) { if (linked.centers.hasOwnProperty(i)){
+				cell = diagram.cells[i];
 				if (cell) {
 					var halfedges = cell.halfedges,
 						length = halfedges.length;
@@ -205,9 +205,19 @@ function renderDiagram(){
 						}
 						createPath(points, linked.centers[i],"Ocean",[linked.centers[i].water,linked.centers[i].ocean]);
 					}
-					new Path.Circle({center:linked.centers[i],radius:1,fillColor:'black'});
+					Path.Circle({center:linked.centers[i],radius:1,fillColor:'black'});
 				}
 			}}
+			for (i=0;i<linked.corners.length;i++){
+				if (linked.corners[i].ocean){
+					cell = 'darkblue';
+				} else if (linked.corners[i].water){
+					cell = 'blue'
+				} else {
+					cell = 'brown'
+				}
+				Path.Circle({center:linked.corners[i],radius:1,fillColor:cell});
+			}
 		}
 	}
     //Runtime
