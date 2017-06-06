@@ -93,7 +93,7 @@ function generateTheOceanBlue(){
 			var perl = new SimplexNoise();
 			var i,n,p,key,val,count,check; for (i=0;i<linked.corners.length;i++){
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
-				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
+				n = 1/(view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
 				check = (1+perl.noise(linked.corners[i].x,linked.corners[i].y))/2;
 				console.log(n);
 				if (check>n*n*0.3+0.3){
