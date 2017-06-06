@@ -105,7 +105,7 @@ function generateTheOceanBlue(a,b,c){
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
 				check = perl.noise(linked.corners[i].x,linked.corners[i].y)+perl.noise(10*linked.corners[i].x,10*linked.corners[i].y)/10+perl.noise(100*linked.corners[i].x,100*linked.corners[i].y)/100;
-				if (check<a+b*n**c){
+				if (check<a+b*Math.pow(n,c)){
 					linked.corners[i].water = true;
 				} else {
 					linked.corners[i].water = false;
