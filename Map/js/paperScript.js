@@ -208,6 +208,7 @@ function renderDiagram(){
 					Path.Circle({center:linked.centers[i],radius:1,fillColor:'black'});
 				}
 			}}
+			console.log("Check");
 			for (i=0;i<linked.corners.length;i++){
 				if (linked.corners[i].ocean){
 					cell = 'darkblue';
