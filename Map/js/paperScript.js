@@ -21,13 +21,7 @@ onResize();
 lloyd();
 lloyd();
 onResize();
-
-console.log("diagram");
-console.log(diagram);
-console.log("sites");
-console.log(sites);
-console.log("grandGraph");
-console.log(grandGraph());
+var mapState = "Voronoi";
 
 function onMouseDown(event) {
 	sites.push(event.point);
@@ -52,30 +46,38 @@ function containsObject(obj, list) {
    	return false;
 }
 
-function renderDiagram() {
-	project.layers[0].activate();
-	project.activeLayer.children = [];
-	var text = new PointText(new Point(view.size.width/2, view.size.height/2));
-	diagram = voronoi.compute(sites, bbox);
-	if (diagram) {
-		for (var i = 0, l = sites.length; i < l; i++) {
-			var cell = diagram.cells[sites[i].voronoiId];
-			if (cell) {
-				var halfedges = cell.halfedges,
-					length = halfedges.length;
-				if (length > 2) {
-					var points = [];
-					for (var j = 0; j < length; j++) {
-						v = halfedges[j].getEndpoint();
-						points.push(new Point(v));
+function renderDiagram(){
+	function renderBasicDiagram() {
+		diagram = voronoi.compute(sites, bbox);
+		if (diagram) {
+			for (var i = 0, l = sites.length; i < l; i++) {
+				var cell = diagram.cells[sites[i].voronoiId];
+				if (cell) {
+					var halfedges = cell.halfedges,
+						length = halfedges.length;
+					if (length > 2) {
+						var points = [];
+						for (var j = 0; j < length; j++) {
+							v = halfedges[j].getEndpoint();
+							points.push(new Point(v));
+						}
+						createPath(points, sites[i]);
 					}
-					createPath(points, sites[i]);
+					new Path.Circle({center:sites[i],radius:5,fillColor:'blue'});
 				}
-				new Path.Circle({center:sites[i],radius:5,fillColor:'blue'});
 			}
 		}
 	}
+    project.layers[0].activate();
+	project.activeLayer.children = [];
+	if (mapState=="Voronoi"){
+		renderBasicDiagram();
+	} else if (mapState=="Ocean"){
+		renderOceanDiagram();
+	}
 }
+
+
 
 function createPath(points, center) {
 	var path = new Path();
