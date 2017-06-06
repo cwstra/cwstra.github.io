@@ -8,7 +8,14 @@ body {
 /* Scale canvas with resize attribute to full size */
 canvas[resize] {
     margin: 0 0 32px 224px;
-    width: 100%;
+    /* Firefox */
+	height: -moz-calc(100% - 224px);
+	/* WebKit */
+	height: -webkit-calc(100% - 224px);
+	/* Opera */
+	height: -o-calc(100% - 224px);
+	/* Standard */
+	height: calc(100% - 224px);
     height: 100%;
 }
 
