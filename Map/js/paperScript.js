@@ -249,17 +249,19 @@ function grandGraph(){
 }
 
 function onResize() {
-	bbox = {
-		xl: margin,
-		xr: view.bounds.width - margin,
-		yt: margin,
-		yb: view.bounds.height - margin
-	};
-	for (var i = 0, l = sites.length; i < l; i++) {
-		sites[i] = sites[i] * view.size / oldSize;
+	if (sites.length){
+		bbox = {
+			xl: margin,
+			xr: view.bounds.width - margin,
+			yt: margin,
+			yb: view.bounds.height - margin
+		};
+		for (var i = 0, l = sites.length; i < l; i++) {
+			sites[i] = sites[i] * view.size / oldSize;
+		}
+		oldSize = view.size;
+		renderDiagram();
 	}
-	oldSize = view.size;
-	renderDiagram();
 }
 
 function onKeyDown(event) {
