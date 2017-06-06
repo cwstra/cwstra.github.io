@@ -9,7 +9,7 @@ function stage(sta){
 				break;
 			case "Ocean":
 				hString = tools.html().substring(tools.html().search('<select id="land">'),tools.html().search('</select>'))
-				hString = '<li>Redetermine water as a '+hString+' and the equation <input type="number" id="watera" value = "0.3"> + <input type="number" id="waterb" value = "0.3">*d^<input type="number" id="waterc" value = "2">: <button onclick="modifyOcean()">Go!</button></li>'
+				hString = '<li>Redetermine water as a '+hString+' and the equation <input type="number" id="watera" value = "0.3"> + <input type="number" id="waterb" value = "0.3">*d^<input type="number" id="waterc" value = "2">: <button onclick="modifyOcean()">Go!</button></li>'+
 						  '<li>Restart: <button onclick="restart()">Go!</button></li>';
 		}
 		tools.html(hString);
