@@ -217,7 +217,7 @@ function renderDiagram(){
 				} else {
 					cell = 'brown'
 				}
-				Path.Circle({center:linked.corners[i],radius:1,fillColor:cell});
+				Path.Circle({center:linked.corners[i],radius:3,fillColor:cell});
 			}
 		}
 	}
