@@ -129,7 +129,7 @@ function generateTheOceanBlue(){
 			}
 			oceanCheck();
 			for(key in linked.centers) {
-    			if(myObject.hasOwnProperty(key)) {
+    			if(linked.centers.hasOwnProperty(key)) {
     				count = 0;
         			for (i=0;i<linked.centers[key].corners.length;i++){
         				val = linked.centers[key].corners[i];
@@ -155,7 +155,7 @@ function generateTheOceanBlue(){
 				}
 			}
 			for(key in linked.centers) {
-    			if(myObject.hasOwnProperty(key)) {
+    			if(linked.centers.hasOwnProperty(key)) {
     				count = 0;
         			for (i=0;i<linked.centers[key].corners.length;i++){
         				val = linked.centers[key].corners[i];
