@@ -24,6 +24,8 @@ onResize();
 
 console.log("diagram");
 console.log(diagram);
+console.log("sites");
+console.log(sites);
 console.log("grandGraph");
 console.log(grandGraph());
 
