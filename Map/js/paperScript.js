@@ -29,7 +29,6 @@ function next(){
 	switch(states[0]){
 		case "Ocean":
 			linked = grandGraph();
-			console.log("GrandGraph Done");
 			generateTheOceanBlue();
 			break;
 	}
@@ -229,7 +228,7 @@ function renderDiagram(){
 				} else {
 					cell = 'brown'
 				}
-				Path.Circle({center:linked.corners[i],radius:3,fillColor:cell});
+				Path.Circle({center:linked.corners[i],radius:1,fillColor:cell});
 			}
 		}
 	}
@@ -328,6 +327,7 @@ function grandGraph(){
 			linked.centers[sites[i].voronoiId].borders=[];
 			linked.centers[sites[i].voronoiId].corners=[];
 		}
+		console.log("Sites done");
 		var obj,v0,v1;
 		for (i=0;i<edges.length;i++){
 			v0 = cornerFind(linked.corners,edges[i].va);
