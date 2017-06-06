@@ -94,9 +94,9 @@ function generateTheOceanBlue(a,b,c){
 	console.log(genType);
 	switch(genType){
 		case "perlin":
-			a = (typeof a !== 'undefined') ?  parseInt(a) : 0.3;
-			b = (typeof b !== 'undefined') ?  parseInt(b) : 0.3;
-			c = (typeof c !== 'undefined') ?  parseInt(c) : 2;
+			a = (typeof a !== 'undefined') ?  parseFloat(a) : 0.3;
+			b = (typeof b !== 'undefined') ?  parseFloat(b) : 0.3;
+			c = (typeof c !== 'undefined') ?  parseFloat(c) : 2;
 			var perl = new SimplexNoise();
 			var i,n,p,key,val,count,check; 
 			count = 0;
