@@ -83,6 +83,7 @@ function generateTheOceanBlue(){
 					arr.push(corn.adjacent[i]);
 				}
 			}
+			arr.shift();
 		}
 	}
 	var genType = $('#land').find(":selected").val();
