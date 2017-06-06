@@ -15,7 +15,7 @@ var states;
 var linked;
 
 function init(){
-	states = ["Voronoi","Water"];
+	states = ["Voronoi","Ocean"];
 	window.mapState = states[0];
 	console.log("Here");
 	randomPoints(500);
