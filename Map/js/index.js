@@ -13,7 +13,6 @@ function stage(sta){
 		tools.html(hString);
 	}
 	if (sta=="restart"){
-		console.log(window.paperInit);
 		window.paperInit();
 	} else {
 		window.paperNext();

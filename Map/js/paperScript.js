@@ -16,6 +16,7 @@ var states;
 function init(){
 	states = ["Voronoi","Water"];
 	window.mapState = states[0];
+	console.log("Here");
 	randomPoints();
 	lloyd();
 	lloyd();
