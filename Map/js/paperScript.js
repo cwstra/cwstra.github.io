@@ -35,6 +35,7 @@ function next(){
 	}
 	window.mapState = states[0];
 	onResize();
+	console.log(linked);
 }
 window.paperNext = next;
 
