@@ -11,12 +11,29 @@ var oldSize = view.size;
 var spotColor = new Color('red');
 var siteColor = new Color('red');
 var mousePos = view.center;
+var states;
 
-randomPoints();
-lloyd();
-lloyd();
-onResize();
-var mapState = "Voronoi";
+function init(){
+	states = ["Voronoi","Water"];
+	window.mapState = states[0];
+	randomPoints();
+	lloyd();
+	lloyd();
+	onResize();	
+}
+window.paperInit = init;
+
+function next(){
+	states.push(states.shift());
+	switch(states[0]){
+		case "Ocean":
+			break;
+		case "Ocean":
+			break;
+	}
+	window.mapState = states[0];
+}
+window.paperNext = next;
 
 function onMouseDown(event) {
 	sites.push(event.point);
@@ -78,9 +95,9 @@ function renderDiagram(){
 	}
     project.layers[0].activate();
 	project.activeLayer.children = [];
-	if (mapState=="Voronoi"){
+	if (window.mapState=="Voronoi"){
 		renderBasicDiagram();
-	} else if (mapState=="Ocean"){
+	} else if (window.mapState=="Ocean"){
 		renderOceanDiagram();
 	}
 }
