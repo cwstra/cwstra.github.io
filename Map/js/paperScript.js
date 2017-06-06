@@ -17,7 +17,6 @@ var linked;
 function init(){
 	states = ["Voronoi","Ocean"];
 	window.mapState = states[0];
-	console.log("Here");
 	randomPoints(1000);
 	lloyd();
 	lloyd();
@@ -81,7 +80,6 @@ function generateTheOceanBlue(a,b,c){
 		}
 		var val;
 		while (arr.length){
-			console.log(arr);
 			corn = linked.corners[arr[0]];
 			for (i=0;i<corn.adjacent.length;i++){
 				if (linked.corners[corn.adjacent[i]].water&&!linked.corners[corn.adjacent[i]].ocean){
@@ -105,6 +103,7 @@ function generateTheOceanBlue(a,b,c){
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
 				check = perl.noise(linked.corners[i].x,linked.corners[i].y)+perl.noise(10*linked.corners[i].x,10*linked.corners[i].y)/10+perl.noise(100*linked.corners[i].x,100*linked.corners[i].y)/100;
+				console.log(a+b*Math.pow(n,c));
 				if (check<a+b*Math.pow(n,c)){
 					linked.corners[i].water = true;
 				} else {
@@ -200,7 +199,6 @@ function renderDiagram(){
 		}
 	}
 	function renderOceanDiagram() {
-		console.log("Got Here");
 		if (diagram) {
 			var i,cell; for(i in linked.centers) { if (linked.centers.hasOwnProperty(i)){
 				cell = diagram.cells[i];
@@ -218,7 +216,6 @@ function renderDiagram(){
 					Path.Circle({center:linked.centers[i],radius:1,fillColor:'black'});
 				}
 			}}
-			console.log("Check");
 			for (i=0;i<linked.corners.length;i++){
 				if (linked.corners[i].ocean){
 					cell = 'darkblue';
