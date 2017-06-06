@@ -84,7 +84,7 @@ function generateTheOceanBlue(){
 			}
 		}
 	}
-	var genType = $('#aioConceptName').find(":selected").val();
+	var genType = $('#land').find(":selected").val();
 	console.log(genType);
 	switch(genType){
 		case "perlin":
