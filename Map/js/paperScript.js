@@ -200,7 +200,7 @@ function grandGraph(){
 			} else {
 				obj["d1"]=null;
 			}
-			linked.edges[i].push(obj);
+			linked.edges.push(obj);
 			linked.corners[v0].protrudes.push(i);
 			linked.corners[v1].protrudes.push(i);
 			linked.corners[v0].adjacent.push(v1);
