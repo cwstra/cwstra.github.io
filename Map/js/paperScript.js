@@ -90,7 +90,7 @@ function renderDiagram(){
 						}
 						createPath(points, sites[i]);
 					}
-					new Path.Circle({center:sites[i],radius:2,fillColor:'blue'});
+					new Path.Circle({center:sites[i],radius:1,fillColor:'blue'});
 				}
 			}
 		}
