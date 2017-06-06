@@ -160,10 +160,10 @@ function grandGraph(){
 			obj = {}
 			obj["v0"]=v0;
 			obj["v1"]=v1;
-			if (edges.lSite && edges.rSite) {
+			if (edges.lSite!==null&&edges.rSite!==null) {
 				linked.centers[edges.lSite.voronoiId].neighbors.push(edges.rSite.voronoiId);
 			}
-			if (edges.lSite){
+			if (edges.lSite!==null){
 				obj["d0"]=edges.lSite.voronoiId;
 				linked.centers[edges.lSite.voronoiId].borders.push(i);
 				if (linked.centers[edges.lSite.voronoiId].corners.indexOf(v0)==-1){
@@ -181,7 +181,7 @@ function grandGraph(){
 			} else {
 				obj["d0"]=null;
 			}
-			if (edges.rSite){	
+			if (edges.rSite!==null){	
 				obj["d1"]=edges.rSite.voronoiId;
 				linked.centers[edges.rSite.voronoiId].neighbors.push(edges.lSite.voronoiId);
 				linked.centers[edges.rSite.voronoiId].borders.push(i);
