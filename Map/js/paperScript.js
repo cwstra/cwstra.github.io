@@ -75,6 +75,7 @@ function generateTheOceanBlue(){
 		}
 		var val;
 		while (arr.length){
+			console.log(arr);
 			corn = linked.corners[arr[0]];
 			for (i=0;i<corn.adjacent.length;i++){
 				if (linked.corners[corn.adjacent[i]].water){
@@ -90,7 +91,6 @@ function generateTheOceanBlue(){
 		case "perlin":
 			var perl = new SimplexNoise();
 			var i,n,p,key,val,count,check; for (i=0;i<linked.corners.length;i++){
-				console.log([i,linked.corners.length]);
 				p = new Point(linked.corners[i].x,linked.corners[i].y);
 				n = (view.center.getDistance(p))/(view.center.getDistance(new Point(margin,margin)));
 				n *= (1+perl.noise(linked.corners[i].x,linked.corners[i].y))/2;
